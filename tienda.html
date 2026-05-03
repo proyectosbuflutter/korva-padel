@@ -329,7 +329,7 @@ function renderProducts(products){
   // FEATURED
   const featuredEl = document.getElementById('featured-block');
   featuredEl.innerHTML = `
-    <div class="feat-main" onclick="location.href='producto.html'">
+    <div class="feat-main" onclick="location.href='producto.html?id=${featured.id}'">
       <div class="feat-main-img">
         ${featured.badge ? `<span class="feat-badge">${featured.badge}</span>` : ''}
         ${svgPaletaLarge(getColor(featured.categoria), featured.nombre.split(' ').pop())}
@@ -348,7 +348,7 @@ function renderProducts(products){
     </div>
     <div class="feat-side">
       ${sideProducts.map(p=>`
-        <div class="feat-side-card" onclick="location.href='producto.html'">
+        <div class="feat-side-card" onclick="location.href='producto.html?id=${p.id}'">
           <div class="feat-side-img">
             ${p.precio_anterior ? `<span class="feat-side-badge badge-sale">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : ''}
             ${svgPaleta(getColor(p.categoria), p.nombre.split(' ').pop())}
