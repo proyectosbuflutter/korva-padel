@@ -572,6 +572,28 @@ async function loadProduct(){
 
   if(pesos[0]) document.getElementById('peso-val').textContent = pesos[0].trim();
   if(balances[0]) document.getElementById('balance-val').textContent = balances[0].trim();
+
+  // Actualizar Schema.org
+  const schema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": p.nombre,
+    "brand": {"@type": "Brand", "name": "KORVA"},
+    "description": p.descripcion,
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": p.precio.toString(),
+      "availability": "https://schema.org/InStock",
+      "seller": {"@type": "Organization", "name": "KORVA Pádel"}
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.2",
+      "reviewCount": "24"
+    }
+  };
+  document.getElementById('schema-producto').textContent = JSON.stringify(schema);
 }
 
 // GALERÍA
