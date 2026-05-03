@@ -426,6 +426,8 @@ function openModal(){document.getElementById('modal').classList.add('open');docu
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
 function closeLogin(){document.getElementById('modal-login').classList.remove('open');document.body.style.overflow='';}
+function openRegistro(){document.getElementById('modal-registro').classList.add('open');document.body.style.overflow='hidden';}
+function closeRegistro(){document.getElementById('modal-registro').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();closeLegal();}});
 
 // COOKIES
@@ -457,5 +459,19 @@ function closeLegal(){document.getElementById('modal-legal').classList.remove('o
 // INIT
 loadProducts();
 </script>
+<div class="modal-overlay" id="modal-registro">
+  <div class="modal-backdrop" onclick="closeRegistro()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeRegistro()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <span class="modal-label">Crear cuenta</span>
+    <div class="modal-title">Bienvenido<br>a KORVA.</div>
+    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <div class="modal-field"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit">Crear cuenta</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
+  </div>
+</div>
 </body>
 </html>
