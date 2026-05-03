@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KORVA — Checkout</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -50,15 +51,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .field label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)}
 .field input,.field select{font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;transition:border-color .2s;width:100%}
 .field input:focus,.field select:focus{border-color:var(--accent)}
-.field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a09e98' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0 center}
-
-/* CHECKBOX */
+.field select{cursor:pointer;appearance:none}
 .check-row{display:flex;align-items:flex-start;gap:.8rem;cursor:pointer}
 .check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--black);flex-shrink:0;margin-top:.15rem;cursor:pointer}
 .check-row span{font-size:.78rem;color:var(--g600);line-height:1.5}
-.check-row a{color:var(--accent);text-decoration:none}
 
-/* ENVÍO OPTIONS */
+/* ENVÍO */
 .shipping-options{display:flex;flex-direction:column;gap:.8rem}
 .shipping-opt{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1.5px solid var(--g200);cursor:pointer;transition:border-color .2s}
 .shipping-opt:hover{border-color:var(--g400)}
@@ -75,7 +73,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .payment-opt.selected{border-color:var(--black)}
 .payment-opt input[type=radio]{accent-color:var(--black);width:16px;height:16px;flex-shrink:0}
 .payment-opt-name{font-size:.82rem;font-weight:600;color:var(--black)}
-.payment-placeholder{background:var(--g100);padding:1.5rem;border:1px dashed var(--g200);text-align:center;font-size:.75rem;color:var(--g400);margin-top:.5rem}
+
+/* STRIPE */
+.stripe-fields{background:var(--g100);padding:1.5rem;margin-top:.5rem;display:flex;flex-direction:column;gap:1.2rem}
+.stripe-field-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-bottom:.4rem;display:block}
+#card-number,#card-expiry,#card-cvc{background:var(--white);padding:.8rem 1rem;border:1px solid var(--g200);transition:border-color .2s}
+#card-number.StripeElement--focus,#card-expiry.StripeElement--focus,#card-cvc.StripeElement--focus{border-color:var(--accent)}
+.stripe-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+#card-errors{font-size:.75rem;color:#c0622a;margin-top:.5rem;min-height:1.2rem}
+
+/* APPLE/GOOGLE PAY */
+.express-pay{margin-bottom:1.5rem}
+.express-pay-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g400);margin-bottom:.8rem;display:block;text-align:center}
+#payment-request-button{min-height:44px}
+.express-divider{display:flex;align-items:center;gap:1rem;margin:1rem 0}
+.express-divider-line{flex:1;height:1px;background:var(--g200)}
+.express-divider-text{font-size:.62rem;color:var(--g400);letter-spacing:.1em;text-transform:uppercase}
 
 /* DESCUENTO */
 .discount-wrap{display:flex;flex-direction:column;gap:.6rem;padding:1.2rem 0;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
@@ -87,15 +100,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .discount-ok{font-size:.72rem;color:#4a9d6f;display:none;align-items:center;gap:.4rem}
 .discount-ok.show{display:flex}
 
-/* BOTONES NAV */
+/* BOTONES */
 .form-actions{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--g200)}
 .btn-back{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g400);display:flex;align-items:center;gap:.5rem;transition:color .2s}
 .btn-back:hover{color:var(--black)}
 .btn-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .btn-next{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:1rem 2.5rem;cursor:pointer;transition:background .2s}
 .btn-next:hover{background:var(--g800)}
-.btn-pay{font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:1.1rem 3rem;cursor:pointer;transition:opacity .2s;width:100%}
+.btn-pay{font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:1.1rem 3rem;cursor:pointer;transition:opacity .2s;width:100%;margin-top:1.5rem}
 .btn-pay:hover{opacity:.88}
+.btn-pay:disabled{opacity:.5;cursor:not-allowed}
 
 /* TRUST */
 .trust-row{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:1.2rem;flex-wrap:wrap}
@@ -207,10 +221,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
 <div class="checkout-wrap">
 
-  <!-- FORMULARIO -->
   <div>
-
-    <!-- STEPPER -->
     <div class="stepper">
       <div class="step active" id="step-1" onclick="goStep(1)">
         <div class="step-num">1</div>
@@ -228,31 +239,28 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </div>
     </div>
 
-    <!-- PASO 1 — DATOS -->
+    <!-- PASO 1 -->
     <div class="form-panel active" id="panel-1">
       <div class="form-title">Tus datos</div>
-
       <div style="background:var(--g100);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:var(--g600)">
         ¿Ya tienes cuenta? Inicia sesión para rellenar automáticamente.
         <button onclick="openLogin()" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Iniciar sesión</button>
       </div>
-
       <div class="form-row">
-        <div class="field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
-        <div class="field"><label>Apellidos</label><input type="text" placeholder="Tus apellidos"></div>
+        <div class="field"><label>Nombre</label><input type="text" id="nombre" placeholder="Tu nombre"></div>
+        <div class="field"><label>Apellidos</label><input type="text" id="apellidos" placeholder="Tus apellidos"></div>
       </div>
       <div class="form-row">
-        <div class="field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-        <div class="field"><label>Teléfono</label><input type="tel" placeholder="+34 600 000 000"></div>
+        <div class="field"><label>Email</label><input type="email" id="email" placeholder="tu@email.com"></div>
+        <div class="field"><label>Teléfono</label><input type="tel" id="telefono" placeholder="+34 600 000 000"></div>
       </div>
       <div class="form-row full">
-        <div class="field"><label>DNI / NIF</label><input type="text" placeholder="00000000X"></div>
+        <div class="field"><label>DNI / NIF</label><input type="text" id="dni" placeholder="00000000X"></div>
       </div>
       <label class="check-row">
-        <input type="checkbox">
+        <input type="checkbox" id="newsletter">
         <span>Quiero recibir novedades y ofertas exclusivas de KORVA por email.</span>
       </label>
-
       <div class="form-actions">
         <a href="carrito.html" class="btn-back">
           <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -262,10 +270,9 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </div>
     </div>
 
-    <!-- PASO 2 — ENVÍO -->
+    <!-- PASO 2 -->
     <div class="form-panel" id="panel-2">
       <div class="form-title">Dirección de envío</div>
-
       <div class="form-row full">
         <div class="field"><label>Dirección</label><input type="text" placeholder="Calle y número"></div>
       </div>
@@ -285,7 +292,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
           </select>
         </div>
       </div>
-
       <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-top:.5rem">Método de envío</div>
       <div class="shipping-options">
         <label class="shipping-opt selected">
@@ -294,7 +300,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
             <div class="shipping-opt-name">Envío estándar</div>
             <div class="shipping-opt-desc">2–3 días laborables</div>
           </div>
-          <div class="shipping-opt-price" id="price-standard">Gratis</div>
+          <div class="shipping-opt-price">Gratis</div>
         </label>
         <label class="shipping-opt">
           <input type="radio" name="shipping" value="express" onchange="selectShipping(this)">
@@ -313,12 +319,10 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
           <div class="shipping-opt-price">Gratis</div>
         </label>
       </div>
-
-      <label class="check-row" id="billing-check-row">
+      <label class="check-row">
         <input type="checkbox" id="billing-same" checked onchange="toggleBilling()">
         <span>Mi dirección de facturación es la misma que la de envío.</span>
       </label>
-
       <div id="billing-fields" style="display:none;flex-direction:column;gap:1.5rem">
         <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)">Dirección de facturación</div>
         <div class="form-row full"><div class="field"><label>Dirección</label><input type="text" placeholder="Calle y número"></div></div>
@@ -326,12 +330,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
           <div class="field"><label>Ciudad</label><input type="text" placeholder="Ciudad"></div>
           <div class="field"><label>Código postal</label><input type="text" placeholder="00000"></div>
         </div>
-        <div class="form-row">
-          <div class="field"><label>Provincia</label><input type="text" placeholder="Provincia"></div>
-          <div class="field"><label>País</label><select><option>España</option></select></div>
-        </div>
       </div>
-
       <div class="form-actions">
         <button class="btn-back" onclick="goStep(1)">
           <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -341,35 +340,58 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </div>
     </div>
 
-    <!-- PASO 3 — PAGO -->
+    <!-- PASO 3 — PAGO CON STRIPE -->
     <div class="form-panel" id="panel-3">
       <div class="form-title">Método de pago</div>
 
+      <!-- APPLE PAY / GOOGLE PAY -->
+      <div class="express-pay">
+        <span class="express-pay-label">Pago rápido</span>
+        <div id="payment-request-button"></div>
+        <div id="express-not-available" style="display:none;text-align:center;font-size:.72rem;color:var(--g400);padding:.8rem;background:var(--g100)">
+          Apple Pay / Google Pay no disponible en este dispositivo
+        </div>
+      </div>
+
+      <div class="express-divider">
+        <div class="express-divider-line"></div>
+        <div class="express-divider-text">o paga con tarjeta</div>
+        <div class="express-divider-line"></div>
+      </div>
+
+      <!-- TARJETA STRIPE -->
       <div class="payment-options">
-        <label class="payment-opt selected">
-          <input type="radio" name="payment" value="card" checked onchange="selectPayment(this)">
-          <div class="payment-opt-name">Tarjeta de crédito / débito</div>
-          <div style="display:flex;gap:.5rem;margin-left:auto">
-            <span style="font-size:.55rem;font-weight:700;border:1px solid var(--g200);padding:.15rem .45rem;color:var(--g600)">VISA</span>
-            <span style="font-size:.55rem;font-weight:700;border:1px solid var(--g200);padding:.15rem .45rem;color:var(--g600)">MC</span>
+        <div class="payment-opt selected" style="flex-direction:column;align-items:flex-start;gap:.8rem">
+          <div style="display:flex;align-items:center;gap:1rem;width:100%">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span class="payment-opt-name">Tarjeta de crédito / débito</span>
+            <div style="display:flex;gap:.4rem;margin-left:auto">
+              <span style="font-size:.55rem;font-weight:700;border:1px solid var(--g200);padding:.15rem .45rem;color:var(--g600)">VISA</span>
+              <span style="font-size:.55rem;font-weight:700;border:1px solid var(--g200);padding:.15rem .45rem;color:var(--g600)">MC</span>
+              <span style="font-size:.55rem;font-weight:700;border:1px solid var(--g200);padding:.15rem .45rem;color:var(--g600)">AMEX</span>
+            </div>
           </div>
-        </label>
-        <label class="payment-opt">
-          <input type="radio" name="payment" value="bizum" onchange="selectPayment(this)">
-          <div class="payment-opt-name">Bizum</div>
-        </label>
-        <label class="payment-opt">
-          <input type="radio" name="payment" value="paypal" onchange="selectPayment(this)">
-          <div class="payment-opt-name">PayPal</div>
-        </label>
+          <div class="stripe-fields" style="width:100%">
+            <div>
+              <span class="stripe-field-label">Número de tarjeta</span>
+              <div id="card-number"></div>
+            </div>
+            <div class="stripe-row">
+              <div>
+                <span class="stripe-field-label">Fecha de caducidad</span>
+                <div id="card-expiry"></div>
+              </div>
+              <div>
+                <span class="stripe-field-label">CVC</span>
+                <div id="card-cvc"></div>
+              </div>
+            </div>
+            <div id="card-errors"></div>
+          </div>
+        </div>
       </div>
 
-      <div class="payment-placeholder">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--g400)" stroke-width="1.2" stroke-linecap="round" style="margin-bottom:.5rem"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        <div>Los campos de pago seguro aparecerán aquí cuando se integre Stripe.</div>
-      </div>
-
-      <div class="discount-wrap" style="margin-top:1.5rem">
+      <div class="discount-wrap">
         <div class="discount-label">Código descuento</div>
         <div class="discount-row">
           <input class="discount-input" type="text" id="co-discount-input" placeholder="Introduce tu código">
@@ -381,7 +403,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         </div>
       </div>
 
-      <button class="btn-pay" style="margin-top:2rem">Pagar ahora — 448€</button>
+      <button class="btn-pay" id="btn-pay" onclick="handlePayment()">Pagar ahora — 448€</button>
 
       <div class="trust-row">
         <div class="trust-item-sm">
@@ -418,7 +440,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         </button>
       </div>
     </div>
-
   </div>
 
   <!-- RESUMEN -->
@@ -427,13 +448,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <div class="summary-items">
       <div class="summary-item">
         <div class="summary-item-img">
-          <svg width="30" height="48" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text>
-          </svg>
+          <svg width="30" height="48" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text></svg>
           <span class="summary-item-qty">1</span>
         </div>
         <div class="summary-item-info">
@@ -444,13 +459,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </div>
       <div class="summary-item">
         <div class="summary-item-img">
-          <svg width="30" height="48" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".8">K</text>
-          </svg>
+          <svg width="30" height="48" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".8">K</text></svg>
           <span class="summary-item-qty">1</span>
         </div>
         <div class="summary-item-info">
@@ -532,7 +541,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
     <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
     <button class="modal-submit">Entrar</button>
-    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" style="color:var(--accent);text-decoration:none">Regístrate</a></div>
   </div>
 </div>
 
@@ -540,17 +549,85 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <div class="modal-backdrop" onclick="closeLegal()"></div>
   <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
     <button class="modal-close" onclick="closeLegal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <span class="modal-label" id="legal-label">Aviso legal</span>
+    <span class="modal-label" id="legal-label"></span>
     <div class="modal-title" id="legal-title" style="font-size:1.6rem;margin-bottom:1.5rem"></div>
     <div id="legal-content" style="font-size:.85rem;color:var(--g600);line-height:1.9;font-weight:300"></div>
   </div>
 </div>
 
 <script>
+// STRIPE
+const stripe = Stripe('pk_test_51TT68EJlYwrffZX8Rjp2RaM1OsbXzgUPYPJ0wiHvcTsYISDeQdYpE3mGWtgtwdsHLERdTOLHPmMfraL1dp02fhXT00S8Sz01Ua');
+const elements = stripe.elements({
+  fonts:[{cssSrc:'https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap'}]
+});
+
+const stripeStyle = {
+  base:{
+    fontFamily:'Sora, sans-serif',
+    fontSize:'14px',
+    color:'#0a0a0a',
+    '::placeholder':{color:'#a09e98'},
+    iconColor:'#a09e98'
+  },
+  invalid:{color:'#c0622a'}
+};
+
+const cardNumber = elements.create('cardNumber',{style:stripeStyle,placeholder:'1234 5678 9012 3456'});
+const cardExpiry = elements.create('cardExpiry',{style:stripeStyle});
+const cardCvc = elements.create('cardCvc',{style:stripeStyle});
+
+cardNumber.mount('#card-number');
+cardExpiry.mount('#card-expiry');
+cardCvc.mount('#card-cvc');
+
+cardNumber.on('change', e=>{ document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
+
+// APPLE PAY / GOOGLE PAY
+const paymentRequest = stripe.paymentRequest({
+  country:'ES',
+  currency:'eur',
+  total:{label:'KORVA Pádel', amount:44800},
+  requestPayerName:true,
+  requestPayerEmail:true
+});
+
+const prButton = elements.create('paymentRequestButton',{
+  paymentRequest,
+  style:{paymentRequestButton:{type:'buy',theme:'dark',height:'44px'}}
+});
+
+paymentRequest.canMakePayment().then(result=>{
+  if(result){
+    prButton.mount('#payment-request-button');
+  } else {
+    document.getElementById('payment-request-button').style.display='none';
+    document.getElementById('express-not-available').style.display='block';
+  }
+});
+
+paymentRequest.on('paymentmethod', async(e)=>{
+  e.complete('success');
+  alert('Pago completado. Gracias por tu compra.');
+});
+
+// PAGO CON TARJETA
+async function handlePayment(){
+  const btn = document.getElementById('btn-pay');
+  btn.disabled = true;
+  btn.textContent = 'Procesando...';
+
+  // NOTA: Para procesar pagos reales necesitas un backend que cree el PaymentIntent
+  // y devuelva el clientSecret. Por ahora mostramos el flujo visual.
+  alert('Para activar pagos reales conecta un backend que genere el PaymentIntent desde Stripe.');
+  btn.disabled = false;
+  btn.textContent = 'Pagar ahora — 448€';
+}
+
 // STEPPER
 let currentStep = 1;
 function goStep(n){
-  if(n > currentStep) {
+  if(n > currentStep){
     for(let i=1;i<n;i++) document.getElementById('step-'+i).classList.add('done');
   }
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
@@ -561,31 +638,19 @@ function goStep(n){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ENVÍO
 function selectShipping(input){
   document.querySelectorAll('.shipping-opt').forEach(o=>o.classList.remove('selected'));
   input.closest('.shipping-opt').classList.add('selected');
 }
 
-// FACTURACIÓN
 function toggleBilling(){
   const same=document.getElementById('billing-same').checked;
-  const fields=document.getElementById('billing-fields');
-  fields.style.display=same?'none':'flex';
+  document.getElementById('billing-fields').style.display=same?'none':'flex';
 }
 
-// PAGO
-function selectPayment(input){
-  document.querySelectorAll('.payment-opt').forEach(o=>o.classList.remove('selected'));
-  input.closest('.payment-opt').classList.add('selected');
-}
-
-// DESCUENTO
 function applyCoDiscount(){
   const code=document.getElementById('co-discount-input').value.trim().toUpperCase();
-  if(code==='KORVA10'){
-    document.getElementById('co-discount-ok').classList.add('show');
-  }
+  if(code==='KORVA10') document.getElementById('co-discount-ok').classList.add('show');
 }
 
 // MODALES
@@ -607,9 +672,9 @@ initCookies();
 
 // LEGAL
 const legalContent={
-  aviso:{label:'Aviso legal',title:'Aviso legal',content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br><strong>Domicilio:</strong> Calle Example 1, 08000 Barcelona, España<br><strong>Email:</strong> legal@korvapadel.com</p><br><p>El presente aviso legal regula el uso del sitio web korvapadel.com. La navegación implica la aceptación plena de las presentes condiciones.</p><br><p><strong>Propiedad intelectual</strong><br>Todos los contenidos son propiedad de KORVA Pádel S.L. Queda prohibida su reproducción sin autorización expresa.</p>`},
-  privacidad:{label:'Privacidad',title:'Política de privacidad',content:`<p>En cumplimiento del RGPD y la LOPDGDD, te informamos del tratamiento de tus datos personales.</p><br><p><strong>Responsable:</strong> KORVA Pádel S.L. · legal@korvapadel.com</p><br><p><strong>Finalidad:</strong> Gestión de pedidos, atención al cliente y comunicaciones comerciales con tu consentimiento.</p><br><p><strong>Tus derechos:</strong> Acceso, rectificación, supresión y portabilidad escribiendo a legal@korvapadel.com.</p>`},
-  cookies:{label:'Cookies',title:'Política de cookies',content:`<p>Usamos cookies técnicas, analíticas y de preferencias para mejorar tu experiencia.</p><br><p><strong>Cookies técnicas:</strong> Necesarias para el funcionamiento del sitio.<br><strong>Cookies analíticas:</strong> Miden el tráfico (Google Analytics).<br><strong>Terceros:</strong> Stripe y Supabase pueden instalar sus propias cookies.</p><br><p>Puedes gestionar tus preferencias desde la configuración de tu navegador.</p>`}
+  aviso:{label:'Aviso legal',title:'Aviso legal',content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br><strong>Email:</strong> legal@korvapadel.com</p><br><p>El presente aviso legal regula el uso del sitio web korvapadel.com.</p>`},
+  privacidad:{label:'Privacidad',title:'Política de privacidad',content:`<p>En cumplimiento del RGPD y la LOPDGDD, te informamos del tratamiento de tus datos personales.</p><br><p><strong>Responsable:</strong> KORVA Pádel S.L. · legal@korvapadel.com</p>`},
+  cookies:{label:'Cookies',title:'Política de cookies',content:`<p>Usamos cookies técnicas y analíticas para mejorar tu experiencia.</p>`}
 };
 function openLegal(type){
   const data=legalContent[type];
