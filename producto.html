@@ -328,7 +328,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <div class="trust-icons">
       <div class="trust-item">
         <svg class="trust-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="18.5" cy="18.5" r="1.5"/></svg>
-        <div class="trust-text"><strong>Envío 24h</strong>Recibes el miércoles</div>
+        <div class="trust-text"><strong>Envío 24h</strong><span id="fecha-entrega">Calculando...</span></div>
       </div>
       <div class="trust-item">
         <svg class="trust-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -666,6 +666,29 @@ function openLegal(type){
   document.body.style.overflow='hidden';
 }
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
+
+// FECHA ENTREGA
+function calcularEntrega(){
+  const ahora = new Date();
+  const hora = ahora.getHours();
+  const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  
+  let entrega = new Date(ahora);
+  let diasSumar = hora < 14 ? 1 : 2;
+  
+  let contados = 0;
+  while(contados < diasSumar){
+    entrega.setDate(entrega.getDate() + 1);
+    const diaSemana = entrega.getDay();
+    if(diaSemana !== 0 && diaSemana !== 6) contados++;
+  }
+  
+  const diaStr = dias[entrega.getDay()];
+  const fechaStr = entrega.getDate() + ' ' + meses[entrega.getMonth()];
+  document.getElementById('fecha-entrega').textContent = 'Recibes el ' + diaStr + ' ' + fechaStr;
+}
+calcularEntrega();
 
 loadProduct();
 </script>
