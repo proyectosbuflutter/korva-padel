@@ -619,9 +619,9 @@ async function handlePayment(){
 
   // NOTA: Para procesar pagos reales necesitas un backend que cree el PaymentIntent
   // y devuelva el clientSecret. Por ahora mostramos el flujo visual.
-  alert('Para activar pagos reales conecta un backend que genere el PaymentIntent desde Stripe.');
   btn.disabled = false;
   btn.textContent = 'Pagar ahora — 448€';
+  openProximamente();
 }
 
 // STEPPER
@@ -685,6 +685,8 @@ function openLegal(type){
   document.body.style.overflow='hidden';
 }
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
+function openProximamente(){document.getElementById('modal-proximamente').classList.add('open');document.body.style.overflow='hidden';}
+function closeProximamente(){document.getElementById('modal-proximamente').classList.remove('open');document.body.style.overflow='';}
 </script>
 </body>
 </html>
