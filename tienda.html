@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>html{visibility:hidden}</style>
+<script>document.addEventListener('DOMContentLoaded',function(){history.scrollRestoration='manual';document.documentElement.style.visibility='visible';});</script>
+<title>KORVA — Tienda</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fafaf8;--g100:#f4f3f0;--g200:#e8e6e1;
+  --g400:#a09e98;--g600:#6b6a66;--g800:#2c2b28;
+  --accent:#c8a96e;--accent-soft:#f5ede0;
+}
+html{overflow-x:hidden}
+body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
+.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g800);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--black)}
+.nav-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--black);border:none;padding:.7rem 1.6rem;cursor:pointer;transition:background .2s}
+.nav-btn:hover{background:var(--g800)}
+
+/* HEADER */
+.shop-header{padding:10rem 6rem 4rem;border-bottom:1px solid var(--g200)}
+.shop-header-inner{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem}
+.shop-h1{font-family:'DM Serif Display',serif;font-size:clamp(5rem,10vw,8rem);line-height:1.05;letter-spacing:.2em}
+.shop-count{font-size:2.88rem;color:#c8a96e;letter-spacing:.1em;text-transform:uppercase;font-family:'DM Serif Display',serif}
+
+/* FILTROS */
+.shop-filters{padding:1.8rem 6rem;border-bottom:1px solid var(--g200)}
+.shop-filters-inner{max-width:1280px;margin:0 auto;display:flex;gap:1.5rem}
+.filter-btn{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600);background:none;border:1px solid var(--g200);padding:.45rem 1.1rem;cursor:pointer;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
+
+/* CONTENIDO */
+.shop-wrap{padding:6rem}
+
+/* BLOQUE DESTACADA */
+.block-featured{display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;max-width:1280px;margin:0 auto 6rem}
+.feat-main{display:flex;flex-direction:column;gap:0}
+.feat-main-img{background:#141412;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.feat-main:hover .feat-main-img{transform:scale(1.01)}
+.feat-main-info{padding:2rem 0 0}
+.feat-main-cat{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.feat-main-name{font-family:'DM Serif Display',serif;font-size:2.4rem;line-height:1.05;margin-bottom:1.2rem}
+.feat-main-bottom{display:flex;align-items:center;justify-content:space-between}
+.feat-main-price{font-family:'DM Serif Display',serif;font-size:1.6rem}
+.feat-main-price-old{font-size:.8rem;color:var(--g400);text-decoration:line-through;margin-right:.5rem}
+.feat-main-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.75rem 1.5rem;cursor:pointer;transition:background .2s}
+.feat-main-btn:hover{background:var(--g800)}
+.feat-badge{position:absolute;top:1.2rem;left:1.2rem;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;background:var(--accent);color:var(--white)}
+.feat-side{display:flex;flex-direction:column;gap:2.5rem}
+.feat-side-card{display:flex;flex-direction:column;gap:0;cursor:pointer}
+.feat-side-img{background:#141412;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.feat-side-card:hover .feat-side-img{transform:scale(1.02)}
+.feat-side-info{padding:1.2rem 0 0;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.feat-side-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.feat-side-name{font-family:'DM Serif Display',serif;font-size:1.3rem;line-height:1.1}
+.feat-side-right{text-align:right;flex-shrink:0}
+.feat-side-price{font-family:'DM Serif Display',serif;font-size:1.1rem}
+.feat-side-price-old{font-size:.7rem;color:var(--g400);text-decoration:line-through;display:block}
+.feat-side-btn{font-family:'Sora',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:none;cursor:pointer;transition:color .2s;margin-top:.3rem;display:block}
+.feat-side-btn:hover{color:var(--black)}
+.feat-side-badge{position:absolute;top:1rem;left:1rem;font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem}
+.badge-new{background:var(--accent);color:var(--white)}
+.badge-sale{background:var(--black);color:var(--white)}
+
+/* DIVISOR */
+.shop-divider{display:flex;align-items:center;gap:2rem;margin:0 auto 5rem;max-width:1280px}
+.shop-divider-line{flex:1;height:1px;background:var(--g200)}
+.shop-divider-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g400);white-space:nowrap}
+
+/* GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;max-width:1280px;margin:0 auto}
+.prod-card{display:flex;flex-direction:column;gap:1.2rem;cursor:pointer}
+.prod-card-img{background:#141412;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.prod-card:hover .prod-card-img{transform:scale(1.02)}
+.prod-card-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.prod-card-name{font-family:'DM Serif Display',serif;font-size:1.3rem;line-height:1.1}
+.prod-card-bottom{display:flex;align-items:center;justify-content:space-between}
+.prod-card-price{font-family:'DM Serif Display',serif;font-size:1.1rem}
+.prod-card-price-old{font-size:.72rem;color:var(--g400);text-decoration:line-through;margin-left:.4rem}
+.prod-card-btn{font-family:'Sora',sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:none;cursor:pointer;transition:color .2s}
+.prod-card-btn:hover{color:var(--black)}
+.prod-card-badge{position:absolute;top:1rem;left:1rem;font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem}
+
+/* FOOTER */
+footer{background:var(--black);padding:6rem 4rem 3rem}
+.footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
+.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
+.footer-nav{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--accent)}
+.footer-legal{display:flex;justify-content:center;gap:2.5rem;margin-bottom:3rem}
+.footer-legal a{font-size:.62rem;color:rgba(255,255,255,.22);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.5)}
+.footer-social{display:flex;justify-content:center;gap:1.8rem;margin-bottom:4rem}
+.footer-social a{display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-social a:hover{color:var(--accent)}
+.social-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-contact-btn{display:block;margin:0 auto 4rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(200,169,110,.3);padding:.8rem 2rem;cursor:pointer;transition:all .3s}
+.footer-contact-btn:hover{border-color:var(--accent);background:rgba(200,169,110,.08)}
+.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.15);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
+.modal-box{position:relative;z-index:1;background:var(--white);width:100%;max-width:560px;padding:4rem;transform:translateY(30px);transition:transform .4s cubic-bezier(.25,.46,.45,.94);margin:1.5rem}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-close{position:absolute;top:1.8rem;right:1.8rem;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--g400);transition:color .2s}
+.modal-close:hover{color:var(--black)}
+.modal-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
+.modal-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:block}
+.modal-title{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--black);line-height:1.1;margin-bottom:2.5rem}
+.modal-field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.modal-field label{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600)}
+.modal-field input,.modal-field textarea{font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;transition:border-color .2s;width:100%;resize:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:var(--accent)}
+.modal-field textarea{min-height:100px;line-height:1.7}
+.modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.modal-submit:hover{background:var(--g800)}
+
+/* COOKIE BANNER */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-text{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
+.cookie-text a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(200,169,110,.3)}
+.cookie-text a:hover{border-color:var(--accent)}
+.cookie-btns{display:flex;gap:.8rem;flex-shrink:0}
+.cookie-accept{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:.65rem 1.4rem;cursor:pointer;transition:opacity .2s}
+.cookie-accept:hover{opacity:.85}
+.cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer;transition:all .2s}
+.cookie-reject:hover{color:rgba(255,255,255,.6)}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links{display:none}
+  .shop-header{padding:8rem 1.5rem 3rem}
+  .shop-filters{padding:1.2rem 1.5rem}
+  .shop-wrap{padding:3rem 1.5rem}
+  .block-featured{grid-template-columns:1fr}
+  .prod-grid{grid-template-columns:1fr;gap:3rem}
+  footer{padding:4rem 1.5rem 2rem}
+  .footer-nav{flex-wrap:wrap;gap:1.5rem}
+  .modal-box{padding:2.5rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">KORVA</a>
+  <ul class="nav-links">
+    <li><a href="index.html#steps">Tecnología</a></li>
+    <li><a href="index.html#accordion">Materiales</a></li>
+    <li><a href="tienda.html">Tienda</a></li>
+    <li><a href="index.html#packs">Packs</a></li>
+  </ul>
+  <button onclick="openLogin()" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)">Acceso</button>
+  <a href="carrito.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    Carrito
+  </a>
+</nav>
+
+<div class="shop-header">
+  <div class="shop-header-inner">
+    <h1 class="shop-h1">KORVA</h1>
+    <span class="shop-count">Colección completa 2026</span>
+  </div>
+</div>
+
+<div class="shop-filters">
+  <div class="shop-filters-inner">
+    <button class="filter-btn active">Todos</button>
+    <button class="filter-btn">Control</button>
+    <button class="filter-btn">Potencia</button>
+    <button class="filter-btn">Iniciación</button>
+    <button class="filter-btn">Packs</button>
+  </div>
+</div>
+
+<div class="shop-wrap">
+
+  <div class="block-featured">
+
+    <div class="feat-main" onclick="location.href='producto.html'" style="cursor:pointer">
+      <div class="feat-main-img">
+        <span class="feat-badge">Más vendido</span>
+        <svg width="200" height="320" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+          <rect x="85" y="237" width="20" height="5" rx="1" fill="#c8a96e" opacity=".7"/>
+          <rect x="85" y="249" width="20" height="5" rx="1" fill="#c8a96e" opacity=".5"/>
+          <rect x="85" y="261" width="20" height="5" rx="1" fill="#c8a96e" opacity=".35"/>
+          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+          <line x1="95" y1="30" x2="95" y2="218" stroke="#c8a96e" stroke-width=".8" opacity=".35"/>
+          <line x1="73" y1="32" x2="73" y2="216" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="51" y1="50" x2="51" y2="198" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="117" y1="32" x2="117" y2="216" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="139" y1="50" x2="139" y2="198" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="90" x2="175" y2="90" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="112" x2="175" y2="112" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="134" x2="175" y2="134" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="156" x2="175" y2="156" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".92">KORVA</text>
+          <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#c8a96e" opacity=".38" letter-spacing="4">PRO X3</text>
+        </svg>
+      </div>
+      <div class="feat-main-info">
+        <div class="feat-main-cat">Control + Potencia</div>
+        <div class="feat-main-name">Pro X3 Carbon</div>
+        <div class="feat-main-bottom">
+          <div>
+            <span class="feat-main-price-old">299€</span>
+            <span class="feat-main-price">249€</span>
+          </div>
+          <button class="feat-main-btn">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-side">
+      <div class="feat-side-card" onclick="location.href='producto.html'">
+        <div class="feat-side-img">
+          <span class="feat-side-badge badge-sale">−15%</span>
+          <svg width="120" height="190" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+            <line x1="95" y1="30" x2="95" y2="218" stroke="#c8a96e" stroke-width=".8" opacity=".3"/>
+            <line x1="15" y1="112" x2="175" y2="112" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+            <line x1="15" y1="134" x2="175" y2="134" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+            <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">KORVA</text>
+            <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#c8a96e" opacity=".38" letter-spacing="4">ELITE</text>
+          </svg>
+        </div>
+        <div class="feat-side-info">
+          <div class="feat-side-left">
+            <div class="feat-side-cat">Potencia</div>
+            <div class="feat-side-name">Elite Tour</div>
+          </div>
+          <div class="feat-side-right">
+            <span class="feat-side-price-old">234€</span>
+            <span class="feat-side-price">199€</span>
+            <button class="feat-side-btn">+ Añadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feat-side-card" onclick="location.href='producto.html'">
+        <div class="feat-side-img">
+          <svg width="120" height="190" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+            <line x1="95" y1="30" x2="95" y2="218" stroke="#c8a96e" stroke-width=".8" opacity=".3"/>
+            <line x1="15" y1="112" x2="175" y2="112" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+            <line x1="15" y1="134" x2="175" y2="134" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+            <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">KORVA</text>
+            <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#c8a96e" opacity=".38" letter-spacing="4">BLACK</text>
+          </svg>
+        </div>
+        <div class="feat-side-info">
+          <div class="feat-side-left">
+            <div class="feat-side-cat">Control</div>
+            <div class="feat-side-name">Black Edition</div>
+          </div>
+          <div class="feat-side-right">
+            <span class="feat-side-price">219€</span>
+            <button class="feat-side-btn">+ Añadir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shop-divider">
+    <div class="shop-divider-line"></div>
+    <div class="shop-divider-label">Resto de la colección</div>
+    <div class="shop-divider-line"></div>
+  </div>
+
+  <div class="prod-grid">
+    <div class="prod-card" onclick="location.href='producto.html'">
+      <div class="prod-card-img">
+        <svg width="120" height="190" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+          <line x1="95" y1="30" x2="95" y2="218" stroke="#a09e98" stroke-width=".8" opacity=".3"/>
+          <line x1="15" y1="112" x2="175" y2="112" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="134" x2="175" y2="134" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+          <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".7">KORVA</text>
+          <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#a09e98" opacity=".38" letter-spacing="4">SPEED</text>
+        </svg>
+      </div>
+      <div class="prod-card-cat">Potencia</div>
+      <div class="prod-card-name">Speed Air</div>
+      <div class="prod-card-bottom">
+        <div><span class="prod-card-price">179€</span></div>
+        <button class="prod-card-btn">+ Añadir</button>
+      </div>
+    </div>
+
+    <div class="prod-card" onclick="location.href='producto.html'">
+      <div class="prod-card-img">
+        <span class="prod-card-badge badge-sale">−16%</span>
+        <svg width="120" height="190" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+          <line x1="95" y1="30" x2="95" y2="218" stroke="#c8a96e" stroke-width=".8" opacity=".3"/>
+          <line x1="15" y1="112" x2="175" y2="112" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="134" x2="175" y2="134" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+          <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">KORVA</text>
+          <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#c8a96e" opacity=".38" letter-spacing="4">CTRL</text>
+        </svg>
+      </div>
+      <div class="prod-card-cat">Control</div>
+      <div class="prod-card-name">Control Pro</div>
+      <div class="prod-card-bottom">
+        <div><span class="prod-card-price">159€</span><span class="prod-card-price-old">189€</span></div>
+        <button class="prod-card-btn">+ Añadir</button>
+      </div>
+    </div>
+
+    <div class="prod-card" onclick="location.href='producto.html'">
+      <div class="prod-card-img">
+        <svg width="120" height="190" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/>
+          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+          <line x1="95" y1="30" x2="95" y2="218" stroke="#a09e98" stroke-width=".8" opacity=".3"/>
+          <line x1="15" y1="112" x2="175" y2="112" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+          <line x1="15" y1="134" x2="175" y2="134" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+          <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".7">KORVA</text>
+          <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#a09e98" opacity=".38" letter-spacing="4">S1</text>
+        </svg>
+      </div>
+      <div class="prod-card-cat">Iniciación</div>
+      <div class="prod-card-name">Starter S1</div>
+      <div class="prod-card-bottom">
+        <div><span class="prod-card-price">129€</span></div>
+        <button class="prod-card-btn">+ Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name">KORVA</span>
+    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+  </div>
+  <div class="footer-nav">
+    <a href="tienda.html">Tienda</a>
+    <a href="index.html#steps">Tecnología</a>
+    <a href="index.html#accordion">Materiales</a>
+    <a href="index.html#packs">Packs</a>
+  </div>
+  <button class="footer-contact-btn" onclick="openModal()">Contacto</button>
+  <div class="footer-social">
+    <a href="#" aria-label="Instagram">
+      <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+      Instagram
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)" stroke="none"/></svg>
+      YouTube
+    </a>
+  </div>
+  <div class="footer-legal">
+    <a href="#" onclick="openLegal('aviso');return false">Aviso legal</a>
+    <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
+    <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
+  </div>
+  <div class="footer-bottom">© 2025 KORVA Pádel — Todos los derechos reservados</div>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label">Contacto</span>
+    <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
+    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..."></textarea></div>
+    <button class="modal-submit">Enviar mensaje</button>
+  </div>
+</div>
+
+<script>
+history.scrollRestoration='manual';window.scrollTo(0,0);
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+function openModal(){
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();}});
+function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
+function closeLogin(){document.getElementById('modal-login').classList.remove('open');document.body.style.overflow='';}
+
+const legalContent={
+  aviso:{
+    label:'Aviso legal',
+    title:'Aviso legal',
+    content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br>
+    <strong>Domicilio:</strong> Calle Example 1, 08000 Barcelona, España<br>
+    <strong>Email:</strong> legal@korvapadel.com</p><br>
+    <p>El presente aviso legal regula el uso del sitio web korvapadel.com, del que es titular KORVA Pádel S.L. La navegación por el sitio web atribuye la condición de usuario e implica la aceptación plena de las presentes condiciones.</p><br>
+    <p><strong>Propiedad intelectual</strong><br>Todos los contenidos del sitio web, incluyendo textos, imágenes, diseño gráfico, código fuente y logotipos, son propiedad de KORVA Pádel S.L. o de terceros que han autorizado su uso. Queda prohibida su reproducción total o parcial sin autorización expresa.</p><br>
+    <p><strong>Responsabilidad</strong><br>KORVA Pádel S.L. no se hace responsable de los daños derivados del uso del sitio web ni de la información contenida en el mismo. El usuario es el único responsable del uso que haga del sitio.</p><br>
+    <p><strong>Legislación aplicable</strong><br>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales de Barcelona.</p>`
+  },
+  privacidad:{
+    label:'Privacidad',
+    title:'Política de privacidad',
+    content:`<p>En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), te informamos de cómo tratamos tus datos personales.</p><br>
+    <p><strong>Responsable del tratamiento</strong><br>KORVA Pádel S.L. · CIF: B00000000 · legal@korvapadel.com</p><br>
+    <p><strong>Datos que recogemos</strong><br>Nombre, email, dirección de envío y datos de pago cuando realizas una compra. Email cuando te registras o contactas con nosotros.</p><br>
+    <p><strong>Finalidad</strong><br>Gestión de pedidos y envíos, atención al cliente, comunicaciones comerciales (solo con tu consentimiento expreso) y cumplimiento de obligaciones legales.</p><br>
+    <p><strong>Base legal</strong><br>Ejecución de contrato, cumplimiento de obligación legal y consentimiento del interesado según el caso.</p><br>
+    <p><strong>Conservación</strong><br>Los datos se conservan durante el tiempo necesario para la relación comercial y el cumplimiento de obligaciones legales (mínimo 5 años para datos fiscales).</p><br>
+    <p><strong>Tus derechos</strong><br>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a legal@korvapadel.com adjuntando copia de tu DNI.</p><br>
+    <p><strong>Transferencias internacionales</strong><br>Tus datos pueden ser tratados por proveedores fuera del EEE (como Stripe o Supabase) con las garantías adecuadas según el RGPD.</p>`
+  },
+  cookies:{
+    label:'Cookies',
+    title:'Política de cookies',
+    content:`<p>Este sitio web utiliza cookies propias y de terceros para mejorar tu experiencia de navegación y analizar el uso del sitio.</p><br>
+    <p><strong>¿Qué son las cookies?</strong><br>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Permiten al sitio recordar tus preferencias y mejorar tu experiencia.</p><br>
+    <p><strong>Tipos de cookies que utilizamos</strong></p>
+    <p>· <strong>Cookies técnicas (necesarias):</strong> Imprescindibles para el funcionamiento del sitio. No requieren consentimiento.<br>
+    · <strong>Cookies analíticas:</strong> Nos permiten medir el tráfico y el comportamiento de los usuarios (Google Analytics). Requieren tu consentimiento.<br>
+    · <strong>Cookies de preferencias:</strong> Recuerdan tus preferencias de idioma y configuración.</p><br>
+    <p><strong>Cómo gestionar las cookies</strong><br>Puedes configurar tu navegador para rechazar todas las cookies o para que te avise cuando se envía una cookie. Ten en cuenta que si rechazas las cookies técnicas, algunas partes del sitio pueden no funcionar correctamente.</p><br>
+    <p><strong>Cookies de terceros</strong><br>Utilizamos servicios de terceros como Stripe (pagos) y Supabase (base de datos) que pueden instalar sus propias cookies. Consulta sus políticas de privacidad para más información.</p>`
+  }
+};
+
+function initCookies(){
+  if(!localStorage.getItem('korva-cookies')){
+    setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);
+  }
+}
+function acceptCookies(){
+  localStorage.setItem('korva-cookies','accepted');
+  document.getElementById('cookie-banner').classList.remove('show');
+}
+function rejectCookies(){
+  localStorage.setItem('korva-cookies','rejected');
+  document.getElementById('cookie-banner').classList.remove('show');
+}
+initCookies();
+
+function openLegal(type){
+  const data=legalContent[type];
+  document.getElementById('legal-label').textContent=data.label;
+  document.getElementById('legal-title').textContent=data.title;
+  document.getElementById('legal-content').innerHTML=data.content;
+  document.getElementById('modal-legal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLegal(){
+  document.getElementById('modal-legal').classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>
+<div class="modal-overlay" id="modal-login">
+  <div class="modal-backdrop" onclick="closeLogin()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeLogin()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label">Acceso</span>
+    <div class="modal-title">Bienvenido<br>de nuevo.</div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit">Entrar</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
+  </div>
+</div>
+<div class="cookie-banner" id="cookie-banner">
+  <p class="cookie-text">Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Puedes consultar nuestra <a href="#" onclick="openLegal('cookies');return false">política de cookies</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-reject" onclick="rejectCookies()">Rechazar</button>
+    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-legal">
+  <div class="modal-backdrop" onclick="closeLegal()"></div>
+  <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
+    <button class="modal-close" onclick="closeLegal()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label" id="legal-label">Aviso legal</span>
+    <div class="modal-title" id="legal-title" style="font-size:1.6rem;margin-bottom:1.5rem"></div>
+    <div id="legal-content" style="font-size:.85rem;color:var(--g600);line-height:1.9;font-weight:300"></div>
+  </div>
+</div>
+</body>
+</html>

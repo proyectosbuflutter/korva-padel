@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>html{visibility:hidden}</style>
+<script>document.addEventListener('DOMContentLoaded',function(){history.scrollRestoration='manual';document.documentElement.style.visibility='visible';});</script>
+<title>KORVA — Carrito</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fafaf8;--g100:#f4f3f0;--g200:#e8e6e1;
+  --g400:#a09e98;--g600:#6b6a66;--g800:#2c2b28;
+  --accent:#c8a96e;--accent-soft:#f5ede0;
+}
+html{overflow-x:hidden}
+body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
+.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g800);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--black)}
+.nav-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--black);border:none;padding:.7rem 1.6rem;cursor:pointer;transition:background .2s}
+.nav-btn:hover{background:var(--g800)}
+
+/* HEADER */
+.cart-header{padding:10rem 6rem 4rem;border-bottom:1px solid var(--g200);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem}
+.cart-h1{font-family:'DM Serif Display',serif;font-size:clamp(5rem,10vw,8rem);line-height:1.05;letter-spacing:.2em}
+.cart-count{font-size:2.88rem;color:#c8a96e;letter-spacing:.1em;text-transform:uppercase;font-family:'DM Serif Display',serif}
+
+/* LAYOUT */
+.cart-wrap{max-width:1280px;margin:0 auto;padding:4rem;display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start}
+
+/* LISTA */
+.cart-list{display:flex;flex-direction:column}
+.cart-list-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:1rem;padding-bottom:1rem;border-bottom:1px solid var(--g200);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g400)}
+.cart-item{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:1rem;padding:2rem 0;border-bottom:1px solid var(--g100);align-items:center}
+.cart-item-left{display:flex;align-items:center;gap:1.5rem}
+.cart-item-img{width:80px;height:100px;background:#141412;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.cart-item-name{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--black);margin-bottom:.3rem}
+.cart-item-variant{font-size:.65rem;color:var(--g400);letter-spacing:.08em}
+.cart-item-price{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--black)}
+.cart-item-price-old{font-size:.72rem;color:var(--g400);text-decoration:line-through;display:block}
+.cart-item-total{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--black);font-weight:600}
+
+/* CANTIDAD */
+.qty-wrap{display:flex;align-items:center;border:1px solid var(--g200);width:fit-content}
+.qty-btn{width:34px;height:38px;background:none;border:none;cursor:pointer;font-size:1rem;color:var(--g600);transition:color .2s;display:flex;align-items:center;justify-content:center}
+.qty-btn:hover{color:var(--black)}
+.qty-val{width:32px;text-align:center;font-size:.82rem;font-weight:600;color:var(--black)}
+
+/* ELIMINAR */
+.cart-item-remove{background:none;border:none;cursor:pointer;color:var(--g400);transition:color .2s;display:flex;align-items:center;justify-content:center;padding:.3rem}
+.cart-item-remove:hover{color:var(--black)}
+.cart-item-remove svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
+
+/* CONTINUAR */
+.cart-continue{display:inline-flex;align-items:center;gap:.6rem;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g400);text-decoration:none;margin-top:2rem;transition:color .2s}
+.cart-continue:hover{color:var(--black)}
+.cart-continue svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* PROGRESO ENVÍO */
+.shipping-bar{background:var(--g100);padding:1.2rem 1.5rem;margin-bottom:0;border:1px solid var(--g200);border-bottom:none}
+.shipping-bar-text{font-size:.72rem;color:var(--g600);margin-bottom:.7rem;line-height:1.5}
+.shipping-bar-text strong{color:var(--black)}
+.shipping-bar-track{height:3px;background:var(--g200);position:relative}
+.shipping-bar-fill{height:100%;background:var(--accent);transition:width .4s ease}
+.shipping-bar-free{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4a9d6f;margin-top:.6rem;display:none}
+.shipping-bar-free.show{display:block}
+
+/* RESUMEN */
+.cart-summary{background:var(--g100);padding:2.5rem;position:sticky;top:6rem;display:flex;flex-direction:column;gap:0}
+.summary-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--black);margin-bottom:2rem}
+
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid var(--g200);font-size:.82rem}
+.summary-row:last-of-type{border:none}
+.summary-row-label{color:var(--g600)}
+.summary-row-val{font-weight:600;color:var(--black)}
+.summary-row-val.free{color:#4a9d6f;font-weight:600}
+.summary-row-val.strike{color:var(--g400);text-decoration:line-through;font-weight:400}
+
+.summary-discount{display:flex;flex-direction:column;gap:.6rem;padding:1.5rem 0;border-bottom:1px solid var(--g200);margin-bottom:.5rem}
+.discount-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)}
+.discount-row{display:flex;gap:.6rem}
+.discount-input{flex:1;font-family:'Sora',sans-serif;font-size:.82rem;color:var(--black);background:var(--white);border:1px solid var(--g200);padding:.6rem .9rem;outline:none;transition:border-color .2s}
+.discount-input:focus{border-color:var(--accent)}
+.discount-btn{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.6rem 1.1rem;cursor:pointer;transition:background .2s;white-space:nowrap}
+.discount-btn:hover{background:var(--g800)}
+.discount-ok{font-size:.72rem;color:#4a9d6f;display:none;align-items:center;gap:.4rem}
+.discount-ok.show{display:flex}
+
+.summary-total{display:flex;justify-content:space-between;align-items:baseline;padding:1.5rem 0 2rem;border-top:2px solid var(--black);margin-top:.5rem}
+.total-label{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--black)}
+.total-val{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--black)}
+.total-iva{font-size:.6rem;color:var(--g400);text-align:right;margin-top:-.5rem;margin-bottom:1.5rem}
+
+.btn-checkout{width:100%;padding:1.1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-bottom:1.2rem}
+.btn-checkout:hover{background:var(--g800)}
+
+.pay-icons{display:flex;justify-content:center;align-items:center;gap:1rem;opacity:.35}
+.pay-icon{font-size:.6rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--g600);padding:.2rem .6rem;color:var(--g600)}
+
+.summary-secure{display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:.6rem;color:var(--g400);margin-top:1rem}
+.summary-secure svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* UPSELL */
+.upsell{margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--g200)}
+.upsell-title{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g400);margin-bottom:1.5rem}
+.upsell-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.upsell-card{border:1px solid var(--g200);padding:1.2rem;display:flex;flex-direction:column;gap:.8rem}
+.upsell-img{background:#141412;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.upsell-name{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--black);line-height:1.2}
+.upsell-price{font-size:.85rem;font-weight:600;color:var(--black)}
+.upsell-btn{font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--g200);color:var(--g600);padding:.55rem;cursor:pointer;transition:all .2s;text-align:center}
+.upsell-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+
+/* FOOTER */
+footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
+.footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
+.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
+.footer-nav{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--accent)}
+.footer-legal{display:flex;justify-content:center;gap:2.5rem;margin-bottom:3rem}
+.footer-legal a{font-size:.62rem;color:rgba(255,255,255,.22);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.5)}
+.footer-social{display:flex;justify-content:center;gap:1.8rem;margin-bottom:4rem}
+.footer-social a{display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-social a:hover{color:var(--accent)}
+.social-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-contact-btn{display:block;margin:0 auto 4rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(200,169,110,.3);padding:.8rem 2rem;cursor:pointer;transition:all .3s}
+.footer-contact-btn:hover{border-color:var(--accent);background:rgba(200,169,110,.08)}
+.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.15);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
+.modal-box{position:relative;z-index:1;background:var(--white);width:100%;max-width:560px;padding:4rem;transform:translateY(30px);transition:transform .4s cubic-bezier(.25,.46,.45,.94);margin:1.5rem}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-close{position:absolute;top:1.8rem;right:1.8rem;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--g400);transition:color .2s}
+.modal-close:hover{color:var(--black)}
+.modal-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
+.modal-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:block}
+.modal-title{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--black);line-height:1.1;margin-bottom:2.5rem}
+.modal-field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.modal-field label{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600)}
+.modal-field input,.modal-field textarea{font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;transition:border-color .2s;width:100%;resize:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:var(--accent)}
+.modal-field textarea{min-height:100px;line-height:1.7}
+.modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.modal-submit:hover{background:var(--g800)}
+
+/* COOKIE BANNER */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-text{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
+.cookie-text a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(200,169,110,.3)}
+.cookie-text a:hover{border-color:var(--accent)}
+.cookie-btns{display:flex;gap:.8rem;flex-shrink:0}
+.cookie-accept{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:.65rem 1.4rem;cursor:pointer;transition:opacity .2s}
+.cookie-accept:hover{opacity:.85}
+.cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer;transition:all .2s}
+.cookie-reject:hover{color:rgba(255,255,255,.6)}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links{display:none}
+  .cart-header{padding:7rem 1.5rem 2rem;flex-direction:column;align-items:flex-start;gap:.5rem}
+  .cart-wrap{grid-template-columns:1fr;gap:3rem;padding:2rem 1.5rem}
+  .cart-list-header{display:none}
+  .cart-item{grid-template-columns:1fr auto;gap:1rem}
+  .cart-item-price,.cart-item-qty,.cart-item-total{display:none}
+  .cart-summary{position:static}
+  footer{padding:4rem 1.5rem 2rem;margin-top:4rem}
+  .footer-nav{flex-wrap:wrap;gap:1.5rem}
+  .modal-box{padding:2.5rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">KORVA</a>
+  <ul class="nav-links">
+    <li><a href="index.html#steps">Tecnología</a></li>
+    <li><a href="index.html#accordion">Materiales</a></li>
+    <li><a href="tienda.html">Tienda</a></li>
+    <li><a href="index.html#packs">Packs</a></li>
+  </ul>
+  <button onclick="openLogin()" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)">Acceso</button>
+  <a href="carrito.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    Carrito
+  </a>
+</nav>
+
+<div class="cart-header">
+  <h1 class="cart-h1">KORVA</h1>
+  <span class="cart-count">Tu carrito</span>
+</div>
+
+<div class="cart-wrap">
+
+  <!-- LISTA -->
+  <div class="cart-list">
+    <div class="cart-list-header">
+      <span>Producto</span>
+      <span>Precio</span>
+      <span>Cantidad</span>
+      <span>Total</span>
+      <span></span>
+    </div>
+
+    <!-- ITEM 1 -->
+    <div class="cart-item" id="item-1">
+      <div class="cart-item-left">
+        <div class="cart-item-img">
+          <svg width="50" height="80" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">KORVA</text>
+          </svg>
+        </div>
+        <div class="cart-item-details">
+          <div class="cart-item-name">Pro X3 Carbon</div>
+          <div class="cart-item-variant">360g · Balance 275mm</div>
+        </div>
+      </div>
+      <div class="cart-item-price">
+        <span class="cart-item-price-old">299€</span>
+        249€
+      </div>
+      <div class="cart-item-qty">
+        <div class="qty-wrap">
+          <button class="qty-btn" onclick="changeQty('item-1',-1)">−</button>
+          <span class="qty-val" id="qty-item-1">1</span>
+          <button class="qty-btn" onclick="changeQty('item-1',1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-total" id="total-item-1">249€</div>
+      <button class="cart-item-remove" onclick="removeItem('item-1')">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- ITEM 2 -->
+    <div class="cart-item" id="item-2">
+      <div class="cart-item-left">
+        <div class="cart-item-img">
+          <svg width="50" height="80" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".8">KORVA</text>
+          </svg>
+        </div>
+        <div class="cart-item-details">
+          <div class="cart-item-name">Elite Tour</div>
+          <div class="cart-item-variant">355g · Balance 270mm</div>
+        </div>
+      </div>
+      <div class="cart-item-price">199€</div>
+      <div class="cart-item-qty">
+        <div class="qty-wrap">
+          <button class="qty-btn" onclick="changeQty('item-2',-1)">−</button>
+          <span class="qty-val" id="qty-item-2">1</span>
+          <button class="qty-btn" onclick="changeQty('item-2',1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-total" id="total-item-2">199€</div>
+      <button class="cart-item-remove" onclick="removeItem('item-2')">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <a href="tienda.html" class="cart-continue">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Seguir comprando
+    </a>
+  <div class="upsell">
+    <div class="upsell-title">Completa tu pedido</div>
+    <div class="upsell-grid">
+
+      <div class="upsell-card">
+        <div class="upsell-img">
+          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="upsell-name">Overgrip KORVA</div>
+        <div class="upsell-price">9,90€</div>
+        <button class="upsell-btn" onclick="upsellAdd('Overgrip KORVA')">+ Añadir</button>
+      </div>
+
+      <div class="upsell-card">
+        <div class="upsell-img">
+          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="upsell-name">Funda protectora</div>
+        <div class="upsell-price">24,90€</div>
+        <button class="upsell-btn" onclick="upsellAdd('Funda protectora')">+ Añadir</button>
+      </div>
+
+      <div class="upsell-card">
+        <div class="upsell-img">
+          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div class="upsell-name">Pad vibración premium</div>
+        <div class="upsell-price">14,90€</div>
+        <button class="upsell-btn" onclick="upsellAdd('Pad vibración premium')">+ Añadir</button>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+  <!-- RESUMEN -->
+  <div>
+  <div class="shipping-bar" id="shipping-bar">
+    <div class="shipping-bar-text" id="shipping-bar-text">Añade <strong id="shipping-missing">0€</strong> más para conseguir <strong>envío gratis</strong></div>
+    <div class="shipping-bar-track">
+      <div class="shipping-bar-fill" id="shipping-fill" style="width:0%"></div>
+    </div>
+    <div class="shipping-bar-free" id="shipping-free">✓ Envío gratis aplicado</div>
+  </div>
+  <div class="cart-summary">
+    <div class="summary-title">Resumen</div>
+
+    <div class="summary-row">
+      <span class="summary-row-label">Subtotal</span>
+      <span class="summary-row-val" id="subtotal">448€</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row-label">IVA (21%)</span>
+      <span class="summary-row-val" id="iva">77,87€</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row-label">Envío</span>
+      <span class="summary-row-val free" id="envio">Gratis</span>
+    </div>
+
+    <div class="summary-discount">
+      <span class="discount-label">Código descuento</span>
+      <div class="discount-row">
+        <input class="discount-input" type="text" id="discount-input" placeholder="Introduce tu código">
+        <button class="discount-btn" onclick="applyDiscount()">Aplicar</button>
+      </div>
+      <div class="discount-ok" id="discount-ok">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4a9d6f" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Descuento aplicado — 10% off
+      </div>
+    </div>
+
+    <div class="summary-row" id="descuento-row" style="display:none">
+      <span class="summary-row-label">Descuento (10%)</span>
+      <span class="summary-row-val" style="color:#4a9d6f" id="descuento-val">−44,80€</span>
+    </div>
+
+    <div class="summary-total">
+      <span class="total-label">Total</span>
+      <span class="total-val" id="total">448€</span>
+    </div>
+    <div class="total-iva">IVA incluido</div>
+
+    <button class="btn-checkout">Tramitar pedido</button>
+
+    <div class="pay-icons">
+      <span class="pay-icon">VISA</span>
+      <span class="pay-icon">MC</span>
+      <span class="pay-icon">AMEX</span>
+      <span class="pay-icon">BIZUM</span>
+    </div>
+
+    <div class="summary-secure">
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Pago 100% seguro · SSL cifrado
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name">KORVA</span>
+    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+  </div>
+  <div class="footer-nav">
+    <a href="tienda.html">Tienda</a>
+    <a href="index.html#steps">Tecnología</a>
+    <a href="index.html#accordion">Materiales</a>
+    <a href="index.html#packs">Packs</a>
+  </div>
+  <button class="footer-contact-btn" onclick="openModal()">Contacto</button>
+  <div class="footer-social">
+    <a href="#" aria-label="Instagram">
+      <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+      Instagram
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)" stroke="none"/></svg>
+      YouTube
+    </a>
+  </div>
+  <div class="footer-legal">
+    <a href="#" onclick="openLegal('aviso');return false">Aviso legal</a>
+    <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
+    <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
+  </div>
+  <div class="footer-bottom">© 2025 KORVA Pádel — Todos los derechos reservados</div>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label">Contacto</span>
+    <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
+    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..."></textarea></div>
+    <button class="modal-submit">Enviar mensaje</button>
+  </div>
+</div>
+
+<script>
+history.scrollRestoration='manual';window.scrollTo(0,0);
+
+const defaultPrices = {'item-1': 249, 'item-2': 199};
+const defaultNames  = {'item-1': 'Pro X3 Carbon', 'item-2': 'Elite Tour'};
+const prices = Object.assign({}, defaultPrices);
+const qtys   = JSON.parse(localStorage.getItem('korva-qtys') || '{"item-1":1,"item-2":1}');
+let discountApplied = JSON.parse(localStorage.getItem('korva-discount') || 'false');
+
+// Restaurar cantidades en UI
+Object.keys(qtys).forEach(id=>{
+  const qtyEl=document.getElementById('qty-'+id);
+  const totalEl=document.getElementById('total-'+id);
+  if(qtyEl) qtyEl.textContent=qtys[id];
+  if(totalEl) totalEl.textContent=(prices[id]*qtys[id])+'€';
+});
+
+// Restaurar descuento
+if(discountApplied){
+  document.getElementById('discount-ok').classList.add('show');
+  document.getElementById('descuento-row').style.display='flex';
+}
+
+function saveCart(){
+  localStorage.setItem('korva-qtys', JSON.stringify(qtys));
+  localStorage.setItem('korva-discount', JSON.stringify(discountApplied));
+}
+
+function changeQty(id, dir) {
+  qtys[id] = Math.max(1, qtys[id] + dir);
+  document.getElementById('qty-' + id).textContent = qtys[id];
+  document.getElementById('total-' + id).textContent = (prices[id] * qtys[id]) + '€';
+  updateSummary();
+  saveCart();
+}
+
+function removeItem(id) {
+  const el = document.getElementById(id);
+  if(el) el.remove();
+  delete prices[id];
+  delete qtys[id];
+  updateSummary();
+  updateCount();
+  saveCart();
+}
+
+function updateCount() {
+  const count = Object.keys(qtys).length;
+  document.getElementById('cart-count').textContent = count + (count === 1 ? ' producto' : ' productos');
+}
+
+function getSubtotal() {
+  return Object.keys(prices).reduce((sum, id) => sum + prices[id] * qtys[id], 0);
+}
+
+function updateShippingBar(sub){
+  const threshold=120;
+  const pct=Math.min(100,(sub/threshold)*100);
+  const missing=Math.max(0,threshold-sub);
+  document.getElementById('shipping-fill').style.width=pct+'%';
+  if(sub>=threshold){
+    document.getElementById('shipping-bar-text').style.display='none';
+    document.getElementById('shipping-free').classList.add('show');
+  } else {
+    document.getElementById('shipping-bar-text').style.display='block';
+    document.getElementById('shipping-free').classList.remove('show');
+    document.getElementById('shipping-missing').textContent=missing.toFixed(0)+'€';
+  }
+}
+
+function updateSummary() {
+  let sub = getSubtotal();
+  const envio = sub >= 120 ? 0 : 5.90;
+  let total = sub + envio;
+  if(discountApplied) total = total * 0.9;
+  const iva = total - (total / 1.21);
+
+  document.getElementById('subtotal').textContent = sub.toFixed(0) + '€';
+  document.getElementById('iva').textContent = iva.toFixed(2).replace('.',',') + '€';
+  document.getElementById('envio').textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',') + '€';
+  document.getElementById('envio').className = 'summary-row-val' + (envio === 0 ? ' free' : '');
+  document.getElementById('total').textContent = total.toFixed(0) + '€';
+
+  if(discountApplied) {
+    document.getElementById('descuento-val').textContent = '−' + (sub * 0.1).toFixed(2).replace('.',',') + '€';
+  }
+  updateShippingBar(sub);
+}
+
+function applyDiscount() {
+  const code = document.getElementById('discount-input').value.trim().toUpperCase();
+  if(code === 'KORVA10' && !discountApplied) {
+    discountApplied = true;
+    document.getElementById('discount-ok').classList.add('show');
+    document.getElementById('descuento-row').style.display = 'flex';
+    updateSummary();
+    saveCart();
+  }
+}
+
+history.scrollRestoration='manual';window.scrollTo(0,0);
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+function upsellAdd(name){
+  const t=document.getElementById('toast');
+  if(!t){
+    const toast=document.createElement('div');
+    toast.id='toast';
+    toast.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap';
+    document.body.appendChild(toast);
+  }
+  const toast=document.getElementById('toast');
+  toast.textContent='✓ '+name+' añadido';
+  toast.style.opacity='1';
+  toast.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
+}
+
+function openModal(){
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();}});
+function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
+function closeLogin(){document.getElementById('modal-login').classList.remove('open');document.body.style.overflow='';}
+
+const legalContent={
+  aviso:{
+    label:'Aviso legal',
+    title:'Aviso legal',
+    content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br>
+    <strong>Domicilio:</strong> Calle Example 1, 08000 Barcelona, España<br>
+    <strong>Email:</strong> legal@korvapadel.com</p><br>
+    <p>El presente aviso legal regula el uso del sitio web korvapadel.com, del que es titular KORVA Pádel S.L. La navegación por el sitio web atribuye la condición de usuario e implica la aceptación plena de las presentes condiciones.</p><br>
+    <p><strong>Propiedad intelectual</strong><br>Todos los contenidos del sitio web, incluyendo textos, imágenes, diseño gráfico, código fuente y logotipos, son propiedad de KORVA Pádel S.L. o de terceros que han autorizado su uso. Queda prohibida su reproducción total o parcial sin autorización expresa.</p><br>
+    <p><strong>Responsabilidad</strong><br>KORVA Pádel S.L. no se hace responsable de los daños derivados del uso del sitio web ni de la información contenida en el mismo. El usuario es el único responsable del uso que haga del sitio.</p><br>
+    <p><strong>Legislación aplicable</strong><br>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales de Barcelona.</p>`
+  },
+  privacidad:{
+    label:'Privacidad',
+    title:'Política de privacidad',
+    content:`<p>En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), te informamos de cómo tratamos tus datos personales.</p><br>
+    <p><strong>Responsable del tratamiento</strong><br>KORVA Pádel S.L. · CIF: B00000000 · legal@korvapadel.com</p><br>
+    <p><strong>Datos que recogemos</strong><br>Nombre, email, dirección de envío y datos de pago cuando realizas una compra. Email cuando te registras o contactas con nosotros.</p><br>
+    <p><strong>Finalidad</strong><br>Gestión de pedidos y envíos, atención al cliente, comunicaciones comerciales (solo con tu consentimiento expreso) y cumplimiento de obligaciones legales.</p><br>
+    <p><strong>Base legal</strong><br>Ejecución de contrato, cumplimiento de obligación legal y consentimiento del interesado según el caso.</p><br>
+    <p><strong>Conservación</strong><br>Los datos se conservan durante el tiempo necesario para la relación comercial y el cumplimiento de obligaciones legales (mínimo 5 años para datos fiscales).</p><br>
+    <p><strong>Tus derechos</strong><br>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a legal@korvapadel.com adjuntando copia de tu DNI.</p><br>
+    <p><strong>Transferencias internacionales</strong><br>Tus datos pueden ser tratados por proveedores fuera del EEE (como Stripe o Supabase) con las garantías adecuadas según el RGPD.</p>`
+  },
+  cookies:{
+    label:'Cookies',
+    title:'Política de cookies',
+    content:`<p>Este sitio web utiliza cookies propias y de terceros para mejorar tu experiencia de navegación y analizar el uso del sitio.</p><br>
+    <p><strong>¿Qué son las cookies?</strong><br>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Permiten al sitio recordar tus preferencias y mejorar tu experiencia.</p><br>
+    <p><strong>Tipos de cookies que utilizamos</strong></p>
+    <p>· <strong>Cookies técnicas (necesarias):</strong> Imprescindibles para el funcionamiento del sitio. No requieren consentimiento.<br>
+    · <strong>Cookies analíticas:</strong> Nos permiten medir el tráfico y el comportamiento de los usuarios (Google Analytics). Requieren tu consentimiento.<br>
+    · <strong>Cookies de preferencias:</strong> Recuerdan tus preferencias de idioma y configuración.</p><br>
+    <p><strong>Cómo gestionar las cookies</strong><br>Puedes configurar tu navegador para rechazar todas las cookies o para que te avise cuando se envía una cookie. Ten en cuenta que si rechazas las cookies técnicas, algunas partes del sitio pueden no funcionar correctamente.</p><br>
+    <p><strong>Cookies de terceros</strong><br>Utilizamos servicios de terceros como Stripe (pagos) y Supabase (base de datos) que pueden instalar sus propias cookies. Consulta sus políticas de privacidad para más información.</p>`
+  }
+};
+
+function initCookies(){
+  if(!localStorage.getItem('korva-cookies')){
+    setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);
+  }
+}
+function acceptCookies(){
+  localStorage.setItem('korva-cookies','accepted');
+  document.getElementById('cookie-banner').classList.remove('show');
+}
+function rejectCookies(){
+  localStorage.setItem('korva-cookies','rejected');
+  document.getElementById('cookie-banner').classList.remove('show');
+}
+initCookies();
+
+function openLegal(type){
+  const data=legalContent[type];
+  document.getElementById('legal-label').textContent=data.label;
+  document.getElementById('legal-title').textContent=data.title;
+  document.getElementById('legal-content').innerHTML=data.content;
+  document.getElementById('modal-legal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLegal(){
+  document.getElementById('modal-legal').classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>
+<div class="modal-overlay" id="modal-login">
+  <div class="modal-backdrop" onclick="closeLogin()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeLogin()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label">Acceso</span>
+    <div class="modal-title">Bienvenido<br>de nuevo.</div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit">Entrar</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
+  </div>
+</div>
+<div class="cookie-banner" id="cookie-banner">
+  <p class="cookie-text">Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Puedes consultar nuestra <a href="#" onclick="openLegal('cookies');return false">política de cookies</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-reject" onclick="rejectCookies()">Rechazar</button>
+    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-legal">
+  <div class="modal-backdrop" onclick="closeLegal()"></div>
+  <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
+    <button class="modal-close" onclick="closeLegal()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label" id="legal-label">Aviso legal</span>
+    <div class="modal-title" id="legal-title" style="font-size:1.6rem;margin-bottom:1.5rem"></div>
+    <div id="legal-content" style="font-size:.85rem;color:var(--g600);line-height:1.9;font-weight:300"></div>
+  </div>
+</div>
+</body>
+</html>
