@@ -39,6 +39,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-line{background:transparent;color:var(--g600);border:none;border-bottom:1px solid var(--g400);padding:.95rem 0;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s}
 .btn-line:hover{color:var(--black);border-color:var(--black)}
 
+/* HERO SLIDER */
+.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s ease}
+.hero-slide.active{opacity:1}
+.hero-dots{display:flex;justify-content:center;gap:.8rem;position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2}
+.hero-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;transition:background .2s;padding:0}
+.hero-dot.active{background:var(--accent)}
+.spec-val{transition:opacity .3s ease}
+.hero-badge{transition:opacity .3s ease}
+
 /* HERO VISUAL */
 .hero-visual{position:relative;display:flex;justify-content:center}
 .hero-card{width:100%;max-width:500px;aspect-ratio:4/5;background:#141412;display:flex;align-items:center;justify-content:center;position:relative}
@@ -280,39 +289,102 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </div>
     </div>
     <div class="hero-visual fade d2">
-      <div class="hero-card">
-        <svg width="200" height="320" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="86" y="238" width="28" height="74" rx="3" fill="#252520"/>
-          <rect x="90" y="243" width="20" height="5" rx="1" fill="#c8a96e" opacity=".7"/>
-          <rect x="90" y="255" width="20" height="5" rx="1" fill="#c8a96e" opacity=".5"/>
-          <rect x="90" y="267" width="20" height="5" rx="1" fill="#c8a96e" opacity=".35"/>
-          <rect x="76" y="224" width="48" height="17" rx="2" fill="#1c1c1a"/>
-          <ellipse cx="100" cy="130" rx="82" ry="96" fill="none" stroke="#c8a96e" stroke-width="10"/>
-          <ellipse cx="100" cy="130" rx="82" ry="96" fill="#151513" opacity=".96"/>
-          <line x1="100" y1="34" x2="100" y2="226" stroke="#c8a96e" stroke-width=".8" opacity=".32"/>
-          <line x1="78" y1="36" x2="78" y2="224" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="56" y1="54" x2="56" y2="206" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="34" y1="86" x2="34" y2="174" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
-          <line x1="122" y1="36" x2="122" y2="224" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="144" y1="54" x2="144" y2="206" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="166" y1="86" x2="166" y2="174" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
-          <line x1="18" y1="96" x2="182" y2="96" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="18" y1="118" x2="182" y2="118" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="18" y1="140" x2="182" y2="140" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="18" y1="162" x2="182" y2="162" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
-          <line x1="20" y1="74" x2="180" y2="74" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
-          <line x1="22" y1="184" x2="178" y2="184" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
-          <text x="100" y="136" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-style="italic" fill="#c8a96e" opacity=".9">KORVA</text>
-          <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#c8a96e" opacity=".38" letter-spacing="4">PRO X3</text>
-        </svg>
-      </div>
+      <div class="hero-card" style="position:relative">
+
+          <div class="hero-slide active" id="slide-0">
+            <svg width="200" height="320" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="86" y="238" width="28" height="74" rx="3" fill="#252520"/>
+              <rect x="90" y="243" width="20" height="5" rx="1" fill="#c8a96e" opacity=".7"/>
+              <rect x="90" y="255" width="20" height="5" rx="1" fill="#c8a96e" opacity=".5"/>
+              <rect x="90" y="267" width="20" height="5" rx="1" fill="#c8a96e" opacity=".35"/>
+              <rect x="76" y="224" width="48" height="17" rx="2" fill="#1c1c1a"/>
+              <ellipse cx="100" cy="130" rx="82" ry="96" fill="none" stroke="#c8a96e" stroke-width="10"/>
+              <ellipse cx="100" cy="130" rx="82" ry="96" fill="#151513" opacity=".96"/>
+              <line x1="100" y1="34" x2="100" y2="226" stroke="#c8a96e" stroke-width=".8" opacity=".32"/>
+              <line x1="78" y1="36" x2="78" y2="224" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="56" y1="54" x2="56" y2="206" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="34" y1="86" x2="34" y2="174" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
+              <line x1="122" y1="36" x2="122" y2="224" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="144" y1="54" x2="144" y2="206" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="166" y1="86" x2="166" y2="174" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
+              <line x1="18" y1="96" x2="182" y2="96" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="118" x2="182" y2="118" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="140" x2="182" y2="140" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="162" x2="182" y2="162" stroke="#c8a96e" stroke-width=".6" opacity=".2"/>
+              <line x1="20" y1="74" x2="180" y2="74" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
+              <line x1="22" y1="184" x2="178" y2="184" stroke="#c8a96e" stroke-width=".6" opacity=".14"/>
+              <text x="100" y="136" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-style="italic" fill="#c8a96e" opacity=".9">KORVA</text>
+              <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#c8a96e" opacity=".38" letter-spacing="4">PRO X3 3K</text>
+            </svg>
+          </div>
+
+          <div class="hero-slide" id="slide-1">
+            <svg width="200" height="320" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="86" y="238" width="28" height="74" rx="3" fill="#252520"/>
+              <rect x="90" y="243" width="20" height="5" rx="1" fill="#a09e98" opacity=".7"/>
+              <rect x="90" y="255" width="20" height="5" rx="1" fill="#a09e98" opacity=".5"/>
+              <rect x="90" y="267" width="20" height="5" rx="1" fill="#a09e98" opacity=".35"/>
+              <rect x="76" y="224" width="48" height="17" rx="2" fill="#1c1c1a"/>
+              <ellipse cx="100" cy="130" rx="82" ry="96" fill="none" stroke="#a09e98" stroke-width="10"/>
+              <ellipse cx="100" cy="130" rx="82" ry="96" fill="#151513" opacity=".96"/>
+              <line x1="100" y1="34" x2="100" y2="226" stroke="#a09e98" stroke-width=".8" opacity=".32"/>
+              <line x1="78" y1="36" x2="78" y2="224" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="56" y1="54" x2="56" y2="206" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="34" y1="86" x2="34" y2="174" stroke="#a09e98" stroke-width=".6" opacity=".14"/>
+              <line x1="122" y1="36" x2="122" y2="224" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="144" y1="54" x2="144" y2="206" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="166" y1="86" x2="166" y2="174" stroke="#a09e98" stroke-width=".6" opacity=".14"/>
+              <line x1="18" y1="96" x2="182" y2="96" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="118" x2="182" y2="118" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="140" x2="182" y2="140" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="162" x2="182" y2="162" stroke="#a09e98" stroke-width=".6" opacity=".2"/>
+              <line x1="20" y1="74" x2="180" y2="74" stroke="#a09e98" stroke-width=".6" opacity=".14"/>
+              <line x1="22" y1="184" x2="178" y2="184" stroke="#a09e98" stroke-width=".6" opacity=".14"/>
+              <text x="100" y="136" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-style="italic" fill="#a09e98" opacity=".9">KORVA</text>
+              <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#a09e98" opacity=".38" letter-spacing="4">PRO X3 12K</text>
+            </svg>
+          </div>
+
+          <div class="hero-slide" id="slide-2">
+            <svg width="200" height="320" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="86" y="238" width="28" height="74" rx="3" fill="#252520"/>
+              <rect x="90" y="243" width="20" height="5" rx="1" fill="#6b6a66" opacity=".7"/>
+              <rect x="90" y="255" width="20" height="5" rx="1" fill="#6b6a66" opacity=".5"/>
+              <rect x="90" y="267" width="20" height="5" rx="1" fill="#6b6a66" opacity=".35"/>
+              <rect x="76" y="224" width="48" height="17" rx="2" fill="#1c1c1a"/>
+              <ellipse cx="100" cy="130" rx="82" ry="96" fill="none" stroke="#6b6a66" stroke-width="10"/>
+              <ellipse cx="100" cy="130" rx="82" ry="96" fill="#151513" opacity=".96"/>
+              <line x1="100" y1="34" x2="100" y2="226" stroke="#6b6a66" stroke-width=".8" opacity=".32"/>
+              <line x1="78" y1="36" x2="78" y2="224" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="56" y1="54" x2="56" y2="206" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="34" y1="86" x2="34" y2="174" stroke="#6b6a66" stroke-width=".6" opacity=".14"/>
+              <line x1="122" y1="36" x2="122" y2="224" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="144" y1="54" x2="144" y2="206" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="166" y1="86" x2="166" y2="174" stroke="#6b6a66" stroke-width=".6" opacity=".14"/>
+              <line x1="18" y1="96" x2="182" y2="96" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="118" x2="182" y2="118" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="140" x2="182" y2="140" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="18" y1="162" x2="182" y2="162" stroke="#6b6a66" stroke-width=".6" opacity=".2"/>
+              <line x1="20" y1="74" x2="180" y2="74" stroke="#6b6a66" stroke-width=".6" opacity=".14"/>
+              <line x1="22" y1="184" x2="178" y2="184" stroke="#6b6a66" stroke-width=".6" opacity=".14"/>
+              <text x="100" y="136" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-style="italic" fill="#6b6a66" opacity=".9">KORVA</text>
+              <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#6b6a66" opacity=".38" letter-spacing="4">PRO X3 18K</text>
+            </svg>
+          </div>
+
+        <div class="hero-dots">
+            <button class="hero-dot active" onclick="goSlide(0)"></button>
+            <button class="hero-dot" onclick="goSlide(1)"></button>
+            <button class="hero-dot" onclick="goSlide(2)"></button>
+          </div>
+        </div>
       <div class="hero-spec-box">
         <div class="spec-lbl">Modelo estrella</div>
-        <div class="spec-val">Pro X3 Carbon</div>
+        <div class="spec-val" id="hero-spec-val">Pro X3 Carbon</div>
       </div>
       <div class="hero-badge">
-        <span class="badge-n">360</span>
-        <span class="badge-t">g · ultra</span>
+        <span class="badge-n" id="hero-badge-n">360</span>
+        <span class="badge-t" id="hero-badge-t">CONTROL</span>
       </div>
     </div>
   </div>
@@ -665,6 +737,20 @@ document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 
 // MODAL
 history.scrollRestoration='manual';window.scrollTo(0,0);
+
+// HERO SLIDER
+let currentSlide=0;
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hero-dot');
+function goSlide(n){
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide=n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+setInterval(()=>goSlide((currentSlide+1)%slides.length),3500);
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',function(e){
     const target=document.querySelector(this.getAttribute('href'));
