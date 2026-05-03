@@ -739,15 +739,32 @@ document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 history.scrollRestoration='manual';window.scrollTo(0,0);
 
 // HERO SLIDER
+const heroData=[
+  {spec:'Pro X3 3K Control', badgeN:'360', badgeT:'CONTROL'},
+  {spec:'Pro X3 12K Versatile', badgeN:'365', badgeT:'VERSÁTIL'},
+  {spec:'Pro X3 18K Power', badgeN:'375', badgeT:'POTENCIA'}
+];
 let currentSlide=0;
 const slides=document.querySelectorAll('.hero-slide');
 const dots=document.querySelectorAll('.hero-dot');
+const specVal=document.getElementById('hero-spec-val');
+const badgeN=document.getElementById('hero-badge-n');
+const badgeT=document.getElementById('hero-badge-t');
 function goSlide(n){
   slides[currentSlide].classList.remove('active');
   dots[currentSlide].classList.remove('active');
   currentSlide=n;
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
+  specVal.style.opacity='0';
+  badgeN.closest('.hero-badge').style.opacity='0';
+  setTimeout(()=>{
+    specVal.textContent=heroData[n].spec;
+    badgeN.textContent=heroData[n].badgeN;
+    badgeT.textContent=heroData[n].badgeT;
+    specVal.style.opacity='1';
+    badgeN.closest('.hero-badge').style.opacity='1';
+  },300);
 }
 setInterval(()=>goSlide((currentSlide+1)%slides.length),3500);
 
