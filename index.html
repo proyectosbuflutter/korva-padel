@@ -45,13 +45,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-dots{display:flex;justify-content:center;gap:.8rem;position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2}
 .hero-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;transition:background .2s;padding:0}
 .hero-dot.active{background:var(--accent)}
-.spec-val{transition:opacity .3s ease}
-.hero-badge{transition:opacity .3s ease}
+.spec-val{transition:opacity .5s ease}
+.hero-badge{transition:opacity .5s ease}
 
 /* HERO VISUAL */
 .hero-visual{position:relative;display:flex;justify-content:center}
 .hero-card{width:100%;max-width:500px;aspect-ratio:4/5;background:#141412;display:flex;align-items:center;justify-content:center;position:relative}
-.hero-spec-box{position:absolute;bottom:-1.2rem;left:-1.2rem;background:var(--white);border:1px solid var(--g200);padding:1.1rem 1.4rem}
+.hero-spec-box{position:absolute;bottom:-1.2rem;left:-1.2rem;background:var(--white);border:1px solid var(--g200);padding:1.1rem 1.4rem;min-width:160px}
 .spec-lbl{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--g400);margin-bottom:.3rem}
 .spec-val{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--black)}
 .hero-badge{position:absolute;top:1.5rem;right:-1rem;background:var(--accent);color:var(--white);width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
@@ -280,7 +280,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-tag fade">Colección 2025</div>
+      <div class="hero-tag fade">Colección 2026</div>
       <h1 class="hero-h1 fade d1">Juega con<br><em>precisión</em><br>absoluta.</h1>
       <p class="hero-sub fade d2">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
       <div class="hero-btns fade d3">
@@ -379,8 +379,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
           </div>
         </div>
       <div class="hero-spec-box">
-        <div class="spec-lbl">Modelo estrella</div>
-        <div class="spec-val" id="hero-spec-val">Pro X3 Carbon</div>
+        <div class="spec-lbl">KORVA</div>
+        <div class="spec-val" id="hero-spec-val">3K Control</div>
       </div>
       <div class="hero-badge">
         <span class="badge-n" id="hero-badge-n">360</span>
@@ -570,10 +570,13 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     </div>
   </div>
   <div class="prod-content fade">
-    <span class="prod-badge">Más vendido · 2025</span>
-    <h2 class="prod-h">Pro X3<br>Carbon</h2>
-    <div class="prod-sub">Redondo · Control + Potencia</div>
-    <p class="prod-desc">La paleta para quienes no quieren elegir entre potencia y control. El nuevo marco asimétrico en carbono 3K distribuye la energía del impacto en 360°, eliminando puntos muertos en toda la superficie.</p>
+    <span class="prod-badge">Más vendido · 2026</span>
+    <h2 class="prod-h">
+  <span style="color:#c8a96e;">KORVA 12K</span>
+  <em>Versatile</em>
+</h2>
+    <div class="prod-sub">Versátil · Control + Potencia</div>
+    <p class="prod-desc">La pala diseñada para adaptarse a cada punto. Su construcción 100% carbono 12K ofrece una respuesta sólida y consistente, mientras que el balance medio permite jugar con control y acelerar cuando lo necesitas. Equilibrio real, sin compromisos.</p>
     <div class="prod-specs">
       <div><span class="ps-val">360g</span><span class="ps-key">Peso</span></div>
       <div><span class="ps-val">275</span><span class="ps-key">Balance mm</span></div>
@@ -691,7 +694,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
   </div>
 
-  <div class="footer-bottom">© 2025 KORVA Pádel — Todos los derechos reservados</div>
+  <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
 <!-- MODAL CONTACTO -->
@@ -740,9 +743,9 @@ history.scrollRestoration='manual';window.scrollTo(0,0);
 
 // HERO SLIDER
 const heroData=[
-  {spec:'Pro X3 3K Control', badgeN:'360', badgeT:'CONTROL'},
-  {spec:'Pro X3 12K Versatile', badgeN:'365', badgeT:'VERSÁTIL'},
-  {spec:'Pro X3 18K Power', badgeN:'375', badgeT:'POTENCIA'}
+  {spec:'3K Control', badgeN:'360', badgeT:'CONTROL'},
+  {spec:'12K Versatile', badgeN:'365', badgeT:'VERSÁTIL'},
+  {spec:'18K Power', badgeN:'375', badgeT:'POTENCIA'}
 ];
 let currentSlide=0;
 const slides=document.querySelectorAll('.hero-slide');
@@ -766,7 +769,7 @@ function goSlide(n){
     badgeN.closest('.hero-badge').style.opacity='1';
   },300);
 }
-setInterval(()=>goSlide((currentSlide+1)%slides.length),3500);
+setInterval(()=>goSlide((currentSlide+1)%slides.length),4000);
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',function(e){
