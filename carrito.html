@@ -514,9 +514,8 @@ function applyDiscount(){
 }
 
 function goCheckout(){
-  if(Object.keys(prices).length === 0){
-    return;
-  }
+  if(cart.length === 0) return;
+  localStorage.setItem('korva-zona', document.getElementById('zona-envio').value);
   location.href='checkout.html';
 }
 
