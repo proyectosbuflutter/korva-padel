@@ -266,7 +266,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
           <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           Volver al carrito
         </a>
-        <button class="btn-next" onclick="goStep(2)">Continuar al envío</button>
+        <button class="btn-next" onclick="validarPaso1()">Continuar al envío</button>
       </div>
     </div>
 
@@ -274,14 +274,14 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <div class="form-panel" id="panel-2">
       <div class="form-title">Dirección de envío</div>
       <div class="form-row full">
-        <div class="field"><label>Dirección</label><input type="text" placeholder="Calle y número"></div>
+        <div class="field"><label>Dirección</label><input type="text" id="dir-direccion" placeholder="Calle y número"></div>
       </div>
       <div class="form-row">
-        <div class="field"><label>Ciudad</label><input type="text" placeholder="Ciudad"></div>
-        <div class="field"><label>Código postal</label><input type="text" placeholder="00000"></div>
+        <div class="field"><label>Ciudad</label><input type="text" id="dir-ciudad" placeholder="Ciudad"></div>
+        <div class="field"><label>Código postal</label><input type="text" id="dir-cp" placeholder="00000"></div>
       </div>
       <div class="form-row">
-        <div class="field"><label>Provincia</label><input type="text" placeholder="Provincia"></div>
+        <div class="field"><label>Provincia</label><input type="text" id="dir-provincia" placeholder="Provincia"></div>
         <div class="field"><label>País</label>
           <select>
             <option>España</option>
@@ -293,31 +293,12 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         </div>
       </div>
       <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-top:.5rem">Método de envío</div>
-      <div class="shipping-options">
-        <label class="shipping-opt selected">
-          <input type="radio" name="shipping" value="standard" checked onchange="selectShipping(this)">
-          <div class="shipping-opt-info">
-            <div class="shipping-opt-name">Envío estándar</div>
-            <div class="shipping-opt-desc">2–3 días laborables</div>
-          </div>
-          <div class="shipping-opt-price">Gratis</div>
-        </label>
-        <label class="shipping-opt">
-          <input type="radio" name="shipping" value="express" onchange="selectShipping(this)">
-          <div class="shipping-opt-info">
-            <div class="shipping-opt-name">Envío urgente</div>
-            <div class="shipping-opt-desc">24h laborables</div>
-          </div>
-          <div class="shipping-opt-price">6,90€</div>
-        </label>
-        <label class="shipping-opt">
-          <input type="radio" name="shipping" value="pickup" onchange="selectShipping(this)">
-          <div class="shipping-opt-info">
-            <div class="shipping-opt-name">Recogida en punto</div>
-            <div class="shipping-opt-desc">Seleccionar punto de entrega</div>
-          </div>
-          <div class="shipping-opt-price">Gratis</div>
-        </label>
+      <div id="envio-info" style="padding:1rem 1.2rem;border:1.5px solid var(--g200);font-size:.82rem;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-weight:600;color:var(--black)" id="envio-nombre">Envío estándar</div>
+          <div style="font-size:.65rem;color:var(--g400)" id="envio-desc">2–3 días laborables</div>
+        </div>
+        <div style="font-weight:600;color:var(--black)" id="envio-precio-label">—</div>
       </div>
       <label class="check-row">
         <input type="checkbox" id="billing-same" checked onchange="toggleBilling()">
@@ -325,7 +306,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </label>
       <div id="billing-fields" style="display:none;flex-direction:column;gap:1.5rem">
         <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)">Dirección de facturación</div>
-        <div class="form-row full"><div class="field"><label>Dirección</label><input type="text" placeholder="Calle y número"></div></div>
+        <div class="form-row full"><div class="field"><label>Dirección</label><input type="text" id="dir-direccion" placeholder="Calle y número"></div></div>
         <div class="form-row">
           <div class="field"><label>Ciudad</label><input type="text" placeholder="Ciudad"></div>
           <div class="field"><label>Código postal</label><input type="text" placeholder="00000"></div>
@@ -336,7 +317,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
           <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           Volver
         </button>
-        <button class="btn-next" onclick="goStep(3)">Continuar al pago</button>
+        <button class="btn-next" onclick="validarPaso2()">Continuar al pago</button>
       </div>
     </div>
 
@@ -583,6 +564,21 @@ function renderCheckoutSummary(){
   // Actualizar botón pagar
   const btnPay = document.getElementById('btn-pay');
   if(btnPay) btnPay.textContent = 'Pagar ahora — '+total.toFixed(2).replace('.',',')+'€';
+
+  // Actualizar info envío en paso 2
+  const envioNombre = document.getElementById('envio-nombre');
+  const envioDesc = document.getElementById('envio-desc');
+  const envioLabel = document.getElementById('envio-precio-label');
+  if(envioNombre && envioLabel){
+    const zonaTextos = {
+      peninsula: 'Península',
+      baleares: 'Baleares',
+      internacional: 'Internacional'
+    };
+    envioNombre.textContent = 'Envío estándar — ' + (zonaTextos[coZona] || 'Península');
+    envioDesc.textContent = coZona === 'internacional' ? '5–7 días laborables' : '2–3 días laborables';
+    envioLabel.textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',')+'€';
+  }
 }
 
 renderCheckoutSummary();
@@ -669,9 +665,36 @@ function goStep(n){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function selectShipping(input){
-  document.querySelectorAll('.shipping-opt').forEach(o=>o.classList.remove('selected'));
-  input.closest('.shipping-opt').classList.add('selected');
+function validarPaso1(){
+  const campos = ['nombre','apellidos','email','telefono'];
+  let ok = true;
+  campos.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el.value.trim()){
+      el.style.borderBottomColor='#c0622a';
+      ok = false;
+    } else {
+      el.style.borderBottomColor='';
+    }
+  });
+  if(!ok){ return; }
+  goStep(2);
+}
+
+function validarPaso2(){
+  const ids = ['dir-direccion','dir-ciudad','dir-cp','dir-provincia'];
+  let ok = true;
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el || !el.value.trim()){
+      if(el) el.style.borderBottomColor='#c0622a';
+      ok = false;
+    } else {
+      el.style.borderBottomColor='';
+    }
+  });
+  if(!ok){ return; }
+  goStep(3);
 }
 
 function toggleBilling(){
