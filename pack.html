@@ -144,7 +144,10 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <div style="display:flex;align-items:center;gap:1rem">
     <button class="nav-access" onclick="openLogin()">Acceso</button>
     <a href="carrito.html" class="nav-cart">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span style="position:relative;display:inline-flex;align-items:center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="nav-cart-count" style="position:absolute;top:-8px;right:-8px;background:#c8a96e;color:#fff;font-size:.5rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 2px"></span>
+      </span>
       Carrito
     </a>
   </div>
@@ -454,6 +457,12 @@ function openLegal(type){
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
 loadPack();
+(function(){
+  const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
+  const total = cart.reduce((s,i)=>s+i.qty,0);
+  const el = document.getElementById('nav-cart-count');
+  if(el && total > 0){ el.textContent=total; el.style.display='flex'; }
+})();
 </script>
 </body>
 </html>
