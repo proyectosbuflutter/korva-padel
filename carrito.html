@@ -255,7 +255,16 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 
   <!-- RESUMEN -->
   <div>
-    <div class="shipping-bar" id="shipping-bar">
+    <div class="zona-selector" style="background:var(--g100);border:1px solid var(--g200);border-bottom:none;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem">
+    <span style="font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)">Zona de envío</span>
+    <select id="zona-envio" onchange="updateSummary()" style="font-family:'Sora',sans-serif;font-size:.72rem;color:var(--black);background:var(--white);border:1px solid var(--g200);padding:.4rem .8rem;outline:none;cursor:pointer">
+      <option value="peninsula">Península — 5,90€ (gratis +120€)</option>
+      <option value="baleares">Baleares — 9,90€</option>
+      <option value="canarias" disabled>Canarias — Próximamente</option>
+      <option value="internacional">Francia / Alemania / Italia / Portugal — 14,90€</option>
+    </select>
+  </div>
+  <div class="shipping-bar" id="shipping-bar">
       <div class="shipping-bar-text" id="shipping-bar-text">Añade <strong id="shipping-missing">120€</strong> más para conseguir <strong>envío gratis</strong></div>
       <div class="shipping-bar-track">
         <div class="shipping-bar-fill" id="shipping-fill" style="width:0%"></div>
@@ -406,7 +415,7 @@ function renderCart(){
           <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
         </div>
       </div>
-      <div class="cart-item-total" id="total-${item.id}">${item.precio * item.qty}€</div>
+      <div class="cart-item-price">${parseFloat(item.precio).toFixed(2).replace('.',',')}€</div>
       <button class="cart-item-remove" onclick="removeItem(${item.id})">
         <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
@@ -420,7 +429,7 @@ function changeQty(id, dir){
   if(idx === -1) return;
   cart[idx].qty = Math.max(1, cart[idx].qty + dir);
   document.getElementById('qty-'+id).textContent = cart[idx].qty;
-  document.getElementById('total-'+id).textContent = (cart[idx].precio * cart[idx].qty)+'€';
+  document.getElementById('total-'+id).textContent = (cart[idx].precio * cart[idx].qty).toFixed(2).replace('.',',')+'€';
   updateSummary();
   saveCart();
 }
@@ -444,6 +453,10 @@ function getSubtotal(){
 }
 
 function updateShippingBar(sub){
+  const zona = document.getElementById('zona-envio') ? document.getElementById('zona-envio').value : 'peninsula';
+  const bar = document.getElementById('shipping-bar');
+  if(zona !== 'peninsula' || cart.length === 0){ bar.style.display='none'; return; }
+  bar.style.display='block';
   const threshold = 120;
   const pct = Math.min(100,(sub/threshold)*100);
   const missing = Math.max(0,threshold-sub);
@@ -458,24 +471,33 @@ function updateShippingBar(sub){
   }
 }
 
+function getEnvio(sub){
+  if(cart.length === 0) return 0;
+  const zona = document.getElementById('zona-envio') ? document.getElementById('zona-envio').value : 'peninsula';
+  if(zona === 'peninsula') return sub >= 120 ? 0 : 5.90;
+  if(zona === 'baleares') return 9.90;
+  if(zona === 'internacional') return 14.90;
+  return 0;
+}
+
 function updateSummary(){
   const sub = getSubtotal();
   const isEmpty = cart.length === 0;
   document.getElementById('empty-cart').style.display = isEmpty ? 'block' : 'none';
 
-  const envio = isEmpty ? 0 : (sub >= 120 ? 0 : 5.90);
-  let subConDesc = discountApplied ? sub * 0.9 : sub;
+  const envio = getEnvio(sub);
+  const subConDesc = discountApplied ? sub * 0.9 : sub;
   const total = subConDesc + envio;
   const iva = sub > 0 ? sub - (sub / 1.21) : 0;
 
-  document.getElementById('subtotal').textContent = sub.toFixed(0)+'€';
+  document.getElementById('subtotal').textContent = sub.toFixed(2).replace('.',',')+'€';
   document.getElementById('iva').textContent = iva.toFixed(2).replace('.',',')+'€';
   document.getElementById('envio').textContent = isEmpty ? '—' : (envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',')+'€');
   document.getElementById('envio').className = 'summary-row-val'+(envio === 0 && !isEmpty ? ' free' : '');
-  document.getElementById('total').textContent = total.toFixed(0)+'€';
+  document.getElementById('total').textContent = total.toFixed(2).replace('.',',')+'€';
 
   if(discountApplied){
-    document.getElementById('descuento-val').textContent = '−'+(sub*0.1).toFixed(2).replace('.',',')+'€';
+    document.getElementById('descuento-val').textContent = '−'+(subConDesc*0.1).toFixed(2).replace('.',',')+'€';
   }
   updateShippingBar(sub);
 }
