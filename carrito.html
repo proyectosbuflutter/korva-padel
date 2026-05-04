@@ -230,7 +230,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
           </div>
           <div class="upsell-name">Overgrip KORVA</div>
           <div class="upsell-price">9,90€</div>
-          <button class="upsell-btn" onclick="upsellAdd('Overgrip KORVA')">+ Añadir</button>
+          <button class="upsell-btn" onclick="upsellAdd('Overgrip KORVA',9.90)">+ Añadir</button>
         </div>
         <div class="upsell-card">
           <div class="upsell-img">
@@ -238,7 +238,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
           </div>
           <div class="upsell-name">Funda protectora</div>
           <div class="upsell-price">24,90€</div>
-          <button class="upsell-btn" onclick="upsellAdd('Funda protectora')">+ Añadir</button>
+          <button class="upsell-btn" onclick="upsellAdd('Funda protectora',24.90)">+ Añadir</button>
         </div>
         <div class="upsell-card">
           <div class="upsell-img">
@@ -246,7 +246,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
           </div>
           <div class="upsell-name">Pad vibración premium</div>
           <div class="upsell-price">14,90€</div>
-          <button class="upsell-btn" onclick="upsellAdd('Pad vibración premium')">+ Añadir</button>
+          <button class="upsell-btn" onclick="upsellAdd('Pad vibración premium',14.90)">+ Añadir</button>
         </div>
       </div>
     </div>
@@ -514,7 +514,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-function upsellAdd(name){
+function upsellAdd(name, precio){
+  const id = 'upsell-'+name.replace(/\s/g,'-').toLowerCase();
+  const idx = cart.findIndex(i => i.id === id);
+  if(idx > -1){
+    cart[idx].qty += 1;
+  } else {
+    cart.push({id, nombre: name, precio, peso:'', balance:'', qty:1});
+  }
+  saveCart();
+  renderCart();
+  updateCount();
+  updateSummary();
   let toast = document.getElementById('toast');
   if(!toast){
     toast = document.createElement('div');
@@ -527,6 +538,18 @@ function upsellAdd(name){
   toast.style.transform='translateX(-50%) translateY(0)';
   setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
 }
+  let toast = document.getElementById('toast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.id='toast';
+    toast.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap';
+    document.body.appendChild(toast);
+  }
+  toast.textContent='✓ '+name+' añadido';
+  toast.style.opacity='1';
+  toast.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
+
 
 function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
