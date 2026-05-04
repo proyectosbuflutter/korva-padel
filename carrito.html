@@ -381,6 +381,11 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 <script>
 history.scrollRestoration='manual';window.scrollTo(0,0);
 
+const CART_VERSION = '1';
+if(localStorage.getItem('korva-cart-version') !== CART_VERSION){
+  localStorage.removeItem('korva-cart');
+  localStorage.setItem('korva-cart-version', CART_VERSION);
+}
 let cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
 let discountApplied = JSON.parse(localStorage.getItem('korva-discount') || 'false');
 
