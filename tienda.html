@@ -179,6 +179,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <div class="shop-filters-inner">
     <button class="filter-btn active" data-cat="todos">Todos</button>
     <button class="filter-btn" data-cat="pala">Palas</button>
+    <button class="filter-btn" data-cat="pack">Packs</button>
     <button class="filter-btn" data-cat="accesorio">Accesorios</button>
   </div>
 </div>
@@ -191,15 +192,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <div class="section-label">Palas</div>
       <div class="palas-grid" id="palas-grid"></div>
     </div>
-    <div id="accesorios-section">
-      <div class="shop-divider">
-        <div class="shop-divider-line"></div>
-        <div class="shop-divider-label">Accesorios</div>
-        <div class="shop-divider-line"></div>
-      </div>
-      <div class="accesorios-grid" id="accesorios-grid"></div>
-    </div>
-
     <div id="packs-section">
       <div class="shop-divider">
         <div class="shop-divider-line"></div>
@@ -207,6 +199,15 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         <div class="shop-divider-line"></div>
       </div>
       <div class="palas-grid" id="packs-grid"></div>
+    </div>
+
+    <div id="accesorios-section">
+      <div class="shop-divider">
+        <div class="shop-divider-line"></div>
+        <div class="shop-divider-label">Accesorios</div>
+        <div class="shop-divider-line"></div>
+      </div>
+      <div class="accesorios-grid" id="accesorios-grid"></div>
     </div>
   </div>
 </div>
@@ -465,9 +466,14 @@ async function loadProducts(cat='todos'){
   });
   const data = await res.json();
 
-  const palas = cat === 'accesorio' ? [] : data.filter(p => p.categoria === 'pala');
-  const accesorios = cat === 'pala' ? [] : data.filter(p => p.categoria === 'accesorio');
+  const palas = (cat === 'accesorio' || cat === 'pack') ? [] : data.filter(p => p.categoria === 'pala');
+  const accesorios = (cat === 'pala' || cat === 'pack') ? [] : data.filter(p => p.categoria === 'accesorio');
   renderProducts(palas, accesorios);
+  if(cat === 'pala' || cat === 'accesorio'){
+    document.getElementById('packs-section').style.display='none';
+  } else {
+    loadPacks();
+  }
 }
 
 document.querySelectorAll('.filter-btn').forEach(btn=>{
@@ -511,7 +517,6 @@ function openLegal(type){
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
 loadProducts();
-loadPacks();
 </script>
 </body>
 </html>
