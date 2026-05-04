@@ -406,7 +406,7 @@ function renderCart(){
         </div>
         <div class="cart-item-details">
           <div class="cart-item-name">${item.nombre}</div>
-          <div class="cart-item-variant">${item.peso ? item.peso+'g · ' : ''}${item.balance ? 'Balance '+item.balance : ''}</div>
+          <div class="cart-item-variant">${item.peso && item.balance ? item.peso+' · Balance '+item.balance : ''}</div>
         </div>
       </div>
       <div class="cart-item-price">${parseFloat(item.precio).toFixed(2).replace('.',',')}€</div>
