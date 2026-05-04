@@ -409,7 +409,7 @@ function renderCart(){
           <div class="cart-item-variant">${item.peso ? item.peso+'g · ' : ''}${item.balance ? 'Balance '+item.balance : ''}</div>
         </div>
       </div>
-      <div class="cart-item-price">${item.precio}€</div>
+      <div class="cart-item-price">${parseFloat(item.precio).toFixed(2).replace('.',',')}€</div>
       <div class="cart-item-qty">
         <div class="qty-wrap">
           <button class="qty-btn" onclick="changeQty('${item.id}',-1)">−</button>
@@ -417,7 +417,7 @@ function renderCart(){
           <button class="qty-btn" onclick="changeQty('${item.id}',1)">+</button>
         </div>
       </div>
-      <div class="cart-item-price">${parseFloat(item.precio).toFixed(2).replace('.',',')}€</div>
+      <div class="cart-item-total" id="total-${item.id}">${(parseFloat(item.precio)*item.qty).toFixed(2).replace('.',',')}€</div>
       <button class="cart-item-remove" onclick="removeItem('${item.id}')">
         <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
