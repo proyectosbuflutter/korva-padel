@@ -18,7 +18,7 @@ html{overflow-x:hidden}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g800);text-decoration:none;transition:color .2s}
@@ -40,7 +40,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cart-item{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:1rem;padding:2rem 0;border-bottom:1px solid var(--g100);align-items:center}
 .cart-item-left{display:flex;align-items:center;gap:1.5rem}
 .cart-item-img{width:80px;height:100px;background:#141412;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-
 .cart-item-name{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--black);margin-bottom:.3rem}
 .cart-item-variant{font-size:.65rem;color:var(--g400);letter-spacing:.08em}
 .cart-item-price{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--black)}
@@ -63,6 +62,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cart-continue:hover{color:var(--black)}
 .cart-continue svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
+/* CARRITO VACÍO */
+.cart-empty{display:none;text-align:center;padding:4rem 0;color:var(--g400);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+
 /* PROGRESO ENVÍO */
 .shipping-bar{background:var(--g100);padding:1.2rem 1.5rem;margin-bottom:0;border:1px solid var(--g200);border-bottom:none}
 .shipping-bar-text{font-size:.72rem;color:var(--g600);margin-bottom:.7rem;line-height:1.5}
@@ -75,14 +77,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* RESUMEN */
 .cart-summary{background:var(--g100);padding:2.5rem;position:sticky;top:6rem;display:flex;flex-direction:column;gap:0}
 .summary-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--black);margin-bottom:2rem}
-
 .summary-row{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid var(--g200);font-size:.82rem}
 .summary-row:last-of-type{border:none}
 .summary-row-label{color:var(--g600)}
 .summary-row-val{font-weight:600;color:var(--black)}
 .summary-row-val.free{color:#4a9d6f;font-weight:600}
 .summary-row-val.strike{color:var(--g400);text-decoration:line-through;font-weight:400}
-
 .summary-discount{display:flex;flex-direction:column;gap:.6rem;padding:1.5rem 0;border-bottom:1px solid var(--g200);margin-bottom:.5rem}
 .discount-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)}
 .discount-row{display:flex;gap:.6rem}
@@ -92,18 +92,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .discount-btn:hover{background:var(--g800)}
 .discount-ok{font-size:.72rem;color:#4a9d6f;display:none;align-items:center;gap:.4rem}
 .discount-ok.show{display:flex}
-
 .summary-total{display:flex;justify-content:space-between;align-items:baseline;padding:1.5rem 0 2rem;border-top:2px solid var(--black);margin-top:.5rem}
 .total-label{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--black)}
 .total-val{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--black)}
 .total-iva{font-size:.6rem;color:var(--g400);text-align:right;margin-top:-.5rem;margin-bottom:1.5rem}
-
 .btn-checkout{width:100%;padding:1.1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-bottom:1.2rem}
 .btn-checkout:hover{background:var(--g800)}
-
 .pay-icons{display:flex;justify-content:center;align-items:center;gap:1rem;opacity:.35}
 .pay-icon{font-size:.6rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--g600);padding:.2rem .6rem;color:var(--g600)}
-
 .summary-secure{display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:.6rem;color:var(--g400);margin-top:1rem}
 .summary-secure svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
@@ -202,7 +198,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 
 <div class="cart-header">
   <h1 class="cart-h1">KORVA</h1>
-  <span class="cart-count">Tu carrito</span>
+  <span class="cart-count" id="cart-count">0 productos</span>
 </div>
 
 <div class="cart-wrap">
@@ -217,174 +213,107 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
       <span></span>
     </div>
 
-    <div id="empty-cart" style="display:none;text-align:center;padding:4rem 0;color:var(--g400);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase">Tu carrito está vacío</div>
-    <!-- ITEM 1 -->
-    <div class="cart-item" id="item-1">
-      <div class="cart-item-left">
-        <div class="cart-item-img">
-          <svg width="50" height="80" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">KORVA</text>
-          </svg>
-        </div>
-        <div class="cart-item-details">
-          <div class="cart-item-name">Pro X3 Carbon</div>
-          <div class="cart-item-variant">360g · Balance 275mm</div>
-        </div>
-      </div>
-      <div class="cart-item-price">
-        <span class="cart-item-price-old">299€</span>
-        249€
-      </div>
-      <div class="cart-item-qty">
-        <div class="qty-wrap">
-          <button class="qty-btn" onclick="changeQty('item-1',-1)">−</button>
-          <span class="qty-val" id="qty-item-1">1</span>
-          <button class="qty-btn" onclick="changeQty('item-1',1)">+</button>
-        </div>
-      </div>
-      <div class="cart-item-total" id="total-item-1">249€</div>
-      <button class="cart-item-remove" onclick="removeItem('item-1')">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-
-    <!-- ITEM 2 -->
-    <div class="cart-item" id="item-2">
-      <div class="cart-item-left">
-        <div class="cart-item-img">
-          <svg width="50" height="80" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".8">KORVA</text>
-          </svg>
-        </div>
-        <div class="cart-item-details">
-          <div class="cart-item-name">Elite Tour</div>
-          <div class="cart-item-variant">355g · Balance 270mm</div>
-        </div>
-      </div>
-      <div class="cart-item-price">199€</div>
-      <div class="cart-item-qty">
-        <div class="qty-wrap">
-          <button class="qty-btn" onclick="changeQty('item-2',-1)">−</button>
-          <span class="qty-val" id="qty-item-2">1</span>
-          <button class="qty-btn" onclick="changeQty('item-2',1)">+</button>
-        </div>
-      </div>
-      <div class="cart-item-total" id="total-item-2">199€</div>
-      <button class="cart-item-remove" onclick="removeItem('item-2')">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+    <div class="cart-empty" id="empty-cart">Tu carrito está vacío</div>
 
     <a href="tienda.html" class="cart-continue">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       Seguir comprando
     </a>
-  <div class="upsell">
-    <div class="upsell-title">Completa tu pedido</div>
-    <div class="upsell-grid">
 
-      <div class="upsell-card">
-        <div class="upsell-img">
-          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+    <div class="upsell">
+      <div class="upsell-title">Completa tu pedido</div>
+      <div class="upsell-grid">
+        <div class="upsell-card">
+          <div class="upsell-img">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <div class="upsell-name">Overgrip KORVA</div>
+          <div class="upsell-price">9,90€</div>
+          <button class="upsell-btn" onclick="upsellAdd('Overgrip KORVA')">+ Añadir</button>
         </div>
-        <div class="upsell-name">Overgrip KORVA</div>
-        <div class="upsell-price">9,90€</div>
-        <button class="upsell-btn" onclick="upsellAdd('Overgrip KORVA')">+ Añadir</button>
-      </div>
-
-      <div class="upsell-card">
-        <div class="upsell-img">
-          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <div class="upsell-card">
+          <div class="upsell-img">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="upsell-name">Funda protectora</div>
+          <div class="upsell-price">24,90€</div>
+          <button class="upsell-btn" onclick="upsellAdd('Funda protectora')">+ Añadir</button>
         </div>
-        <div class="upsell-name">Funda protectora</div>
-        <div class="upsell-price">24,90€</div>
-        <button class="upsell-btn" onclick="upsellAdd('Funda protectora')">+ Añadir</button>
-      </div>
-
-      <div class="upsell-card">
-        <div class="upsell-img">
-          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+        <div class="upsell-card">
+          <div class="upsell-img">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <div class="upsell-name">Pad vibración premium</div>
+          <div class="upsell-price">14,90€</div>
+          <button class="upsell-btn" onclick="upsellAdd('Pad vibración premium')">+ Añadir</button>
         </div>
-        <div class="upsell-name">Pad vibración premium</div>
-        <div class="upsell-price">14,90€</div>
-        <button class="upsell-btn" onclick="upsellAdd('Pad vibración premium')">+ Añadir</button>
       </div>
-
     </div>
-  </div>
 
   </div>
 
   <!-- RESUMEN -->
   <div>
-  <div class="shipping-bar" id="shipping-bar">
-    <div class="shipping-bar-text" id="shipping-bar-text">Añade <strong id="shipping-missing">0€</strong> más para conseguir <strong>envío gratis</strong></div>
-    <div class="shipping-bar-track">
-      <div class="shipping-bar-fill" id="shipping-fill" style="width:0%"></div>
-    </div>
-    <div class="shipping-bar-free" id="shipping-free">✓ Envío gratis aplicado</div>
-  </div>
-  <div class="cart-summary">
-    <div class="summary-title">Resumen</div>
-
-    <div class="summary-row">
-      <span class="summary-row-label">Subtotal</span>
-      <span class="summary-row-val" id="subtotal">448€</span>
-    </div>
-    <div class="summary-row">
-      <span class="summary-row-label">IVA (21%)</span>
-      <span class="summary-row-val" id="iva">77,87€</span>
-    </div>
-    <div class="summary-row">
-      <span class="summary-row-label">Envío</span>
-      <span class="summary-row-val free" id="envio">Gratis</span>
-    </div>
-
-    <div class="summary-discount">
-      <span class="discount-label">Código descuento</span>
-      <div class="discount-row">
-        <input class="discount-input" type="text" id="discount-input" placeholder="Introduce tu código">
-        <button class="discount-btn" onclick="applyDiscount()">Aplicar</button>
+    <div class="shipping-bar" id="shipping-bar">
+      <div class="shipping-bar-text" id="shipping-bar-text">Añade <strong id="shipping-missing">120€</strong> más para conseguir <strong>envío gratis</strong></div>
+      <div class="shipping-bar-track">
+        <div class="shipping-bar-fill" id="shipping-fill" style="width:0%"></div>
       </div>
-      <div class="discount-ok" id="discount-ok">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4a9d6f" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Descuento aplicado — 10% off
+      <div class="shipping-bar-free" id="shipping-free">✓ Envío gratis aplicado</div>
+    </div>
+    <div class="cart-summary">
+      <div class="summary-title">Resumen</div>
+
+      <div class="summary-row">
+        <span class="summary-row-label">Subtotal</span>
+        <span class="summary-row-val" id="subtotal">0€</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-row-label">IVA (21%)</span>
+        <span class="summary-row-val" id="iva">0,00€</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-row-label">Envío</span>
+        <span class="summary-row-val" id="envio">—</span>
+      </div>
+
+      <div class="summary-discount">
+        <span class="discount-label">Código descuento</span>
+        <div class="discount-row">
+          <input class="discount-input" type="text" id="discount-input" placeholder="Introduce tu código">
+          <button class="discount-btn" onclick="applyDiscount()">Aplicar</button>
+        </div>
+        <div class="discount-ok" id="discount-ok">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4a9d6f" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Descuento aplicado — 10% off
+        </div>
+      </div>
+
+      <div class="summary-row" id="descuento-row" style="display:none">
+        <span class="summary-row-label">Descuento (10%)</span>
+        <span class="summary-row-val" style="color:#4a9d6f" id="descuento-val">—</span>
+      </div>
+
+      <div class="summary-total">
+        <span class="total-label">Total</span>
+        <span class="total-val" id="total">0€</span>
+      </div>
+      <div class="total-iva">IVA incluido</div>
+
+      <button class="btn-checkout" onclick="goCheckout()">Tramitar pedido</button>
+
+      <div class="pay-icons">
+        <span class="pay-icon">VISA</span>
+        <span class="pay-icon">MC</span>
+        <span class="pay-icon">AMEX</span>
+        <span class="pay-icon">BIZUM</span>
+      </div>
+
+      <div class="summary-secure">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Pago 100% seguro · SSL cifrado
       </div>
     </div>
-
-    <div class="summary-row" id="descuento-row" style="display:none">
-      <span class="summary-row-label">Descuento (10%)</span>
-      <span class="summary-row-val" style="color:#4a9d6f" id="descuento-val">−44,80€</span>
-    </div>
-
-    <div class="summary-total">
-      <span class="total-label">Total</span>
-      <span class="total-val" id="total">448€</span>
-    </div>
-    <div class="total-iva">IVA incluido</div>
-
-    <button class="btn-checkout" onclick="location.href='checkout.html'">Tramitar pedido</button>
-
-    <div class="pay-icons">
-      <span class="pay-icon">VISA</span>
-      <span class="pay-icon">MC</span>
-      <span class="pay-icon">AMEX</span>
-      <span class="pay-icon">BIZUM</span>
-    </div>
-
-    <div class="summary-secure">
-      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Pago 100% seguro · SSL cifrado
-    </div>
-  </div>
   </div>
 
 </div>
@@ -438,16 +367,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 history.scrollRestoration='manual';window.scrollTo(0,0);
 
 const prices = {};
-const qtys   = JSON.parse(localStorage.getItem('korva-qtys') || '{}');
+const qtys = JSON.parse(localStorage.getItem('korva-qtys') || '{}');
 let discountApplied = JSON.parse(localStorage.getItem('korva-discount') || 'false');
-
-// Restaurar cantidades en UI
-Object.keys(qtys).forEach(id=>{
-  const qtyEl=document.getElementById('qty-'+id);
-  const totalEl=document.getElementById('total-'+id);
-  if(qtyEl) qtyEl.textContent=qtys[id];
-  if(totalEl) totalEl.textContent=(prices[id]*qtys[id])+'€';
-});
 
 // Restaurar descuento
 if(discountApplied){
@@ -460,15 +381,15 @@ function saveCart(){
   localStorage.setItem('korva-discount', JSON.stringify(discountApplied));
 }
 
-function changeQty(id, dir) {
+function changeQty(id, dir){
   qtys[id] = Math.max(1, qtys[id] + dir);
-  document.getElementById('qty-' + id).textContent = qtys[id];
-  document.getElementById('total-' + id).textContent = (prices[id] * qtys[id]) + '€';
+  document.getElementById('qty-'+id).textContent = qtys[id];
+  document.getElementById('total-'+id).textContent = (prices[id]*qtys[id])+'€';
   updateSummary();
   saveCart();
 }
 
-function removeItem(id) {
+function removeItem(id){
   const el = document.getElementById(id);
   if(el) el.remove();
   delete prices[id];
@@ -478,63 +399,74 @@ function removeItem(id) {
   saveCart();
 }
 
-function updateCount() {
+function updateCount(){
   const count = Object.keys(qtys).length;
   document.getElementById('cart-count').textContent = count + (count === 1 ? ' producto' : ' productos');
 }
 
-function getSubtotal() {
-  return Object.keys(prices).reduce((sum, id) => sum + prices[id] * qtys[id], 0);
+function getSubtotal(){
+  return Object.keys(prices).reduce((sum,id) => sum + prices[id]*qtys[id], 0);
 }
 
 function updateShippingBar(sub){
-  const threshold=120;
-  const pct=Math.min(100,(sub/threshold)*100);
-  const missing=Math.max(0,threshold-sub);
-  document.getElementById('shipping-fill').style.width=pct+'%';
-  if(sub>=threshold){
+  const threshold = 120;
+  const pct = Math.min(100,(sub/threshold)*100);
+  const missing = Math.max(0,threshold-sub);
+  document.getElementById('shipping-fill').style.width = pct+'%';
+  if(sub >= threshold){
     document.getElementById('shipping-bar-text').style.display='none';
     document.getElementById('shipping-free').classList.add('show');
   } else {
     document.getElementById('shipping-bar-text').style.display='block';
     document.getElementById('shipping-free').classList.remove('show');
-    document.getElementById('shipping-missing').textContent=missing.toFixed(0)+'€';
+    document.getElementById('shipping-missing').textContent = missing.toFixed(0)+'€';
   }
 }
 
-function updateSummary() {
-  let sub = getSubtotal();
+function updateSummary(){
+  const sub = getSubtotal();
   const isEmpty = Object.keys(prices).length === 0;
   document.getElementById('empty-cart').style.display = isEmpty ? 'block' : 'none';
-  const envio = (isEmpty || sub >= 120) ? 0 : 5.90;
-  let total = sub + envio;
-  if(discountApplied) total = total * 0.9;
-  const iva = sub > 0 ? (sub - sub / 1.21) : 0;
 
-  document.getElementById('subtotal').textContent = sub.toFixed(0) + '€';
-  document.getElementById('iva').textContent = iva.toFixed(2).replace('.',',') + '€';
-  document.getElementById('envio').textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',') + '€';
-  document.getElementById('envio').className = 'summary-row-val' + (envio === 0 ? ' free' : '');
-  document.getElementById('total').textContent = total.toFixed(0) + '€';
+  const envio = isEmpty ? 0 : (sub >= 120 ? 0 : 5.90);
+  let subConDesc = discountApplied ? sub * 0.9 : sub;
+  const total = subConDesc + envio;
+  const iva = sub > 0 ? sub - (sub / 1.21) : 0;
 
-  if(discountApplied) {
-    document.getElementById('descuento-val').textContent = '−' + (sub * 0.1).toFixed(2).replace('.',',') + '€';
+  document.getElementById('subtotal').textContent = sub.toFixed(0)+'€';
+  document.getElementById('iva').textContent = iva.toFixed(2).replace('.',',')+'€';
+  document.getElementById('envio').textContent = isEmpty ? '—' : (envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',')+'€');
+  document.getElementById('envio').className = 'summary-row-val'+(envio === 0 && !isEmpty ? ' free' : '');
+  document.getElementById('total').textContent = total.toFixed(0)+'€';
+
+  if(discountApplied){
+    document.getElementById('descuento-val').textContent = '−'+(sub*0.1).toFixed(2).replace('.',',')+'€';
   }
   updateShippingBar(sub);
 }
 
-function applyDiscount() {
+function applyDiscount(){
   const code = document.getElementById('discount-input').value.trim().toUpperCase();
-  if(code === 'KORVA10' && !discountApplied) {
+  if(code === 'KORVA10' && !discountApplied){
     discountApplied = true;
     document.getElementById('discount-ok').classList.add('show');
-    document.getElementById('descuento-row').style.display = 'flex';
+    document.getElementById('descuento-row').style.display='flex';
     updateSummary();
     saveCart();
   }
 }
 
-history.scrollRestoration='manual';window.scrollTo(0,0);
+function goCheckout(){
+  if(Object.keys(prices).length === 0){
+    return;
+  }
+  location.href='checkout.html';
+}
+
+// Init
+updateCount();
+updateSummary();
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',function(e){
     const target=document.querySelector(this.getAttribute('href'));
@@ -543,28 +475,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 
 function upsellAdd(name){
-  const t=document.getElementById('toast');
-  if(!t){
-    const toast=document.createElement('div');
+  let toast = document.getElementById('toast');
+  if(!toast){
+    toast = document.createElement('div');
     toast.id='toast';
     toast.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap';
     document.body.appendChild(toast);
   }
-  const toast=document.getElementById('toast');
   toast.textContent='✓ '+name+' añadido';
   toast.style.opacity='1';
   toast.style.transform='translateX(-50%) translateY(0)';
   setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
 }
 
-function openModal(){
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow='';
-}
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();}});
 function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
 function closeLogin(){document.getElementById('modal-login').classList.remove('open');document.body.style.overflow='';}
@@ -637,6 +562,7 @@ function closeLegal(){
   document.body.style.overflow='';
 }
 </script>
+
 <div class="modal-overlay" id="modal-login">
   <div class="modal-backdrop" onclick="closeLogin()"></div>
   <div class="modal-box">
@@ -651,6 +577,7 @@ function closeLegal(){
     <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
   </div>
 </div>
+
 <div class="cookie-banner" id="cookie-banner">
   <p class="cookie-text">Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Puedes consultar nuestra <a href="#" onclick="openLegal('cookies');return false">política de cookies</a>.</p>
   <div class="cookie-btns">
@@ -658,6 +585,7 @@ function closeLegal(){
     <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
   </div>
 </div>
+
 <div class="modal-overlay" id="modal-legal">
   <div class="modal-backdrop" onclick="closeLegal()"></div>
   <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
@@ -669,6 +597,7 @@ function closeLegal(){
     <div id="legal-content" style="font-size:.85rem;color:var(--g600);line-height:1.9;font-weight:300"></div>
   </div>
 </div>
+
 <div class="modal-overlay" id="modal-registro">
   <div class="modal-backdrop" onclick="closeRegistro()"></div>
   <div class="modal-box">
@@ -683,5 +612,6 @@ function closeLegal(){
     <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
   </div>
 </div>
+
 </body>
 </html>
