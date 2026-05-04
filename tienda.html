@@ -342,7 +342,7 @@ function renderProducts(products){
             ${featured.precio_anterior ? `<span class="feat-main-price-old">${featured.precio_anterior}€</span>` : ''}
             <span class="feat-main-price">${featured.precio}€</span>
           </div>
-          <button class="feat-main-btn">Añadir al carrito</button>
+          <button class="feat-main-btn" onclick="event.stopPropagation();addToCart(${featured.id},'${featured.nombre}',${featured.precio},'${featured.peso||''}','${featured.balance||''}')">Añadir al carrito</button>
         </div>
       </div>
     </div>
@@ -361,7 +361,7 @@ function renderProducts(products){
             <div class="feat-side-right">
               ${p.precio_anterior ? `<span class="feat-side-price-old">${p.precio_anterior}€</span>` : ''}
               <span class="feat-side-price">${p.precio}€</span>
-              <button class="feat-side-btn">+ Añadir</button>
+              <button class="feat-side-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre}',${p.precio},'${p.peso||''}','${p.balance||''}')">+ Añadir</button>
             </div>
           </div>
         </div>
@@ -384,13 +384,36 @@ function renderProducts(products){
           <span class="prod-card-price">${p.precio}€</span>
           ${p.precio_anterior ? `<span class="prod-card-price-old">${p.precio_anterior}€</span>` : ''}
         </div>
-        <button class="prod-card-btn">+ Añadir</button>
+        <button class="prod-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre}',${p.precio},'${p.peso||''}','${p.balance||''}')">+ Añadir</button>
       </div>
     </div>
   `).join('');
 
   document.getElementById('shop-loading').style.display='none';
   document.getElementById('shop-content').style.display='block';
+}
+
+function addToCart(id, nombre, precio, peso, balance){
+  const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+  const idx = cart.findIndex(i => i.id === id);
+  if(idx > -1){
+    cart[idx].qty += 1;
+  } else {
+    cart.push({id, nombre, precio, peso, balance, qty: 1});
+  }
+  localStorage.setItem('korva-cart', JSON.stringify(cart));
+  // Toast
+  let toast = document.getElementById('toast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.id='toast';
+    toast.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap';
+    document.body.appendChild(toast);
+  }
+  toast.textContent='✓ '+nombre+' añadido';
+  toast.style.opacity='1';
+  toast.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
 }
 
 async function loadProducts(cat='todos'){

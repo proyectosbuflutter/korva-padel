@@ -514,6 +514,7 @@ async function loadProduct(){
   if(!data.length){ document.getElementById('prod-cat').textContent = 'Producto no encontrado'; return; }
 
   const p = data[0];
+  window.currentProduct = p;
 
   // Breadcrumb
   document.getElementById('breadcrumb-nombre').textContent = p.nombre;
@@ -618,6 +619,21 @@ function selectVariant(btn,labelId,val){
 
 // CARRITO + WISHLIST
 function addToCart(){
+  const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+  const idx = cart.findIndex(i => i.id === currentProduct.id);
+  if(idx > -1){
+    cart[idx].qty += qty;
+  } else {
+    cart.push({
+      id: currentProduct.id,
+      nombre: currentProduct.nombre,
+      precio: currentProduct.precio,
+      peso: document.getElementById('peso-val').textContent,
+      balance: document.getElementById('balance-val').textContent,
+      qty: qty
+    });
+  }
+  localStorage.setItem('korva-cart', JSON.stringify(cart));
   const t=document.getElementById('toast');
   t.textContent='✓ Añadido al carrito';
   t.classList.add('show');

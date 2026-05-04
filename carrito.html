@@ -213,6 +213,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
       <span></span>
     </div>
 
+    <div id="cart-list-items"></div>
     <div class="cart-empty" id="empty-cart">Tu carrito está vacío</div>
 
     <a href="tienda.html" class="cart-continue">
@@ -366,46 +367,80 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 <script>
 history.scrollRestoration='manual';window.scrollTo(0,0);
 
-const prices = {};
-const qtys = JSON.parse(localStorage.getItem('korva-qtys') || '{}');
+let cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
 let discountApplied = JSON.parse(localStorage.getItem('korva-discount') || 'false');
 
-// Restaurar descuento
-if(discountApplied){
-  document.getElementById('discount-ok').classList.add('show');
-  document.getElementById('descuento-row').style.display='flex';
-}
-
 function saveCart(){
-  localStorage.setItem('korva-qtys', JSON.stringify(qtys));
+  localStorage.setItem('korva-cart', JSON.stringify(cart));
   localStorage.setItem('korva-discount', JSON.stringify(discountApplied));
 }
 
+function renderCart(){
+  const list = document.getElementById('cart-list-items');
+  list.innerHTML = '';
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.id = 'item-'+item.id;
+    div.innerHTML = `
+      <div class="cart-item-left">
+        <div class="cart-item-img">
+          <svg width="50" height="80" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">KORVA</text>
+          </svg>
+        </div>
+        <div class="cart-item-details">
+          <div class="cart-item-name">${item.nombre}</div>
+          <div class="cart-item-variant">${item.peso ? item.peso+'g · ' : ''}${item.balance ? 'Balance '+item.balance : ''}</div>
+        </div>
+      </div>
+      <div class="cart-item-price">${item.precio}€</div>
+      <div class="cart-item-qty">
+        <div class="qty-wrap">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="qty-val" id="qty-${item.id}">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-total" id="total-${item.id}">${item.precio * item.qty}€</div>
+      <button class="cart-item-remove" onclick="removeItem(${item.id})">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    `;
+    list.appendChild(div);
+  });
+}
+
 function changeQty(id, dir){
-  qtys[id] = Math.max(1, qtys[id] + dir);
-  document.getElementById('qty-'+id).textContent = qtys[id];
-  document.getElementById('total-'+id).textContent = (prices[id]*qtys[id])+'€';
+  const idx = cart.findIndex(i => i.id === id);
+  if(idx === -1) return;
+  cart[idx].qty = Math.max(1, cart[idx].qty + dir);
+  document.getElementById('qty-'+id).textContent = cart[idx].qty;
+  document.getElementById('total-'+id).textContent = (cart[idx].precio * cart[idx].qty)+'€';
   updateSummary();
   saveCart();
 }
 
 function removeItem(id){
-  const el = document.getElementById(id);
+  const el = document.getElementById('item-'+id);
   if(el) el.remove();
-  delete prices[id];
-  delete qtys[id];
+  cart = cart.filter(i => i.id !== id);
   updateSummary();
   updateCount();
   saveCart();
 }
 
 function updateCount(){
-  const count = Object.keys(qtys).length;
+  const count = cart.length;
   document.getElementById('cart-count').textContent = count + (count === 1 ? ' producto' : ' productos');
 }
 
 function getSubtotal(){
-  return Object.keys(prices).reduce((sum,id) => sum + prices[id]*qtys[id], 0);
+  return cart.reduce((sum,i) => sum + i.precio * i.qty, 0);
 }
 
 function updateShippingBar(sub){
@@ -464,6 +499,11 @@ function goCheckout(){
 }
 
 // Init
+if(discountApplied){
+  document.getElementById('discount-ok').classList.add('show');
+  document.getElementById('descuento-row').style.display='flex';
+}
+renderCart();
 updateCount();
 updateSummary();
 
