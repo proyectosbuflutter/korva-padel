@@ -16,7 +16,7 @@ html{overflow-x:clip}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;border-bottom:1px solid var(--g200)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g800);text-decoration:none;transition:color .2s}
@@ -37,59 +37,50 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .filter-btn:hover,.filter-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
 
 /* CONTENIDO */
-.shop-wrap{padding:6rem}
+.shop-wrap{padding:6rem;max-width:1280px;margin:0 auto}
 
 /* LOADING */
 .shop-loading{text-align:center;padding:4rem;font-size:.82rem;color:var(--g400);letter-spacing:.1em;text-transform:uppercase}
 
-/* BLOQUE DESTACADA */
-.block-featured{display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;max-width:1280px;margin:0 auto 6rem}
-.feat-main{display:flex;flex-direction:column;gap:0}
-.feat-main-img{background:#141412;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94);cursor:pointer}
-.feat-main:hover .feat-main-img{transform:scale(1.01)}
-.feat-main-info{padding:2rem 0 0}
-.feat-main-cat{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
-.feat-main-name{font-family:'DM Serif Display',serif;font-size:2.4rem;line-height:1.05;margin-bottom:1.2rem}
-.feat-main-bottom{display:flex;align-items:center;justify-content:space-between}
-.feat-main-price{font-family:'DM Serif Display',serif;font-size:1.6rem}
-.feat-main-price-old{font-size:.8rem;color:var(--g400);text-decoration:line-through;margin-right:.5rem}
-.feat-main-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.75rem 1.5rem;cursor:pointer;transition:background .2s}
-.feat-main-btn:hover{background:var(--g800)}
-.feat-badge{position:absolute;top:1.2rem;left:1.2rem;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;background:var(--accent);color:var(--white)}
-.feat-side{display:flex;flex-direction:column;gap:2.5rem}
-.feat-side-card{display:flex;flex-direction:column;gap:0;cursor:pointer}
-.feat-side-img{background:#141412;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.feat-side-card:hover .feat-side-img{transform:scale(1.02)}
-.feat-side-info{padding:1.2rem 0 0;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
-.feat-side-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
-.feat-side-name{font-family:'DM Serif Display',serif;font-size:1.3rem;line-height:1.1}
-.feat-side-right{text-align:right;flex-shrink:0}
-.feat-side-price{font-family:'DM Serif Display',serif;font-size:1.1rem}
-.feat-side-price-old{font-size:.7rem;color:var(--g400);text-decoration:line-through;display:block}
-.feat-side-btn{font-family:'Sora',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:none;cursor:pointer;transition:color .2s;margin-top:.3rem;display:block}
-.feat-side-btn:hover{color:var(--black)}
-.feat-side-badge{position:absolute;top:1rem;left:1rem;font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem}
-.badge-new{background:var(--accent);color:var(--white)}
-.badge-sale{background:var(--black);color:var(--white)}
+/* SECCIÓN PALAS */
+.section-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g400);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--g200)}
+
+.palas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-bottom:6rem}
+.pala-card{display:flex;flex-direction:column;cursor:pointer}
+.pala-card-img{background:#141412;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.pala-card:hover .pala-card-img{transform:scale(1.02)}
+.pala-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pala-card-img .svg-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.pala-badge{position:absolute;top:1rem;left:1rem;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;background:var(--accent);color:var(--white);z-index:1}
+.pala-badge-sale{background:var(--black)}
+.pala-card-info{padding:1.5rem 0 0}
+.pala-card-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.pala-card-name{font-family:'DM Serif Display',serif;font-size:1.6rem;line-height:1.05;margin-bottom:1rem}
+.pala-card-specs{font-size:.65rem;color:var(--g400);margin-bottom:1.2rem;line-height:1.6}
+.pala-card-bottom{display:flex;align-items:center;justify-content:space-between}
+.pala-card-price{font-family:'DM Serif Display',serif;font-size:1.3rem}
+.pala-card-price-old{font-size:.75rem;color:var(--g400);text-decoration:line-through;margin-right:.4rem}
+.pala-card-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.65rem 1.2rem;cursor:pointer;transition:background .2s}
+.pala-card-btn:hover{background:var(--g800)}
 
 /* DIVISOR */
-.shop-divider{display:flex;align-items:center;gap:2rem;margin:0 auto 5rem;max-width:1280px}
+.shop-divider{display:flex;align-items:center;gap:2rem;margin-bottom:3rem}
 .shop-divider-line{flex:1;height:1px;background:var(--g200)}
 .shop-divider-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g400);white-space:nowrap}
 
-/* GRID */
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;max-width:1280px;margin:0 auto}
-.prod-card{display:flex;flex-direction:column;gap:1.2rem;cursor:pointer}
-.prod-card-img{background:#141412;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.prod-card:hover .prod-card-img{transform:scale(1.02)}
-.prod-card-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-.prod-card-name{font-family:'DM Serif Display',serif;font-size:1.3rem;line-height:1.1}
-.prod-card-bottom{display:flex;align-items:center;justify-content:space-between}
-.prod-card-price{font-family:'DM Serif Display',serif;font-size:1.1rem}
-.prod-card-price-old{font-size:.72rem;color:var(--g400);text-decoration:line-through;margin-left:.4rem}
-.prod-card-btn{font-family:'Sora',sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:none;cursor:pointer;transition:color .2s}
-.prod-card-btn:hover{color:var(--black)}
-.prod-card-badge{position:absolute;top:1rem;left:1rem;font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem}
+/* ACCESORIOS */
+.accesorios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.8rem;margin-bottom:6rem}
+.acc-card{display:flex;flex-direction:column;cursor:pointer}
+.acc-card-img{background:#141412;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.acc-card:hover .acc-card-img{transform:scale(1.03)}
+.acc-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.acc-card-img .svg-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.acc-card-info{padding:1rem 0 0}
+.acc-card-name{font-family:'DM Serif Display',serif;font-size:1.1rem;line-height:1.1;margin-bottom:.5rem}
+.acc-card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem}
+.acc-card-price{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--black)}
+.acc-card-btn{font-family:'Sora',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:1px solid var(--g200);padding:.4rem .8rem;cursor:pointer;transition:all .2s}
+.acc-card-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
 
 /* FOOTER */
 footer{background:var(--black);padding:6rem 4rem 3rem}
@@ -129,7 +120,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .modal-submit:hover{background:var(--g800)}
 
-/* COOKIE BANNER */
+/* COOKIE */
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
 .cookie-banner.show{transform:translateY(0)}
 .cookie-text{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
@@ -138,14 +129,18 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .cookie-accept{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:.65rem 1.4rem;cursor:pointer}
 .cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer}
 
+@media(max-width:1024px){
+  .palas-grid{grid-template-columns:repeat(2,1fr)}
+  .accesorios-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:900px){
   nav{padding:1.2rem 1.5rem}
   .nav-links{display:none}
   .shop-header{padding:8rem 1.5rem 3rem}
   .shop-filters{padding:1.2rem 1.5rem}
   .shop-wrap{padding:3rem 1.5rem}
-  .block-featured{grid-template-columns:1fr}
-  .prod-grid{grid-template-columns:1fr;gap:3rem}
+  .palas-grid{grid-template-columns:1fr;gap:3rem}
+  .accesorios-grid{grid-template-columns:repeat(2,1fr)}
   footer{padding:4rem 1.5rem 2rem}
   .footer-nav{flex-wrap:wrap;gap:1.5rem}
   .modal-box{padding:2.5rem 1.5rem}
@@ -175,30 +170,36 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 <div class="shop-header">
   <div class="shop-header-inner">
     <h1 class="shop-h1">KORVA</h1>
-    <span class="shop-count">Colección completa 2026</span>
+    <span class="shop-count">Colección 2026</span>
   </div>
 </div>
 
 <div class="shop-filters">
   <div class="shop-filters-inner">
     <button class="filter-btn active" data-cat="todos">Todos</button>
-    <button class="filter-btn" data-cat="Control">Control</button>
-    <button class="filter-btn" data-cat="Potencia">Potencia</button>
-    <button class="filter-btn" data-cat="Iniciación">Iniciación</button>
+    <button class="filter-btn" data-cat="pala">Palas</button>
+    <button class="filter-btn" data-cat="accesorio">Accesorios</button>
   </div>
 </div>
 
+<div style="padding:0 6rem">
 <div class="shop-wrap">
   <div id="shop-loading" class="shop-loading">Cargando productos...</div>
   <div id="shop-content" style="display:none">
-    <div class="block-featured" id="featured-block"></div>
-    <div class="shop-divider">
-      <div class="shop-divider-line"></div>
-      <div class="shop-divider-label">Resto de la colección</div>
-      <div class="shop-divider-line"></div>
+    <div id="palas-section">
+      <div class="section-label">Palas</div>
+      <div class="palas-grid" id="palas-grid"></div>
     </div>
-    <div class="prod-grid" id="prod-grid"></div>
+    <div id="accesorios-section">
+      <div class="shop-divider">
+        <div class="shop-divider-line"></div>
+        <div class="shop-divider-label">Accesorios</div>
+        <div class="shop-divider-line"></div>
+      </div>
+      <div class="accesorios-grid" id="accesorios-grid"></div>
+    </div>
   </div>
+</div>
 </div>
 
 <footer>
@@ -228,7 +229,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
     <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
   </div>
-  <div class="footer-bottom">© 2025 KORVA Pádel — Todos los derechos reservados</div>
+  <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
 <div class="cookie-banner" id="cookie-banner">
@@ -265,6 +266,21 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-registro">
+  <div class="modal-backdrop" onclick="closeRegistro()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeRegistro()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <span class="modal-label">Crear cuenta</span>
+    <div class="modal-title">Bienvenido<br>a KORVA.</div>
+    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <div class="modal-field"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit">Crear cuenta</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal-legal">
   <div class="modal-backdrop" onclick="closeLegal()"></div>
   <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
@@ -279,10 +295,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
 
-let allProducts = [];
-let currentFilter = 'todos';
-
-function svgPaleta(color='#c8a96e', label='KORVA'){
+function svgPala(color='#c8a96e', label='KORVA'){
   return `<svg width="120" height="190" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
     <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
@@ -296,113 +309,28 @@ function svgPaleta(color='#c8a96e', label='KORVA'){
   </svg>`;
 }
 
-function svgPaletaLarge(color='#c8a96e', label='PRO X3'){
-  return `<svg width="200" height="320" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-    <rect x="85" y="237" width="20" height="5" rx="1" fill="${color}" opacity=".7"/>
-    <rect x="85" y="249" width="20" height="5" rx="1" fill="${color}" opacity=".5"/>
-    <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-    <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="${color}" stroke-width="10"/>
-    <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-    <line x1="95" y1="30" x2="95" y2="218" stroke="${color}" stroke-width=".8" opacity=".35"/>
-    <line x1="73" y1="32" x2="73" y2="216" stroke="${color}" stroke-width=".6" opacity=".2"/>
-    <line x1="117" y1="32" x2="117" y2="216" stroke="${color}" stroke-width=".6" opacity=".2"/>
-    <line x1="15" y1="90" x2="175" y2="90" stroke="${color}" stroke-width=".6" opacity=".2"/>
-    <line x1="15" y1="112" x2="175" y2="112" stroke="${color}" stroke-width=".6" opacity=".2"/>
-    <line x1="15" y1="134" x2="175" y2="134" stroke="${color}" stroke-width=".6" opacity=".2"/>
-    <line x1="15" y1="156" x2="175" y2="156" stroke="${color}" stroke-width=".6" opacity=".2"/>
-    <text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="${color}" opacity=".92">KORVA</text>
-    <text x="95" y="149" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="${color}" opacity=".38" letter-spacing="4">${label}</text>
-  </svg>`;
+function svgAccesorio(){
+  return `<svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width=".8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`;
 }
 
-function getColor(categoria){
-  if(categoria.includes('Potencia')) return '#a09e98';
+function getPalaColor(nombre){
+  if(nombre.includes('18K')) return '#6b6a66';
+  if(nombre.includes('12K')) return '#a09e98';
   return '#c8a96e';
 }
 
-function renderProducts(products){
-  const featured = products[0];
-  const sideProducts = products.slice(1,3);
-  const gridProducts = products.slice(3);
-
-  // FEATURED
-  const featuredEl = document.getElementById('featured-block');
-  featuredEl.innerHTML = `
-    <div class="feat-main" onclick="location.href='producto.html?id=${featured.id}'">
-      <div class="feat-main-img">
-        ${featured.badge ? `<span class="feat-badge">${featured.badge}</span>` : ''}
-        ${svgPaletaLarge(getColor(featured.categoria), featured.nombre.split(' ').pop())}
-      </div>
-      <div class="feat-main-info">
-        <div class="feat-main-cat">${featured.categoria}</div>
-        <div class="feat-main-name">${featured.nombre}</div>
-        <div class="feat-main-bottom">
-          <div>
-            ${featured.precio_anterior ? `<span class="feat-main-price-old">${featured.precio_anterior}€</span>` : ''}
-            <span class="feat-main-price">${featured.precio}€</span>
-          </div>
-          <button class="feat-main-btn" onclick="event.stopPropagation();addToCart(${featured.id},'${featured.nombre}',${featured.precio},'${featured.peso||''}','${featured.balance||''}')">Añadir al carrito</button>
-        </div>
-      </div>
-    </div>
-    <div class="feat-side">
-      ${sideProducts.map(p=>`
-        <div class="feat-side-card" onclick="location.href='producto.html?id=${p.id}'">
-          <div class="feat-side-img">
-            ${p.precio_anterior ? `<span class="feat-side-badge badge-sale">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : ''}
-            ${svgPaleta(getColor(p.categoria), p.nombre.split(' ').pop())}
-          </div>
-          <div class="feat-side-info">
-            <div>
-              <div class="feat-side-cat">${p.categoria}</div>
-              <div class="feat-side-name">${p.nombre}</div>
-            </div>
-            <div class="feat-side-right">
-              ${p.precio_anterior ? `<span class="feat-side-price-old">${p.precio_anterior}€</span>` : ''}
-              <span class="feat-side-price">${p.precio}€</span>
-              <button class="feat-side-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre}',${p.precio},'${p.peso||''}','${p.balance||''}')">+ Añadir</button>
-            </div>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-
-  // GRID
-  const gridEl = document.getElementById('prod-grid');
-  gridEl.innerHTML = gridProducts.map(p=>`
-    <div class="prod-card" onclick="location.href='producto.html'">
-      <div class="prod-card-img">
-        ${p.precio_anterior ? `<span class="prod-card-badge badge-sale">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : ''}
-        ${svgPaleta(getColor(p.categoria), p.nombre.split(' ').pop())}
-      </div>
-      <div class="prod-card-cat">${p.categoria}</div>
-      <div class="prod-card-name">${p.nombre}</div>
-      <div class="prod-card-bottom">
-        <div>
-          <span class="prod-card-price">${p.precio}€</span>
-          ${p.precio_anterior ? `<span class="prod-card-price-old">${p.precio_anterior}€</span>` : ''}
-        </div>
-        <button class="prod-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre}',${p.precio},'${p.peso||''}','${p.balance||''}')">+ Añadir</button>
-      </div>
-    </div>
-  `).join('');
-
-  document.getElementById('shop-loading').style.display='none';
-  document.getElementById('shop-content').style.display='block';
+function imgOrFallback(imagen, fallbackHtml){
+  if(!imagen) return `<div class="svg-fallback">${fallbackHtml}</div>`;
+  return `<img src="${imagen}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="svg-fallback" style="display:none">${fallbackHtml}</div>`;
 }
 
 function addToCart(id, nombre, precio, peso, balance){
   const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
   const idx = cart.findIndex(i => i.id === id);
-  if(idx > -1){
-    cart[idx].qty += 1;
-  } else {
-    cart.push({id, nombre, precio, peso, balance, qty: 1});
-  }
+  if(idx > -1){ cart[idx].qty += 1; }
+  else { cart.push({id, nombre, precio, peso: peso||'', balance: balance||'', qty:1}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
-  // Toast
   let toast = document.getElementById('toast');
   if(!toast){
     toast = document.createElement('div');
@@ -416,35 +344,87 @@ function addToCart(id, nombre, precio, peso, balance){
   setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
 }
 
+function renderProducts(palas, accesorios){
+  // PALAS
+  const palasEl = document.getElementById('palas-grid');
+  const palasSection = document.getElementById('palas-section');
+  if(palas.length === 0){ palasSection.style.display='none'; }
+  else {
+    palasSection.style.display='block';
+    palasEl.innerHTML = palas.map(p => `
+      <div class="pala-card">
+        <div class="pala-card-img" onclick="location.href='producto.html?id=${p.id}'">
+          ${p.precio_anterior ? `<span class="pala-badge pala-badge-sale">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : (p.badge ? `<span class="pala-badge">${p.badge}</span>` : '')}
+          ${imgOrFallback(p.imagen, svgPala(getPalaColor(p.nombre), p.nombre.split(' ').pop()))}
+        </div>
+        <div class="pala-card-info">
+          <div class="pala-card-cat">Pala de pádel</div>
+          <div class="pala-card-name">${p.nombre}</div>
+          ${p.peso || p.balance ? `<div class="pala-card-specs">${p.peso ? p.peso : ''}${p.peso && p.balance ? ' · ' : ''}${p.balance ? 'Balance '+p.balance : ''}</div>` : ''}
+          <div class="pala-card-bottom">
+            <div>
+              ${p.precio_anterior ? `<span class="pala-card-price-old">${p.precio_anterior}€</span>` : ''}
+              <span class="pala-card-price">${p.precio}€</span>
+            </div>
+            <button class="pala-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}')">+ Añadir</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ACCESORIOS
+  const accEl = document.getElementById('accesorios-grid');
+  const accSection = document.getElementById('accesorios-section');
+  if(accesorios.length === 0){ accSection.style.display='none'; }
+  else {
+    accSection.style.display='block';
+    accEl.innerHTML = accesorios.map(p => `
+      <div class="acc-card">
+        <div class="acc-card-img" onclick="location.href='producto.html?id=${p.id}'">
+          ${imgOrFallback(p.imagen, svgAccesorio())}
+        </div>
+        <div class="acc-card-info">
+          <div class="acc-card-name">${p.nombre}</div>
+          <div class="acc-card-bottom">
+            <span class="acc-card-price">${p.precio}€</span>
+            <button class="acc-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'','')">+ Añadir</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('shop-loading').style.display='none';
+  document.getElementById('shop-content').style.display='block';
+}
+
 async function loadProducts(cat='todos'){
   document.getElementById('shop-loading').style.display='block';
   document.getElementById('shop-content').style.display='none';
 
   let url = `${SUPABASE_URL}/rest/v1/productos?activo=eq.true&order=id.asc`;
-  if(cat !== 'todos') url += `&categoria=ilike.*${cat}*`;
+  if(cat === 'pala') url += '&categoria=eq.pala';
+  else if(cat === 'accesorio') url += '&categoria=eq.accesorio';
 
   const res = await fetch(url, {
-    headers:{
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`
-    }
+    headers:{'apikey': SUPABASE_KEY,'Authorization': `Bearer ${SUPABASE_KEY}`}
   });
   const data = await res.json();
-  allProducts = data;
-  renderProducts(data);
+
+  const palas = cat === 'accesorio' ? [] : data.filter(p => p.categoria === 'pala');
+  const accesorios = cat === 'pala' ? [] : data.filter(p => p.categoria === 'accesorio');
+  renderProducts(palas, accesorios);
 }
 
-// FILTROS
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    currentFilter = btn.dataset.cat;
-    loadProducts(currentFilter);
+    loadProducts(btn.dataset.cat);
   });
 });
 
-// MODALES
 function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
@@ -453,7 +433,6 @@ function openRegistro(){document.getElementById('modal-registro').classList.add(
 function closeRegistro(){document.getElementById('modal-registro').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();closeLegal();}});
 
-// COOKIES
 function initCookies(){
   if(!localStorage.getItem('korva-cookies')){
     setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);
@@ -463,7 +442,6 @@ function acceptCookies(){localStorage.setItem('korva-cookies','accepted');docume
 function rejectCookies(){localStorage.setItem('korva-cookies','rejected');document.getElementById('cookie-banner').classList.remove('show');}
 initCookies();
 
-// LEGAL
 const legalContent={
   aviso:{label:'Aviso legal',title:'Aviso legal',content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br><strong>Domicilio:</strong> Calle Example 1, 08000 Barcelona, España<br><strong>Email:</strong> legal@korvapadel.com</p><br><p>El presente aviso legal regula el uso del sitio web korvapadel.com.</p>`},
   privacidad:{label:'Privacidad',title:'Política de privacidad',content:`<p>En cumplimiento del RGPD y la LOPDGDD, te informamos del tratamiento de tus datos personales.</p><br><p><strong>Responsable:</strong> KORVA Pádel S.L. · legal@korvapadel.com</p><br><p><strong>Finalidad:</strong> Gestión de pedidos, atención al cliente y comunicaciones comerciales con tu consentimiento.</p>`},
@@ -479,22 +457,7 @@ function openLegal(type){
 }
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
-// INIT
 loadProducts();
 </script>
-<div class="modal-overlay" id="modal-registro">
-  <div class="modal-backdrop" onclick="closeRegistro()"></div>
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeRegistro()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <span class="modal-label">Crear cuenta</span>
-    <div class="modal-title">Bienvenido<br>a KORVA.</div>
-    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
-    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
-    <div class="modal-field"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
-    <button class="modal-submit">Crear cuenta</button>
-    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
-  </div>
-</div>
 </body>
 </html>
