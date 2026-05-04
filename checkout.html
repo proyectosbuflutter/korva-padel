@@ -445,36 +445,13 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <!-- RESUMEN -->
   <div class="checkout-summary">
     <div class="summary-title">Tu pedido</div>
-    <div class="summary-items">
-      <div class="summary-item">
-        <div class="summary-item-img">
-          <svg width="30" height="48" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text></svg>
-          <span class="summary-item-qty">1</span>
-        </div>
-        <div class="summary-item-info">
-          <div class="summary-item-name">Pro X3 Carbon</div>
-          <div class="summary-item-variant">360g · Balance 275mm</div>
-        </div>
-        <div class="summary-item-price">249€</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-item-img">
-          <svg width="30" height="48" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".8">K</text></svg>
-          <span class="summary-item-qty">1</span>
-        </div>
-        <div class="summary-item-info">
-          <div class="summary-item-name">Elite Tour</div>
-          <div class="summary-item-variant">355g · Balance 270mm</div>
-        </div>
-        <div class="summary-item-price">199€</div>
-      </div>
-    </div>
-    <div class="summary-row"><span class="summary-row-label">Subtotal</span><span class="summary-row-val">448€</span></div>
-    <div class="summary-row"><span class="summary-row-label">IVA (21%)</span><span class="summary-row-val">77,87€</span></div>
-    <div class="summary-row"><span class="summary-row-label">Envío</span><span class="summary-row-val free">Gratis</span></div>
+    <div class="summary-items" id="co-items"></div>
+    <div class="summary-row"><span class="summary-row-label">Subtotal</span><span class="summary-row-val" id="co-subtotal">—</span></div>
+    <div class="summary-row"><span class="summary-row-label">IVA (21%)</span><span class="summary-row-val" id="co-iva">—</span></div>
+    <div class="summary-row"><span class="summary-row-label">Envío</span><span class="summary-row-val" id="co-envio">—</span></div>
     <div class="summary-total-row">
       <span class="summary-total-label">Total</span>
-      <span class="summary-total-val">448€</span>
+      <span class="summary-total-val" id="co-total">—</span>
     </div>
     <div class="summary-iva">IVA incluido</div>
   </div>
@@ -556,6 +533,60 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 </div>
 
 <script>
+// CARRITO
+const coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+const coZona = localStorage.getItem('korva-zona') || 'peninsula';
+
+function coGetEnvio(sub){
+  if(coCart.length === 0) return 0;
+  if(coZona === 'peninsula') return sub >= 120 ? 0 : 5.90;
+  if(coZona === 'baleares') return 9.90;
+  if(coZona === 'internacional') return 14.90;
+  return 0;
+}
+
+function coZonaLabel(){
+  if(coZona === 'baleares') return 'Baleares';
+  if(coZona === 'internacional') return 'Internacional';
+  return 'Península';
+}
+
+function renderCheckoutSummary(){
+  const svg = `<svg width="30" height="48" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text></svg>`;
+
+  const itemsEl = document.getElementById('co-items');
+  itemsEl.innerHTML = coCart.map(item => `
+    <div class="summary-item">
+      <div class="summary-item-img">
+        ${svg}
+        <span class="summary-item-qty">${item.qty}</span>
+      </div>
+      <div class="summary-item-info">
+        <div class="summary-item-name">${item.nombre}</div>
+        <div class="summary-item-variant">${item.peso ? item.peso+' · ' : ''}${item.balance ? 'Balance '+item.balance : ''}</div>
+      </div>
+      <div class="summary-item-price">${(item.precio * item.qty).toFixed(2).replace('.',',')}€</div>
+    </div>
+  `).join('');
+
+  const sub = coCart.reduce((s,i) => s + i.precio * i.qty, 0);
+  const envio = coGetEnvio(sub);
+  const total = sub + envio;
+  const iva = sub > 0 ? sub - (sub / 1.21) : 0;
+
+  document.getElementById('co-subtotal').textContent = sub.toFixed(2).replace('.',',')+'€';
+  document.getElementById('co-iva').textContent = iva.toFixed(2).replace('.',',')+'€';
+  document.getElementById('co-envio').textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',')+'€ ('+coZonaLabel()+')';
+  document.getElementById('co-envio').className = 'summary-row-val'+(envio === 0 ? ' free' : '');
+  document.getElementById('co-total').textContent = total.toFixed(2).replace('.',',')+'€';
+
+  // Actualizar botón pagar
+  const btnPay = document.getElementById('btn-pay');
+  if(btnPay) btnPay.textContent = 'Pagar ahora — '+total.toFixed(2).replace('.',',')+'€';
+}
+
+renderCheckoutSummary();
+
 // STRIPE
 const stripe = Stripe('pk_test_51TT68EJlYwrffZX8Rjp2RaM1OsbXzgUPYPJ0wiHvcTsYISDeQdYpE3mGWtgtwdsHLERdTOLHPmMfraL1dp02fhXT00S8Sz01Ua');
 const elements = stripe.elements({
