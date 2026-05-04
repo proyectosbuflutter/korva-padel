@@ -460,7 +460,7 @@ function updateShippingBar(sub){
 
 function updateSummary(){
   const sub = getSubtotal();
-  const isEmpty = Object.keys(prices).length === 0;
+  const isEmpty = cart.length === 0;
   document.getElementById('empty-cart').style.display = isEmpty ? 'block' : 'none';
 
   const envio = isEmpty ? 0 : (sub >= 120 ? 0 : 5.90);
