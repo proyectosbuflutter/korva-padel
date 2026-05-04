@@ -53,6 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pala-card-img .svg-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .pala-badge{position:absolute;top:1rem;left:1rem;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;background:var(--accent);color:var(--white);z-index:1}
 .pala-badge-sale{background:var(--black)}
+.pala-badge-popular{background:#2a4a6b}
 .pala-card-info{padding:1.5rem 0 0}
 .pala-card-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
 .pala-card-name{font-family:'DM Serif Display',serif;font-size:1.6rem;line-height:1.05;margin-bottom:1rem}
@@ -197,6 +198,15 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         <div class="shop-divider-line"></div>
       </div>
       <div class="accesorios-grid" id="accesorios-grid"></div>
+    </div>
+
+    <div id="packs-section">
+      <div class="shop-divider">
+        <div class="shop-divider-line"></div>
+        <div class="shop-divider-label">Packs</div>
+        <div class="shop-divider-line"></div>
+      </div>
+      <div class="palas-grid" id="packs-grid"></div>
     </div>
   </div>
 </div>
@@ -399,6 +409,49 @@ function renderProducts(palas, accesorios){
   document.getElementById('shop-content').style.display='block';
 }
 
+async function loadPacks(){
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/packs?activo=eq.true&order=id.asc`, {
+    headers:{'apikey': SUPABASE_KEY,'Authorization': `Bearer ${SUPABASE_KEY}`}
+  });
+  const packs = await res.json();
+  const packsSection = document.getElementById('packs-section');
+  const packsGrid = document.getElementById('packs-grid');
+  if(!packs.length){ packsSection.style.display='none'; return; }
+  packsSection.style.display='block';
+  packsGrid.innerHTML = packs.map(p => {
+    const ahorro = p.precio_anterior ? (p.precio_anterior - p.precio) : 0;
+    return `
+    <div class="pala-card">
+      <div class="pala-card-img" onclick="location.href='pack.html?id=${p.id}'">
+        ${p.badge ? `<span class="pala-badge${p.badge==='Más popular'?' pala-badge-popular':''}">${p.badge}</span>` : ''}
+        ${p.precio_anterior ? `<span class="pala-badge pala-badge-sale" style="top:1rem;right:1rem;left:auto">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : ''}
+        ${p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover">` : `<div class="svg-fallback">${svgPack()}</div>`}
+      </div>
+      <div class="pala-card-info">
+        <div class="pala-card-cat">Pack</div>
+        <div class="pala-card-name">${p.nombre}</div>
+        <div class="pala-card-specs">${p.descripcion||''}</div>
+        <div class="pala-card-bottom">
+          <div>
+            ${p.precio_anterior ? `<span class="pala-card-price-old">${p.precio_anterior}€</span>` : ''}
+            <span class="pala-card-price">${p.precio}€</span>
+            ${ahorro ? `<span style="font-size:.62rem;color:#4a9d6f;margin-left:.5rem;font-weight:600">Ahorras ${ahorro}€</span>` : ''}
+          </div>
+          <button class="pala-card-btn" onclick="event.stopPropagation();addToCart('pack-${p.id}','${p.nombre}',${p.precio},'','')">+ Añadir</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function svgPack(){
+  return `<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width=".6" stroke-linecap="round">
+    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+  </svg>`;
+}
+
 async function loadProducts(cat='todos'){
   document.getElementById('shop-loading').style.display='block';
   document.getElementById('shop-content').style.display='none';
@@ -458,6 +511,7 @@ function openLegal(type){
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
 loadProducts();
+loadPacks();
 </script>
 </body>
 </html>
