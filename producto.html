@@ -297,18 +297,20 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <div style="font-size:.65rem;color:var(--g400);margin-top:-.8rem">IVA incluido</div>
     </div>
 
-    <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600">
-      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>
-      Últimas 3 unidades
+    <div id="stock-info"></div>
+
+    <div id="colores-group" class="variant-group" style="display:none">
+      <div class="variant-label">Color: <span id="color-val"></span></div>
+      <div class="variant-options" id="color-options"></div>
     </div>
 
-    <div class="variant-group">
-      <div class="variant-label">Peso: <span id="peso-val">355g</span></div>
+    <div id="pesos-group" class="variant-group" style="display:none">
+      <div class="variant-label">Peso: <span id="peso-val"></span></div>
       <div class="variant-options" id="peso-options"></div>
     </div>
 
-    <div class="variant-group">
-      <div class="variant-label">Balance: <span id="balance-val">270mm</span></div>
+    <div id="balance-group" class="variant-group" style="display:none">
+      <div class="variant-label">Balance: <span id="balance-val"></span></div>
       <div class="variant-options" id="balance-options"></div>
     </div>
 
@@ -347,10 +349,12 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
     <div class="specs-block">
       <div class="prod-desc-title">Especificaciones</div>
-      <div class="spec-row"><span class="spec-k">Marco</span><span class="spec-v">Carbono 3K / 12K</span></div>
-      <div class="spec-row"><span class="spec-k">Núcleo</span><span class="spec-v">EVA HR 60 Shore</span></div>
-      <div class="spec-row"><span class="spec-k">Superficie</span><span class="spec-v">Fibra texturizada</span></div>
-      <div class="spec-row"><span class="spec-k">Forma</span><span class="spec-v">Redonda</span></div>
+      <div id="specs-pala" style="display:none">
+        <div class="spec-row"><span class="spec-k">Marco</span><span class="spec-v">Carbono 3K / 12K</span></div>
+        <div class="spec-row"><span class="spec-k">Núcleo</span><span class="spec-v">EVA HR 60 Shore</span></div>
+        <div class="spec-row"><span class="spec-k">Superficie</span><span class="spec-v">Fibra texturizada</span></div>
+        <div class="spec-row"><span class="spec-k">Forma</span><span class="spec-v">Redonda</span></div>
+      </div>
       <div class="spec-row" id="spec-peso"><span class="spec-k">Peso</span><span class="spec-v" id="spec-peso-val"></span></div>
       <div class="spec-row" id="spec-balance"><span class="spec-k">Balance</span><span class="spec-v" id="spec-balance-val"></span></div>
       <div class="spec-row" id="spec-espesor"><span class="spec-k">Espesor</span><span class="spec-v" id="spec-espesor-val"></span></div>
@@ -543,36 +547,81 @@ async function loadProduct(){
     document.getElementById('prod-ahorro').style.display = 'inline';
   }
 
-  // Specs
-  document.getElementById('spec-peso-val').textContent = p.peso;
-  document.getElementById('spec-balance-val').textContent = p.balance;
-  document.getElementById('spec-espesor-val').textContent = p.espesor;
-  document.getElementById('spec-nivel-val').textContent = p.nivel;
+  const esPala = p.categoria === 'pala';
 
-  // Variantes peso
-  const pesos = p.peso.split('–');
-  const pesoOptions = document.getElementById('peso-options');
-  pesos.forEach((peso,i)=>{
-    const btn = document.createElement('button');
-    btn.className = 'variant-btn' + (i===0?' active':'');
-    btn.textContent = peso.trim();
-    btn.onclick = function(){ selectVariant(this,'peso-val',peso.trim()); };
-    pesoOptions.appendChild(btn);
-  });
+  // Stock
+  const stockEl = document.getElementById('stock-info');
+  if(p.stock === null || p.stock === undefined){
+    stockEl.innerHTML = '';
+  } else if(p.stock === 0){
+    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>Agotado</div>';
+  } else if(p.stock <= 5){
+    stockEl.innerHTML = `<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>Últimas ${p.stock} unidades</div>`;
+  } else {
+    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#4a9d6f;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#4a9d6f"/></svg>En stock</div>';
+  }
 
-  // Variantes balance
-  const balances = p.balance.split('–');
-  const balanceOptions = document.getElementById('balance-options');
-  balances.forEach((bal,i)=>{
-    const btn = document.createElement('button');
-    btn.className = 'variant-btn' + (i===0?' active':'');
-    btn.textContent = bal.trim();
-    btn.onclick = function(){ selectVariant(this,'balance-val',bal.trim()); };
-    balanceOptions.appendChild(btn);
-  });
+  // Aviso stock por mail (solo si agotado)
+  if(p.stock === 0){
+    stockEl.innerHTML += `<div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
+      <input type="email" placeholder="tu@email.com" id="aviso-email" style="font-family:'Sora',sans-serif;font-size:.72rem;border:none;border-bottom:1px solid var(--g200);padding:.4rem 0;outline:none;flex:1;background:transparent">
+      <button onclick="avisarStock()" style="font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:#fff;border:none;padding:.5rem 1rem;cursor:pointer">Avísame</button>
+    </div>`;
+  }
 
-  if(pesos[0]) document.getElementById('peso-val').textContent = pesos[0].trim();
-  if(balances[0]) document.getElementById('balance-val').textContent = balances[0].trim();
+  // Colores
+  if(p.colores){
+    const coloresArr = p.colores.split(',').map(c=>c.trim()).filter(Boolean);
+    if(coloresArr.length){
+      document.getElementById('colores-group').style.display='block';
+      document.getElementById('color-val').textContent = coloresArr[0];
+      const colorOpts = document.getElementById('color-options');
+      coloresArr.forEach((color,i)=>{
+        const btn = document.createElement('button');
+        btn.className = 'variant-btn'+(i===0?' active':'');
+        btn.textContent = color;
+        btn.onclick = function(){ selectVariant(this,'color-val',color); };
+        colorOpts.appendChild(btn);
+      });
+    }
+  }
+
+  // Specs palas
+  if(esPala){
+    document.getElementById('specs-pala').style.display='block';
+    document.getElementById('spec-peso-val').textContent = p.peso || '—';
+    document.getElementById('spec-balance-val').textContent = p.balance || '—';
+    document.getElementById('spec-espesor-val').textContent = p.espesor || '—';
+    document.getElementById('spec-nivel-val').textContent = p.nivel || '—';
+
+    if(p.peso){
+      const pesos = p.peso.split('–');
+      const pesoOptions = document.getElementById('peso-options');
+      document.getElementById('pesos-group').style.display='block';
+      pesos.forEach((peso,i)=>{
+        const btn = document.createElement('button');
+        btn.className = 'variant-btn'+(i===0?' active':'');
+        btn.textContent = peso.trim();
+        btn.onclick = function(){ selectVariant(this,'peso-val',peso.trim()); };
+        pesoOptions.appendChild(btn);
+      });
+      document.getElementById('peso-val').textContent = pesos[0].trim();
+    }
+
+    if(p.balance){
+      const balances = p.balance.split('–');
+      const balanceOptions = document.getElementById('balance-options');
+      document.getElementById('balance-group').style.display='block';
+      balances.forEach((bal,i)=>{
+        const btn = document.createElement('button');
+        btn.className = 'variant-btn'+(i===0?' active':'');
+        btn.textContent = bal.trim();
+        btn.onclick = function(){ selectVariant(this,'balance-val',bal.trim()); };
+        balanceOptions.appendChild(btn);
+      });
+      document.getElementById('balance-val').textContent = balances[0].trim();
+    }
+  }
 
   // Actualizar Schema.org
   const schema = {
@@ -639,6 +688,15 @@ function addToCart(){
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
+function avisarStock(){
+  const email = document.getElementById('aviso-email').value.trim();
+  if(!email) return;
+  const t=document.getElementById('toast');
+  t.textContent='✓ Te avisaremos cuando haya stock';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
 function toggleWish(){
   const btn=document.getElementById('wish-btn');
   btn.classList.toggle('active');
