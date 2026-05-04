@@ -193,13 +193,11 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
     <li><a href="tienda.html">Tienda</a></li>
     <li><a href="index.html#packs">Packs</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:1rem">
-    <button onclick="openLogin()" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)">Acceso</button>
-    <a href="carrito.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      Carrito
-    </a>
-  </div>
+  <button onclick="openLogin()" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)">Acceso</button>
+  <a href="carrito.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    Carrito
+  </a>
 </nav>
 
 <div class="cart-header">
@@ -219,6 +217,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
       <span></span>
     </div>
 
+    <div id="empty-cart" style="display:none;text-align:center;padding:4rem 0;color:var(--g400);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase">Tu carrito está vacío</div>
     <!-- ITEM 1 -->
     <div class="cart-item" id="item-1">
       <div class="cart-item-left">
@@ -438,10 +437,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 <script>
 history.scrollRestoration='manual';window.scrollTo(0,0);
 
-const defaultPrices = {'item-1': 249, 'item-2': 199};
-const defaultNames  = {'item-1': 'Pro X3 Carbon', 'item-2': 'Elite Tour'};
-const prices = Object.assign({}, defaultPrices);
-const qtys   = JSON.parse(localStorage.getItem('korva-qtys') || '{"item-1":1,"item-2":1}');
+const prices = {};
+const qtys   = JSON.parse(localStorage.getItem('korva-qtys') || '{}');
 let discountApplied = JSON.parse(localStorage.getItem('korva-discount') || 'false');
 
 // Restaurar cantidades en UI
@@ -507,10 +504,12 @@ function updateShippingBar(sub){
 
 function updateSummary() {
   let sub = getSubtotal();
-  const envio = sub >= 120 ? 0 : 5.90;
+  const isEmpty = Object.keys(prices).length === 0;
+  document.getElementById('empty-cart').style.display = isEmpty ? 'block' : 'none';
+  const envio = (isEmpty || sub >= 120) ? 0 : 5.90;
   let total = sub + envio;
   if(discountApplied) total = total * 0.9;
-  const iva = total - (total / 1.21);
+  const iva = sub > 0 ? (sub - sub / 1.21) : 0;
 
   document.getElementById('subtotal').textContent = sub.toFixed(0) + '€';
   document.getElementById('iva').textContent = iva.toFixed(2).replace('.',',') + '€';
