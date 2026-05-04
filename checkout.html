@@ -665,35 +665,60 @@ function goStep(n){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function mostrarErrorValidacion(msg){
+  let popup = document.getElementById('popup-validacion');
+  if(!popup){
+    popup = document.createElement('div');
+    popup.id = 'popup-validacion';
+    popup.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);z-index:2000;background:var(--white);padding:2.5rem 3rem;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.18);min-width:300px;transition:all .2s';
+    popup.innerHTML = `
+      <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--black);margin-bottom:.8rem">Campos incompletos</div>
+      <div id="popup-validacion-msg" style="font-size:.78rem;color:var(--g600);margin-bottom:1.5rem"></div>
+      <button onclick="cerrarPopupValidacion()" style="font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.7rem 1.8rem;cursor:pointer">Entendido</button>
+    `;
+    document.body.appendChild(popup);
+  }
+  document.getElementById('popup-validacion-msg').textContent = msg;
+  popup.style.transform = 'translate(-50%,-50%) scale(1)';
+  popup.style.opacity = '1';
+  popup.style.pointerEvents = 'all';
+}
+
+function cerrarPopupValidacion(){
+  const popup = document.getElementById('popup-validacion');
+  if(popup){ popup.style.transform='translate(-50%,-50%) scale(.95)';popup.style.opacity='0';popup.style.pointerEvents='none'; }
+}
+
 function validarPaso1(){
   const campos = ['nombre','apellidos','email','telefono'];
-  let ok = true;
+  let faltantes = [];
+  const nombres = {nombre:'Nombre',apellidos:'Apellidos',email:'Email',telefono:'Teléfono'};
   campos.forEach(id=>{
     const el = document.getElementById(id);
     if(!el.value.trim()){
       el.style.borderBottomColor='#c0622a';
-      ok = false;
+      faltantes.push(nombres[id]);
     } else {
       el.style.borderBottomColor='';
     }
   });
-  if(!ok){ return; }
+  if(faltantes.length){ mostrarErrorValidacion('Por favor completa: '+faltantes.join(', ')); return; }
   goStep(2);
 }
 
 function validarPaso2(){
-  const ids = ['dir-direccion','dir-ciudad','dir-cp','dir-provincia'];
-  let ok = true;
-  ids.forEach(id=>{
-    const el = document.getElementById(id);
-    if(!el || !el.value.trim()){
+  const campos = [{id:'dir-direccion',label:'Dirección'},{id:'dir-ciudad',label:'Ciudad'},{id:'dir-cp',label:'Código postal'},{id:'dir-provincia',label:'Provincia'}];
+  let faltantes = [];
+  campos.forEach(c=>{
+    const el = document.getElementById(c.id);
+    if(!el||!el.value.trim()){
       if(el) el.style.borderBottomColor='#c0622a';
-      ok = false;
+      faltantes.push(c.label);
     } else {
       el.style.borderBottomColor='';
     }
   });
-  if(!ok){ return; }
+  if(faltantes.length){ mostrarErrorValidacion('Por favor completa: '+faltantes.join(', ')); return; }
   goStep(3);
 }
 
