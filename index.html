@@ -781,7 +781,17 @@ function addToCart(){
   const el = document.getElementById('nav-cart-count');
   const total = cart.reduce((s,i)=>s+i.qty,0);
   if(el){ el.textContent=total; el.style.display='flex'; }
-  window.location.href='carrito.html';
+  let toast = document.getElementById('toast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.id='toast';
+    toast.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap';
+    document.body.appendChild(toast);
+  }
+  toast.textContent='✓ Añadido al carrito';
+  toast.style.opacity='1';
+  toast.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(-50%) translateY(20px)';},2500);
 }
 </script>
 <div class="modal-overlay" id="modal-login">
