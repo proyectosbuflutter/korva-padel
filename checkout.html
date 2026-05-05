@@ -414,7 +414,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <div class="legal-links">
         <a href="#" onclick="openLegal('aviso');return false">Aviso legal</a>
         <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
-        <a href="#" onclick="openLegal('cookies');return false">Devoluciones</a>
+        <a href="#" onclick="openLegal('devoluciones');return false">Devoluciones</a>
       </div>
 
       <div class="form-actions">
@@ -469,7 +469,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
     <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
   </div>
-  <div class="footer-bottom">© 2025 KORVA Pádel — Todos los derechos reservados</div>
+  <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
 <div class="cookie-banner" id="cookie-banner">
@@ -617,7 +617,7 @@ cardNumber.on('change', e=>{ document.getElementById('card-errors').textContent 
 const paymentRequest = stripe.paymentRequest({
   country:'ES',
   currency:'eur',
-  total:{label:'KORVA Pádel', amount:44800},
+  total:{label:'KORVA Pádel', amount:Math.round((coCart.reduce((s,i)=>s+i.precio*i.qty,0)+coGetEnvio(coCart.reduce((s,i)=>s+i.precio*i.qty,0)))*100)},
   requestPayerName:true,
   requestPayerEmail:true
 });
@@ -650,7 +650,9 @@ async function handlePayment(){
   // NOTA: Para procesar pagos reales necesitas un backend que cree el PaymentIntent
   // y devuelva el clientSecret. Por ahora mostramos el flujo visual.
   btn.disabled = false;
-  btn.textContent = 'Pagar ahora — 448€';
+  const coSub = coCart.reduce((s,i) => s + i.precio * i.qty, 0);
+  const coEnvioVal = coGetEnvio(coSub);
+  btn.textContent = 'Pagar ahora — '+(coSub+coEnvioVal).toFixed(2).replace('.',',')+'€';
   openProximamente();
 }
 
