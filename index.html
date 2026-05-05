@@ -855,6 +855,40 @@ function closeLegal(){
   document.getElementById('modal-legal').classList.remove('open');
   document.body.style.overflow='';
 }
+const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
+
+async function loadPreciosPalas(){
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/productos?id=in.(7,8,9)&select=id,precio,precio_anterior`,{
+    headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
+  });
+  const palas = await res.json();
+  palas.forEach(p => {
+    if(p.id === 8){
+      const precioAnterior = p.precio_anterior || '';
+      const descuento = precioAnterior ? '-'+Math.round((1-p.precio/precioAnterior)*100)+'%' : '';
+      const el = document.querySelector('.prod-price-row .price-main');
+      const elOld = document.querySelector('.prod-price-row .price-old');
+      const elSave = document.querySelector('.prod-price-row .price-save');
+      if(el) el.textContent = p.precio+'€';
+      if(elOld && precioAnterior){ elOld.textContent = precioAnterior+'€'; elOld.style.display=''; }
+      if(elSave && descuento){ elSave.textContent = descuento; elSave.style.display=''; }
+      // addToCart usa precio hardcoded, actualizarlo también
+      window._precio12k = p.precio;
+    }
+    // Comparador
+    const compPrices = {7:null, 8:null, 9:null};
+    compPrices[p.id] = p.precio;
+    const compEls = document.querySelectorAll('.comp-price');
+    if(compEls.length === 3){
+      if(p.id===7) compEls[0].textContent = p.precio+'€';
+      if(p.id===8) compEls[1].textContent = p.precio+'€';
+      if(p.id===9) compEls[2].textContent = p.precio+'€';
+    }
+  });
+}
+loadPreciosPalas();
+
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const total = cart.reduce((s,i)=>s+i.qty,0);
@@ -866,7 +900,7 @@ function addToCart(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const idx = cart.findIndex(i => String(i.id) === '8');
   if(idx > -1){ cart[idx].qty += 1; }
-  else { cart.push({id:8, nombre:'KORVA 12K Versatile', precio:365, qty:1, imagen:''}); }
+  else { cart.push({id:8, nombre:'KORVA 12K Versatile', precio:window._precio12k||365, qty:1, imagen:''}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
   const el = document.getElementById('nav-cart-count');
   const total = cart.reduce((s,i)=>s+i.qty,0);
