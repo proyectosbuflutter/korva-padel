@@ -197,6 +197,43 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
 .footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.15);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
 
+/* COMPARADOR */
+.comp-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.comp-overlay.open{opacity:1;pointer-events:all}
+.comp-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
+.comp-box{position:relative;z-index:1;background:var(--white);width:100%;max-width:900px;padding:3.5rem;transform:translateY(30px);transition:transform .4s cubic-bezier(.25,.46,.45,.94);margin:1.5rem;max-height:90vh;overflow-y:auto}
+.comp-overlay.open .comp-box{transform:translateY(0)}
+.comp-close{position:absolute;top:1.8rem;right:1.8rem;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--g400);transition:color .2s}
+.comp-close:hover{color:var(--black)}
+.comp-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
+.comp-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:block}
+.comp-title{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--black);line-height:1.1;margin-bottom:2.5rem}
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.comp-col{border:1px solid var(--g200);padding:1.8rem}
+.comp-col.featured{background:var(--black);border-color:var(--black)}
+.comp-tier{font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem}
+.comp-name{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--black);margin-bottom:1.2rem}
+.comp-col.featured .comp-name{color:var(--white)}
+.comp-for{font-size:.82rem;color:var(--g600);line-height:1.7;margin-bottom:1.5rem;font-weight:300}
+.comp-col.featured .comp-for{color:rgba(255,255,255,.5)}
+.comp-div{height:1px;background:var(--g200);margin:1.2rem 0}
+.comp-col.featured .comp-div{background:rgba(255,255,255,.1)}
+.comp-spec{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--g100);font-size:.75rem}
+.comp-col.featured .comp-spec{border-color:rgba(255,255,255,.06)}
+.comp-sk{color:var(--g400)}
+.comp-col.featured .comp-sk{color:rgba(255,255,255,.35)}
+.comp-sv{font-weight:600;color:var(--black)}
+.comp-col.featured .comp-sv{color:var(--white)}
+.comp-price{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--black);margin-top:1.5rem}
+.comp-col.featured .comp-price{color:var(--accent)}
+.comp-cta{width:100%;margin-top:1.2rem;padding:.85rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;border:1px solid var(--g200);background:transparent;color:var(--black)}
+.comp-col.featured .comp-cta{background:var(--accent);border-color:var(--accent);color:var(--white)}
+.comp-cta:hover{opacity:.75}
+@media(max-width:900px){
+  .comp-grid{grid-template-columns:1fr}
+  .comp-box{padding:2rem 1.5rem}
+}
+
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
 .modal-overlay.open{opacity:1;pointer-events:all}
@@ -303,8 +340,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <h1 class="hero-h1 fade d1">Juega con<br><em>precisión</em><br>absoluta.</h1>
       <p class="hero-sub fade d2">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
       <div class="hero-btns fade d3">
-        <button class="btn-dark">Ver colección</button>
-        <button class="btn-line">Comparar modelos</button>
+        <button class="btn-dark" onclick="window.location.href='tienda.html'">Ver colección</button>
+        <button class="btn-line" onclick="openComparador()">Comparar modelos</button>
       </div>
     </div>
     <div class="hero-visual fade d2">
@@ -605,6 +642,56 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
+<!-- COMPARADOR -->
+<div class="comp-overlay" id="comp-modal">
+  <div class="comp-backdrop" onclick="closeComparador()"></div>
+  <div class="comp-box">
+    <button class="comp-close" onclick="closeComparador()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="comp-label">Elige tu pala</span>
+    <div class="comp-title">Compara los modelos</div>
+    <div class="comp-grid">
+      <div class="comp-col">
+        <span class="comp-tier">Control</span>
+        <div class="comp-name">KORVA 3K</div>
+        <p class="comp-for">Para jugadores que buscan máximo control y tacto en cada golpe. Ideal para iniciación y jugadores técnicos que priorizan la precisión sobre la potencia.</p>
+        <div class="comp-div"></div>
+        <div class="comp-spec"><span class="comp-sk">Peso</span><span class="comp-sv">355–365g</span></div>
+        <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">265–275mm</span></div>
+        <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Iniciación / Medio</span></div>
+        <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 3K</span></div>
+        <div class="comp-price">249€</div>
+        <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
+      </div>
+      <div class="comp-col featured">
+        <span class="comp-tier">Más popular</span>
+        <div class="comp-name">KORVA 12K</div>
+        <p class="comp-for">Para el jugador polivalente que necesita equilibrio entre control y potencia. La elección perfecta para nivel medio-avanzado que quiere adaptarse a cualquier situación.</p>
+        <div class="comp-div"></div>
+        <div class="comp-spec"><span class="comp-sk">Peso</span><span class="comp-sv">355–365g</span></div>
+        <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">275–285mm</span></div>
+        <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Medio / Avanzado</span></div>
+        <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 12K</span></div>
+        <div class="comp-price">365€</div>
+        <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
+      </div>
+      <div class="comp-col">
+        <span class="comp-tier">Potencia</span>
+        <div class="comp-name">KORVA 18K</div>
+        <p class="comp-for">Para jugadores avanzados que buscan máxima potencia y velocidad. Construcción agresiva pensada para quienes dominan la técnica y quieren llevar su juego al límite.</p>
+        <div class="comp-div"></div>
+        <div class="comp-spec"><span class="comp-sk">Peso</span><span class="comp-sv">365–375g</span></div>
+        <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">285–295mm</span></div>
+        <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Avanzado / Pro</span></div>
+        <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 18K</span></div>
+        <div class="comp-price">375€</div>
+        <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL CONTACTO -->
 <div class="modal-overlay" id="modal">
   <div class="modal-backdrop" onclick="closeModal()"></div>
@@ -685,6 +772,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
   });
 });
+
+function openComparador(){document.getElementById('comp-modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeComparador(){document.getElementById('comp-modal').classList.remove('open');document.body.style.overflow='';}
 
 function openModal(){
   document.getElementById('modal').classList.add('open');
