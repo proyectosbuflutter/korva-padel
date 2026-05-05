@@ -649,8 +649,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <button class="comp-close" onclick="closeComparador()">
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <span class="comp-label">Elige tu pala</span>
-    <div class="comp-title">Compara los modelos</div>
+    <span class="comp-label">Elige Korva</span>
+    <div class="comp-title">Compara nuestros modelos</div>
     <div class="comp-grid">
       <div class="comp-col">
         <span class="comp-tier">Control</span>
@@ -661,7 +661,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">265–275mm</span></div>
         <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Iniciación / Medio</span></div>
         <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 3K</span></div>
-        <div class="comp-price">249€</div>
+        <div class="comp-price" id="comp-price-7">249€</div>
+        <div id="comp-oferta-7" style="display:none;font-size:.75rem;color:var(--g400);margin-top:.3rem"><span id="comp-old-7" style="text-decoration:line-through"></span> <span id="comp-save-7" style="color:var(--accent);font-weight:600"></span></div>
         <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
       </div>
       <div class="comp-col featured">
@@ -673,7 +674,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">275–285mm</span></div>
         <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Medio / Avanzado</span></div>
         <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 12K</span></div>
-        <div class="comp-price">365€</div>
+        <div class="comp-price" id="comp-price-8">365€</div>
+        <div id="comp-oferta-8" style="display:none;font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.3rem"><span id="comp-old-8" style="text-decoration:line-through"></span> <span id="comp-save-8" style="color:var(--accent);font-weight:600"></span></div>
         <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
       </div>
       <div class="comp-col">
@@ -685,7 +687,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">285–295mm</span></div>
         <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Avanzado / Pro</span></div>
         <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 18K</span></div>
-        <div class="comp-price">375€</div>
+        <div class="comp-price" id="comp-price-9">375€</div>
+        <div id="comp-oferta-9" style="display:none;font-size:.75rem;color:var(--g400);margin-top:.3rem"><span id="comp-old-9" style="text-decoration:line-through"></span> <span id="comp-save-9" style="color:var(--accent);font-weight:600"></span></div>
         <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
       </div>
     </div>
@@ -773,7 +776,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-function openComparador(){document.getElementById('comp-modal').classList.add('open');document.body.style.overflow='hidden';}
+function openComparador(){
+  document.getElementById('comp-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(window._palasData) updateComparador(window._palasData);
+}
+function updateComparador(palas){
+  palas.forEach(p => {
+    
+  });
+}
 function closeComparador(){document.getElementById('comp-modal').classList.remove('open');document.body.style.overflow='';}
 
 function openModal(){
@@ -863,6 +875,7 @@ async function loadPreciosPalas(){
     headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
   });
   const palas = await res.json();
+  window._palasData = palas;
   palas.forEach(p => {
     if(p.id === 8){
       const precioAnterior = p.precio_anterior || '';
@@ -879,11 +892,15 @@ async function loadPreciosPalas(){
     // Comparador
     const compPrices = {7:null, 8:null, 9:null};
     compPrices[p.id] = p.precio;
-    const compEls = document.querySelectorAll('.comp-price');
-    if(compEls.length === 3){
-      if(p.id===7) compEls[0].textContent = p.precio+'€';
-      if(p.id===8) compEls[1].textContent = p.precio+'€';
-      if(p.id===9) compEls[2].textContent = p.precio+'€';
+    const compPrice = document.getElementById('comp-price-'+p.id);
+    if(compPrice){
+      compPrice.textContent = p.precio+'€';
+      if(p.precio_anterior){
+        const pct = Math.round((1-p.precio/p.precio_anterior)*100);
+        document.getElementById('comp-old-'+p.id).textContent = p.precio_anterior+'€';
+        document.getElementById('comp-save-'+p.id).textContent = '-'+pct+'%';
+        document.getElementById('comp-oferta-'+p.id).style.display='block';
+      }
     }
   });
 }
