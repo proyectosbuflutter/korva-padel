@@ -203,7 +203,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 
 <div class="cart-header">
   <h1 class="cart-h1">KORVA</h1>
-  <span class="cart-count">Carrito de la compra</span>
+  <span class="cart-count" id="cart-count">Carrito de la compra</span>
 </div>
 
 <div class="cart-wrap">
@@ -435,7 +435,7 @@ function renderCart(){
 }
 
 function changeQty(id, dir){
-  const idx = cart.findIndex(i => i.id === id);
+  const idx = cart.findIndex(i => String(i.id) === String(id));
   if(idx === -1) return;
   cart[idx].qty = Math.max(1, cart[idx].qty + dir);
   document.getElementById('qty-'+id).textContent = cart[idx].qty;
@@ -447,15 +447,17 @@ function changeQty(id, dir){
 function removeItem(id){
   const el = document.getElementById('item-'+id);
   if(el) el.remove();
-  cart = cart.filter(i => i.id !== id);
+  cart = cart.filter(i => String(i.id) !== String(id));
   updateSummary();
   updateCount();
   saveCart();
 }
 
 function updateCount(){
+  const el = document.getElementById('cart-count');
+  if(!el) return;
   const count = cart.length;
-  document.getElementById('cart-count').textContent = count + (count === 1 ? ' producto' : ' productos');
+  el.textContent = count + (count === 1 ? ' producto' : ' productos');
 }
 
 function getSubtotal(){
