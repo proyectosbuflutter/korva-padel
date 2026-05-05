@@ -228,6 +228,20 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer;transition:all .2s}
 .cookie-reject:hover{color:rgba(255,255,255,.6)}
 
+/* OTRAS MARCAS */
+#otras-marcas{background:var(--accent);padding:6rem 4rem}
+.otras-marcas-inner{max-width:1280px;margin:0 auto}
+.otras-marcas-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:.8rem;display:block}
+.otras-marcas-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--black);margin-bottom:4rem;line-height:1.1}
+.otras-marcas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.marca-card{display:block;text-decoration:none;background:rgba(0,0,0,.08);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.marca-card:hover{background:rgba(0,0,0,.18)}
+.marca-card img{width:60%;height:60%;object-fit:contain;filter:brightness(0)}
+@media(max-width:900px){
+  #otras-marcas{padding:4rem 1.5rem}
+  .otras-marcas-grid{grid-template-columns:1fr;gap:1.5rem}
+}
+
 /* ANIMATIONS */
 .fade{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .fade.vis{opacity:1;transform:none}
@@ -436,18 +450,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </div></div>
     </div>
     <div class="acc-item" data-acc>
-      <button class="acc-btn"><span class="acc-btn-title">Rendimiento</span><span class="acc-icon"><span></span></span></button>
-      <div class="acc-body"><div class="acc-body-in">
-        <p class="acc-text">Testada con jugadores federados de nivel 4–7 WPT. Mejora del 12% en velocidad de salida de bola y 23% de reducción en vibración percibida frente a la generación anterior.</p>
-        <div>
-          <div class="acc-spec"><span class="acc-sk">Vel. salida bola</span><span class="acc-sv">+12%</span></div>
-          <div class="acc-spec"><span class="acc-sk">Vibración</span><span class="acc-sv">−23%</span></div>
-          <div class="acc-spec"><span class="acc-sk">Sweet spot</span><span class="acc-sv">+18% área</span></div>
-          <div class="acc-spec"><span class="acc-sk">Nivel objetivo</span><span class="acc-sv">4–7 WPT</span></div>
-        </div>
-      </div></div>
-    </div>
-    <div class="acc-item" data-acc>
       <button class="acc-btn"><span class="acc-btn-title">Envío y entrega</span><span class="acc-icon"><span></span></span></button>
       <div class="acc-body"><div class="acc-body-in">
         <p class="acc-text">Envío gratuito en Península para pedidos superiores a 120€. Embalaje rígido con protección individual y trazabilidad en tiempo real desde el almacén hasta tu puerta.</p>
@@ -524,64 +526,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <span class="price-save">−17%</span>
     </div>
     <button class="btn-dark">Añadir al carrito</button>
-  </div>
-</section>
-
-<!-- PACKS -->
-<section id="packs">
-  <div class="packs-hdr">
-    <span class="s-label">Elige tu pack</span>
-    <h2 class="s-title">Todo lo que necesitas,<br>sin lo que no.</h2>
-  </div>
-  <div class="packs-grid">
-    <div class="pack fade">
-      <span class="pack-tier">Essential</span>
-      <div class="pack-name">Solo</div>
-      <div class="pack-sub">Para el jugador que ya tiene lo suyo</div>
-      <div class="pack-price">249€</div>
-      <div class="pack-period">Paleta Pro X3 Carbon</div>
-      <div class="pack-div"></div>
-      <ul class="pack-list">
-        <li class="pack-li">Paleta Pro X3 Carbon</li>
-        <li class="pack-li">Funda protectora de neopreno</li>
-        <li class="pack-li">Overgrip KORVA x1</li>
-        <li class="pack-li">Garantía 24 meses</li>
-      </ul>
-      <button class="pack-cta">Seleccionar</button>
-    </div>
-    <div class="pack featured fade d1">
-      <span class="pack-tier">Más popular</span>
-      <div class="pack-name">Pro</div>
-      <div class="pack-sub">La elección del jugador serio</div>
-      <div class="pack-price">319€</div>
-      <div class="pack-period">Paleta + accesorios pro</div>
-      <div class="pack-div"></div>
-      <ul class="pack-list">
-        <li class="pack-li">Paleta Pro X3 Carbon</li>
-        <li class="pack-li">Mochila KORVA Pro 30L</li>
-        <li class="pack-li">Overgrip KORVA x3</li>
-        <li class="pack-li">Pad vibración premium</li>
-        <li class="pack-li">Garantía 24 meses</li>
-      </ul>
-      <button class="pack-cta">Seleccionar</button>
-    </div>
-    <div class="pack fade d2">
-      <span class="pack-tier">Premium</span>
-      <div class="pack-name">Elite</div>
-      <div class="pack-sub">Para quienes no dejan nada al azar</div>
-      <div class="pack-price">429€</div>
-      <div class="pack-period">Equipamiento completo</div>
-      <div class="pack-div"></div>
-      <ul class="pack-list">
-        <li class="pack-li">2× Paleta Pro X3 Carbon</li>
-        <li class="pack-li">Mochila KORVA Elite 40L</li>
-        <li class="pack-li">Overgrip KORVA x6</li>
-        <li class="pack-li">Kit mantenimiento completo</li>
-        <li class="pack-li">Acceso KORVA Academy</li>
-        <li class="pack-li">Garantía + seguro incluido</li>
-      </ul>
-      <button class="pack-cta">Seleccionar</button>
-    </div>
   </div>
 </section>
 
