@@ -64,9 +64,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* MARQUESINA */
 .marquee-bar{display:flex;align-items:stretch;width:100%;overflow:hidden}
-.marquee-left{width:35%;flex-shrink:0;background:var(--black);display:flex;align-items:center;justify-content:center;padding:28px 16px}
+.marquee-left{width:25%;flex-shrink:0;background:var(--black);display:flex;align-items:center;justify-content:center;padding:28px 16px}
 .marquee-left span{font-family:'DM Serif Display',serif;font-size:1.2rem;color:rgba(255,255,255,.85);text-align:center;line-height:1.4;letter-spacing:.04em}
-.marquee-right{width:65%;background:var(--g800);position:relative;overflow:hidden;padding:28px 0}
+.marquee-right{width:75%;background:var(--g800);position:relative;overflow:hidden;padding:28px 0}
 .marquee-right::before,.marquee-right::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
 .marquee-right::before{left:0;background:linear-gradient(to right,var(--g800),transparent)}
 .marquee-right::after{right:0;background:linear-gradient(to left,var(--g800),transparent)}
@@ -228,19 +228,18 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer;transition:all .2s}
 .cookie-reject:hover{color:rgba(255,255,255,.6)}
 
-/* OTRAS MARCAS */
-#otras-marcas{background:var(--accent);padding:6rem 4rem}
-.otras-marcas-inner{max-width:1280px;margin:0 auto}
-.otras-marcas-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:.8rem;display:block}
-.otras-marcas-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--black);margin-bottom:4rem;line-height:1.1}
-.otras-marcas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-.marca-card{display:block;text-decoration:none;background:rgba(0,0,0,.08);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:background .3s}
-.marca-card:hover{background:rgba(0,0,0,.18)}
-.marca-card img{width:60%;height:60%;object-fit:contain;filter:brightness(0)}
-@media(max-width:900px){
-  #otras-marcas{padding:4rem 1.5rem}
-  .otras-marcas-grid{grid-template-columns:1fr;gap:1.5rem}
-}
+/* MARCAS */
+.marcas-bar{display:flex;align-items:stretch;width:100%;overflow:hidden}
+.marcas-left{width:25%;flex-shrink:0;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 16px;gap:.6rem}
+.marcas-left span{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--black);text-align:center;line-height:1.4;letter-spacing:.04em}
+.marcas-left a{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--black);text-decoration:none;border-bottom:1px solid rgba(0,0,0,.3);transition:border-color .2s}
+.marcas-left a:hover{border-color:var(--black)}
+.marcas-right{width:75%;background:var(--g800);position:relative;overflow:hidden;padding:50px 0}
+.marcas-right::before,.marcas-right::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.marcas-right::before{left:0;background:linear-gradient(to right,var(--g800),transparent)}
+.marcas-right::after{right:0;background:linear-gradient(to left,var(--g800),transparent)}
+.marcas-track{display:flex;gap:80px;animation:marquee 22s linear infinite;width:max-content}
+.marcas-track span{font-family:'DM Serif Display',serif;font-size:1rem;color:rgba(255,255,255,.5);flex-shrink:0;letter-spacing:.06em}
 
 /* ANIMATIONS */
 .fade{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
