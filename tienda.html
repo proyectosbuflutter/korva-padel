@@ -15,8 +15,12 @@
 html{overflow-x:clip}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
 
+/* BANNER */
+.top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:.5rem 1rem;display:flex;align-items:center;justify-content:center;gap:2rem}
+.top-banner span{color:var(--accent)}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;border-bottom:1px solid var(--g200)}
+nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;border-bottom:1px solid var(--g200)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g800);text-decoration:none;transition:color .2s}
@@ -25,7 +29,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 
 /* HEADER */
-.shop-header{padding:10rem 6rem 4rem;border-bottom:1px solid #333;background:var(--black)}
+.shop-header{padding:12rem 6rem 4rem;border-bottom:1px solid #333;background:var(--black)}
 .shop-header-inner{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem}
 .shop-h1{font-family:'DM Serif Display',serif;font-size:clamp(5rem,10vw,8rem);line-height:1.05;letter-spacing:.2em;color:var(--white)}
 .shop-count{font-size:1.4rem;color:#c8a96e;letter-spacing:.1em;text-transform:uppercase;font-family:'Sora',sans-serif;font-weight:300}
@@ -52,7 +56,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pala-card-img img{width:100%;height:100%;object-fit:cover;display:block}
 .pala-card-img .svg-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .pala-badge{position:absolute;top:1rem;left:1rem;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;background:var(--accent);color:var(--white);z-index:1}
-.pala-badge-sale{background:var(--black)}
+.pala-badge-sale{background:#e85d4a}
 .pala-badge-popular{background:#2a4a6b}
 .pala-card-info{padding:1.5rem 0 0}
 .pala-card-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
@@ -151,6 +155,9 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 </head>
 <body>
 
+<div class="top-banner">
+  <span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 24 meses
+</div>
 <nav>
   <a href="index.html" class="logo">KORVA</a>
   <ul class="nav-links">
@@ -180,12 +187,20 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 </div>
 
 <div class="shop-filters">
-  <div class="shop-filters-inner">
-    <button class="filter-btn active" data-cat="todos">Todos</button>
-    <button class="filter-btn" data-cat="pala">Palas</button>
-    <button class="filter-btn" data-cat="pack">Packs</button>
-    <button class="filter-btn" data-cat="accesorio">Accesorios</button>
-    <button class="filter-btn" data-cat="otras-marcas">Otras marcas</button>
+  <div class="shop-filters-inner" style="justify-content:space-between;width:100%">
+    <div style="display:flex;gap:1.5rem">
+      <button class="filter-btn active" data-cat="todos">Todos</button>
+      <button class="filter-btn" data-cat="pala">Palas</button>
+      <button class="filter-btn" data-cat="pack">Packs</button>
+      <button class="filter-btn" data-cat="accesorio">Accesorios</button>
+      <button class="filter-btn" data-cat="otras-marcas">Otras marcas</button>
+    </div>
+    <select id="sort-select" style="font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--g200);background:transparent;color:var(--g600);padding:.45rem 1rem;cursor:pointer;outline:none">
+      <option value="default">Ordenar por</option>
+      <option value="precio-asc">Precio: menor a mayor</option>
+      <option value="precio-desc">Precio: mayor a menor</option>
+      <option value="nombre-asc">Nombre A–Z</option>
+    </select>
   </div>
 </div>
 
@@ -552,6 +567,27 @@ async function loadProducts(cat='todos'){
     loadPacks();
   }
 }
+
+document.getElementById('sort-select').addEventListener('change', function(){
+  const val = this.value;
+  const grids = ['palas-grid','packs-grid','accesorios-grid'];
+  grids.forEach(gridId => {
+    const grid = document.getElementById(gridId);
+    if(!grid) return;
+    const cards = Array.from(grid.children);
+    cards.sort((a,b) => {
+      const pa = parseFloat(a.querySelector('.pala-card-price,.acc-card-price')?.textContent||'0');
+      const pb = parseFloat(b.querySelector('.pala-card-price,.acc-card-price')?.textContent||'0');
+      const na = a.querySelector('.pala-card-name,.acc-card-name')?.textContent||'';
+      const nb = b.querySelector('.pala-card-name,.acc-card-name')?.textContent||'';
+      if(val==='precio-asc') return pa-pb;
+      if(val==='precio-desc') return pb-pa;
+      if(val==='nombre-asc') return na.localeCompare(nb);
+      return 0;
+    });
+    cards.forEach(c=>grid.appendChild(c));
+  });
+});
 
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
