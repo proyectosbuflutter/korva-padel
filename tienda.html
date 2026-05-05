@@ -212,7 +212,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
         <div class="shop-divider-label">Otras marcas</div>
         <div class="shop-divider-line"></div>
       </div>
-      <div class="palas-grid" id="otras-marcas-grid">
+      <div class="palas-grid" id="otras-marcas-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="pala-card" onclick="location.href='marca-1.html'">
           <div class="pala-card-img">
             <span style="position:absolute;top:.8rem;left:.8rem;background:var(--accent);color:#fff;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem">Pádel Pro</span>
@@ -541,6 +541,8 @@ async function loadProducts(cat='todos'){
     document.getElementById('shop-loading').style.display='none';
     document.getElementById('shop-content').style.display='block';
     return;
+  } else if(cat === 'todos'){
+    otrasMarcasSection.style.display='block';
   } else {
     otrasMarcasSection.style.display='none';
   }
