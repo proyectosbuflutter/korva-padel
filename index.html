@@ -525,7 +525,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <span class="price-old">299€</span>
       <span class="price-save">−17%</span>
     </div>
-    <button class="btn-dark">Añadir al carrito</button>
+    <button class="btn-dark" onclick="addToCart()">Añadir al carrito</button>
   </div>
 </section>
 
@@ -771,6 +771,18 @@ function closeLegal(){
   const el = document.getElementById('nav-cart-count');
   if(el && total > 0){ el.textContent=total; el.style.display='flex'; }
 })();
+
+function addToCart(){
+  const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
+  const idx = cart.findIndex(i => String(i.id) === '8');
+  if(idx > -1){ cart[idx].qty += 1; }
+  else { cart.push({id:8, nombre:'KORVA 12K Versatile', precio:365, qty:1, imagen:''}); }
+  localStorage.setItem('korva-cart', JSON.stringify(cart));
+  const el = document.getElementById('nav-cart-count');
+  const total = cart.reduce((s,i)=>s+i.qty,0);
+  if(el){ el.textContent=total; el.style.display='flex'; }
+  window.location.href='carrito.html';
+}
 </script>
 <div class="modal-overlay" id="modal-login">
   <div class="modal-backdrop" onclick="closeLogin()"></div>
