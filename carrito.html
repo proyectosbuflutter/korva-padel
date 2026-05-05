@@ -439,7 +439,7 @@ function changeQty(id, dir){
   if(idx === -1) return;
   cart[idx].qty = Math.max(1, cart[idx].qty + dir);
   document.getElementById('qty-'+id).textContent = cart[idx].qty;
-  document.getElementById('total-'+id).textContent = (cart[idx].precio * cart[idx].qty).toFixed(2).replace('.',',')+'€';
+  document.getElementById('total-'+id).textContent = (parseFloat(cart[idx].precio) * parseInt(cart[idx].qty)).toFixed(2).replace('.',',')+'€';
   updateSummary();
   saveCart();
 }
@@ -459,7 +459,7 @@ function updateCount(){
 }
 
 function getSubtotal(){
-  return cart.reduce((sum,i) => sum + i.precio * i.qty, 0);
+  return cart.reduce((sum,i) => sum + parseFloat(i.precio) * parseInt(i.qty), 0);
 }
 
 function updateShippingBar(sub){
