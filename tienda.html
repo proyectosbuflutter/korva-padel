@@ -508,7 +508,7 @@ async function loadPacks(){
     const ahorro = p.precio_anterior ? (p.precio_anterior - p.precio) : 0;
     return `
     <div class="pala-card">
-      <div class="pala-card-img" onclick="location.href='pack.html?id=${p.id}'">
+      <div class="pala-card-img" onclick="location.href='packs.html?id=${p.id}'">
         ${p.badge ? `<span class="pala-badge${p.badge==='Más popular'?' pala-badge-popular':''}">${p.badge}</span>` : ''}
         ${p.precio_anterior ? `<span class="pala-badge pala-badge-sale" style="top:1rem;right:1rem;left:auto">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : ''}
         ${p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover">` : `<div class="svg-fallback">${svgPack()}</div>`}
