@@ -515,7 +515,7 @@ async function loadPacks(){
     const prods = await resP.json();
     const precioBase = prods.reduce((s,pr) => s + parseFloat(pr.precio_anterior || pr.precio), 0);
     const pct = p.descuento ? parseFloat(p.descuento) : 15;
-    p.precioCalculado = Math.round(precioBase * (1 - pct/100));
+    p.precioCalculado = Math.floor(precioBase * (1 - pct/100));
     p.precioBaseCalculado = precioBase;
   }
 
