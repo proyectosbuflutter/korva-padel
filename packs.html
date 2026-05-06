@@ -387,6 +387,8 @@ async function loadPack(){
       });
       const productos = await resP.json();
       renderProductos(productos);
+      const precioReal = productos.reduce((s,p) => s + parseFloat(p.precio), 0);
+      document.getElementById('pack-precio').textContent = precioReal.toFixed(0) + '€';
     } else {
       document.getElementById('pack-productos').innerHTML = '<div style="padding:1.5rem;text-align:center;font-size:.78rem;color:var(--g400)">Productos por definir</div>';
     }
