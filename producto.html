@@ -535,8 +535,23 @@ async function loadProduct(){
   document.getElementById('breadcrumb-nombre').textContent = p.nombre;
   document.title = `KORVA — ${p.nombre}`;
 
+  // GALERÍA
+  const imagenes = [p.imagen, p['imagen-b'], p['imagen-c'], p['imagen-d']].filter(Boolean);
+  const mainEl = document.getElementById('gallery-main');
+  const thumbsEl = document.querySelector('.gallery-thumbs');
+  if(imagenes.length){
+    mainEl.innerHTML = `<img src="${imagenes[0]}" style="width:100%;height:100%;object-fit:contain" id="gallery-img-main">`;
+    thumbsEl.innerHTML = imagenes.map((img,i)=>`
+      <div class="gallery-thumb${i===0?' active':''}" onclick="setGalleryImg('${img}',this)">
+        <img src="${img}" style="width:100%;height:100%;object-fit:contain">
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('gallery-svg-main') && (document.getElementById('gallery-svg-main').style.display='block');
+  }
+
   // SVG
-  document.getElementById('svg-modelo').textContent = p.nombre.split(' ').slice(0,2).join(' ');
+  document.getElementById('svg-modelo') && (document.getElementById('svg-modelo').textContent = p.nombre.split(' ').slice(0,2).join(' '));
 
   // Info
   document.getElementById('prod-cat').textContent = p.categoria;
@@ -657,14 +672,12 @@ async function loadProduct(){
   document.getElementById('schema-producto').textContent = JSON.stringify(schema);
 }
 
-// GALERÍA
-const thumbs = document.querySelectorAll('.gallery-thumb');
-thumbs.forEach(thumb => {
-  thumb.addEventListener('click', () => {
-    thumbs.forEach(t => t.classList.remove('active'));
-    thumb.classList.add('active');
-  });
-});
+function setGalleryImg(src, thumb){
+  const mainImg = document.getElementById('gallery-img-main');
+  if(mainImg) mainImg.src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));
+  thumb.classList.add('active');
+}
 
 // CANTIDAD
 let qty = 1;
