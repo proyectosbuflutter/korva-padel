@@ -389,15 +389,15 @@ async function loadPack(){
       renderProductos(productos);
       const precioBase = productos.reduce((s,p) => s + parseFloat(p.precio_anterior || p.precio), 0);
       const pct = p.descuento ? parseFloat(p.descuento) : 15;
-      const precioConDescuento = Math.round(precioBase * (1 - pct/100));
+      const precioConDescuento = Math.floor(precioBase * (1 - pct/100));
+      currentPack.precioFinal = precioConDescuento;
       document.getElementById('pack-precio').textContent = precioConDescuento + '€';
       document.getElementById('pack-precio-anterior').textContent = precioBase + '€';
       document.getElementById('pack-precio-anterior').style.display = 'inline';
       const ahorro = precioBase - precioConDescuento;
       document.getElementById('pack-ahorro').textContent = 'Ahorras ' + ahorro + '€';
       document.getElementById('pack-ahorro').style.display = 'inline';
-      const precioReal = productos.reduce((s,p) => s + parseFloat(p.precio), 0);
-      document.getElementById('pack-precio').textContent = precioReal.toFixed(0) + '€';
+      
     } else {
       document.getElementById('pack-productos').innerHTML = '<div style="padding:1.5rem;text-align:center;font-size:.78rem;color:var(--g400)">Productos por definir</div>';
     }
@@ -431,7 +431,7 @@ function addToCart(){
   const id = 'pack-'+currentPack.id;
   const idx = cart.findIndex(i => i.id === id);
   if(idx > -1){ cart[idx].qty += qty; }
-  else { cart.push({id, nombre: currentPack.nombre, precio: currentPack.precio, peso:'', balance:'', qty}); }
+  else { cart.push({id, nombre: currentPack.nombre, precio: currentPack.precioFinal || currentPack.precio, peso:'', balance:'', qty}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
   const t = document.getElementById('toast');
   t.textContent = '✓ ' + currentPack.nombre + ' añadido';
