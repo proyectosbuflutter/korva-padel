@@ -32,8 +32,9 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 
 /* HEADER */
 .cart-header{padding:10rem 6rem 4rem;border-bottom:1px solid #333;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem}
-.cart-h1{font-family:'DM Serif Display',serif;font-size:clamp(5rem,10vw,8rem);line-height:1.05;letter-spacing:.2em;color:var(--white)}
-.cart-count{font-size:1.4rem;color:#c8a96e;letter-spacing:.1em;text-transform:uppercase;font-family:'Sora',sans-serif;font-weight:300}
+.cart-h1{font-family:'DM Serif Display',serif;font-size:clamp(5rem,10vw,8rem);line-height:1.05;letter-spacing:.2em;color:var(--accent)}
+.cart-tagline{font-size:1.1rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;font-family:'Sora',sans-serif;font-weight:300}
+.cart-count{font-size:1.1rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;font-family:'Sora',sans-serif;font-weight:300}
 
 /* LAYOUT */
 .cart-wrap{max-width:1280px;margin:0 auto;padding:4rem;display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start}
@@ -211,6 +212,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem;margin-top:8rem}
 
 <div class="cart-header">
   <h1 class="cart-h1">KORVA</h1>
+  <span class="cart-tagline">Alto rendimiento. Sin compromisos.</span>
   <span class="cart-count" id="cart-count">Carrito de la compra</span>
 </div>
 
@@ -444,7 +446,7 @@ function updateCount(){
   const el = document.getElementById('cart-count');
   if(!el) return;
   const count = cart.length;
-  el.textContent = count + (count === 1 ? ' producto' : ' productos');
+  el.textContent = count + (count === 1 ? ' producto añadido a tu carrito' : ' productos añadidos a tu carrito');
 }
 
 function getSubtotal(){
