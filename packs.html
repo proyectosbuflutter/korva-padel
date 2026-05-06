@@ -387,6 +387,14 @@ async function loadPack(){
       });
       const productos = await resP.json();
       renderProductos(productos);
+      const precioBase = productos.reduce((s,p) => s + parseFloat(p.precio_anterior || p.precio), 0);
+      const precioConDescuento = Math.round(precioBase * 0.85);
+      document.getElementById('pack-precio').textContent = precioConDescuento + '€';
+      document.getElementById('pack-precio-anterior').textContent = precioBase + '€';
+      document.getElementById('pack-precio-anterior').style.display = 'inline';
+      const ahorro = precioBase - precioConDescuento;
+      document.getElementById('pack-ahorro').textContent = 'Ahorras ' + ahorro + '€';
+      document.getElementById('pack-ahorro').style.display = 'inline';
       const precioReal = productos.reduce((s,p) => s + parseFloat(p.precio), 0);
       document.getElementById('pack-precio').textContent = precioReal.toFixed(0) + '€';
     } else {
