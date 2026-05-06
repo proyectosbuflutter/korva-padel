@@ -168,7 +168,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <li><a href="index.html#steps">Tecnología</a></li>
     <li><a href="index.html#accordion">Materiales</a></li>
     <li><a href="tienda.html">Tienda</a></li>
-    <li><a href="packs.html">Packs</a></li>
+    <li><a href="tienda.html?cat=pack">Packs</a></li>
     <li><a href="index.html#otras-marcas">Otras marcas</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
@@ -688,7 +688,14 @@ function openLegal(type){
 }
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
-loadProducts();
+const urlCat = new URLSearchParams(window.location.search).get('cat');
+if(urlCat){
+  const btn = document.querySelector(`.filter-btn[data-cat="${urlCat}"]`);
+  if(btn){ btn.classList.add('active'); document.querySelector('.filter-btn.active:not([data-cat="'+urlCat+'"])').classList.remove('active'); }
+  loadProducts(urlCat);
+} else {
+  loadProducts();
+}
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const total = cart.reduce((s,i)=>s+i.qty,0);
