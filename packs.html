@@ -388,7 +388,8 @@ async function loadPack(){
       const productos = await resP.json();
       renderProductos(productos);
       const precioBase = productos.reduce((s,p) => s + parseFloat(p.precio_anterior || p.precio), 0);
-      const precioConDescuento = Math.round(precioBase * 0.85);
+      const pct = p.descuento ? parseFloat(p.descuento) : 15;
+      const precioConDescuento = Math.round(precioBase * (1 - pct/100));
       document.getElementById('pack-precio').textContent = precioConDescuento + '€';
       document.getElementById('pack-precio-anterior').textContent = precioBase + '€';
       document.getElementById('pack-precio-anterior').style.display = 'inline';
@@ -417,7 +418,7 @@ function renderProductos(productos){
         <div class="pack-producto-cat">${p.categoria}</div>
         <div class="pack-producto-nombre">${p.nombre}</div>
       </div>
-      <div class="pack-producto-precio">${p.precio}€</div>
+      <div class="pack-producto-precio"></div>
     </div>
   `).join('');
 }
