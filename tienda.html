@@ -504,13 +504,31 @@ async function loadPacks(){
   const packsGrid = document.getElementById('packs-grid');
   if(!packs.length){ packsSection.style.display='none'; return; }
   packsSection.style.display='block';
+  for(const p of packs){
+    if(!p.productos_ids) continue;
+    const ids = p.productos_ids.split(',').map(i=>i.trim()).filter(Boolean);
+    if(!ids.length) continue;
+    const idsFilter = ids.map(i=>`id.eq.${i}`).join(',');
+    const resP = await fetch(`${SUPABASE_URL}/rest/v1/productos?or=(${idsFilter})&select=precio,precio_anterior`,{
+      headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
+    });
+    const prods = await resP.json();
+    const precioBase = prods.reduce((s,pr) => s + parseFloat(pr.precio_anterior || pr.precio), 0);
+    const pct = p.descuento ? parseFloat(p.descuento) : 15;
+    p.precioCalculado = Math.round(precioBase * (1 - pct/100));
+    p.precioBaseCalculado = precioBase;
+  }
+
   packsGrid.innerHTML = packs.map(p => {
-    const ahorro = p.precio_anterior ? (p.precio_anterior - p.precio) : 0;
+    const precio = p.precioCalculado || p.precio;
+    const precioBase = p.precioBaseCalculado || p.precio_anterior;
+    const ahorro = precioBase ? (precioBase - precio) : 0;
+    const pct = precioBase ? Math.round((1-precio/precioBase)*100) : 0;
     return `
     <div class="pala-card">
       <div class="pala-card-img" onclick="location.href='packs.html?id=${p.id}'">
         ${p.badge ? `<span class="pala-badge${p.badge==='Más popular'?' pala-badge-popular':''}">${p.badge}</span>` : ''}
-        ${p.precio_anterior ? `<span class="pala-badge pala-badge-sale" style="top:1rem;right:1rem;left:auto">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : ''}
+        ${pct ? `<span class="pala-badge pala-badge-sale" style="top:1rem;right:1rem;left:auto">−${pct}%</span>` : ''}
         ${p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover">` : `<div class="svg-fallback">${svgPack()}</div>`}
       </div>
       <div class="pala-card-info">
@@ -519,11 +537,11 @@ async function loadPacks(){
         <div class="pala-card-specs">${p.descripcion||''}</div>
         <div class="pala-card-bottom">
           <div>
-            ${p.precio_anterior ? `<span class="pala-card-price-old">${p.precio_anterior}€</span>` : ''}
-            <span class="pala-card-price">${p.precio}€</span>
+            ${precioBase ? `<span class="pala-card-price-old">${precioBase}€</span>` : ''}
+            <span class="pala-card-price">${precio}€</span>
             ${ahorro ? `<span style="font-size:.62rem;color:#4a9d6f;margin-left:.5rem;font-weight:600">Ahorras ${ahorro}€</span>` : ''}
           </div>
-          <button class="pala-card-btn" onclick="event.stopPropagation();addToCart('pack-${p.id}','${p.nombre}',${p.precio},'','')">+ Añadir</button>
+          <button class="pala-card-btn" onclick="event.stopPropagation();addToCart('pack-${p.id}','${p.nombre}',${precio},'','')">+ Añadir</button>
         </div>
       </div>
     </div>`;
