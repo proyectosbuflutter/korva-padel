@@ -561,14 +561,14 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <div class="prod-sub">Versátil · Control + Potencia</div>
     <p class="prod-desc">Para el jugador polivalente que necesita equilibrio entre control y potencia. La elección perfecta para nivel medio-avanzado que quiere adaptarse a cualquier situación.</p>
     <div class="prod-specs">
-      <div><span class="ps-val">360g</span><span class="ps-key">Peso</span></div>
-      <div><span class="ps-val">275</span><span class="ps-key">Balance mm</span></div>
-      <div><span class="ps-val">38mm</span><span class="ps-key">Espesor</span></div>
+      <div><span class="ps-val" id="ps-peso"></span><span class="ps-key">Peso</span></div>
+      <div><span class="ps-val" id="ps-balance"></span><span class="ps-key">Balance mm</span></div>
+      <div><span class="ps-val" id="ps-espesor"></span><span class="ps-key">Espesor</span></div>
     </div>
     <div class="prod-price-row">
-      <span class="price-main">249€</span>
-      <span class="price-old">299€</span>
-      <span class="price-save">−17%</span>
+      <span class="price-main"></span>
+      <span class="price-old" style="display:none"></span>
+      <span class="price-save" style="display:none"></span>
     </div>
     <button class="btn-dark" onclick="addToCart()">Añadir al carrito</button>
   </div>
@@ -879,7 +879,7 @@ const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
 
 async function loadPreciosPalas(){
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/productos?id=in.(7,8,9)&select=id,precio,precio_anterior`,{
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/productos?id=in.(7,8,9)&select=id,nombre,precio,precio_anterior,peso,balance,espesor,imagen`,{
     headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
   });
   const palas = await res.json();
@@ -896,6 +896,13 @@ async function loadPreciosPalas(){
       if(elSave && descuento){ elSave.textContent = descuento; elSave.style.display=''; }
       // addToCart usa precio hardcoded, actualizarlo también
       window._precio12k = p.precio;
+      if(p.imagen){
+        const canvas = document.querySelector('.prod-canvas');
+        if(canvas) canvas.innerHTML = `<img src="${p.imagen}" style="width:100%;height:100%;object-fit:contain">`;
+      }
+      if(p.peso) document.getElementById('ps-peso').textContent = p.peso;
+      if(p.balance) document.getElementById('ps-balance').textContent = p.balance;
+      if(p.espesor) document.getElementById('ps-espesor').textContent = p.espesor;
     }
     // Comparador
     const compPrices = {7:null, 8:null, 9:null};
