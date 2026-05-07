@@ -378,11 +378,10 @@ if(localStorage.getItem('korva-cart-version') !== CART_VERSION){
 const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
 let cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
-let discountApplied = JSON.parse(localStorage.getItem('korva-discount') || 'false');
+let discountApplied = false;
 
 function saveCart(){
   localStorage.setItem('korva-cart', JSON.stringify(cart));
-  localStorage.setItem('korva-discount', JSON.stringify(discountApplied));
 }
 
 function renderCart(){
