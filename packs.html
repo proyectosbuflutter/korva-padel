@@ -63,6 +63,9 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .qty-val{width:40px;text-align:center;font-size:.88rem;font-weight:600;color:var(--black)}
 .btn-cart{flex:1;padding:1rem 2rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .btn-cart:hover{background:var(--g800)}
+.btn-cart.added{background:var(--accent);}
+@keyframes navBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+.nav-cart-bounce{animation:navBounce .3s ease;}
 
 .trust-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:1.5rem 0;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
 .trust-item{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}
@@ -447,6 +450,15 @@ function addToCart(){
   if(idx > -1){ cart[idx].qty += qty; }
   else { cart.push({id, nombre: currentPack.nombre, precio: currentPack.precioFinal || currentPack.precio, peso:'', balance:'', qty}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
+  const btn=document.querySelector('.btn-cart');
+  btn.classList.add('added');
+  setTimeout(()=>btn.classList.remove('added'),400);
+  const navCount=document.getElementById('nav-cart-count');
+  const total=cart.reduce((s,i)=>s+i.qty,0);
+  navCount.textContent=total;
+  navCount.style.display='flex';
+  navCount.classList.add('nav-cart-bounce');
+  setTimeout(()=>navCount.classList.remove('nav-cart-bounce'),300);
   const t = document.getElementById('toast');
   t.textContent = '✓ ' + currentPack.nombre + ' añadido';
   t.classList.add('show');
