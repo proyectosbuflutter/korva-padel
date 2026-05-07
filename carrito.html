@@ -393,13 +393,7 @@ function renderCart(){
     div.innerHTML = `
       <div class="cart-item-left">
         <div class="cart-item-img">
-          <svg width="50" height="80" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-            <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
-            <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-            <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">KORVA</text>
-          </svg>
+          ${item.imagen ? `<img src="${item.imagen}" style="width:100%;height:100%;object-fit:contain">` : `<svg width="50" height="80" viewBox="0 0 190 310" fill="none"><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text></svg>`}
         </div>
         <div class="cart-item-details">
           <div class="cart-item-name">${item.nombre}</div>
