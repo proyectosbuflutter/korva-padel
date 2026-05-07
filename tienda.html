@@ -49,6 +49,14 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 
 /* LOADING */
 .shop-loading{text-align:center;padding:4rem;font-size:.82rem;color:var(--g400);letter-spacing:.1em;text-transform:uppercase}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-bottom:6rem}
+.sk-card{display:flex;flex-direction:column;gap:1rem}
+.sk-img{background:var(--g200);aspect-ratio:3/4;width:100%}
+.sk-line{background:var(--g200);height:.8rem;width:100%}
+.sk-line.short{width:50%}
+.sk-line.price{width:35%;height:1.2rem}
+@keyframes skPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.sk-card *{animation:skPulse 1.5s ease-in-out infinite}
 
 /* SECCIÓN PALAS */
 .section-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g400);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--g200)}
@@ -224,7 +232,13 @@ body{animation:fadeIn .4s ease;}
 
 <div style="padding:0 6rem">
 <div class="shop-wrap">
-  <div id="shop-loading" class="shop-loading">Cargando productos...</div>
+  <div id="shop-loading">
+  <div class="sk-grid">
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-line"></div><div class="sk-line short"></div><div class="sk-line price"></div></div>
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-line"></div><div class="sk-line short"></div><div class="sk-line price"></div></div>
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-line"></div><div class="sk-line short"></div><div class="sk-line price"></div></div>
+  </div>
+</div>
   <div id="shop-content" style="display:none">
     <div id="palas-section">
       <div class="section-label">Palas</div>
