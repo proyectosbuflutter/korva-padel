@@ -441,11 +441,18 @@ function changeQty(id, dir){
 
 function removeItem(id){
   const el = document.getElementById('item-'+id);
-  if(el) el.remove();
-  cart = cart.filter(i => String(i.id) !== String(id));
-  updateSummary();
-  updateCount();
-  saveCart();
+  if(el){
+    el.style.transition='opacity .3s ease, transform .3s ease';
+    el.style.opacity='0';
+    el.style.transform='translateX(-20px)';
+    setTimeout(()=>{
+      el.remove();
+      cart = cart.filter(i => String(i.id) !== String(id));
+      updateSummary();
+      updateCount();
+      saveCart();
+    },300);
+  }
 }
 
 function updateCount(){
