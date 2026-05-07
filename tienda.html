@@ -584,6 +584,7 @@ async function loadProducts(cat='todos'){
     return;
   } else if(cat === 'todos'){
     otrasMarcasSection.style.display='block';
+    loadOtrasMarcas();
   } else {
     otrasMarcasSection.style.display='none';
   }
@@ -694,7 +695,8 @@ if(urlCat){
   if(btn){ btn.classList.add('active'); document.querySelector('.filter-btn.active:not([data-cat="'+urlCat+'"])').classList.remove('active'); }
   loadProducts(urlCat);
 } else {
-  loadProducts();
+  loadOtrasMarcas();
+loadProducts();
 }
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
