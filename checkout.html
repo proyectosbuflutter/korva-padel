@@ -551,7 +551,7 @@ function renderCheckoutSummary(){
   itemsEl.innerHTML = coCart.map(item => `
     <div class="summary-item">
       <div class="summary-item-img">
-        ${svg}
+        ${item.imagen ? `<img src="${item.imagen}" style="width:100%;height:100%;object-fit:contain">` : svg}
         <span class="summary-item-qty">${item.qty}</span>
       </div>
       <div class="summary-item-info">
