@@ -184,6 +184,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   .modal-box{padding:2.5rem 1.5rem}
   .cookie-banner{padding:1.2rem 1.5rem;flex-direction:column;align-items:flex-start}
 }
+body{animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BHD7CVN6YL"></script>
@@ -820,5 +822,17 @@ loadProduct();
     <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
   </div>
 </div>
+<script>
+document.querySelectorAll('a[href]').forEach(a=>{
+  const href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.target==='_blank') return;
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    document.body.style.transition='opacity .3s ease';
+    document.body.style.opacity='0';
+    setTimeout(()=>location.href=href,300);
+  });
+});
+</script>
 </body>
 </html>
