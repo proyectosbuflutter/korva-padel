@@ -421,11 +421,11 @@ function imgOrFallback(imagen, fallbackHtml){
           <div class="svg-fallback" style="display:none">${fallbackHtml}</div>`;
 }
 
-function addToCart(id, nombre, precio, peso, balance){
+function addToCart(id, nombre, precio, peso, balance, imagen){
   const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
   const idx = cart.findIndex(i => i.id === id);
   if(idx > -1){ cart[idx].qty += 1; }
-  else { cart.push({id, nombre, precio, peso: peso||'', balance: balance||'', qty:1}); }
+  else { cart.push({id, nombre, precio, peso: peso||'', balance: balance||'', imagen: imagen||'', qty:1}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
   let toast = document.getElementById('toast');
   if(!toast){
@@ -462,7 +462,7 @@ function renderProducts(palas, accesorios){
               ${p.precio_anterior ? `<span class="pala-card-price-old">${p.precio_anterior}€</span>` : ''}
               <span class="pala-card-price">${p.precio}€</span>
             </div>
-            <button class="pala-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}')">+ Añadir</button>
+            <button class="pala-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}','${p.imagen||''}')">+ Añadir</button>
           </div>
         </div>
       </div>
@@ -484,7 +484,7 @@ function renderProducts(palas, accesorios){
           <div class="acc-card-name">${p.nombre}</div>
           <div class="acc-card-bottom">
             <span class="acc-card-price">${p.precio}€</span>
-            <button class="acc-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'','')">+ Añadir</button>
+            <button class="acc-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'','','${p.imagen||''}')">+ Añadir</button>
           </div>
         </div>
       </div>
