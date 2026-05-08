@@ -40,7 +40,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-links a:hover{color:var(--black)}
 .nav-access{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)}
 .universo-wrap{position:relative;list-style:none}
-.universo-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#ffffff;background:none;border:none;cursor:pointer;padding:0}
+.universo-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#81652f;background:none;border:none;cursor:pointer;padding:0}
 .universo-tooltip{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--black);border:1px solid rgba(200,169,110,.25);padding:.6rem 0;display:flex;flex-direction:column;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease;min-width:180px}
 .universo-wrap:hover .universo-tooltip{opacity:1;pointer-events:auto}
 .universo-tooltip a{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;padding:.7rem 1.4rem}
@@ -201,14 +201,7 @@ body{animation:fadeIn .4s ease;}
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <ul class="nav-links">
-    <li><a href="index.html#steps">Tecnología</a></li>
-    <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="index.html#accordion">Materiales</a></li>
-    <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="tienda.html?cat=pack">Packs</a></li>
-    <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="index.html#otras-marcas">Otras marcas</a></li>
-    <li class="universo-wrap" style="margin-left:1.5rem">
+    <li class="universo-wrap">
       <button class="universo-btn">Universo KORVA</button>
       <div class="universo-tooltip">
         <a href="404.html">KORVA Pickleball</a>
@@ -216,6 +209,15 @@ body{animation:fadeIn .4s ease;}
         <a href="index.html">KORVA Pádel</a>
       </div>
     </li>
+    <li style="color:var(--black);opacity:1">|</li>
+    <li><a href="index.html#steps">Tecnología</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
+    <li><a href="index.html#accordion">Materiales</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
+    <li><a href="tienda.html?cat=pack">Packs</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
+    <li><a href="index.html#otras-marcas">Otras marcas</a></li>
+    
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
     <a href="tienda.html" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
@@ -231,12 +233,12 @@ body{animation:fadeIn .4s ease;}
 </nav>
 
 <main><div class="shop-video" style="position:relative">
-  <video autoplay muted loop playsinline style="width:100%;display:block;max-height:500px;object-fit:cover">
+  <video autoplay muted loop playsinline style="width:100%;display:block;min-height:400px;max-height:500px;object-fit:cover">
     <source src="assets/video/padel.mp4" type="video/mp4">
   </video>
-  <div style="position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem">
-    <div style="font-family:'DM Serif Display',serif;font-size:clamp(4rem,10vw,8rem);color:var(--accent);letter-spacing:.2em;line-height:1">KORVA</div>
-    <div style="font-size:.72rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.7)">Alto rendimiento. Sin compromisos.</div>
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:3rem;gap:1rem">
+    <div style="line-height:1"><img src="assets/images/logo-korva-header.png" alt="KORVA Pádel" style="height:clamp(4rem,10vw,8rem);width:auto;display:block"></div>
+    <div style="font-size:.72rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2rem;line-height:2">Alto rendimiento.<br>Sin compromisos.</div>
   </div>
 </div>
 

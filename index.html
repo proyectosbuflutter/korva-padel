@@ -40,7 +40,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-btn:hover{background:var(--g800)}
 .nav-access{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)}
 .universo-wrap{position:relative;list-style:none}
-.universo-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#ffffff;background:none;border:none;cursor:pointer;padding:0}
+.universo-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#81652f;background:none;border:none;cursor:pointer;padding:0}
 .universo-tooltip{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--black);border:1px solid rgba(200,169,110,.25);padding:.6rem 0;display:flex;flex-direction:column;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease;min-width:180px}
 .universo-wrap:hover .universo-tooltip{opacity:1;pointer-events:auto}
 .universo-tooltip a{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;padding:.7rem 1.4rem}
@@ -351,14 +351,7 @@ body{animation:fadeIn .4s ease;}
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <ul class="nav-links">
-    <li><a href="#steps">Tecnología</a></li>
-    <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="#accordion">Materiales</a></li>
-    <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="tienda.html?cat=pack">Packs</a></li>
-    <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="#otras-marcas">Otras marcas</a></li>
-    <li class="universo-wrap" style="margin-left:1.5rem">
+    <li class="universo-wrap">
       <button class="universo-btn">Universo KORVA</button>
       <div class="universo-tooltip">
         <a href="404.html">KORVA Pickleball</a>
@@ -366,6 +359,15 @@ body{animation:fadeIn .4s ease;}
         <a href="index.html">KORVA Pádel</a>
       </div>
     </li>
+    <li style="color:var(--black);opacity:1">|</li>
+    <li><a href="#steps">Tecnología</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
+    <li><a href="#accordion">Materiales</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
+    <li><a href="tienda.html?cat=pack">Packs</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
+    <li><a href="#otras-marcas">Otras marcas</a></li>
+    
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
     <a href="tienda.html" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
