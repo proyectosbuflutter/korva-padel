@@ -31,7 +31,7 @@ body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);fo
 /* NAV */
 nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links{display:flex;gap:1.2rem;list-style:none;margin-left:-50px}
 .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g800);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--black)}
 .nav-access{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)}
@@ -214,11 +214,14 @@ body{animation:fadeIn .4s ease;}
   <span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 24 meses
 </div>
 <nav>
-  <a href="index.html" class="logo">KORVA</a>
+  <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <ul class="nav-links">
     <li><a href="index.html#steps">Tecnología</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
     <li><a href="index.html#accordion">Materiales</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
     <li><a href="tienda.html?cat=pack">Packs</a></li>
+    <li style="color:var(--g800);opacity:.4">|</li>
     <li><a href="index.html#otras-marcas">Otras marcas</a></li>
     <li><a href="tienda.html" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.2rem .7rem;font-weight:700">Tienda</a></li>
   </ul>
