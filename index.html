@@ -142,16 +142,15 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .acc-sk{color:rgba(255,255,255,.35)}.acc-sv{color:var(--white);font-weight:500}
 
 /* PRODUCT */
-#product{display:grid;grid-template-columns:1fr 1fr;min-height:90vh}
-.prod-vis{background:var(--g100);display:flex;align-items:center;justify-content:center;padding:4rem;position:relative}
-.prod-canvas{width:320px;height:420px;background:#141412;display:flex;align-items:center;justify-content:center;position:relative}
-.prod-float-lbl{position:absolute;top:1.5rem;left:1.5rem;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-.prod-content{padding:5rem 4.5rem;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
-.prod-badge{display:inline-block;font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:.35rem .85rem;margin-bottom:1.8rem;width:fit-content}
-.prod-h{font-family:'DM Serif Display',serif;font-size:2.8rem;line-height:1.1;margin-bottom:.4rem}
-.prod-sub{font-size:.78rem;color:var(--g400);letter-spacing:.09em;margin-bottom:1.8rem;text-transform:uppercase;font-weight:500}
-.prod-desc{font-size:.9rem;color:var(--g600);line-height:1.8;margin-bottom:2.2rem;font-weight:300;max-width:400px}
-.prod-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2.5rem;padding:1.4rem 0;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
+#lookbook{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(3,1fr);height:90vh;gap:3px;background:#000}
+.lb-item{position:relative;overflow:hidden;cursor:pointer}
+.lb-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.lb-item:hover img{transform:scale(1.04)}
+.lb-item-main{grid-row:1/4}
+.lb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:2rem}
+.lb-tag{font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.lb-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:#fff;line-height:1.1}
+.lb-item-main .lb-title{font-size:2.8rem}
 .ps-val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--black);display:block;text-align:center}
 .ps-key{font-size:.6rem;color:var(--g400);font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:block;text-align:center;margin-top:.2rem}
 .prod-price-row{display:flex;align-items:center;gap:1.2rem;margin-bottom:2rem;flex-wrap:wrap}
@@ -320,9 +319,9 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   .step-vis{height:260px}
   #accordion{padding:5rem 1.5rem}
   .acc-body-in{grid-template-columns:1fr}
-  #product{grid-template-columns:1fr}
-  .prod-content{padding:3rem 1.5rem}
-  .prod-vis{min-height:320px}
+  #lookbook{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
+  .lb-item{height:60vw}
+  .lb-item-main{height:80vw}
   #packs{padding:5rem 1.5rem}
   .packs-grid{grid-template-columns:1fr;max-width:400px}
   #cta{padding:7rem 1.5rem}
@@ -567,10 +566,36 @@ body{animation:fadeIn .4s ease;}
 </section>
 
 <!-- PRODUCT -->
-<section id="product">
-  <div class="prod-vis">
-    <div class="prod-canvas">
-      <span class="prod-float-lbl">PRO X3 CARBON</span>
+<section id="lookbook">
+  <div class="lb-item lb-item-main">
+    <img src="assets/images/Lookbook1.webp" alt="KORVA Pádel lifestyle" loading="lazy">
+    <div class="lb-overlay">
+      <span class="lb-tag">Colección 2026</span>
+      <div class="lb-title">La pista<br>es tuya.</div>
+    </div>
+  </div>
+  <div class="lb-item">
+    <img src="assets/images/Lookbook2.webp" alt="KORVA Pádel jugadora" loading="lazy">
+    <div class="lb-overlay">
+      <span class="lb-tag">Lifestyle</span>
+      <div class="lb-title">Precisión absoluta.</div>
+    </div>
+  </div>
+  <div class="lb-item">
+    <img src="assets/images/Lookbook3.webp" alt="KORVA Pádel entrenamiento" loading="lazy">
+    <div class="lb-overlay">
+      <span class="lb-tag">Alto rendimiento</span>
+      <div class="lb-title">Sin límites.</div>
+    </div>
+  </div>
+  <div class="lb-item">
+    <img src="assets/images/Lookbook4.webp" alt="KORVA Pádel jugador" loading="lazy">
+    <div class="lb-overlay">
+      <span class="lb-tag">KORVA Pádel</span>
+      <div class="lb-title">Tu identidad.</div>
+    </div>
+  </div>
+</section>
       <svg width="190" height="310" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
         <rect x="85" y="237" width="20" height="5" rx="1" fill="#c8a96e" opacity=".7"/>
