@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KORVA — Página no encontrada</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fafaf8;--g100:#f4f3f0;--g200:#e8e6e1;
+  --g400:#a09e98;--g600:#6b6a66;--g800:#2c2b28;
+  --accent:#c8a96e;--accent-soft:#f5ede0;
+}
+html,body{height:100%;margin:0}
+body{font-family:'Sora',sans-serif;background:var(--accent);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:4rem}
+.wrap{display:flex;align-items:center;justify-content:center;gap:0;max-width:1100px;width:100%}
+.col-left{flex:1;display:flex;align-items:center;justify-content:center;padding-right:5rem}
+.logo-korva-404{width:380px;height:auto;object-fit:contain}
+.separator{width:1px;background:rgba(255,255,255,.3);align-self:stretch;flex-shrink:0}
+.col-right{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding-left:5rem;gap:1.2rem}
+.error-num{font-family:'DM Serif Display',serif;font-size:clamp(5rem,10vw,9rem);line-height:1;color:var(--white);opacity:.25}
+.title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--white);line-height:1.1}
+.subtitle{font-size:.82rem;color:rgba(255,255,255,.7);letter-spacing:.06em;font-weight:300;max-width:360px;line-height:1.8}
+.btn-home{margin-top:.8rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--white);color:var(--accent);border:none;padding:1rem 2.5rem;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s}
+.btn-home:hover{opacity:.85}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="col-left">
+    <img src="assets/images/logo-korva-404.png" alt="KORVA" class="logo-korva-404">
+  </div>
+  <div class="separator"></div>
+  <div class="col-right">
+    <div class="error-num">404</div>
+    <div class="title">Página no encontrada</div>
+    <div class="subtitle">La página que buscas no existe o ha sido movida. Vuelve a la tienda y sigue jugando.</div>
+    <a href="index.html" class="btn-home">Volver a la home</a>
+  </div>
+</div>
+</body>
+</html>
