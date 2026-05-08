@@ -705,11 +705,17 @@ async function loadProduct(){
     "name": p.nombre,
     "brand": {"@type": "Brand", "name": "KORVA"},
     "description": p.descripcion,
+    "image": p.imagen || "",
+    "sku": "KORVA-" + p.id,
+    "category": "Palas de pádel",
+    "url": "https://korva-padel.vercel.app/producto.html?id=" + p.id,
     "offers": {
       "@type": "Offer",
       "priceCurrency": "EUR",
       "price": p.precio.toString(),
+      "priceValidUntil": "2027-01-31",
       "availability": "https://schema.org/InStock",
+      "url": "https://korva-padel.vercel.app/producto.html?id=" + p.id,
       "seller": {"@type": "Organization", "name": "KORVA Pádel"}
     },
     "aggregateRating": {
