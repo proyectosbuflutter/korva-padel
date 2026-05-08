@@ -37,11 +37,11 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-access{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g800)}
 .universo-wrap{position:relative;list-style:none}
 .universo-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#ffffff;background:none;border:none;cursor:pointer;padding:0}
-.universo-tooltip{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%);background:var(--black);border:1px solid rgba(200,169,110,.25);padding:1.2rem 2rem;display:flex;gap:2rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease}
-.universo-tooltip::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:var(--black);border-left:1px solid rgba(200,169,110,.25);border-top:1px solid rgba(200,169,110,.25);rotate:45deg}
+.universo-tooltip{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--black);border:1px solid rgba(200,169,110,.25);padding:.6rem 0;display:flex;flex-direction:column;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease;min-width:180px}
 .universo-wrap:hover .universo-tooltip{opacity:1;pointer-events:auto}
-.universo-tooltip a{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s}
-.universo-tooltip a:hover{color:var(--accent)}
+.universo-tooltip a{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;padding:.7rem 1.4rem}
+.universo-tooltip a:hover{color:var(--accent);background:rgba(200,169,110,.06)}
+.universo-tooltip a+a{border-top:1px solid rgba(255,255,255,.08)}
 
 /* HEADER */
 .cart-header{padding:10rem 6rem 4rem;border-bottom:1px solid #333;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem}
@@ -224,7 +224,7 @@ body{animation:fadeIn .4s ease;}
     <li><a href="tienda.html?cat=pack">Packs</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
     <li><a href="index.html#otras-marcas">Otras marcas</a></li>
-    <li class="universo-wrap">
+    <li class="universo-wrap" style="margin-left:1.5rem">
       <button class="universo-btn">Universo KORVA</button>
       <div class="universo-tooltip">
         <a href="404.html">KORVA Pickleball</a>
