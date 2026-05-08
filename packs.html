@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>KORVA — Pack</title>
+<title>KORVA — Packs | Ofertas en Pádel</title>
+<meta name="description" content="Packs de pádel KORVA con descuento. Combina palas y accesorios al mejor precio.">
+<meta property="og:title" content="KORVA — Packs | Ofertas en Pádel">
+<meta property="og:description" content="Packs de pádel KORVA con descuento. Combina palas y accesorios al mejor precio.">
+<meta property="og:image" content="https://korva-padel.vercel.app/assets/images/korva-12k.jpg">
+<meta property="og:url" content="https://korva-padel.vercel.app/packs.html">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -450,15 +456,6 @@ function addToCart(){
   if(idx > -1){ cart[idx].qty += qty; }
   else { cart.push({id, nombre: currentPack.nombre, precio: currentPack.precioFinal || currentPack.precio, peso:'', balance:'', qty}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
-  const btn=document.querySelector('.btn-cart');
-  btn.classList.add('added');
-  setTimeout(()=>btn.classList.remove('added'),400);
-  const navCount=document.getElementById('nav-cart-count');
-  const total=cart.reduce((s,i)=>s+i.qty,0);
-  navCount.textContent=total;
-  navCount.style.display='flex';
-  navCount.classList.add('nav-cart-bounce');
-  setTimeout(()=>navCount.classList.remove('nav-cart-bounce'),300);
   const t = document.getElementById('toast');
   t.textContent = '✓ ' + currentPack.nombre + ' añadido';
   t.classList.add('show');
