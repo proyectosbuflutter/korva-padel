@@ -235,7 +235,7 @@ body{animation:fadeIn .4s ease;}
   </div>
 </nav>
 
-<div class="breadcrumb">
+<main><div class="breadcrumb">
   <a href="index.html">Inicio</a>
   <span class="breadcrumb-sep">—</span>
   <a href="tienda.html">Tienda</a>
@@ -466,7 +466,7 @@ body{animation:fadeIn .4s ease;}
   </div>
 </div>
 
-<footer>
+</main><footer>
   <div class="footer-brand">
     <span class="footer-brand-name">KORVA</span>
     <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
@@ -507,7 +507,7 @@ body{animation:fadeIn .4s ease;}
 <div class="modal-overlay" id="modal">
   <div class="modal-backdrop" onclick="closeModal()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Contacto</span>
     <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
     <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
@@ -520,7 +520,7 @@ body{animation:fadeIn .4s ease;}
 <div class="modal-overlay" id="modal-login">
   <div class="modal-backdrop" onclick="closeLogin()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeLogin()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="modal-close" onclick="closeLogin()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Acceso</span>
     <div class="modal-title">Bienvenido<br>de nuevo.</div>
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
@@ -533,7 +533,7 @@ body{animation:fadeIn .4s ease;}
 <div class="modal-overlay" id="modal-legal">
   <div class="modal-backdrop" onclick="closeLegal()"></div>
   <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
-    <button class="modal-close" onclick="closeLegal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="modal-close" onclick="closeLegal()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label" id="legal-label"></span>
     <div class="modal-title" id="legal-title" style="font-size:1.6rem;margin-bottom:1.5rem"></div>
     <div id="legal-content" style="font-size:.85rem;color:var(--g600);line-height:1.9;font-weight:300"></div>
@@ -836,7 +836,7 @@ loadProduct();
 <div class="modal-overlay" id="modal-registro">
   <div class="modal-backdrop" onclick="closeRegistro()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeRegistro()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="modal-close" onclick="closeRegistro()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Crear cuenta</span>
     <div class="modal-title">Bienvenido<br>a KORVA.</div>
     <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
