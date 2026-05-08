@@ -26,7 +26,7 @@
 html{overflow-x:clip}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6}
 
-.top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:.5rem 1rem;display:flex;align-items:center;justify-content:center;gap:2rem}
+.top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
 
 .top-banner span{color:var(--accent)}
 
@@ -337,7 +337,9 @@ body{animation:fadeIn .4s ease;}
 <body>
 
 <div class="top-banner">
-  <span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 24 meses
+  <span style="flex:1"></span>
+  <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 24 meses</span>
+  <span style="flex:1;text-align:right;color:#ffffff;padding-right:75px">ESP | CAT | ENG</span>
 </div>
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
@@ -352,7 +354,7 @@ body{animation:fadeIn .4s ease;}
     <li style="margin-left:25px"><a href="tienda.html" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-weight:700">Tienda</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <span style="font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#ffffff">ES | CA | EN</span>
+    
 <button class="nav-access" onclick="openLogin()" style="margin-left:50px">Acceso</button>
     <a href="carrito.html" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
