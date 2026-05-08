@@ -551,12 +551,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-function upsellAdd(id, name, precio){
+function upsellAdd(id, name, precio, img){
   const idx = cart.findIndex(i => String(i.id) === String(id));
   if(idx > -1){
     cart[idx].qty += 1;
   } else {
-    cart.push({id, nombre: name, precio, peso:'', balance:'', qty:1});
+    cart.push({id, nombre: name, precio, imagen: img||'', peso:'', balance:'', qty:1});
   }
   saveCart();
   renderCart();
@@ -671,7 +671,7 @@ async function loadUpsells(){
         </div>
         <div class="upsell-name">${p.nombre}</div>
         <div class="upsell-price">${parseFloat(p.precio).toFixed(2).replace('.',',')}€</div>
-        <button class="upsell-btn" onclick="upsellAdd(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio})">+ Añadir</button>
+        <button class="upsell-btn" onclick="upsellAdd(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.imagen||''}')">+ Añadir</button>
       </div>
     `).join('');
   } catch(e){ console.error('Error upsells:',e); }
