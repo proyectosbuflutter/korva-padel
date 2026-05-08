@@ -361,6 +361,7 @@ body{animation:fadeIn .4s ease;}
   </div>
 </nav>
 
+<main>
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
@@ -389,9 +390,9 @@ body{animation:fadeIn .4s ease;}
           </div>
 
         <div class="hero-dots">
-            <button class="hero-dot active" onclick="goSlide(0)"></button>
-            <button class="hero-dot" onclick="goSlide(1)"></button>
-            <button class="hero-dot" onclick="goSlide(2)"></button>
+            <button class="hero-dot active" onclick="goSlide(0)" aria-label="Slide 1"></button>
+            <button class="hero-dot" onclick="goSlide(1)" aria-label="Slide 2"></button>
+            <button class="hero-dot" onclick="goSlide(2)" aria-label="Slide 3"></button>
           </div>
         </div>
       <div class="hero-spec-box">
@@ -636,6 +637,7 @@ body{animation:fadeIn .4s ease;}
   </div>
 </section>
 
+</main>
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
@@ -676,7 +678,7 @@ body{animation:fadeIn .4s ease;}
 <div class="comp-overlay" id="comp-modal">
   <div class="comp-backdrop" onclick="closeComparador()"></div>
   <div class="comp-box">
-    <button class="comp-close" onclick="closeComparador()">
+    <button class="comp-close" onclick="closeComparador()" aria-label="Cerrar comparador">
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <span class="comp-label">Elige Korva</span>
@@ -975,7 +977,7 @@ function addToCart(){
 <div class="modal-overlay" id="modal-login">
   <div class="modal-backdrop" onclick="closeLogin()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeLogin()">
+    <button class="modal-close" onclick="closeLogin()" aria-label="Cerrar">
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <span class="modal-label">Acceso</span>
@@ -996,7 +998,7 @@ function addToCart(){
 <div class="modal-overlay" id="modal-legal">
   <div class="modal-backdrop" onclick="closeLegal()"></div>
   <div class="modal-box" style="max-width:680px;max-height:80vh;overflow-y:auto">
-    <button class="modal-close" onclick="closeLegal()">
+    <button class="modal-close" onclick="closeLegal()" aria-label="Cerrar">
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <span class="modal-label" id="legal-label">Aviso legal</span>
@@ -1007,7 +1009,7 @@ function addToCart(){
 <div class="modal-overlay" id="modal-registro">
   <div class="modal-backdrop" onclick="closeRegistro()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeRegistro()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="modal-close" onclick="closeRegistro()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Crear cuenta</span>
     <div class="modal-title">Bienvenido<br>a KORVA.</div>
     <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
