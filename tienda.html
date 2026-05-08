@@ -112,20 +112,20 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 footer{background:var(--black);padding:6rem 4rem 3rem}
 .footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
-.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
+.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
 .footer-nav{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
-.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
 .footer-nav a:hover{color:var(--accent)}
 .footer-legal{display:flex;justify-content:center;gap:2.5rem;margin-bottom:3rem}
-.footer-legal a{font-size:.62rem;color:rgba(255,255,255,.22);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.footer-legal a{font-size:.62rem;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.08em;transition:color .2s}
 .footer-legal a:hover{color:rgba(255,255,255,.5)}
 .footer-social{display:flex;justify-content:center;gap:1.8rem;margin-bottom:4rem}
-.footer-social a{display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-social a{display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
 .footer-social a:hover{color:var(--accent)}
 .social-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .footer-contact-btn{display:block;margin:0 auto 4rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(200,169,110,.3);padding:.8rem 2rem;cursor:pointer;transition:all .3s}
 .footer-contact-btn:hover{border-color:var(--accent);background:rgba(200,169,110,.08)}
-.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.15);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
@@ -199,7 +199,7 @@ body{animation:fadeIn .4s ease;}
     <li><a href="tienda.html" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.2rem .7rem;font-weight:700">Tienda</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <span style="font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55)">ES | CA | EN</span>
+    <span style="font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#ffffff">ES | CA | EN</span>
 <button class="nav-access" onclick="openLogin()" style="margin-left:50px">Acceso</button>
     <a href="carrito.html" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
@@ -449,9 +449,9 @@ function getPalaColor(nombre){
   return '#c8a96e';
 }
 
-function imgOrFallback(imagen, fallbackHtml){
+function imgOrFallback(imagen, fallbackHtml, nombre){
   if(!imagen) return `<div class="svg-fallback">${fallbackHtml}</div>`;
-  return `<img src="${imagen}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  return `<img src="${imagen}" alt="${fallbackHtml.includes('KORVA') ? 'Pala de pádel KORVA' : 'Accesorio KORVA'}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="svg-fallback" style="display:none">${fallbackHtml}</div>`;
 }
 
@@ -485,7 +485,7 @@ function renderProducts(palas, accesorios){
       <div class="pala-card">
         <div class="pala-card-img" onclick="location.href='producto.html?id=${p.id}'">
           ${p.precio_anterior ? `<span class="pala-badge pala-badge-sale">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : (p.badge ? `<span class="pala-badge">${p.badge}</span>` : '')}
-          ${imgOrFallback(p.imagen, svgPala(getPalaColor(p.nombre), p.nombre.split(' ').pop()))}
+          ${imgOrFallback(p.imagen, svgPala(getPalaColor(p.nombre), p.nombre.split(' ').pop()), p.nombre)}
         </div>
         <div class="pala-card-info">
           <div class="pala-card-cat">Pala de pádel</div>
@@ -512,7 +512,7 @@ function renderProducts(palas, accesorios){
     accEl.innerHTML = accesorios.map(p => `
       <div class="acc-card">
         <div class="acc-card-img" onclick="location.href='producto.html?id=${p.id}'">
-          ${imgOrFallback(p.imagen, svgAccesorio())}
+          ${imgOrFallback(p.imagen, svgAccesorio(), p.nombre)}
         </div>
         <div class="acc-card-info">
           <div class="acc-card-name">${p.nombre}</div>
@@ -666,7 +666,7 @@ async function loadOtrasMarcas(){
     const p = map[id];
     if(!p) return '';
     const img = p.imagen
-      ? `<img src="${p.imagen}" style="width:100%;height:100%;object-fit:contain">`
+      ? `<img src="${p.imagen}" alt="${labels[id]}" style="width:100%;height:100%;object-fit:contain">`
       : `<svg width="80" height="130" viewBox="0 0 190 310" fill="none"><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#111110" opacity=".97"/></svg>`;
     return `
       <div class="pala-card" onclick="location.href='producto.html?id=${id}'">
