@@ -16,45 +16,40 @@ html,body{height:100%;overflow:hidden}
 body{font-family:'Sora',sans-serif;background:var(--black);color:var(--white);animation:fadeIn .6s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* HEADER */
-header{position:fixed;top:0;left:0;right:0;z-index:10;padding:2rem 3rem;display:flex;align-items:center;justify-content:center}
-.logo{font-family:'DM Serif Display',serif;font-size:1.2rem;letter-spacing:.2em;color:var(--accent);text-decoration:none}
+header{position:fixed;top:0;left:0;right:0;z-index:10;padding:1.8rem;text-align:center;pointer-events:none}
 
-/* GRID */
 .universe{display:grid;grid-template-columns:repeat(3,1fr);height:100vh}
 
-/* COLUMNAS */
 .brand{position:relative;overflow:hidden;cursor:pointer;text-decoration:none}
-.brand img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94);filter:brightness(.45)}
-.brand:hover img{transform:scale(1.06);filter:brightness(.3)}
+.brand img.bg{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94);filter:brightness(.45)}
+.brand:hover img.bg{transform:scale(1.06);filter:brightness(.3)}
 .brand-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
-.brand-label{font-size:.58rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;opacity:.8}
+.brand-logo{height:32px;width:auto;opacity:.85;margin-bottom:1.4rem}
+.brand-label{font-size:.58rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;opacity:.8}
 .brand-name{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.05;color:var(--white);margin-bottom:1.5rem}
 .brand-name em{color:var(--accent);font-style:italic}
 .brand-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.3);padding:.65rem 1.8rem;transition:all .3s;opacity:0;transform:translateY(8px)}
 .brand:hover .brand-btn{opacity:1;transform:translateY(0);border-color:var(--accent);color:var(--accent)}
 .brand-coming{font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:1rem;opacity:0;transform:translateY(8px);transition:all .3s .05s}
 .brand:hover .brand-coming{opacity:1;transform:translateY(0)}
-
-/* DIVISORES */
 .brand:not(:last-child)::after{content:'';position:absolute;top:10%;right:0;height:80%;width:1px;background:rgba(255,255,255,.08)}
 
-/* FOOTER */
-footer{position:fixed;bottom:0;left:0;right:0;z-index:10;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:center}
+footer{position:fixed;bottom:0;left:0;right:0;z-index:10;padding:1.5rem;text-align:center}
 .footer-copy{font-size:.58rem;color:rgba(255,255,255,.2);letter-spacing:.1em;text-transform:uppercase}
 </style>
 </head>
 <body>
 
 <header>
-  <a href="#" class="logo">KORVA</a>
+  <img src="assets/images/logo-korva-header.png" alt="KORVA" style="height:36px;width:auto;opacity:.9">
 </header>
 
 <div class="universe">
 
   <a href="index.html" class="brand">
-    <img src="assets/images/Lookbook1.webp" alt="KORVA Pádel" fetchpriority="high">
+    <img class="bg" src="assets/images/Lookbook1.webp" alt="KORVA Pádel" fetchpriority="high">
     <div class="brand-overlay">
+      <img class="brand-logo" src="assets/images/logo-korva-header.png" alt="KORVA">
       <span class="brand-label">Alto rendimiento</span>
       <div class="brand-name">KORVA<br><em>Pádel</em></div>
       <div class="brand-btn">Entrar</div>
@@ -62,8 +57,9 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:10;padding:1.5rem 3rem;dis
   </a>
 
   <a href="404.html" class="brand">
-    <img src="assets/images/Lookbook2.webp" alt="KORVA Pickleball" loading="lazy">
+    <img class="bg" src="assets/images/univ-pick.webp" alt="KORVA Pickleball" loading="lazy">
     <div class="brand-overlay">
+      <img class="brand-logo" src="assets/images/logo-korva-header.png" alt="KORVA">
       <span class="brand-label">Alto rendimiento</span>
       <div class="brand-name">KORVA<br><em>Pickleball</em></div>
       <div class="brand-btn">Entrar</div>
@@ -72,8 +68,9 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:10;padding:1.5rem 3rem;dis
   </a>
 
   <a href="404.html" class="brand">
-    <img src="assets/images/Lookbook3.webp" alt="KORVA Football Flag" loading="lazy">
+    <img class="bg" src="assets/images/univ-flag.webp" alt="KORVA Football Flag" loading="lazy">
     <div class="brand-overlay">
+      <img class="brand-logo" src="assets/images/logo-korva-header.png" alt="KORVA">
       <span class="brand-label">Alto rendimiento</span>
       <div class="brand-name">KORVA<br><em>Football Flag</em></div>
       <div class="brand-btn">Entrar</div>
