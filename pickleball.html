@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>KORVA Pickleball — Alto Rendimiento</title>
+<meta name="description" content="KORVA Pickleball, material de alto rendimiento para jugadores exigentes.">
+<meta property="og:title" content="KORVA Pickleball — Alto Rendimiento">
+<meta property="og:description" content="Material de pickleball de alto rendimiento. Diseñado para quienes no aceptan límites.">
+<meta property="og:url" content="https://korva-padel.vercel.app/pickleball.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"></noscript>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fafaf8;--g100:#f4f3f0;--g200:#e8e6e1;
+  --g400:#a09e98;--g600:#6b6a66;--g800:#2c2b28;
+  --accent:#2d7dd2;--accent-soft:#e8f1fb;
+}
+html{overflow-x:clip}
+body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.top-banner span{color:var(--accent)}
+
+nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#2d7dd2;border-bottom:1px solid rgba(255,255,255,.15)}
+.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--white);text-decoration:none}
+.nav-links{display:flex;gap:1.2rem;list-style:none;margin-left:-50px}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-access{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.universo-wrap{position:relative;list-style:none}
+.universo-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:none;border:none;cursor:pointer;padding:0}
+.universo-tooltip{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--black);border:1px solid rgba(45,125,210,.25);padding:.6rem 0;display:flex;flex-direction:column;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease;min-width:180px}
+.universo-wrap:hover .universo-tooltip{opacity:1;pointer-events:auto}
+.universo-tooltip a{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;padding:.7rem 1.4rem}
+.universo-tooltip a:hover{color:var(--accent);background:rgba(45,125,210,.06)}
+.universo-tooltip a+a{border-top:1px solid rgba(255,255,255,.08)}
+.nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.3);color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+
+/* HERO PLACEHOLDER */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:9rem 4rem 5rem;background:var(--black);text-align:center}
+.hero-coming{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,6rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem}
+.hero-coming em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:.9rem;color:rgba(255,255,255,.4);letter-spacing:.15em;text-transform:uppercase;font-weight:300}
+
+/* FOOTER */
+footer{background:var(--black);padding:6rem 4rem 3rem}
+.footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
+.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
+.footer-nav{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--accent)}
+.footer-legal{display:flex;justify-content:center;gap:2.5rem;margin-bottom:3rem}
+.footer-legal a{font-size:.62rem;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.footer-social{display:flex;justify-content:center;gap:1.8rem;margin-bottom:4rem}
+.footer-social a{display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.footer-social a:hover{color:var(--accent)}
+.social-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <span style="flex:1"></span>
+  <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 24 meses</span>
+  <span style="flex:1;text-align:right;color:#ffffff;padding-right:75px">ESP | CAT | ENG</span>
+</div>
+
+<nav>
+  <a href="pickleball.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pickleball" style="height:50px;width:auto;display:block"></a>
+  <ul class="nav-links">
+    <li class="universo-wrap">
+      <button class="universo-btn">Universo KORVA</button>
+      <div class="universo-tooltip">
+        <a href="404.html">KORVA Pickleball</a>
+        <a href="404.html">KORVA Football Flag</a>
+        <a href="index.html">KORVA Pádel</a>
+      </div>
+    </li>
+    <li style="color:rgba(255,255,255,.3);opacity:1">|</li>
+    <li><a href="#">Packs</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="#" style="border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-decoration:none">Tienda</a>
+    <button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
+    <a href="#" class="nav-cart">
+      <span style="position:relative;display:inline-flex;align-items:center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </span>
+      Carrito
+    </a>
+  </div>
+</nav>
+
+<main>
+<section id="hero">
+  <div>
+    <div class="hero-coming">KORVA<br><em>Pickleball</em></div>
+    <div class="hero-sub">Próximamente · Alto rendimiento</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name">KORVA Pickleball</span>
+    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+  </div>
+  <div class="footer-nav">
+    <a href="universe.html">Universo KORVA</a>
+    <a href="#">Packs</a>
+  </div>
+  <div class="footer-social">
+    <a href="#" aria-label="Instagram">
+      <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+      Instagram
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)" stroke="none"/></svg>
+      YouTube
+    </a>
+  </div>
+  <div class="footer-legal">
+    <a href="#">Aviso legal</a>
+    <a href="#">Privacidad</a>
+    <a href="#">Cookies</a>
+  </div>
+  <div class="footer-bottom">© 2026 KORVA Pickleball — Todos los derechos reservados</div>
+</footer>
+
+<script>
+function openLogin(){}
+document.querySelectorAll('a[href]').forEach(a=>{
+  const href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.target==='_blank') return;
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    document.body.style.transition='opacity .3s ease';
+    document.body.style.opacity='0';
+    setTimeout(()=>location.href=href,300);
+  });
+});
+</script>
+</body>
+</html>
