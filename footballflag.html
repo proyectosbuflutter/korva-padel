@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>KORVA Football Flag — Alto Rendimiento</title>
-<meta name="description" content="KORVA Pickleball, material de alto rendimiento para jugadores exigentes.">
-<meta property="og:title" content="KORVA Pickleball — Alto Rendimiento">
-<meta property="og:description" content="Material de pickleball de alto rendimiento. Diseñado para quienes no aceptan límites.">
-<meta property="og:url" content="https://korva-padel.vercel.app/pickleball.html">
+<meta name="description" content="KORVA Football Flag, material de alto rendimiento para jugadores exigentes.">
+<meta property="og:title" content="KORVA Football Flag — Alto Rendimiento">
+<meta property="og:description" content="Material de football flag de alto rendimiento. Diseñado para quienes no aceptan límites.">
+<meta property="og:url" content="https://korva-padel.vercel.app/footballflag.html">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,9 +25,11 @@ html{overflow-x:clip}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;animation:fadeIn .4s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
+/* BANNER */
 .top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .top-banner span{color:var(--accent)}
 
+/* NAV */
 nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c0392b;border-bottom:1px solid rgba(255,255,255,.15)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--white);text-decoration:none}
 .nav-links{display:flex;gap:1.2rem;list-style:none;margin-left:-50px}
@@ -43,11 +45,45 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .universo-tooltip a+a{border-top:1px solid rgba(255,255,255,.08)}
 .nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.3);color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 
-/* HERO PLACEHOLDER */
-#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:9rem 4rem 5rem;background:var(--black);text-align:center}
-.hero-coming{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,6rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem}
-.hero-coming em{font-style:italic;color:var(--accent)}
-.hero-sub{font-size:.9rem;color:rgba(255,255,255,.4);letter-spacing:.15em;text-transform:uppercase;font-weight:300}
+/* VIDEO HERO */
+.shop-video{position:relative;margin-top:56px}
+.shop-video video{width:100%;display:block;max-height:650px;object-fit:cover}
+.shop-video-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:3rem;gap:1rem}
+.shop-video-overlay img{height:clamp(3rem,8vw,5rem);width:auto;display:block}
+.shop-video-overlay p{font-size:.72rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:1rem;line-height:2;text-align:center}
+
+/* MARQUESINA */
+.marquee-bar{display:flex;align-items:stretch;width:100%;overflow:hidden}
+.marquee-left{width:25%;flex-shrink:0;background:var(--black);display:flex;align-items:center;justify-content:center;padding:28px 16px}
+.marquee-left span{font-family:'DM Serif Display',serif;font-size:1.2rem;color:rgba(255,255,255,.85);text-align:center;line-height:1.4;letter-spacing:.04em}
+.marquee-right{width:75%;background:var(--g800);position:relative;overflow:hidden;padding:28px 0}
+.marquee-right::before,.marquee-right::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.marquee-right::before{left:0;background:linear-gradient(to right,var(--g800),transparent)}
+.marquee-right::after{right:0;background:linear-gradient(to left,var(--g800),transparent)}
+.marquee-track{display:flex;gap:60px;animation:marquee 28s linear infinite;width:max-content}
+.marquee-track span{font-family:'DM Serif Display',serif;font-size:1rem;color:rgba(255,255,255,.5);flex-shrink:0;letter-spacing:.06em}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* CATEGORÍAS */
+.cat-section{padding:6rem 0}
+.cat-header{padding:0 4rem 3rem}
+.cat-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem;display:block}
+.cat-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1}
+
+.cat-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:420px 380px;gap:4px}
+.cat-card{position:relative;overflow:hidden;cursor:pointer;background:#141412}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94);filter:brightness(.65)}
+.cat-card:hover img{transform:scale(1.04);filter:brightness(.45)}
+.cat-info{position:absolute;bottom:0;left:0;right:0;padding:1.8rem;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 100%)}
+.cat-name{font-family:'DM Serif Display',serif;font-size:1.6rem;color:#fff;margin-bottom:.3rem;line-height:1.1}
+.cat-sub{font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;display:block}
+.cat-card-a{grid-column:1;grid-row:1}
+.cat-card-b{grid-column:2;grid-row:1}
+.cat-card-c{grid-column:3;grid-row:1}
+.cat-card-d{grid-column:1/3;grid-row:2}
+.cat-card-e{grid-column:3;grid-row:2}
+.cat-card-a .cat-name{font-size:2.2rem}
+.cat-card-d .cat-name{font-size:2rem}
 
 /* FOOTER */
 footer{background:var(--black);padding:6rem 4rem 3rem}
@@ -80,8 +116,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <li class="universo-wrap">
       <button class="universo-btn">Universo KORVA</button>
       <div class="universo-tooltip">
-        <a href="404.html">KORVA Pickleball</a>
-        <a href="404.html">KORVA Football Flag</a>
+        <a href="pickleball.html">KORVA Pickleball</a>
+        <a href="footballflag.html">KORVA Football Flag</a>
         <a href="index.html">KORVA Pádel</a>
       </div>
     </li>
@@ -103,22 +139,98 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 </nav>
 
 <main>
-<section id="hero">
-  <div>
-    <div class="hero-coming">KORVA<br><em>Football Flag</em></div>
-    <div class="hero-sub">Próximamente · Alto rendimiento</div>
+
+<div class="shop-video">
+  <video autoplay muted loop playsinline>
+    <source src="assets/video/footflag.mp4" type="video/mp4">
+  </video>
+  <div class="shop-video-overlay">
+    <img src="assets/images/logo-korva-header.png" alt="KORVA Football Flag">
+    <p>Juega duro.<br>Sin contacto. Sin límites.</p>
   </div>
-</section>
+</div>
+
+<div class="marquee-bar">
+  <div class="marquee-left"><span>Todo lo que necesitas en la cancha</span></div>
+  <div class="marquee-right">
+    <div class="marquee-track">
+      <span>Cinturones Flag</span><span>·</span>
+      <span>Balones certificados</span><span>·</span>
+      <span>Guantes de agarre</span><span>·</span>
+      <span>Starter Kit completo</span><span>·</span>
+      <span>Material de entrenamiento</span><span>·</span>
+      <span>Envío 24h</span><span>·</span>
+      <span>Cinturones Flag</span><span>·</span>
+      <span>Balones certificados</span><span>·</span>
+      <span>Guantes de agarre</span><span>·</span>
+      <span>Starter Kit completo</span><span>·</span>
+      <span>Material de entrenamiento</span><span>·</span>
+      <span>Envío 24h</span><span>·</span>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section">
+  <div class="cat-header">
+    <span class="cat-label">Colección 2026</span>
+    <div class="cat-title">Elige tu categoría</div>
+  </div>
+  <div class="cat-grid">
+
+    <div class="cat-card cat-card-a">
+      <img src="assets/images/football/foot1.webp" alt="Cinturones Flag" loading="lazy">
+      <div class="cat-info">
+        <span class="cat-sub">Competición</span>
+        <div class="cat-name">Cinturones Flag</div>
+      </div>
+    </div>
+
+    <div class="cat-card cat-card-b">
+      <img src="assets/images/football/foot2.webp" alt="Balón Football Flag" loading="lazy">
+      <div class="cat-info">
+        <span class="cat-sub">Certificado</span>
+        <div class="cat-name">Balón Flag Football</div>
+      </div>
+    </div>
+
+    <div class="cat-card cat-card-c">
+      <img src="assets/images/football/foot3.webp" alt="Guantes Football Flag" loading="lazy">
+      <div class="cat-info">
+        <span class="cat-sub">Máximo agarre</span>
+        <div class="cat-name">Guantes</div>
+      </div>
+    </div>
+
+    <div class="cat-card cat-card-d">
+      <img src="assets/images/football/foot4.webp" alt="Starter Kit Football Flag" loading="lazy">
+      <div class="cat-info">
+        <span class="cat-sub">Todo incluido</span>
+        <div class="cat-name">Starter Kit</div>
+      </div>
+    </div>
+
+    <div class="cat-card cat-card-e">
+      <img src="assets/images/football/foot5.webp" alt="Material de Entrenamiento Football Flag" loading="lazy">
+      <div class="cat-info">
+        <span class="cat-sub">Alto rendimiento</span>
+        <div class="cat-name">Material de Entrenamiento</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </main>
 
 <footer>
   <div class="footer-brand">
     <span class="footer-brand-name">KORVA Football Flag</span>
-    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la cancha.</p>
   </div>
   <div class="footer-nav">
     <a href="universe.html">Universo KORVA</a>
     <a href="#">Packs</a>
+    <a href="#">Blog</a>
   </div>
   <div class="footer-social">
     <a href="#" aria-label="Instagram">
