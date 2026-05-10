@@ -81,7 +81,9 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .palas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-bottom:6rem}
 .pala-card{display:flex;flex-direction:column;cursor:pointer}
 .pala-card-img{background:#141412;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.pala-card-img::after{content:'';position:absolute;inset:0;background:rgba(200,169,110,0);transition:background .4s ease;pointer-events:none}
 .pala-card:hover .pala-card-img{transform:scale(1.02)}
+.pala-card:hover .pala-card-img::after{background:rgba(200,169,110,.08)}
 .pala-card-img img{width:100%;height:100%;object-fit:cover;display:block}
 .pala-card-img .svg-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .pala-badge{position:absolute;top:1rem;left:1rem;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;background:var(--accent);color:var(--white);z-index:1}
@@ -94,8 +96,9 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .pala-card-bottom{display:flex;align-items:center;justify-content:space-between}
 .pala-card-price{font-family:'DM Serif Display',serif;font-size:1.3rem}
 .pala-card-price-old{font-size:.75rem;color:var(--g400);text-decoration:line-through;margin-right:.4rem}
-.pala-card-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.65rem 1.2rem;cursor:pointer;transition:background .2s}
-.pala-card-btn:hover{background:var(--g800)}
+.pala-card-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.65rem 1.2rem;cursor:pointer;transition:all .25s}
+.pala-card-btn:hover{background:var(--accent);transform:translateY(-1px)}
+.pala-card:hover .pala-card-btn{background:var(--accent)}
 
 /* DIVISOR */
 .shop-divider{display:flex;align-items:center;gap:2rem;margin-bottom:3rem}
@@ -106,14 +109,17 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .accesorios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.8rem;margin-bottom:6rem}
 .acc-card{display:flex;flex-direction:column;cursor:pointer}
 .acc-card-img{background:#141412;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.acc-card-img::after{content:'';position:absolute;inset:0;background:rgba(200,169,110,0);transition:background .4s ease;pointer-events:none}
 .acc-card:hover .acc-card-img{transform:scale(1.03)}
+.acc-card:hover .acc-card-img::after{background:rgba(200,169,110,.08)}
 .acc-card-img img{width:100%;height:100%;object-fit:cover;display:block}
 .acc-card-img .svg-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .acc-card-info{padding:1rem 0 0}
 .acc-card-name{font-family:'DM Serif Display',serif;font-size:1.1rem;line-height:1.1;margin-bottom:.5rem}
 .acc-card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem}
 .acc-card-price{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--black)}
-.acc-card-btn{font-family:'Sora',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:1px solid var(--g200);padding:.4rem .8rem;cursor:pointer;transition:all .2s}
+.acc-card-btn{font-family:'Sora',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--g400);border:1px solid var(--g200);padding:.4rem .8rem;cursor:pointer;transition:all .25s}
+.acc-card:hover .acc-card-btn{border-color:var(--accent);color:var(--accent)}
 .acc-card-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
 
 /* FOOTER */
