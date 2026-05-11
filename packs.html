@@ -141,16 +141,38 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer}
 
 @media(max-width:900px){
-  nav{padding:1.2rem 1.5rem}
+  .top-banner{display:none}
+  nav{top:0;padding:1rem 1.2rem}
   .nav-links{display:none}
-  .breadcrumb{padding:7rem 1.5rem 0}
-  .pack-wrap{grid-template-columns:1fr;gap:3rem;padding:2rem 1.5rem 4rem}
+  .nav-access{display:none}
+  .nav-tienda{display:none !important}
+  .nav-hamburger{display:flex !important}
+  .nav-cart{padding:.5rem .7rem;font-size:.58rem;letter-spacing:.06em}
+  .nav-cart span:last-child{display:none}
+  .breadcrumb{padding:5rem 1.2rem 0}
+  .pack-wrap{grid-template-columns:1fr;gap:2rem;padding:2rem 1.2rem 4rem}
   .gallery{position:static}
-  footer{padding:4rem 1.5rem 2rem}
-  .footer-nav{flex-wrap:wrap;gap:1.5rem}
-  .modal-box{padding:2.5rem 1.5rem}
-  .cookie-banner{padding:1.2rem 1.5rem;flex-direction:column;align-items:flex-start}
+  .pack-buy-row{flex-direction:column;align-items:flex-start;gap:1rem}
+  .btn-cart{width:100%}
+  footer{padding:3.5rem 1.2rem 2rem}
+  .footer-nav{flex-wrap:wrap;gap:1.2rem;justify-content:center}
+  .footer-social{gap:1.2rem}
+  .modal-box{padding:2rem 1.2rem;margin:.8rem}
+  .cookie-banner{padding:1rem 1.2rem;flex-direction:column;align-items:flex-start;gap:1rem}
 }
+
+/* HAMBURGUESA */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;margin-left:.5rem}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--black);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;opacity:0;transition:opacity .3s ease}
+.nav-mobile-menu.open{opacity:1}
+.nav-mobile-menu a{font-family:'Sora',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.nav-mobile-menu a:hover{color:var(--accent)}
+.nav-mobile-menu .nav-mobile-divider{width:30px;height:1px;background:rgba(255,255,255,.1)}
+.nav-mobile-cart{display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:var(--black) !important;padding:.7rem 2rem;font-family:'Sora',sans-serif !important;font-size:.65rem !important;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-top:.8rem}
 body{animation:fadeIn .4s ease;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
@@ -176,8 +198,8 @@ body{animation:fadeIn .4s ease;}
     <li class="universo-wrap">
       <button class="universo-btn">Universo KORVA</button>
       <div class="universo-tooltip">
-        <a href="404.html">KORVA Pickleball</a>
-        <a href="404.html">KORVA Football Flag</a>
+        <a href="pickleball.html">KORVA Pickleball</a>
+        <a href="footballflag.html">KORVA Football Flag</a>
         <a href="index.html">KORVA Pádel</a>
       </div>
     </li>
@@ -192,7 +214,7 @@ body{animation:fadeIn .4s ease;}
     
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <a href="tienda.html" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
+    <a href="tienda.html" class="nav-tienda" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
 <button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
     <a href="carrito.html" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
@@ -201,6 +223,9 @@ body{animation:fadeIn .4s ease;}
       </span>
       Carrito
     </a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
