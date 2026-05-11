@@ -727,7 +727,7 @@ async function handlePayment(){
   const coSub = coCart.reduce((s,i) => s + i.precio * i.qty, 0);
   const coEnvioVal = coGetEnvio(coSub);
   btn.textContent = 'Pagar ahora — '+(coSub+coEnvioVal).toFixed(2).replace('.',',')+'€';
-  openProximamente();
+  window.location.href = 'confirmacion.html';
 }
 
 // STEPPER

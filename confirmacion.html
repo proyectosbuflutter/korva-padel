@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>KORVA — Pedido confirmado</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"></noscript>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fafaf8;--g100:#f4f3f0;--g200:#e8e6e1;
+  --g400:#a09e98;--g600:#6b6a66;--g800:#2c2b28;
+  --accent:#c8a96e;--accent-soft:#f5ede0;
+}
+html{overflow-x:clip}
+body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6}
+
+/* NAV */
+.top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.top-banner span{color:var(--accent)}
+nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;border-bottom:1px solid var(--g200)}
+.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+.nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+
+/* WRAP */
+.confirm-wrap{max-width:680px;margin:0 auto;padding:10rem 2rem 6rem;text-align:center}
+
+/* ICONO */
+.confirm-icon{width:72px;height:72px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem}
+.confirm-icon svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* TEXTOS */
+.confirm-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+.confirm-title{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3rem);line-height:1.1;color:var(--black);margin-bottom:1rem}
+.confirm-sub{font-size:.88rem;color:var(--g600);line-height:1.7;margin-bottom:.5rem}
+.confirm-num{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--g100);padding:.5rem 1.2rem;margin:1.5rem 0 2.5rem;color:var(--black)}
+
+/* RESUMEN */
+.confirm-summary{background:var(--g100);padding:2rem;text-align:left;margin-bottom:2.5rem}
+.confirm-summary-title{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g400);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid var(--g200)}
+.confirm-items{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--g200)}
+.confirm-item{display:flex;justify-content:space-between;align-items:center;font-size:.82rem}
+.confirm-item-name{color:var(--black);font-weight:500}
+.confirm-item-qty{color:var(--g400);font-size:.72rem;margin-left:.4rem}
+.confirm-item-price{font-family:'DM Serif Display',serif;font-size:.95rem}
+.confirm-row{display:flex;justify-content:space-between;font-size:.78rem;padding:.3rem 0}
+.confirm-row-label{color:var(--g600)}
+.confirm-row-val{font-weight:600}
+.confirm-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:.8rem;border-top:1.5px solid var(--black);margin-top:.5rem}
+.confirm-total-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.confirm-total-val{font-family:'DM Serif Display',serif;font-size:1.6rem}
+
+/* TRUST */
+.confirm-trust{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
+.confirm-trust-item{display:flex;align-items:center;gap:.5rem;font-size:.65rem;color:var(--g400)}
+.confirm-trust-item svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* BOTONES */
+.confirm-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:1rem 2.5rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s}
+.btn-primary:hover{background:var(--g800)}
+.btn-secondary{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--black);border:1px solid var(--g200);padding:1rem 2.5rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:border-color .2s}
+.btn-secondary:hover{border-color:var(--black)}
+
+/* FOOTER */
+footer{background:var(--black);padding:6rem 4rem 3rem}
+.footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
+.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
+.footer-nav{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--accent)}
+.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+
+@media(max-width:900px){
+  .top-banner{display:none}
+  nav{top:0;padding:1rem 1.2rem}
+  .confirm-wrap{padding:7rem 1.2rem 4rem}
+  .confirm-trust{gap:1.2rem}
+  .confirm-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  footer{padding:4rem 1.2rem 2rem}
+  .footer-nav{flex-wrap:wrap;gap:1.2rem;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <span style="flex:1"></span>
+  <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
+  <span style="flex:1"></span>
+</div>
+<nav>
+  <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
+  <a href="tienda.html" class="nav-cart">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    Seguir comprando
+  </a>
+</nav>
+
+<main>
+<div class="confirm-wrap">
+
+  <div class="confirm-icon">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+
+  <div class="confirm-label">Pedido recibido</div>
+  <h1 class="confirm-title">¡Gracias por<br>tu compra!</h1>
+  <p class="confirm-sub">Hemos recibido tu pedido correctamente.<br>En breve recibirás más información.</p>
+  <div class="confirm-num" id="confirm-num">Pedido #——</div>
+
+  <div class="confirm-summary">
+    <div class="confirm-summary-title">Resumen del pedido</div>
+    <div class="confirm-items" id="confirm-items"></div>
+    <div class="confirm-row"><span class="confirm-row-label">Subtotal</span><span class="confirm-row-val" id="confirm-subtotal">—</span></div>
+    <div class="confirm-row"><span class="confirm-row-label">Envío</span><span class="confirm-row-val" id="confirm-envio">—</span></div>
+    <div class="confirm-total">
+      <span class="confirm-total-label">Total</span>
+      <span class="confirm-total-val" id="confirm-total">—</span>
+    </div>
+  </div>
+
+  <div class="confirm-trust">
+    <div class="confirm-trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Compra segura SSL
+    </div>
+    <div class="confirm-trust-item">
+      <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Envío en 2–3 días
+    </div>
+    <div class="confirm-trust-item">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
+      Devolución 30 días
+    </div>
+  </div>
+
+  <div class="confirm-btns">
+    <a href="tienda.html" class="btn-primary">Seguir comprando</a>
+    <a href="index.html" class="btn-secondary">Volver al inicio</a>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name">KORVA</span>
+    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+  </div>
+  <div class="footer-nav">
+    <a href="tienda.html">Tienda</a>
+    <a href="index.html#steps">Tecnología</a>
+    <a href="index.html#accordion">Materiales</a>
+    <a href="index.html#packs">Packs</a>
+  </div>
+  <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
+</footer>
+
+<script>
+const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+
+// Número de pedido aleatorio
+const num = 'KRV-' + Date.now().toString().slice(-6);
+document.getElementById('confirm-num').textContent = 'Pedido #' + num;
+
+// Calcular envío
+function getEnvio(sub){ return sub >= 120 ? 0 : 6.95; }
+
+// Renderizar items
+const itemsEl = document.getElementById('confirm-items');
+if(cart.length === 0){
+  itemsEl.innerHTML = '<div style="font-size:.82rem;color:var(--g400)">No hay productos.</div>';
+} else {
+  itemsEl.innerHTML = cart.map(i => `
+    <div class="confirm-item">
+      <div><span class="confirm-item-name">${i.nombre}</span><span class="confirm-item-qty">× ${i.qty}</span></div>
+      <div class="confirm-item-price">${(i.precio * i.qty).toFixed(2).replace('.',',')}€</div>
+    </div>
+  `).join('');
+}
+
+const sub = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+const envio = getEnvio(sub);
+const total = sub + envio;
+
+document.getElementById('confirm-subtotal').textContent = sub.toFixed(2).replace('.',',') + '€';
+document.getElementById('confirm-envio').textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',') + '€';
+document.getElementById('confirm-total').textContent = total.toFixed(2).replace('.',',') + '€';
+
+// Vaciar carrito
+localStorage.removeItem('korva-cart');
+</script>
+</body>
+</html>
