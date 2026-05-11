@@ -437,6 +437,10 @@ body{animation:fadeIn .4s ease;}
   <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
+<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <div class="cookie-banner" id="cookie-banner">
   <p class="cookie-text">Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="#" onclick="openLegal('cookies');return false">Política de cookies</a>.</p>
   <div class="cookie-btns">
@@ -578,7 +582,7 @@ function renderProducts(palas, accesorios){
                 <span class="pala-card-price">${p.precio}€</span>
                 ${p.precio_anterior ? `<span style="font-size:.62rem;color:#4a9d6f;font-weight:600">Ahorras ${Math.floor(p.precio_anterior-p.precio)}€</span>` : ''}
               </div>
-              ${p.stock !== null && p.stock !== undefined && p.stock <= 5 && p.stock > 0 ? `<div style="font-family:'Sora',sans-serif;font-size:.6rem;color:#c0622a;font-weight:600;margin-top:.3rem">⚡ Solo quedan ${p.stock}</div>` : ''}
+              ${p.stock !== null && p.stock !== undefined && p.stock <= 5 && p.stock > 0 ? `<div style="font-family:'Sora',sans-serif;font-size:.75rem;color:#c0622a;font-weight:700;margin-top:.4rem">⚡ Solo quedan ${p.stock}</div>` : ''}
               ${p.stock === 0 ? `<div style="font-family:'Sora',sans-serif;font-size:.6rem;color:#c0622a;font-weight:600;margin-top:.3rem">Agotado</div>` : ''}
             </div>
             <button class="pala-card-btn" ${p.stock === 0 ? 'disabled style="opacity:.4;cursor:not-allowed"' : ''} onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}','${p.imagen||''}')">+ Añadir</button>
@@ -819,6 +823,10 @@ if(urlCat){
   loadOtrasMarcas();
 loadProducts();
 }
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('back-to-top');
+  if(btn) btn.classList.toggle('visible',window.scrollY>400);
+});
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const total = cart.reduce((s,i)=>s+i.qty,0);
