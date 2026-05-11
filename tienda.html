@@ -93,7 +93,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .pala-card-cat{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
 .pala-card-name{font-family:'DM Serif Display',serif;font-size:1.6rem;line-height:1.05;margin-bottom:1rem}
 .pala-card-specs{font-size:.65rem;color:var(--g400);margin-bottom:1.2rem;line-height:1.6}
-.pala-card-bottom{display:flex;align-items:center;justify-content:space-between}
+.pala-card-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
 .pala-card-price{font-family:'DM Serif Display',serif;font-size:1.3rem}
 .pala-card-price-old{font-size:.75rem;color:var(--g400);text-decoration:line-through;margin-right:.4rem}
 .pala-card-btn{font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.65rem 1.2rem;cursor:pointer;transition:all .25s}
@@ -553,7 +553,10 @@ function renderProducts(palas, accesorios){
           <div class="pala-card-bottom">
             <div>
               ${p.precio_anterior ? `<span class="pala-card-price-old">${p.precio_anterior}€</span>` : ''}
-              <span class="pala-card-price">${p.precio}€</span>
+              <div style="display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap">
+                <span class="pala-card-price">${p.precio}€</span>
+                ${p.precio_anterior ? `<span style="font-size:.62rem;color:#4a9d6f;font-weight:600">Ahorras ${Math.floor(p.precio_anterior-p.precio)}€</span>` : ''}
+              </div>
             </div>
             <button class="pala-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}','${p.imagen||''}')">+ Añadir</button>
           </div>
@@ -631,8 +634,10 @@ async function loadPacks(){
         <div class="pala-card-bottom">
           <div>
             ${precioBase ? `<span class="pala-card-price-old">${precioBase}€</span>` : ''}
-            <span class="pala-card-price">${precio}€</span>
-            ${ahorro ? `<span style="font-size:.62rem;color:#4a9d6f;margin-left:.5rem;font-weight:600">Ahorras ${ahorro}€</span>` : ''}
+            <div style="display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap">
+              <span class="pala-card-price">${precio}€</span>
+              ${ahorro ? `<span style="font-size:.62rem;color:#4a9d6f;font-weight:600">Ahorras ${ahorro}€</span>` : ''}
+            </div>
           </div>
           <button class="pala-card-btn" onclick="event.stopPropagation();addToCart('pack-${p.id}','${p.nombre}',${precio},'','')">+ Añadir</button>
         </div>
