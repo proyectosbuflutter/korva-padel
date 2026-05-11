@@ -100,6 +100,17 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .pala-card-btn:hover{background:var(--accent);transform:translateY(-1px)}
 .pala-card:hover .pala-card-btn{background:var(--accent)}
 
+/* ENVÍO GRATIS BADGE */
+.badge-envio{position:absolute;bottom:.6rem;left:.6rem;background:#4a9d6f;color:#fff;font-family:'Sora',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;z-index:2;cursor:default}
+.badge-envio-tooltip{position:absolute;bottom:2.4rem;left:.6rem;background:var(--black);color:#fff;font-family:'Sora',sans-serif;font-size:.62rem;padding:.5rem .8rem;white-space:nowrap;z-index:3;opacity:0;pointer-events:none;transition:opacity .2s;transform:translateY(4px)}
+.badge-envio-tooltip::after{content:'';position:absolute;top:100%;left:1rem;border:5px solid transparent;border-top-color:var(--black)}
+.pala-card-img:hover .badge-envio-tooltip{opacity:1;transform:translateY(0)}
+
+/* VOLVER ARRIBA */
+.back-to-top{position:fixed;bottom:1.5rem;left:1.5rem;width:42px;height:42px;background:var(--black);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);z-index:90}
+.back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.back-to-top:hover{background:var(--accent)}
+
 /* DIVISOR */
 .shop-divider{display:flex;align-items:center;gap:2rem;margin-bottom:3rem}
 .shop-divider-line{flex:1;height:1px;background:var(--g200)}
@@ -159,6 +170,11 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .modal-field textarea{min-height:100px;line-height:1.7}
 .modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .modal-submit:hover{background:var(--g800)}
+
+/* VOLVER ARRIBA */
+.back-to-top{position:fixed;bottom:1.5rem;left:1.5rem;width:42px;height:42px;background:var(--black);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);z-index:90}
+.back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.back-to-top:hover{background:var(--accent)}
 
 /* COOKIE */
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
@@ -544,6 +560,7 @@ function renderProducts(palas, accesorios){
       <div class="pala-card">
         <div class="pala-card-img" onclick="location.href='producto.html?id=${p.id}'">
           ${p.precio_anterior ? `<span class="pala-badge pala-badge-sale">−${Math.round((1-p.precio/p.precio_anterior)*100)}%</span>` : (p.badge ? `<span class="pala-badge">${p.badge}</span>` : '')}
+          ${p.precio >= 120 ? `<span class="badge-envio">Envío gratis<span class="badge-envio-tooltip">¡Envío gratis a Península!</span></span>` : ''}
           ${imgOrFallback(p.imagen, svgPala(getPalaColor(p.nombre), p.nombre.split(' ').pop()), p.nombre)}
         </div>
         <div class="pala-card-info">
@@ -561,8 +578,10 @@ function renderProducts(palas, accesorios){
                 <span class="pala-card-price">${p.precio}€</span>
                 ${p.precio_anterior ? `<span style="font-size:.62rem;color:#4a9d6f;font-weight:600">Ahorras ${Math.floor(p.precio_anterior-p.precio)}€</span>` : ''}
               </div>
+              ${p.stock !== null && p.stock !== undefined && p.stock <= 5 && p.stock > 0 ? `<div style="font-family:'Sora',sans-serif;font-size:.6rem;color:#c0622a;font-weight:600;margin-top:.3rem">⚡ Solo quedan ${p.stock}</div>` : ''}
+              ${p.stock === 0 ? `<div style="font-family:'Sora',sans-serif;font-size:.6rem;color:#c0622a;font-weight:600;margin-top:.3rem">Agotado</div>` : ''}
             </div>
-            <button class="pala-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}','${p.imagen||''}')">+ Añadir</button>
+            <button class="pala-card-btn" ${p.stock === 0 ? 'disabled style="opacity:.4;cursor:not-allowed"' : ''} onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.peso||''}','${p.balance||''}','${p.imagen||''}')">+ Añadir</button>
           </div>
         </div>
       </div>
