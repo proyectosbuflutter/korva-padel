@@ -727,6 +727,20 @@ async function handlePayment(){
   const coSub = coCart.reduce((s,i) => s + i.precio * i.qty, 0);
   const coEnvioVal = coGetEnvio(coSub);
   btn.textContent = 'Pagar ahora — '+(coSub+coEnvioVal).toFixed(2).replace('.',',')+'€';
+  // Newsletter
+  const newsletter = document.getElementById('newsletter');
+  if(newsletter && newsletter.checked){
+    const emailVal = document.getElementById('email') ? document.getElementById('email').value : '';
+    fetch('https://formsubmit.co/proyectosbuflutter@gmail.com', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        _subject: 'KORVA — Nuevo suscriptor newsletter',
+        email: emailVal,
+        mensaje: 'El usuario ha marcado la casilla de novedades durante el checkout.'
+      })
+    }).catch(()=>{});
+  }
   window.location.href = 'confirmacion.html';
 }
 
