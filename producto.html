@@ -630,6 +630,18 @@ async function loadProduct(){
   // SVG
   document.getElementById('svg-modelo') && (document.getElementById('svg-modelo').textContent = p.nombre.split(' ').slice(0,2).join(' '));
 
+  // SEO dinámico
+  const seoTitle = p.nombre + ' — KORVA Pádel de Alto Rendimiento';
+  const seoDesc = p.descripcion || 'Pala de pádel KORVA de alto rendimiento. Fibra de carbono, núcleo EVA HR y geometría de precisión milimétrica.';
+  const seoImg = p.imagen || 'https://korva-padel.vercel.app/assets/images/korva-12k.jpg';
+  const seoUrl = 'https://korva-padel.vercel.app/producto.html?id=' + p.id;
+  document.title = seoTitle;
+  document.querySelector('meta[name="description"]').setAttribute('content', seoDesc);
+  document.querySelector('meta[property="og:title"]').setAttribute('content', seoTitle);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', seoDesc);
+  document.querySelector('meta[property="og:image"]').setAttribute('content', seoImg);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', seoUrl);
+
   // Info
   document.getElementById('prod-cat').textContent = p.categoria;
   document.getElementById('prod-name').textContent = p.nombre;
@@ -752,7 +764,8 @@ async function loadProduct(){
       "reviewCount": "24"
     }
   };
-  document.getElementById('schema-producto').textContent = JSON.stringify(schema);
+  const schemaEl = document.getElementById('schema-producto');
+  if(schemaEl) schemaEl.textContent = JSON.stringify(schema);
 }
 
 function setGalleryImg(src, thumb){
