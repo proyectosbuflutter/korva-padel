@@ -24,10 +24,8 @@
 }
 html{overflow-x:clip}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
-
 .top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .top-banner span{color:var(--accent)}
-
 nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
 .nav-links{display:flex;gap:1.2rem;list-style:none;margin-left:-50px}
@@ -42,37 +40,30 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .universo-tooltip a:hover{color:var(--accent);background:rgba(200,169,110,.06)}
 .universo-tooltip a+a{border-top:1px solid rgba(255,255,255,.08)}
 .nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-
 .breadcrumb{padding:8rem 4rem 0;max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:.6rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--g400)}
 .breadcrumb a{color:var(--g400);text-decoration:none;transition:color .2s}
 .breadcrumb a:hover{color:var(--black)}
 .breadcrumb-sep{color:var(--g200)}
-
 .prod-wrap{max-width:1280px;margin:0 auto;padding:2.5rem 4rem 8rem;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start}
-
 .gallery{display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:6rem}
 .gallery-main{background:#141412;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .gallery-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
 .gallery-thumb{background:#141412;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s;overflow:hidden}
 .gallery-thumb.active{border-color:var(--accent)}
 .gallery-thumb:hover{border-color:var(--g400)}
-
 .prod-info{display:flex;flex-direction:column;gap:2rem;padding-top:.5rem}
 .prod-cat{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .prod-name{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,3.5vw,3.5rem);line-height:1.05;color:var(--black)}
 .prod-sub{font-size:.78rem;color:var(--g400);letter-spacing:.09em;text-transform:uppercase;font-weight:500}
-
 .prod-reviews{display:flex;align-items:center;gap:1rem}
 .stars{display:flex;gap:3px}
 .star{width:13px;height:13px}
 .reviews-count{font-size:.72rem;color:var(--g400)}
 .reviews-link{font-size:.72rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
-
 .prod-price-row{display:flex;align-items:baseline;gap:1rem;padding-bottom:2rem;border-bottom:1px solid var(--g200)}
 .price-main{font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--black)}
 .price-old{font-size:.95rem;color:var(--g400);text-decoration:line-through}
 .price-save{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:.22rem .7rem}
-
 .variant-group{display:flex;flex-direction:column;gap:.8rem}
 .variant-label{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)}
 .variant-label span{color:var(--black);font-weight:600}
@@ -80,7 +71,6 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .variant-btn{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:500;padding:.55rem 1.2rem;border:1px solid var(--g200);background:transparent;color:var(--g600);cursor:pointer;transition:all .2s}
 .variant-btn:hover{border-color:var(--black);color:var(--black)}
 .variant-btn.active{border-color:var(--black);background:var(--black);color:var(--white)}
-
 .add-row{display:flex;gap:1rem;align-items:center}
 .qty-wrap{display:flex;align-items:center;border:1px solid var(--g200)}
 .qty-btn{width:40px;height:48px;background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--g600);transition:color .2s;display:flex;align-items:center;justify-content:center}
@@ -96,25 +86,19 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .wish-btn.active svg{stroke:var(--accent);fill:var(--accent)}
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:var(--white);padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 .trust-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:1.8rem 0;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
 .trust-item{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}
 .trust-icon{width:28px;height:28px;stroke:var(--g600);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .trust-text{font-size:.62rem;font-weight:500;color:var(--g600);line-height:1.4;letter-spacing:.03em}
 .trust-text strong{display:block;color:var(--black);font-weight:600}
-
 .prod-desc-block{display:flex;flex-direction:column;gap:.6rem}
 .prod-desc-title{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g400)}
 .prod-desc-text{font-size:.9rem;color:var(--g600);line-height:1.85;font-weight:300}
-
 .specs-block{display:flex;flex-direction:column;gap:.4rem}
 .spec-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--g100);font-size:.82rem}
 .spec-row:last-child{border:none}
 .spec-k{color:var(--g400);font-weight:400}
 .spec-v{color:var(--black);font-weight:600}
-
-.stock-badge{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600}
-
 .reviews-section{max-width:1280px;margin:0 auto;padding:0 4rem 8rem}
 .reviews-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--g200)}
 .reviews-title{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--black)}
@@ -126,7 +110,6 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .review-text{font-size:.88rem;color:var(--g600);line-height:1.8;font-weight:300;font-style:italic}
 .review-name{font-size:.78rem;font-weight:600;color:var(--black)}
 .review-date{font-size:.68rem;color:var(--g400)}
-
 footer{background:var(--black);padding:6rem 4rem 3rem}
 .footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
@@ -144,7 +127,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .footer-contact-btn{display:block;margin:0 auto 4rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(200,169,110,.3);padding:.8rem 2rem;cursor:pointer;transition:all .3s}
 .footer-contact-btn:hover{border-color:var(--accent);background:rgba(200,169,110,.08)}
 .footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
-
 .modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
@@ -162,11 +144,9 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .modal-field textarea{min-height:100px;line-height:1.7}
 .modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .modal-submit:hover{background:var(--g800)}
-
 .back-to-top{position:fixed;bottom:5rem;left:1.5rem;width:42px;height:42px;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);z-index:90;border-radius:50%}
 .back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
 .back-to-top:hover{background:var(--black)}
-
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
 .cookie-banner.show{transform:translateY(0)}
 .cookie-text{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
@@ -174,7 +154,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .cookie-btns{display:flex;gap:.8rem;flex-shrink:0}
 .cookie-accept{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:.65rem 1.4rem;cursor:pointer}
 .cookie-reject{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.12);padding:.65rem 1.4rem;cursor:pointer}
-
 @media(max-width:900px){
   .top-banner{display:none}
   nav{top:0;padding:1rem 1.2rem}
@@ -199,7 +178,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   .nav-cart{padding:.5rem .7rem;font-size:.58rem;letter-spacing:.06em}
   .nav-cart span:last-child{display:none}
 }
-
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;margin-left:.5rem}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s ease}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -215,14 +193,8 @@ body{animation:fadeIn .4s ease;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
 <script type="application/ld+json" id="schema-producto"></script>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BHD7CVN6YL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BHD7CVN6YL');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BHD7CVN6YL');</script>
 </head>
 <body>
 
@@ -307,15 +279,9 @@ body{animation:fadeIn .4s ease;}
       </svg>
     </div>
     <div class="gallery-thumbs">
-      <div class="gallery-thumb active" data-img="0">
-        <svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">K</text></svg>
-      </div>
-      <div class="gallery-thumb" data-img="1">
-        <svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".7">K</text></svg>
-      </div>
-      <div class="gallery-thumb" data-img="2">
-        <svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#6b6a66" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#6b6a66" opacity=".7">K</text></svg>
-      </div>
+      <div class="gallery-thumb active" data-img="0"><svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">K</text></svg></div>
+      <div class="gallery-thumb" data-img="1"><svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".7">K</text></svg></div>
+      <div class="gallery-thumb" data-img="2"><svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#6b6a66" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#6b6a66" opacity=".7">K</text></svg></div>
     </div>
   </div>
 
@@ -325,7 +291,6 @@ body{animation:fadeIn .4s ease;}
       <h1 class="prod-name" id="prod-name"></h1>
       <div class="prod-sub" id="prod-sub"></div>
     </div>
-
     <div class="prod-reviews">
       <div class="stars">
         <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -337,7 +302,6 @@ body{animation:fadeIn .4s ease;}
       <span class="reviews-count">4.2</span>
       <a href="#reviews" class="reviews-link" id="reviews-link">24 valoraciones</a>
     </div>
-
     <div>
       <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem">
         <span id="prod-badge-label" style="display:none;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:#c8a96e;color:#fff;padding:.25rem .7rem"></span>
@@ -350,24 +314,19 @@ body{animation:fadeIn .4s ease;}
       </div>
       <div style="font-size:.65rem;color:var(--g400);margin-top:-.8rem" id="iva-txt">IVA incluido</div>
     </div>
-
     <div id="stock-info"></div>
-
     <div id="colores-group" class="variant-group" style="display:none">
       <div class="variant-label" id="color-label">Color: <span id="color-val"></span></div>
       <div class="variant-options" id="color-options"></div>
     </div>
-
     <div id="pesos-group" class="variant-group" style="display:none">
       <div class="variant-label" id="peso-label">Peso: <span id="peso-val"></span></div>
       <div class="variant-options" id="peso-options"></div>
     </div>
-
     <div id="balance-group" class="variant-group" style="display:none">
       <div class="variant-label" id="balance-label">Balance: <span id="balance-val"></span></div>
       <div class="variant-options" id="balance-options"></div>
     </div>
-
     <div class="add-row">
       <div class="qty-wrap">
         <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -379,12 +338,10 @@ body{animation:fadeIn .4s ease;}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </button>
     </div>
-
-    <div style="font-size:.65rem;color:var(--g600);display:flex;align-items:center;gap:.5rem" id="fecha-entrega-wrap">
+    <div style="font-size:.65rem;color:var(--g600);display:flex;align-items:center;gap:.5rem">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       <span id="fecha-entrega"></span>
     </div>
-
     <div class="trust-icons">
       <div class="trust-item">
         <svg class="trust-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -399,12 +356,10 @@ body{animation:fadeIn .4s ease;}
         <div class="trust-text"><strong id="trust3-title">Garantía</strong><span id="trust3-sub">36 meses</span></div>
       </div>
     </div>
-
     <div class="prod-desc-block">
       <div class="prod-desc-title" id="desc-title">Descripción</div>
       <div class="prod-desc-text" id="prod-descripcion"></div>
     </div>
-
     <div id="specs-pala" style="display:none">
       <div class="specs-block">
         <div class="spec-row"><span class="spec-k" id="spec-peso-lbl">Peso</span><span class="spec-v" id="spec-peso-val">—</span></div>
@@ -466,14 +421,8 @@ body{animation:fadeIn .4s ease;}
   </div>
   <button class="footer-contact-btn" onclick="openModal()" id="footer-contact">Contacto</button>
   <div class="footer-social">
-    <a href="#" aria-label="Instagram">
-      <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
-      Instagram
-    </a>
-    <a href="#" aria-label="YouTube">
-      <svg class="social-icon" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)" stroke="none"/></svg>
-      YouTube
-    </a>
+    <a href="#" aria-label="Instagram"><svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>Instagram</a>
+    <a href="#" aria-label="YouTube"><svg class="social-icon" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)" stroke="none"/></svg>YouTube</a>
   </div>
   <div class="footer-legal">
     <a href="#" onclick="openLegal('aviso');return false" id="footer-aviso">Aviso legal</a>
@@ -484,7 +433,6 @@ body{animation:fadeIn .4s ease;}
 </footer>
 
 <div id="toast" class="toast"></div>
-
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
@@ -552,64 +500,63 @@ body{animation:fadeIn .4s ease;}
 const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
 
-// IDIOMA
+const CAT_MAP = {es:{pala:'Pala',accesorio:'Accesorio',pack:'Pack'},en:{pala:'Paddle',accesorio:'Accessory',pack:'Pack'}};
+const NIVEL_MAP = {
+  es:{'Avanzado':'Avanzado','Intermedio / Avanzado':'Intermedio / Avanzado','Intermedio':'Intermedio','Intermedio-Avanzado':'Intermedio-Avanzado','Avanzado-Elite':'Avanzado-Elite'},
+  en:{'Avanzado':'Advanced','Intermedio / Avanzado':'Intermediate / Advanced','Intermedio':'Intermediate','Intermedio-Avanzado':'Intermediate-Advanced','Avanzado-Elite':'Advanced-Elite'}
+};
+
 const i18n = {
-  es: {
+  es:{
     banner:'<span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses',
-    nav_universo:'Universo KORVA', nav_tech:'Tecnología', nav_mat:'Materiales', nav_packs:'Packs', nav_marcas:'Otras marcas',
-    nav_tienda:'Tienda', nav_acceso:'Acceso', nav_carrito:'Carrito',
-    bc_inicio:'Inicio', bc_tienda:'Tienda',
-    iva:'IVA incluido',
-    btn_cart:'Añadir al carrito',
-    trust1_title:'Envío gratis', trust1_sub:'en Península +120€',
-    trust2_title:'Devolución', trust2_sub:'30 días sin preguntas',
-    trust3_title:'Garantía', trust3_sub:'36 meses',
-    desc_title:'Descripción',
-    ahorras:'Ahorras',
-    rebajado:'REBAJADO',
-    reviews_title:'Valoraciones',
-    reviews_based:'Basado en 24 valoraciones',
-    reviews_link:'24 valoraciones',
-    spec_peso:'Peso', spec_balance:'Balance', spec_espesor:'Espesor', spec_nivel:'Nivel',
-    color_lbl:'Color', peso_lbl:'Peso', balance_lbl:'Balance',
+    nav_universo:'Universo KORVA',nav_tech:'Tecnología',nav_mat:'Materiales',nav_packs:'Packs',nav_marcas:'Otras marcas',
+    nav_tienda:'Tienda',nav_acceso:'Acceso',nav_carrito:'Carrito',
+    bc_inicio:'Inicio',bc_tienda:'Tienda',
+    iva:'IVA incluido',btn_cart:'Añadir al carrito',
+    trust1_title:'Envío gratis',trust1_sub:'en Península +120€',
+    trust2_title:'Devolución',trust2_sub:'30 días sin preguntas',
+    trust3_title:'Garantía',trust3_sub:'36 meses',
+    desc_title:'Descripción',ahorras:'Ahorras',rebajado:'REBAJADO',
+    reviews_title:'Valoraciones',reviews_based:'Basado en 24 valoraciones',reviews_link:'24 valoraciones',
+    spec_peso:'Peso',spec_balance:'Balance',spec_espesor:'Espesor',spec_nivel:'Nivel',
+    color_lbl:'Color',peso_lbl:'Peso',balance_lbl:'Balance',
     footer_desc:'Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.',
-    footer_tienda:'Tienda', footer_tech:'Tecnología', footer_mat:'Materiales', footer_packs:'Packs',
-    footer_contact:'Contacto',
-    footer_aviso:'Aviso legal', footer_priv:'Privacidad', footer_cook:'Cookies',
+    footer_tienda:'Tienda',footer_tech:'Tecnología',footer_mat:'Materiales',footer_packs:'Packs',
+    footer_contact:'Contacto',footer_aviso:'Aviso legal',footer_priv:'Privacidad',footer_cook:'Cookies',
     footer_copy:'© 2026 KORVA Pádel — Todos los derechos reservados',
     cookie_txt:'Usamos cookies propias y de terceros para mejorar tu experiencia.',
-    cookie_link:'Política de cookies',
-    cookie_accept:'Aceptar', cookie_reject:'Rechazar',
+    cookie_link:'Política de cookies',cookie_accept:'Aceptar',cookie_reject:'Rechazar',
+    stock_instock:'En stock',stock_out:'Agotado',stock_last:'Últimas',stock_units:'unidades',stock_notify:'Avísame',stock_email:'tu@email.com',
+    delivery_prefix:'Recibes el',
+    dias:['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],
+    meses:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
     review1:'"Control excepcional desde el primer golpe. La fibra de carbono se nota en cada intercambio."',
     review2:'"Diseño premium y sensación de golpe excepcional. La recomiendo para jugadores de nivel medio-alto."',
     review3:'"Buena relación calidad-precio. El acabado es impecable y la potencia es notable."'
   },
-  en: {
+  en:{
     banner:'<span>Free shipping</span> Peninsula +€120 &nbsp;·&nbsp; <span>Returns</span> 30 days no questions &nbsp;·&nbsp; <span>Warranty</span> 36 months',
-    nav_universo:'KORVA Universe', nav_tech:'Technology', nav_mat:'Materials', nav_packs:'Packs', nav_marcas:'Other brands',
-    nav_tienda:'Shop', nav_acceso:'Login', nav_carrito:'Cart',
-    bc_inicio:'Home', bc_tienda:'Shop',
-    iva:'VAT included',
-    btn_cart:'Add to cart',
-    trust1_title:'Free shipping', trust1_sub:'Peninsula orders +€120',
-    trust2_title:'Returns', trust2_sub:'30 days no questions',
-    trust3_title:'Warranty', trust3_sub:'36 months',
-    desc_title:'Description',
-    ahorras:'You save',
-    rebajado:'SALE',
-    reviews_title:'Reviews',
-    reviews_based:'Based on 24 reviews',
-    reviews_link:'24 reviews',
-    spec_peso:'Weight', spec_balance:'Balance', spec_espesor:'Thickness', spec_nivel:'Level',
-    color_lbl:'Color', peso_lbl:'Weight', balance_lbl:'Balance',
+    nav_universo:'KORVA Universe',nav_tech:'Technology',nav_mat:'Materials',nav_packs:'Packs',nav_marcas:'Other brands',
+    nav_tienda:'Shop',nav_acceso:'Login',nav_carrito:'Cart',
+    bc_inicio:'Home',bc_tienda:'Shop',
+    iva:'VAT included',btn_cart:'Add to cart',
+    trust1_title:'Free shipping',trust1_sub:'Peninsula orders +€120',
+    trust2_title:'Returns',trust2_sub:'30 days no questions',
+    trust3_title:'Warranty',trust3_sub:'36 months',
+    desc_title:'Description',ahorras:'You save',rebajado:'SALE',
+    reviews_title:'Reviews',reviews_based:'Based on 24 reviews',reviews_link:'24 reviews',
+    spec_peso:'Weight',spec_balance:'Balance',spec_espesor:'Thickness',spec_nivel:'Level',
+    color_lbl:'Color',peso_lbl:'Weight',balance_lbl:'Balance',
     footer_desc:'High-performance material engineering, designed for those who accept no limits on the court.',
-    footer_tienda:'Shop', footer_tech:'Technology', footer_mat:'Materials', footer_packs:'Packs',
-    footer_contact:'Contact',
-    footer_aviso:'Legal notice', footer_priv:'Privacy', footer_cook:'Cookies',
+    footer_tienda:'Shop',footer_tech:'Technology',footer_mat:'Materials',footer_packs:'Packs',
+    footer_contact:'Contact',footer_aviso:'Legal notice',footer_priv:'Privacy',footer_cook:'Cookies',
     footer_copy:'© 2026 KORVA Pádel — All rights reserved',
     cookie_txt:'We use our own and third-party cookies to improve your experience.',
-    cookie_link:'Cookie policy',
-    cookie_accept:'Accept', cookie_reject:'Reject',
+    cookie_link:'Cookie policy',cookie_accept:'Accept',cookie_reject:'Reject',
+    stock_instock:'In stock',stock_out:'Sold out',stock_last:'Last',stock_units:'units',stock_notify:'Notify me',stock_email:'your@email.com',
+    delivery_prefix:'Delivery on',
+    dias:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    meses:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     review1:'"Exceptional control from the first shot. The carbon fiber makes a difference on every exchange."',
     review2:'"Premium design and outstanding feel. Recommended for intermediate to advanced players."',
     review3:'"Great value for money. The finish is impeccable and the power is notable."'
@@ -617,256 +564,231 @@ const i18n = {
 };
 
 function getLang(){ return localStorage.getItem('korva-lang') || 'es'; }
-function gf(p, field){ const l=getLang(); return (l==='en' && p[field+'_en']) ? p[field+'_en'] : (p[field]||''); }
+function gf(p,field){ const l=getLang(); return (l==='en'&&p[field+'_en'])?p[field+'_en']:(p[field]||''); }
+
+function renderStock(p){
+  const t = i18n[getLang()]||i18n.es;
+  const stockEl = document.getElementById('stock-info');
+  if(p.stock===null||p.stock===undefined){ stockEl.innerHTML=''; return; }
+  if(p.stock===0){
+    stockEl.innerHTML=`<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>${t.stock_out}</div>`;
+    stockEl.innerHTML+=`<div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center"><input type="email" placeholder="${t.stock_email}" id="aviso-email" style="font-family:'Sora',sans-serif;font-size:.72rem;border:none;border-bottom:1px solid var(--g200);padding:.4rem 0;outline:none;flex:1;background:transparent"><button onclick="avisarStock()" style="font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:#fff;border:none;padding:.5rem 1rem;cursor:pointer">${t.stock_notify}</button></div>`;
+  } else if(p.stock<=5){
+    stockEl.innerHTML=`<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>${t.stock_last} ${p.stock} ${t.stock_units}</div>`;
+  } else {
+    stockEl.innerHTML=`<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#4a9d6f;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#4a9d6f"/></svg>${t.stock_instock}</div>`;
+  }
+}
+
+function calcularEntrega(){
+  const t = i18n[getLang()]||i18n.es;
+  const ahora = new Date();
+  const hora = ahora.getHours();
+  let entrega = new Date(ahora);
+  let diasSumar = hora < 14 ? 1 : 2;
+  let contados = 0;
+  while(contados < diasSumar){
+    entrega.setDate(entrega.getDate()+1);
+    const d = entrega.getDay();
+    if(d!==0&&d!==6) contados++;
+  }
+  document.getElementById('fecha-entrega').textContent = t.delivery_prefix+' '+t.dias[entrega.getDay()]+' '+entrega.getDate()+' '+t.meses[entrega.getMonth()];
+}
 
 function applyLang(){
   const l = getLang();
-  const t = i18n[l] || i18n.es;
+  const t = i18n[l]||i18n.es;
 
   document.querySelectorAll('[id^="lang-"]').forEach(b=>b.style.color='rgba(255,255,255,.5)');
   const active = document.getElementById('lang-'+l);
   if(active) active.style.color='#fff';
 
-  document.getElementById('banner-text').innerHTML = t.banner;
-  document.getElementById('nav-universo').textContent = t.nav_universo;
-  document.getElementById('nav-tech').textContent = t.nav_tech;
-  document.getElementById('nav-mat').textContent = t.nav_mat;
-  document.getElementById('nav-packs').textContent = t.nav_packs;
-  document.getElementById('nav-marcas').textContent = t.nav_marcas;
-  document.getElementById('nav-tienda-btn').textContent = t.nav_tienda;
-  document.getElementById('nav-acceso').textContent = t.nav_acceso;
-  document.getElementById('nav-carrito-txt').textContent = t.nav_carrito;
-  document.getElementById('bc-inicio').textContent = t.bc_inicio;
-  document.getElementById('bc-tienda').textContent = t.bc_tienda;
-  document.getElementById('iva-txt').textContent = t.iva;
-  document.getElementById('btn-add-cart').textContent = t.btn_cart;
-  document.getElementById('trust1-title').textContent = t.trust1_title;
-  document.getElementById('trust1-sub').textContent = t.trust1_sub;
-  document.getElementById('trust2-title').textContent = t.trust2_title;
-  document.getElementById('trust2-sub').textContent = t.trust2_sub;
-  document.getElementById('trust3-title').textContent = t.trust3_title;
-  document.getElementById('trust3-sub').textContent = t.trust3_sub;
-  document.getElementById('desc-title').textContent = t.desc_title;
-  document.getElementById('reviews-title').textContent = t.reviews_title;
-  document.getElementById('reviews-based').textContent = t.reviews_based;
-  document.getElementById('reviews-link').textContent = t.reviews_link;
-  document.getElementById('spec-peso-lbl').textContent = t.spec_peso;
-  document.getElementById('spec-balance-lbl').textContent = t.spec_balance;
-  document.getElementById('spec-espesor-lbl').textContent = t.spec_espesor;
-  document.getElementById('spec-nivel-lbl').textContent = t.spec_nivel;
-  document.getElementById('footer-desc').textContent = t.footer_desc;
-  document.getElementById('footer-tienda').textContent = t.footer_tienda;
-  document.getElementById('footer-tech').textContent = t.footer_tech;
-  document.getElementById('footer-mat').textContent = t.footer_mat;
-  document.getElementById('footer-packs').textContent = t.footer_packs;
-  document.getElementById('footer-contact').textContent = t.footer_contact;
-  document.getElementById('footer-aviso').textContent = t.footer_aviso;
-  document.getElementById('footer-priv').textContent = t.footer_priv;
-  document.getElementById('footer-cook').textContent = t.footer_cook;
-  document.getElementById('footer-copy').textContent = t.footer_copy;
-  document.getElementById('cookie-reject-btn').textContent = t.cookie_reject;
-  document.getElementById('cookie-accept-btn').textContent = t.cookie_accept;
-  document.getElementById('cookie-link').textContent = t.cookie_link;
-  document.getElementById('review1-text').textContent = t.review1;
-  document.getElementById('review2-text').textContent = t.review2;
-  document.getElementById('review3-text').textContent = t.review3;
+  document.getElementById('banner-text').innerHTML=t.banner;
+  document.getElementById('nav-universo').textContent=t.nav_universo;
+  document.getElementById('nav-tech').textContent=t.nav_tech;
+  document.getElementById('nav-mat').textContent=t.nav_mat;
+  document.getElementById('nav-packs').textContent=t.nav_packs;
+  document.getElementById('nav-marcas').textContent=t.nav_marcas;
+  document.getElementById('nav-tienda-btn').textContent=t.nav_tienda;
+  document.getElementById('nav-acceso').textContent=t.nav_acceso;
+  document.getElementById('nav-carrito-txt').textContent=t.nav_carrito;
+  document.getElementById('bc-inicio').textContent=t.bc_inicio;
+  document.getElementById('bc-tienda').textContent=t.bc_tienda;
+  document.getElementById('iva-txt').textContent=t.iva;
+  document.getElementById('btn-add-cart').textContent=t.btn_cart;
+  document.getElementById('trust1-title').textContent=t.trust1_title;
+  document.getElementById('trust1-sub').textContent=t.trust1_sub;
+  document.getElementById('trust2-title').textContent=t.trust2_title;
+  document.getElementById('trust2-sub').textContent=t.trust2_sub;
+  document.getElementById('trust3-title').textContent=t.trust3_title;
+  document.getElementById('trust3-sub').textContent=t.trust3_sub;
+  document.getElementById('desc-title').textContent=t.desc_title;
+  document.getElementById('reviews-title').textContent=t.reviews_title;
+  document.getElementById('reviews-based').textContent=t.reviews_based;
+  document.getElementById('reviews-link').textContent=t.reviews_link;
+  document.getElementById('spec-peso-lbl').textContent=t.spec_peso;
+  document.getElementById('spec-balance-lbl').textContent=t.spec_balance;
+  document.getElementById('spec-espesor-lbl').textContent=t.spec_espesor;
+  document.getElementById('spec-nivel-lbl').textContent=t.spec_nivel;
+  document.getElementById('footer-desc').textContent=t.footer_desc;
+  document.getElementById('footer-tienda').textContent=t.footer_tienda;
+  document.getElementById('footer-tech').textContent=t.footer_tech;
+  document.getElementById('footer-mat').textContent=t.footer_mat;
+  document.getElementById('footer-packs').textContent=t.footer_packs;
+  document.getElementById('footer-contact').textContent=t.footer_contact;
+  document.getElementById('footer-aviso').textContent=t.footer_aviso;
+  document.getElementById('footer-priv').textContent=t.footer_priv;
+  document.getElementById('footer-cook').textContent=t.footer_cook;
+  document.getElementById('footer-copy').textContent=t.footer_copy;
+  document.getElementById('cookie-reject-btn').textContent=t.cookie_reject;
+  document.getElementById('cookie-accept-btn').textContent=t.cookie_accept;
+  document.getElementById('cookie-link').textContent=t.cookie_link;
+  document.getElementById('review1-text').textContent=t.review1;
+  document.getElementById('review2-text').textContent=t.review2;
+  document.getElementById('review3-text').textContent=t.review3;
 
-  // Labels variantes
-  const colorVal = document.getElementById('color-val');
-  if(colorVal) document.getElementById('color-label').innerHTML = t.color_lbl+': <span id="color-val">'+colorVal.textContent+'</span>';
-  const pesoVal = document.getElementById('peso-val');
-  if(pesoVal) document.getElementById('peso-label').innerHTML = t.peso_lbl+': <span id="peso-val">'+pesoVal.textContent+'</span>';
-  const balanceVal = document.getElementById('balance-val');
-  if(balanceVal) document.getElementById('balance-label').innerHTML = t.balance_lbl+': <span id="balance-val">'+balanceVal.textContent+'</span>';
+  calcularEntrega();
 
-  // Datos dinámicos del producto
   const p = window.currentProduct;
   if(p){
-    const catMap = {es:{pala:'Pala',accesorio:'Accesorio',pack:'Pack'},en:{pala:'Paddle',accesorio:'Accessory',pack:'Pack'}};
-    document.getElementById('prod-cat').textContent = (catMap[l]||catMap.es)[p.categoria] || p.categoria;
-    document.getElementById('breadcrumb-nombre').textContent = gf(p,'nombre');
-    document.title = 'KORVA — ' + gf(p,'nombre');
-    document.getElementById('prod-name').textContent = gf(p,'nombre');
-    document.getElementById('prod-descripcion').textContent = gf(p,'descripcion');
-    const badgeEl = document.getElementById('prod-badge-label');
-    if(badgeEl && badgeEl.style.display !== 'none') badgeEl.textContent = t.rebajado;
-    const ahorraEl = document.getElementById('prod-ahorro');
-    if(ahorraEl && ahorraEl.style.display !== 'none' && p.precio_anterior){
-      ahorraEl.textContent = t.ahorras + ' ' + (p.precio_anterior - p.precio) + '€';
+    document.getElementById('prod-cat').textContent=(CAT_MAP[l]||CAT_MAP.es)[p.categoria]||p.categoria;
+    document.getElementById('prod-sub').textContent=(NIVEL_MAP[l]||NIVEL_MAP.es)[p.nivel]||p.nivel||'';
+    document.getElementById('breadcrumb-nombre').textContent=gf(p,'nombre');
+    document.title='KORVA — '+gf(p,'nombre');
+    document.getElementById('prod-name').textContent=gf(p,'nombre');
+    document.getElementById('prod-descripcion').textContent=gf(p,'descripcion');
+    const badgeEl=document.getElementById('prod-badge-label');
+    if(badgeEl&&badgeEl.style.display!=='none') badgeEl.textContent=t.rebajado;
+    const ahorraEl=document.getElementById('prod-ahorro');
+    if(ahorraEl&&ahorraEl.style.display!=='none'&&p.precio_anterior){
+      ahorraEl.textContent=t.ahorras+' '+(p.precio_anterior-p.precio)+'€';
     }
+    const colorVal=document.getElementById('color-val');
+    if(colorVal) document.getElementById('color-label').innerHTML=t.color_lbl+': <span id="color-val">'+colorVal.textContent+'</span>';
+    const pesoVal=document.getElementById('peso-val');
+    if(pesoVal) document.getElementById('peso-label').innerHTML=t.peso_lbl+': <span id="peso-val">'+pesoVal.textContent+'</span>';
+    const balanceVal=document.getElementById('balance-val');
+    if(balanceVal) document.getElementById('balance-label').innerHTML=t.balance_lbl+': <span id="balance-val">'+balanceVal.textContent+'</span>';
+    renderStock(p);
   }
 }
 
 function setLang(lang){
-  localStorage.setItem('korva-lang', lang);
+  localStorage.setItem('korva-lang',lang);
   applyLang();
 }
 
 async function loadProduct(){
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  if(!id){ document.getElementById('prod-cat').textContent = 'Producto no encontrado'; return; }
+  const params=new URLSearchParams(window.location.search);
+  const id=params.get('id');
+  if(!id){document.getElementById('prod-cat').textContent='Producto no encontrado';return;}
+  const res=await fetch(`${SUPABASE_URL}/rest/v1/productos?id=eq.${id}`,{headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}});
+  const data=await res.json();
+  if(!data.length){document.getElementById('prod-cat').textContent='Producto no encontrado';return;}
+  const p=data[0];
+  window.currentProduct=p;
+  const l=getLang();
+  const t=i18n[l]||i18n.es;
 
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/productos?id=eq.${id}`, {
-    headers:{ 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-  });
-  const data = await res.json();
-  if(!data.length){ document.getElementById('prod-cat').textContent = 'Producto no encontrado'; return; }
+  const seoTitle=gf(p,'nombre')+' — KORVA Pádel de Alto Rendimiento';
+  const seoDesc=gf(p,'descripcion')||'Pala de pádel KORVA de alto rendimiento.';
+  const seoImg=p.imagen||'https://korva-padel.vercel.app/assets/images/korva-12k.jpg';
+  const seoUrl='https://korva-padel.vercel.app/producto.html?id='+p.id;
+  document.title=seoTitle;
+  document.querySelector('meta[name="description"]').setAttribute('content',seoDesc);
+  document.querySelector('meta[property="og:title"]').setAttribute('content',seoTitle);
+  document.querySelector('meta[property="og:description"]').setAttribute('content',seoDesc);
+  document.querySelector('meta[property="og:image"]').setAttribute('content',seoImg);
+  document.querySelector('meta[property="og:url"]').setAttribute('content',seoUrl);
 
-  const p = data[0];
-  window.currentProduct = p;
-
-  // SEO
-  const seoTitle = gf(p,'nombre') + ' — KORVA Pádel de Alto Rendimiento';
-  const seoDesc = gf(p,'descripcion') || 'Pala de pádel KORVA de alto rendimiento.';
-  const seoImg = p.imagen || 'https://korva-padel.vercel.app/assets/images/korva-12k.jpg';
-  const seoUrl = 'https://korva-padel.vercel.app/producto.html?id=' + p.id;
-  document.title = seoTitle;
-  document.querySelector('meta[name="description"]').setAttribute('content', seoDesc);
-  document.querySelector('meta[property="og:title"]').setAttribute('content', seoTitle);
-  document.querySelector('meta[property="og:description"]').setAttribute('content', seoDesc);
-  document.querySelector('meta[property="og:image"]').setAttribute('content', seoImg);
-  document.querySelector('meta[property="og:url"]').setAttribute('content', seoUrl);
-
-  // Galería
-  const imagenes = [p.imagen, p['imagen-b'], p['imagen-c'], p['imagen-d']].filter(Boolean);
-  const mainEl = document.getElementById('gallery-main');
-  const thumbsEl = document.querySelector('.gallery-thumbs');
+  const imagenes=[p.imagen,p['imagen-b'],p['imagen-c'],p['imagen-d']].filter(Boolean);
+  const mainEl=document.getElementById('gallery-main');
+  const thumbsEl=document.querySelector('.gallery-thumbs');
   if(imagenes.length){
-    mainEl.innerHTML = `<img src="${imagenes[0]}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:contain" id="gallery-img-main">`;
-    thumbsEl.innerHTML = imagenes.map((img,i)=>`
-      <div class="gallery-thumb${i===0?' active':''}" onclick="setGalleryImg('${img}',this)">
-        <img src="${img}" style="width:100%;height:100%;object-fit:contain">
-      </div>
-    `).join('');
+    mainEl.innerHTML=`<img src="${imagenes[0]}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:contain" id="gallery-img-main">`;
+    thumbsEl.innerHTML=imagenes.map((img,i)=>`<div class="gallery-thumb${i===0?' active':''}" onclick="setGalleryImg('${img}',this)"><img src="${img}" style="width:100%;height:100%;object-fit:contain"></div>`).join('');
   }
+  document.getElementById('svg-modelo')&&(document.getElementById('svg-modelo').textContent=p.nombre.split(' ').slice(0,2).join(' '));
 
-  document.getElementById('svg-modelo') && (document.getElementById('svg-modelo').textContent = p.nombre.split(' ').slice(0,2).join(' '));
-
-  // Info
-  const catMap = {es:{pala:'Pala',accesorio:'Accesorio',pack:'Pack'},en:{pala:'Paddle',accesorio:'Accessory',pack:'Pack'}};
-  document.getElementById('prod-cat').textContent = (catMap[getLang()]||catMap.es)[p.categoria] || p.categoria;
-  document.getElementById('prod-name').textContent = gf(p,'nombre');
-  document.getElementById('prod-sub').textContent = p.nivel || '';
-  document.getElementById('prod-descripcion').textContent = gf(p,'descripcion');
-
-  // Precio
-  document.getElementById('prod-precio').textContent = p.precio + '€';
+  document.getElementById('prod-precio').textContent=p.precio+'€';
   if(p.precio_anterior){
-    const t = i18n[getLang()] || i18n.es;
-    document.getElementById('prod-precio-anterior').textContent = p.precio_anterior + '€';
-    document.getElementById('prod-precio-anterior').style.display = 'inline';
-    const pct = Math.round((1 - p.precio/p.precio_anterior)*100);
-    document.getElementById('prod-descuento').textContent = '−' + pct + '%';
-    document.getElementById('prod-descuento').style.display = 'inline';
-    document.getElementById('prod-badge-label').textContent = t.rebajado;
-    document.getElementById('prod-badge-label').style.display = 'inline';
-    document.getElementById('prod-ahorro').textContent = t.ahorras + ' ' + (p.precio_anterior - p.precio) + '€';
-    document.getElementById('prod-ahorro').style.display = 'inline';
+    document.getElementById('prod-precio-anterior').textContent=p.precio_anterior+'€';
+    document.getElementById('prod-precio-anterior').style.display='inline';
+    const pct=Math.round((1-p.precio/p.precio_anterior)*100);
+    document.getElementById('prod-descuento').textContent='−'+pct+'%';
+    document.getElementById('prod-descuento').style.display='inline';
+    document.getElementById('prod-badge-label').textContent=t.rebajado;
+    document.getElementById('prod-badge-label').style.display='inline';
+    document.getElementById('prod-ahorro').textContent=t.ahorras+' '+(p.precio_anterior-p.precio)+'€';
+    document.getElementById('prod-ahorro').style.display='inline';
   }
 
-  const esPala = p.categoria === 'pala';
-
-  // Stock
-  const stockEl = document.getElementById('stock-info');
-  if(p.stock === null || p.stock === undefined){
-    stockEl.innerHTML = '';
-  } else if(p.stock === 0){
-    const sl = getLang();
-    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>'+(sl==='en'?'Sold out':'Agotado')+'</div>';
-  } else if(p.stock <= 5){
-    const sl = getLang();
-    stockEl.innerHTML = `<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>${sl==='en'?'Last '+p.stock+' units':'Últimas '+p.stock+' unidades'}</div>`;
-  } else {
-    const sl = getLang();
-    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#4a9d6f;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#4a9d6f"/></svg>'+(sl==='en'?'In stock':'En stock')+'</div>';
-  }
-
-  if(p.stock === 0){
-    const sl = getLang();
-    stockEl.innerHTML += `<div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
-      <input type="email" placeholder="${sl==='en'?'your@email.com':'tu@email.com'}" id="aviso-email" style="font-family:'Sora',sans-serif;font-size:.72rem;border:none;border-bottom:1px solid var(--g200);padding:.4rem 0;outline:none;flex:1;background:transparent">
-      <button onclick="avisarStock()" style="font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:#fff;border:none;padding:.5rem 1rem;cursor:pointer">${sl==='en'?'Notify me':'Avísame'}</button>
-    </div>`;
-  }
-
-  // Colores
+  const esPala=p.categoria==='pala';
   if(p.colores){
-    const coloresArr = p.colores.split(',').map(c=>c.trim()).filter(Boolean);
+    const coloresArr=p.colores.split(',').map(c=>c.trim()).filter(Boolean);
     if(coloresArr.length){
       document.getElementById('colores-group').style.display='block';
-      document.getElementById('color-val').textContent = coloresArr[0];
-      const colorOpts = document.getElementById('color-options');
+      document.getElementById('color-val').textContent=coloresArr[0];
+      const colorOpts=document.getElementById('color-options');
       coloresArr.forEach((color,i)=>{
-        const btn = document.createElement('button');
-        btn.className = 'variant-btn'+(i===0?' active':'');
-        btn.textContent = color;
-        btn.onclick = function(){ selectVariant(this,'color-val',color); };
+        const btn=document.createElement('button');
+        btn.className='variant-btn'+(i===0?' active':'');
+        btn.textContent=color;
+        btn.onclick=function(){selectVariant(this,'color-val',color);};
         colorOpts.appendChild(btn);
       });
     }
   }
-
-  // Specs palas
   if(esPala){
     document.getElementById('specs-pala').style.display='block';
-    document.getElementById('spec-peso-val').textContent = p.peso || '—';
-    document.getElementById('spec-balance-val').textContent = p.balance || '—';
-    document.getElementById('spec-espesor-val').textContent = p.espesor || '—';
-    document.getElementById('spec-nivel-val').textContent = p.nivel || '—';
-
+    document.getElementById('spec-peso-val').textContent=p.peso||'—';
+    document.getElementById('spec-balance-val').textContent=p.balance||'—';
+    document.getElementById('spec-espesor-val').textContent=p.espesor||'—';
+    document.getElementById('spec-nivel-val').textContent=(NIVEL_MAP[l]||NIVEL_MAP.es)[p.nivel]||p.nivel||'—';
     if(p.peso){
-      const pesos = p.peso.split('–');
+      const pesos=p.peso.split('–');
       document.getElementById('pesos-group').style.display='block';
-      const pesoOptions = document.getElementById('peso-options');
+      const pesoOptions=document.getElementById('peso-options');
       pesos.forEach((peso,i)=>{
-        const btn = document.createElement('button');
-        btn.className = 'variant-btn'+(i===0?' active':'');
-        btn.textContent = peso.trim();
-        btn.onclick = function(){ selectVariant(this,'peso-val',peso.trim()); };
+        const btn=document.createElement('button');
+        btn.className='variant-btn'+(i===0?' active':'');
+        btn.textContent=peso.trim();
+        btn.onclick=function(){selectVariant(this,'peso-val',peso.trim());};
         pesoOptions.appendChild(btn);
       });
-      document.getElementById('peso-val').textContent = pesos[0].trim();
+      document.getElementById('peso-val').textContent=pesos[0].trim();
     }
-
     if(p.balance){
-      const balances = p.balance.split('–');
+      const balances=p.balance.split('–');
       document.getElementById('balance-group').style.display='block';
-      const balanceOptions = document.getElementById('balance-options');
+      const balanceOptions=document.getElementById('balance-options');
       balances.forEach((bal,i)=>{
-        const btn = document.createElement('button');
-        btn.className = 'variant-btn'+(i===0?' active':'');
-        btn.textContent = bal.trim();
-        btn.onclick = function(){ selectVariant(this,'balance-val',bal.trim()); };
+        const btn=document.createElement('button');
+        btn.className='variant-btn'+(i===0?' active':'');
+        btn.textContent=bal.trim();
+        btn.onclick=function(){selectVariant(this,'balance-val',bal.trim());};
         balanceOptions.appendChild(btn);
       });
-      document.getElementById('balance-val').textContent = balances[0].trim();
+      document.getElementById('balance-val').textContent=balances[0].trim();
     }
   }
 
-  // Schema.org
-  const schema = {
-    "@context":"https://schema.org/","@type":"Product",
-    "name":p.nombre,"brand":{"@type":"Brand","name":"KORVA"},
-    "description":p.descripcion,"image":p.imagen||"","sku":"KORVA-"+p.id,
-    "offers":{"@type":"Offer","priceCurrency":"EUR","price":p.precio.toString(),"availability":"https://schema.org/InStock"}
-  };
-  const schemaEl = document.getElementById('schema-producto');
-  if(schemaEl) schemaEl.textContent = JSON.stringify(schema);
+  const schema={"@context":"https://schema.org/","@type":"Product","name":p.nombre,"brand":{"@type":"Brand","name":"KORVA"},"description":p.descripcion,"image":p.imagen||"","sku":"KORVA-"+p.id,"offers":{"@type":"Offer","priceCurrency":"EUR","price":p.precio.toString(),"availability":"https://schema.org/InStock"}};
+  const schemaEl=document.getElementById('schema-producto');
+  if(schemaEl) schemaEl.textContent=JSON.stringify(schema);
 
   applyLang();
 }
 
-function setGalleryImg(src, thumb){
-  const mainImg = document.getElementById('gallery-img-main');
-  if(mainImg) mainImg.src = src;
+function setGalleryImg(src,thumb){
+  const mainImg=document.getElementById('gallery-img-main');
+  if(mainImg) mainImg.src=src;
   document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));
   thumb.classList.add('active');
 }
 
-let qty = 1;
-function changeQty(dir){ qty=Math.max(1,qty+dir); document.getElementById('qty').textContent=qty; }
-
+let qty=1;
+function changeQty(dir){qty=Math.max(1,qty+dir);document.getElementById('qty').textContent=qty;}
 function selectVariant(btn,labelId,val){
   btn.parentElement.querySelectorAll('.variant-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -874,52 +796,38 @@ function selectVariant(btn,labelId,val){
 }
 
 function addToCart(){
-  const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
-  const idx = cart.findIndex(i => i.id === currentProduct.id);
-  if(idx > -1){ cart[idx].qty += qty; }
-  else {
-    cart.push({
-      id: currentProduct.id,
-      nombre: currentProduct.nombre,
-      precio: currentProduct.precio,
-      imagen: currentProduct.imagen || '',
-      peso: document.getElementById('peso-val')?.textContent || '',
-      balance: document.getElementById('balance-val')?.textContent || '',
-      qty: qty
-    });
-  }
-  localStorage.setItem('korva-cart', JSON.stringify(cart));
-  const btn = document.querySelector('.btn-cart');
+  const cart=JSON.parse(localStorage.getItem('korva-cart')||'[]');
+  const idx=cart.findIndex(i=>i.id===currentProduct.id);
+  if(idx>-1){cart[idx].qty+=qty;}
+  else{cart.push({id:currentProduct.id,nombre:currentProduct.nombre,precio:currentProduct.precio,imagen:currentProduct.imagen||'',peso:document.getElementById('peso-val')?.textContent||'',balance:document.getElementById('balance-val')?.textContent||'',qty:qty});}
+  localStorage.setItem('korva-cart',JSON.stringify(cart));
+  const btn=document.querySelector('.btn-cart');
   btn.classList.add('added');
   setTimeout(()=>btn.classList.remove('added'),400);
-  const navCount = document.getElementById('nav-cart-count');
-  const total = cart.reduce((s,i)=>s+i.qty,0);
-  navCount.textContent = total;
-  navCount.style.display = 'flex';
+  const navCount=document.getElementById('nav-cart-count');
+  const total=cart.reduce((s,i)=>s+i.qty,0);
+  navCount.textContent=total;navCount.style.display='flex';
   navCount.classList.add('nav-cart-bounce');
   setTimeout(()=>navCount.classList.remove('nav-cart-bounce'),300);
-  const t = document.getElementById('toast');
-  t.textContent = '✓ Añadido al carrito';
-  t.classList.add('show');
+  const t=document.getElementById('toast');
+  t.textContent='✓ Añadido al carrito';t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 function avisarStock(){
-  const email = document.getElementById('aviso-email')?.value.trim();
+  const email=document.getElementById('aviso-email')?.value.trim();
   if(!email) return;
-  const t = document.getElementById('toast');
-  t.textContent = '✓ Te avisaremos cuando haya stock';
-  t.classList.add('show');
+  const t=document.getElementById('toast');
+  t.textContent='✓ Te avisaremos cuando haya stock';t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 function toggleWish(){
-  const btn = document.getElementById('wish-btn');
+  const btn=document.getElementById('wish-btn');
   btn.classList.toggle('active');
-  const t = document.getElementById('toast');
-  t.textContent = btn.classList.contains('active') ? '❤ Guardado en lista de deseos' : 'Eliminado de lista de deseos';
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
+  const t=document.getElementById('toast');
+  t.textContent=btn.classList.contains('active')?'❤ Guardado en lista de deseos':'Eliminado de lista de deseos';
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
@@ -930,77 +838,29 @@ function openRegistro(){document.getElementById('modal-registro').classList.add(
 function closeRegistro(){document.getElementById('modal-registro').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();closeLegal();}});
 
-function initCookies(){
-  if(!localStorage.getItem('korva-cookies')){
-    setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);
-  }
-}
+function initCookies(){if(!localStorage.getItem('korva-cookies')){setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);}}
 function acceptCookies(){localStorage.setItem('korva-cookies','accepted');document.getElementById('cookie-banner').classList.remove('show');}
 function rejectCookies(){localStorage.setItem('korva-cookies','rejected');document.getElementById('cookie-banner').classList.remove('show');}
 initCookies();
-window.addEventListener('scroll',()=>{
-  const btn=document.getElementById('back-to-top');
-  if(btn) btn.classList.toggle('visible',window.scrollY>400);
-});
+window.addEventListener('scroll',()=>{const btn=document.getElementById('back-to-top');if(btn) btn.classList.toggle('visible',window.scrollY>400);});
 
 const legalContent={
   aviso:{label:'Aviso legal',title:'Aviso legal',content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br><strong>Domicilio:</strong> Calle Example 1, 08000 Barcelona, España<br><strong>Email:</strong> legal@korvapadel.com</p><br><p>El presente aviso legal regula el uso del sitio web korvapadel.com.</p>`},
   privacidad:{label:'Privacidad',title:'Política de privacidad',content:`<p>En cumplimiento del RGPD y la LOPDGDD, te informamos del tratamiento de tus datos personales.</p><br><p><strong>Responsable:</strong> KORVA Pádel S.L. · legal@korvapadel.com</p>`},
   cookies:{label:'Cookies',title:'Política de cookies',content:`<p>Usamos cookies técnicas, analíticas y de preferencias para mejorar tu experiencia.</p>`}
 };
-function openLegal(type){
-  const data=legalContent[type];
-  document.getElementById('legal-label').textContent=data.label;
-  document.getElementById('legal-title').textContent=data.title;
-  document.getElementById('legal-content').innerHTML=data.content;
-  document.getElementById('modal-legal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
+function openLegal(type){const data=legalContent[type];document.getElementById('legal-label').textContent=data.label;document.getElementById('legal-title').textContent=data.title;document.getElementById('legal-content').innerHTML=data.content;document.getElementById('modal-legal').classList.add('open');document.body.style.overflow='hidden';}
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
-function calcularEntrega(){
-  const ahora = new Date();
-  const hora = ahora.getHours();
-  const l = getLang();
-  const dias = l==='en'
-    ? ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-    : ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-  const meses = l==='en'
-    ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    : ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  let entrega = new Date(ahora);
-  let diasSumar = hora < 14 ? 1 : 2;
-  let contados = 0;
-  while(contados < diasSumar){
-    entrega.setDate(entrega.getDate() + 1);
-    const diaSemana = entrega.getDay();
-    if(diaSemana !== 0 && diaSemana !== 6) contados++;
-  }
-  const prefix = l==='en' ? 'Delivery on ' : 'Recibes el ';
-  document.getElementById('fecha-entrega').textContent = prefix + dias[entrega.getDay()] + ' ' + entrega.getDate() + ' ' + meses[entrega.getMonth()];
-}
-
 applyLang();
-calcularEntrega();
 loadProduct();
-
-(function(){
-  const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
-  const total = cart.reduce((s,i)=>s+i.qty,0);
-  const el = document.getElementById('nav-cart-count');
-  if(el && total > 0){ el.textContent=total; el.style.display='flex'; }
-})();
+(function(){const cart=JSON.parse(localStorage.getItem('korva-cart')||'[]');const total=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('nav-cart-count');if(el&&total>0){el.textContent=total;el.style.display='flex';}})();
 </script>
 <script>
 document.querySelectorAll('a[href]').forEach(a=>{
   const href=a.getAttribute('href');
   if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.target==='_blank') return;
-  a.addEventListener('click',function(e){
-    e.preventDefault();
-    document.body.style.transition='opacity .3s ease';
-    document.body.style.opacity='0';
-    setTimeout(()=>location.href=href,300);
-  });
+  a.addEventListener('click',function(e){e.preventDefault();document.body.style.transition='opacity .3s ease';document.body.style.opacity='0';setTimeout(()=>location.href=href,300);});
 });
 </script>
 <nav class="nav-mobile-menu" id="nav-mobile-menu">
@@ -1019,12 +879,12 @@ document.querySelectorAll('a[href]').forEach(a=>{
 </nav>
 <script>
 function toggleMenu(){
-  const btn = document.getElementById('nav-hamburger');
-  const menu = document.getElementById('nav-mobile-menu');
-  const open = btn.classList.toggle('open');
-  menu.style.display = open ? 'flex' : 'none';
-  setTimeout(()=>{ if(open) menu.classList.add('open'); else menu.classList.remove('open'); }, 10);
-  document.body.style.overflow = open ? 'hidden' : '';
+  const btn=document.getElementById('nav-hamburger');
+  const menu=document.getElementById('nav-mobile-menu');
+  const open=btn.classList.toggle('open');
+  menu.style.display=open?'flex':'none';
+  setTimeout(()=>{if(open) menu.classList.add('open');else menu.classList.remove('open');},10);
+  document.body.style.overflow=open?'hidden':'';
 }
 </script>
 <script src="//code.tidio.co/b2fb5elsg7pw0xnun90evdskyrrqgfef.js" async></script>
