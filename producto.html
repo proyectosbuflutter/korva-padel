@@ -618,8 +618,10 @@ async function loadProduct(){
   window.currentProduct = p;
 
   // Breadcrumb
-  document.getElementById('breadcrumb-nombre').textContent = p.nombre;
-  document.title = `KORVA — ${p.nombre}`;
+  const lang = localStorage.getItem('korva-lang') || 'es';
+  const gf = (field) => (lang === 'en' && p[field+'_en']) ? p[field+'_en'] : (p[field] || '');
+  document.getElementById('breadcrumb-nombre').textContent = gf('nombre');
+  document.title = `KORVA — ${gf('nombre')}`;
 
   // GALERÍA
   const imagenes = [p.imagen, p['imagen-b'], p['imagen-c'], p['imagen-d']].filter(Boolean);
@@ -653,9 +655,9 @@ async function loadProduct(){
 
   // Info
   document.getElementById('prod-cat').textContent = p.categoria;
-  document.getElementById('prod-name').textContent = p.nombre;
+  document.getElementById('prod-name').textContent = gf('nombre');
   document.getElementById('prod-sub').textContent = p.nivel;
-  document.getElementById('prod-descripcion').textContent = p.descripcion;
+  document.getElementById('prod-descripcion').textContent = gf('descripcion');
 
   // Precio
   document.getElementById('prod-precio').textContent = p.precio + '€';
