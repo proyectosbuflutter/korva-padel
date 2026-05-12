@@ -132,7 +132,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .modal-submit:hover{background:var(--g800)}
 
-/* VOLVER ARRIBA */
 .back-to-top{position:fixed;bottom:5rem;left:1.5rem;width:42px;height:42px;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);z-index:90;border-radius:50%}
 .back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
 .back-to-top:hover{background:var(--black)}
@@ -166,7 +165,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   .cookie-banner{padding:1rem 1.2rem;flex-direction:column;align-items:flex-start;gap:1rem}
 }
 
-/* HAMBURGUESA */
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;margin-left:.5rem}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s ease}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -194,14 +192,20 @@ body{animation:fadeIn .4s ease;}
 
 <div class="top-banner">
   <span style="flex:1"></span>
-  <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
-  <span style="flex:1;text-align:right;color:#ffffff;padding-right:75px">ESP | CAT | ENG</span>
+  <span id="banner-text"><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
+  <span style="flex:1;text-align:right;padding-right:75px;display:flex;justify-content:flex-end;gap:.6rem;align-items:center">
+    <button onclick="setLang('es')" id="lang-es" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ESP</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('cat')" id="lang-cat" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">CAT</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('en')" id="lang-en" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ENG</button>
+  </span>
 </div>
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <ul class="nav-links">
     <li class="universo-wrap">
-      <button class="universo-btn">Universo KORVA</button>
+      <button class="universo-btn" id="nav-universo">Universo KORVA</button>
       <div class="universo-tooltip">
         <a href="pickleball.html">KORVA Pickleball</a>
         <a href="footballflag.html">KORVA Football Flag</a>
@@ -209,24 +213,23 @@ body{animation:fadeIn .4s ease;}
       </div>
     </li>
     <li style="color:var(--black);opacity:1">|</li>
-    <li><a href="index.html#steps">Tecnología</a></li>
+    <li><a href="index.html#steps" id="nav-tech">Tecnología</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="index.html#accordion">Materiales</a></li>
+    <li><a href="index.html#accordion" id="nav-mat">Materiales</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="tienda.html?cat=pack">Packs</a></li>
+    <li><a href="tienda.html?cat=pack" id="nav-packs">Packs</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="index.html#otras-marcas">Otras marcas</a></li>
-    
+    <li><a href="index.html#otras-marcas" id="nav-marcas">Otras marcas</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <a href="tienda.html" class="nav-tienda" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
-<button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
+    <a href="tienda.html" class="nav-tienda" id="nav-tienda-btn" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
+    <button class="nav-access" onclick="openLogin()" id="nav-acceso" style="margin-left:20px">Acceso</button>
     <a href="carrito.html" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span id="nav-cart-count" style="position:absolute;top:-8px;right:-8px;background:#c8a96e;color:#fff;font-size:.5rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 2px"></span>
       </span>
-      Carrito
+      <span id="nav-carrito-txt">Carrito</span>
     </a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -234,53 +237,47 @@ body{animation:fadeIn .4s ease;}
   </div>
 </nav>
 
+<main>
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a>
-  <span class="breadcrumb-sep">/</span>
-  <a href="tienda.html">Tienda</a>
-  <span class="breadcrumb-sep">/</span>
+  <a href="index.html" id="bc-inicio">Inicio</a>
+  <span class="breadcrumb-sep">—</span>
+  <a href="tienda.html" id="bc-tienda">Tienda</a>
+  <span class="breadcrumb-sep">—</span>
+  <span id="bc-packs">Packs</span>
+  <span class="breadcrumb-sep">—</span>
   <span id="breadcrumb-nombre">Pack</span>
 </div>
 
 <div class="pack-wrap">
-
   <div class="gallery">
     <div class="gallery-main" id="gallery-main">
-      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width=".6" stroke-linecap="round">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-        <line x1="12" y1="22.08" x2="12" y2="12"/>
+      <svg width="180" height="280" viewBox="0 0 190 310" fill="none">
+        <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
+        <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
+        <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
+        <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
+        <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text>
       </svg>
     </div>
   </div>
 
   <div class="pack-info">
-    <div class="pack-cat">Pack KORVA</div>
     <div>
-      <span id="pack-badge" class="pack-badge" style="display:none"></span>
-      <div class="pack-name" id="pack-nombre"></div>
+      <div class="pack-cat" id="pack-cat">Pack</div>
+      <h1 class="pack-name" id="pack-nombre">Cargando...</h1>
     </div>
 
     <div>
-      <div style="display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap">
+      <span id="pack-badge" class="pack-badge" style="display:none"></span>
+      <div style="margin-top:.8rem">
         <span class="price-main" id="pack-precio"></span>
         <span class="price-old" id="pack-precio-anterior" style="display:none"></span>
         <span class="price-save" id="pack-ahorro" style="display:none"></span>
       </div>
-      <div style="font-size:.65rem;color:var(--g400);margin-top:.3rem">IVA incluido</div>
+      <div style="font-size:.65rem;color:var(--g400);margin-top:.4rem" id="iva-txt">IVA incluido</div>
     </div>
 
-    <div class="pack-desc-block">
-      <div class="pack-desc-title">Descripción</div>
-      <p class="pack-desc-text" id="pack-descripcion"></p>
-    </div>
-
-    <div>
-      <div class="pack-desc-title" style="margin-bottom:1rem">Productos incluidos</div>
-      <div class="pack-productos" id="pack-productos">
-        <div style="padding:1.5rem;text-align:center;font-size:.78rem;color:var(--g400)">Cargando productos...</div>
-      </div>
-    </div>
+    <div class="pack-productos" id="pack-productos"></div>
 
     <div class="add-row">
       <div class="qty-wrap">
@@ -288,41 +285,44 @@ body{animation:fadeIn .4s ease;}
         <span class="qty-val" id="qty">1</span>
         <button class="qty-btn" onclick="changeQty(1)">+</button>
       </div>
-      <button class="btn-cart" onclick="addToCart()">Añadir al carrito</button>
+      <button class="btn-cart" onclick="addToCart()" id="btn-add-cart">Añadir al carrito</button>
     </div>
 
     <div class="trust-icons">
       <div class="trust-item">
-        <svg class="trust-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="18.5" cy="18.5" r="1.5"/></svg>
-        <div class="trust-text"><strong>Envío 24–48h</strong>Península</div>
+        <svg class="trust-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <div class="trust-text"><strong id="trust1-title">Envío gratis</strong><span id="trust1-sub">en Península +120€</span></div>
+      </div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="trust-text"><strong id="trust2-title">Devolución</strong><span id="trust2-sub">30 días sin preguntas</span></div>
       </div>
       <div class="trust-item">
         <svg class="trust-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <div class="trust-text"><strong>36 meses</strong>Garantía estructural</div>
-      </div>
-      <div class="trust-item">
-        <svg class="trust-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        <div class="trust-text"><strong>30 días</strong>Devolución gratis</div>
+        <div class="trust-text"><strong id="trust3-title">Garantía</strong><span id="trust3-sub">36 meses</span></div>
       </div>
     </div>
 
+    <div class="pack-desc-block">
+      <div class="pack-desc-title" id="desc-title">Descripción</div>
+      <div class="pack-desc-text" id="pack-descripcion"></div>
+    </div>
   </div>
 </div>
+</main>
 
-<div class="toast" id="toast"></div>
-
-</main><footer>
+<footer>
   <div class="footer-brand">
     <span class="footer-brand-name">KORVA</span>
-    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+    <p class="footer-brand-desc" id="footer-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
   </div>
   <div class="footer-nav">
-    <a href="tienda.html">Tienda</a>
-    <a href="index.html#steps">Tecnología</a>
-    <a href="index.html#accordion">Materiales</a>
-    <a href="index.html#packs">Packs</a>
+    <a href="tienda.html" id="footer-tienda">Tienda</a>
+    <a href="index.html#steps" id="footer-tech">Tecnología</a>
+    <a href="index.html#accordion" id="footer-mat">Materiales</a>
+    <a href="index.html#packs" id="footer-packs">Packs</a>
   </div>
-  <button class="footer-contact-btn" onclick="openModal()">Contacto</button>
+  <button class="footer-contact-btn" onclick="openModal()" id="footer-contact">Contacto</button>
   <div class="footer-social">
     <a href="#" aria-label="Instagram">
       <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
@@ -334,31 +334,37 @@ body{animation:fadeIn .4s ease;}
     </a>
   </div>
   <div class="footer-legal">
-    <a href="#" onclick="openLegal('aviso');return false">Aviso legal</a>
-    <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
-    <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
+    <a href="#" onclick="openLegal('aviso');return false" id="footer-aviso">Aviso legal</a>
+    <a href="#" onclick="openLegal('privacidad');return false" id="footer-priv">Privacidad</a>
+    <a href="#" onclick="openLegal('cookies');return false" id="footer-cook">Cookies</a>
   </div>
-  <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
+  <div class="footer-bottom" id="footer-copy">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
+<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<div id="toast" class="toast"></div>
+
 <div class="cookie-banner" id="cookie-banner">
-  <p class="cookie-text">Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="#" onclick="openLegal('cookies');return false">Política de cookies</a>.</p>
+  <p class="cookie-text" id="cookie-txt">Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="#" onclick="openLegal('cookies');return false" id="cookie-link">Política de cookies</a>.</p>
   <div class="cookie-btns">
-    <button class="cookie-reject" onclick="rejectCookies()">Rechazar</button>
-    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+    <button class="cookie-reject" onclick="rejectCookies()" id="cookie-reject-btn">Rechazar</button>
+    <button class="cookie-accept" onclick="acceptCookies()" id="cookie-accept-btn">Aceptar</button>
   </div>
 </div>
 
 <div class="modal-overlay" id="modal">
   <div class="modal-backdrop" onclick="closeModal()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Contacto</span>
-    <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
-    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-title" id="modal-contact-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
+    <div class="modal-field"><label id="modal-nombre-lbl">Nombre</label><input type="text" id="modal-nombre-input" placeholder="Tu nombre"></div>
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..."></textarea></div>
-    <button class="modal-submit">Enviar mensaje</button>
+    <div class="modal-field"><label id="modal-msg-lbl">Mensaje</label><textarea id="modal-msg-input" placeholder="Escribe tu mensaje aquí..."></textarea></div>
+    <button class="modal-submit" id="modal-contact-btn">Enviar mensaje</button>
   </div>
 </div>
 
@@ -367,11 +373,11 @@ body{animation:fadeIn .4s ease;}
   <div class="modal-box">
     <button class="modal-close" onclick="closeLogin()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Acceso</span>
-    <div class="modal-title">Bienvenido<br>de nuevo.</div>
+    <div class="modal-title" id="login-title">Bienvenido<br>de nuevo.</div>
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
-    <button class="modal-submit">Entrar</button>
-    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
+    <div class="modal-field"><label id="login-pass-lbl">Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit" id="login-btn">Entrar</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)" id="login-register-txt">¿No tienes cuenta? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
   </div>
 </div>
 
@@ -379,14 +385,14 @@ body{animation:fadeIn .4s ease;}
   <div class="modal-backdrop" onclick="closeRegistro()"></div>
   <div class="modal-box">
     <button class="modal-close" onclick="closeRegistro()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <span class="modal-label">Crear cuenta</span>
-    <div class="modal-title">Bienvenido<br>a KORVA.</div>
-    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <span class="modal-label" id="registro-label">Crear cuenta</span>
+    <div class="modal-title" id="registro-title">Bienvenido<br>a KORVA.</div>
+    <div class="modal-field"><label id="reg-nombre-lbl">Nombre</label><input type="text" placeholder="Tu nombre"></div>
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
-    <div class="modal-field"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
-    <button class="modal-submit">Crear cuenta</button>
-    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
+    <div class="modal-field"><label id="reg-pass-lbl">Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <div class="modal-field"><label id="reg-pass2-lbl">Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit" id="reg-btn">Crear cuenta</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)" id="reg-login-txt">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
   </div>
 </div>
 
@@ -403,6 +409,133 @@ body{animation:fadeIn .4s ease;}
 <script>
 const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
+
+// IDIOMA
+const i18n = {
+  es: {
+    banner: '<span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses',
+    nav_universo:'Universo KORVA', nav_tech:'Tecnología', nav_mat:'Materiales', nav_packs:'Packs', nav_marcas:'Otras marcas',
+    nav_tienda:'Tienda', nav_acceso:'Acceso', nav_carrito:'Carrito',
+    bc_inicio:'Inicio', bc_tienda:'Tienda', bc_packs:'Packs',
+    pack_cat:'Pack', iva:'IVA incluido',
+    btn_cart:'Añadir al carrito',
+    trust1_title:'Envío gratis', trust1_sub:'en Península +120€',
+    trust2_title:'Devolución', trust2_sub:'30 días sin preguntas',
+    trust3_title:'Garantía', trust3_sub:'36 meses',
+    desc_title:'Descripción',
+    ahorras:'Ahorras',
+    footer_desc:'Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.',
+    footer_tienda:'Tienda', footer_tech:'Tecnología', footer_mat:'Materiales', footer_packs:'Packs',
+    footer_contact:'Contacto',
+    footer_aviso:'Aviso legal', footer_priv:'Privacidad', footer_cook:'Cookies',
+    footer_copy:'© 2026 KORVA Pádel — Todos los derechos reservados',
+    cookie_txt:'Usamos cookies propias y de terceros para mejorar tu experiencia.',
+    cookie_link:'Política de cookies',
+    cookie_accept:'Aceptar', cookie_reject:'Rechazar',
+    modal_contact_title:'Cuéntanos\nen qué podemos\nayudarte.',
+    modal_nombre:'Nombre', modal_msg:'Mensaje', modal_send:'Enviar mensaje',
+    login_title:'Bienvenido\nde nuevo.', login_pass:'Contraseña', login_btn:'Entrar',
+    login_register:'¿No tienes cuenta? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a>',
+    reg_label:'Crear cuenta', reg_title:'Bienvenido\na KORVA.',
+    reg_nombre:'Nombre', reg_pass:'Contraseña', reg_pass2:'Confirmar contraseña',
+    reg_btn:'Crear cuenta',
+    reg_login:'¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a>'
+  },
+  en: {
+    banner: '<span>Free shipping</span> Peninsula +€120 &nbsp;·&nbsp; <span>Returns</span> 30 days no questions &nbsp;·&nbsp; <span>Warranty</span> 36 months',
+    nav_universo:'KORVA Universe', nav_tech:'Technology', nav_mat:'Materials', nav_packs:'Packs', nav_marcas:'Other brands',
+    nav_tienda:'Shop', nav_acceso:'Login', nav_carrito:'Cart',
+    bc_inicio:'Home', bc_tienda:'Shop', bc_packs:'Packs',
+    pack_cat:'Pack', iva:'VAT included',
+    btn_cart:'Add to cart',
+    trust1_title:'Free shipping', trust1_sub:'Peninsula orders +€120',
+    trust2_title:'Returns', trust2_sub:'30 days no questions',
+    trust3_title:'Warranty', trust3_sub:'36 months',
+    desc_title:'Description',
+    ahorras:'You save',
+    footer_desc:'High-performance material engineering, designed for those who accept no limits on the court.',
+    footer_tienda:'Shop', footer_tech:'Technology', footer_mat:'Materials', footer_packs:'Packs',
+    footer_contact:'Contact',
+    footer_aviso:'Legal notice', footer_priv:'Privacy', footer_cook:'Cookies',
+    footer_copy:'© 2026 KORVA Pádel — All rights reserved',
+    cookie_txt:'We use our own and third-party cookies to improve your experience.',
+    cookie_link:'Cookie policy',
+    cookie_accept:'Accept', cookie_reject:'Reject',
+    modal_contact_title:'Tell us\nhow we can\nhelp you.',
+    modal_nombre:'Name', modal_msg:'Message', modal_send:'Send message',
+    login_title:'Welcome\nback.', login_pass:'Password', login_btn:'Sign in',
+    login_register:'Don\'t have an account? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Sign up</a>',
+    reg_label:'Create account', reg_title:'Welcome\nto KORVA.',
+    reg_nombre:'Name', reg_pass:'Password', reg_pass2:'Confirm password',
+    reg_btn:'Create account',
+    reg_login:'Already have an account? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Sign in</a>'
+  }
+};
+
+function getLang(){ return localStorage.getItem('korva-lang') || 'es'; }
+function gf(p, field){ const l=getLang(); return (l==='en' && p[field+'_en']) ? p[field+'_en'] : (p[field]||''); }
+
+function applyLang(){
+  const l = getLang();
+  const t = i18n[l] || i18n.es;
+
+  document.querySelectorAll('[id^="lang-"]').forEach(b=>b.style.color='rgba(255,255,255,.5)');
+  const active = document.getElementById('lang-'+l);
+  if(active) active.style.color='#fff';
+
+  document.getElementById('banner-text').innerHTML = t.banner;
+  document.getElementById('nav-universo').textContent = t.nav_universo;
+  document.getElementById('nav-tech').textContent = t.nav_tech;
+  document.getElementById('nav-mat').textContent = t.nav_mat;
+  document.getElementById('nav-packs').textContent = t.nav_packs;
+  document.getElementById('nav-marcas').textContent = t.nav_marcas;
+  document.getElementById('nav-tienda-btn').textContent = t.nav_tienda;
+  document.getElementById('nav-acceso').textContent = t.nav_acceso;
+  document.getElementById('nav-carrito-txt').textContent = t.nav_carrito;
+  document.getElementById('bc-inicio').textContent = t.bc_inicio;
+  document.getElementById('bc-tienda').textContent = t.bc_tienda;
+  document.getElementById('bc-packs').textContent = t.bc_packs;
+  document.getElementById('pack-cat').textContent = t.pack_cat;
+  document.getElementById('iva-txt').textContent = t.iva;
+  document.getElementById('btn-add-cart').textContent = t.btn_cart;
+  document.getElementById('trust1-title').textContent = t.trust1_title;
+  document.getElementById('trust1-sub').textContent = t.trust1_sub;
+  document.getElementById('trust2-title').textContent = t.trust2_title;
+  document.getElementById('trust2-sub').textContent = t.trust2_sub;
+  document.getElementById('trust3-title').textContent = t.trust3_title;
+  document.getElementById('trust3-sub').textContent = t.trust3_sub;
+  document.getElementById('desc-title').textContent = t.desc_title;
+  document.getElementById('footer-desc').textContent = t.footer_desc;
+  document.getElementById('footer-tienda').textContent = t.footer_tienda;
+  document.getElementById('footer-tech').textContent = t.footer_tech;
+  document.getElementById('footer-mat').textContent = t.footer_mat;
+  document.getElementById('footer-packs').textContent = t.footer_packs;
+  document.getElementById('footer-contact').textContent = t.footer_contact;
+  document.getElementById('footer-aviso').textContent = t.footer_aviso;
+  document.getElementById('footer-priv').textContent = t.footer_priv;
+  document.getElementById('footer-cook').textContent = t.footer_cook;
+  document.getElementById('footer-copy').textContent = t.footer_copy;
+  document.getElementById('cookie-reject-btn').textContent = t.cookie_reject;
+  document.getElementById('cookie-accept-btn').textContent = t.cookie_accept;
+  document.getElementById('cookie-link').textContent = t.cookie_link;
+
+  // Datos dinámicos del pack
+  const p = window.currentPack;
+  if(p){
+    document.getElementById('breadcrumb-nombre').textContent = gf(p,'nombre');
+    document.getElementById('pack-nombre').textContent = gf(p,'nombre');
+    document.getElementById('pack-descripcion').textContent = gf(p,'descripcion');
+    if(p.precio_anterior){
+      const diff = p.precio_anterior - p.precio;
+      document.getElementById('pack-ahorro').textContent = t.ahorras + ' ' + diff + '€';
+    }
+  }
+}
+
+function setLang(lang){
+  localStorage.setItem('korva-lang', lang);
+  applyLang();
+}
 
 let currentPack = null;
 let qty = 1;
@@ -428,11 +561,12 @@ async function loadPack(){
 
   const p = data[0];
   currentPack = p;
+  window.currentPack = p;
 
   document.title = `KORVA — ${p.nombre}`;
-  document.getElementById('breadcrumb-nombre').textContent = p.nombre;
-  document.getElementById('pack-nombre').textContent = p.nombre;
-  document.getElementById('pack-descripcion').textContent = p.descripcion || '';
+  document.getElementById('breadcrumb-nombre').textContent = gf(p,'nombre');
+  document.getElementById('pack-nombre').textContent = gf(p,'nombre');
+  document.getElementById('pack-descripcion').textContent = gf(p,'descripcion');
   document.getElementById('pack-precio').textContent = p.precio + '€';
 
   if(p.badge){
@@ -442,19 +576,18 @@ async function loadPack(){
   }
 
   if(p.precio_anterior){
+    const t = i18n[getLang()] || i18n.es;
     document.getElementById('pack-precio-anterior').textContent = p.precio_anterior + '€';
     document.getElementById('pack-precio-anterior').style.display = 'inline';
     const ahorro = p.precio_anterior - p.precio;
-    document.getElementById('pack-ahorro').textContent = 'Ahorras ' + ahorro + '€';
+    document.getElementById('pack-ahorro').textContent = t.ahorras + ' ' + ahorro + '€';
     document.getElementById('pack-ahorro').style.display = 'inline';
   }
 
   if(p.imagen){
-    const galleryMain = document.getElementById('gallery-main');
-    galleryMain.innerHTML = `<img src="${p.imagen}" alt="${p.nombre}" onerror="this.style.display='none'">`;
+    document.getElementById('gallery-main').innerHTML = `<img src="${p.imagen}" alt="${p.nombre}" onerror="this.style.display='none'">`;
   }
 
-  // Cargar productos incluidos
   if(p.productos_ids){
     const ids = p.productos_ids.split(',').map(i=>i.trim()).filter(Boolean);
     if(ids.length){
@@ -471,16 +604,18 @@ async function loadPack(){
       document.getElementById('pack-precio').textContent = precioConDescuento + '€';
       document.getElementById('pack-precio-anterior').textContent = precioBase + '€';
       document.getElementById('pack-precio-anterior').style.display = 'inline';
+      const t = i18n[getLang()] || i18n.es;
       const ahorro = precioBase - precioConDescuento;
-      document.getElementById('pack-ahorro').textContent = 'Ahorras ' + ahorro + '€';
+      document.getElementById('pack-ahorro').textContent = t.ahorras + ' ' + ahorro + '€';
       document.getElementById('pack-ahorro').style.display = 'inline';
-      
     } else {
       document.getElementById('pack-productos').innerHTML = '<div style="padding:1.5rem;text-align:center;font-size:.78rem;color:var(--g400)">Productos por definir</div>';
     }
   } else {
     document.getElementById('pack-productos').innerHTML = '<div style="padding:1.5rem;text-align:center;font-size:.78rem;color:var(--g400)">Productos por definir</div>';
   }
+
+  applyLang();
 }
 
 function renderProductos(productos){
@@ -493,7 +628,7 @@ function renderProductos(productos){
       </div>
       <div>
         <div class="pack-producto-cat">${p.categoria}</div>
-        <div class="pack-producto-nombre">${p.nombre}</div>
+        <div class="pack-producto-nombre">${gf(p,'nombre')}</div>
       </div>
       <div class="pack-producto-precio"></div>
     </div>
@@ -510,6 +645,15 @@ function addToCart(){
   if(idx > -1){ cart[idx].qty += qty; }
   else { cart.push({id, nombre: currentPack.nombre, precio: currentPack.precioFinal || currentPack.precio, peso:'', balance:'', qty}); }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
+  const btn = document.getElementById('btn-add-cart');
+  btn.classList.add('added');
+  setTimeout(()=>btn.classList.remove('added'),400);
+  const navCount = document.getElementById('nav-cart-count');
+  const total = JSON.parse(localStorage.getItem('korva-cart')||'[]').reduce((s,i)=>s+i.qty,0);
+  navCount.textContent = total;
+  navCount.style.display = 'flex';
+  navCount.classList.add('nav-cart-bounce');
+  setTimeout(()=>navCount.classList.remove('nav-cart-bounce'),300);
   const t = document.getElementById('toast');
   t.textContent = '✓ ' + currentPack.nombre + ' añadido';
   t.classList.add('show');
@@ -552,7 +696,9 @@ function openLegal(type){
 }
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
+applyLang();
 loadPack();
+
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const total = cart.reduce((s,i)=>s+i.qty,0);
@@ -571,6 +717,30 @@ document.querySelectorAll('a[href]').forEach(a=>{
     setTimeout(()=>location.href=href,300);
   });
 });
+</script>
+<nav class="nav-mobile-menu" id="nav-mobile-menu">
+  <button onclick="toggleMenu()" style="position:absolute;top:1.2rem;right:1.4rem;background:none;border:none;cursor:pointer;padding:.4rem;display:flex;align-items:center;justify-content:center">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html" onclick="toggleMenu()" id="mobile-inicio">Inicio</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="tienda.html" onclick="toggleMenu()" id="mobile-tienda">Tienda</a>
+  <a href="tienda.html?cat=pack" onclick="toggleMenu()" id="mobile-packs">Packs</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="pickleball.html" onclick="toggleMenu()">Pickleball</a>
+  <a href="footballflag.html" onclick="toggleMenu()">Football Flag</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="carrito.html" class="nav-mobile-cart" onclick="toggleMenu()" id="mobile-carrito">Carrito</a>
+</nav>
+<script>
+function toggleMenu(){
+  const btn = document.getElementById('nav-hamburger');
+  const menu = document.getElementById('nav-mobile-menu');
+  const open = btn.classList.toggle('open');
+  menu.style.display = open ? 'flex' : 'none';
+  setTimeout(()=>{ if(open) menu.classList.add('open'); else menu.classList.remove('open'); }, 10);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
 </script>
 <script src="//code.tidio.co/b2fb5elsg7pw0xnun90evdskyrrqgfef.js" async></script>
 </body>
