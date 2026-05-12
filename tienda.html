@@ -595,7 +595,7 @@ function renderProducts(palas, accesorios){
         </div>
         <div class="pala-card-info">
           <div class="pala-card-cat">Pala de pádel</div>
-          <div class="pala-card-name">${p.nombre}</div>
+          <div class="pala-card-name">${getField(p,'nombre')}</div>
           <div style="display:flex;align-items:center;gap:.3rem;margin:.3rem 0">
             <span style="color:#c8a96e;font-size:.75rem;letter-spacing:.05em">★★★★☆</span>
             <span style="font-family:'Sora',sans-serif;font-size:.62rem;color:#888;font-weight:500">4.2 <span style="color:#bbb">(24)</span></span>
@@ -630,7 +630,7 @@ function renderProducts(palas, accesorios){
           ${imgOrFallback(p.imagen, svgAccesorio(), p.nombre)}
         </div>
         <div class="acc-card-info">
-          <div class="acc-card-name">${p.nombre}</div>
+          <div class="acc-card-name">${getField(p,'nombre')}</div>
           <div class="acc-card-bottom">
             <span class="acc-card-price">${p.precio}€</span>
             <button class="acc-card-btn" onclick="event.stopPropagation();addToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio},'','','${p.imagen||''}')">+ Añadir</button>
