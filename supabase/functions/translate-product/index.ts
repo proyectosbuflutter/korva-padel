@@ -11,7 +11,10 @@ Deno.serve(async (req) => {
     const record = body.record || body;
     const tabla = body.table || 'productos';
 
-    if (!record?.nombre || !record?.id || record?.nombre_en) {
+    if (!record?.nombre || !record?.id) {
+      return new Response(JSON.stringify({ skip: true }), { status: 200 });
+    }
+    if (record?.nombre_en && record?.badge_en !== null && record?.badge_en !== undefined && record?.badge_en !== '') {
       return new Response(JSON.stringify({ skip: true }), { status: 200 });
     }
 
@@ -36,12 +39,16 @@ Title:
 ${record.nombre}
 Description:
 ${record.descripcion || ''}
+Badge (short label, e.g. "Más vendido", "Nuevo", "Oferta"):
+${record.badge || ''}
 Output format:
 Return ONLY JSON:
 {
   "title_en": "...",
-  "description_en": "..."
+  "description_en": "...",
+  "badge_en": "..."
 }
+If a field is empty, return an empty string for it.
 If a sentence in Spanish is unclear, prefer a safe literal translation rather than guessing.`;
 
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -64,6 +71,12 @@ If a sentence in Spanish is unclear, prefer a safe literal translation rather th
     const clean = match[0];
     const translated = JSON.parse(clean);
 
+    const updateData: Record<string, string> = {
+      nombre_en: translated.title_en,
+      descripcion_en: translated.description_en
+    };
+    if(translated.badge_en !== undefined) updateData.badge_en = translated.badge_en;
+
     await fetch(`${SUPABASE_URL}/rest/v1/${tabla}?id=eq.${record.id}`, {
       method: 'PATCH',
       headers: {
@@ -72,10 +85,7 @@ If a sentence in Spanish is unclear, prefer a safe literal translation rather th
         'Content-Type': 'application/json',
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({
-        nombre_en: translated.title_en,
-        descripcion_en: translated.description_en
-      })
+      body: JSON.stringify(updateData)
     });
 
     return new Response(JSON.stringify({ ok: true, translated }), { status: 200 });
