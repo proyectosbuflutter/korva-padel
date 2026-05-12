@@ -815,7 +815,8 @@ function openComparador(){
 }
 function updateComparador(palas){
   palas.forEach(p => {
-    
+    const compPrice = document.getElementById('comp-price-'+p.id);
+    if(compPrice) compPrice.textContent = p.precio+'€';
   });
 }
 function closeComparador(){document.getElementById('comp-modal').classList.remove('open');document.body.style.overflow='';}
