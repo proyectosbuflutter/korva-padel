@@ -711,7 +711,7 @@ async function loadProducts(cat='todos'){
   document.getElementById('shop-loading').style.display='block';
   document.getElementById('shop-content').style.display='none';
 
-  let url = `${SUPABASE_URL}/rest/v1/productos?activo=eq.true&order=id.asc`;
+  let url = `${SUPABASE_URL}/rest/v1/productos?activo=eq.true&order=id.asc&select=*`;
   if(cat === 'pala') url += '&categoria=eq.pala';
   else if(cat === 'accesorio') url += '&categoria=eq.accesorio';
 
