@@ -752,10 +752,12 @@ function rejectCookies(){localStorage.setItem('korva-cookies','rejected');docume
 initCookies();
 window.addEventListener('scroll',()=>{const btn=document.getElementById('back-to-top');if(btn) btn.classList.toggle('visible',window.scrollY>400);});
 
-applyLang();
-renderCart();
-updateCount();
-updateSummary();
+document.addEventListener('DOMContentLoaded', function(){
+  applyLang();
+  renderCart();
+  updateCount();
+  updateSummary();
+});
 
 (function(){const cart=JSON.parse(localStorage.getItem('korva-cart')||'[]');const total=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('nav-cart-count');if(el&&total>0){el.textContent=total;el.style.display='flex';}})();
 
