@@ -595,7 +595,7 @@ function renderProducts(palas, accesorios){
         </div>
         <div class="pala-card-info">
           <div class="pala-card-cat">Pala de pádel</div>
-          <div class="pala-card-name">${getField(p,'nombre')}</div>
+          <div class="pala-card-name">${p.nombre}</div>
           <div style="display:flex;align-items:center;gap:.3rem;margin:.3rem 0">
             <span style="color:#c8a96e;font-size:.75rem;letter-spacing:.05em">★★★★☆</span>
             <span style="font-family:'Sora',sans-serif;font-size:.62rem;color:#888;font-weight:500">4.2 <span style="color:#bbb">(24)</span></span>
@@ -711,7 +711,7 @@ async function loadProducts(cat='todos'){
   document.getElementById('shop-loading').style.display='block';
   document.getElementById('shop-content').style.display='none';
 
-  let url = `${SUPABASE_URL}/rest/v1/productos?activo=eq.true&order=id.asc&select=*&_=${Date.now()}`;
+  let url = `${SUPABASE_URL}/rest/v1/productos?activo=eq.true&order=id.asc`;
   if(cat === 'pala') url += '&categoria=eq.pala';
   else if(cat === 'accesorio') url += '&categoria=eq.accesorio';
 
