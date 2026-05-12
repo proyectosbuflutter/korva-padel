@@ -93,14 +93,20 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
 <div class="top-banner">
   <span style="flex:1"></span>
-  <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
-  <span style="flex:1"></span>
+  <span id="banner-text"><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
+  <span style="flex:1;text-align:right;padding-right:75px;display:flex;justify-content:flex-end;gap:.6rem;align-items:center">
+    <button onclick="setLang('es')" id="lang-es" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0">ESP</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('cat')" id="lang-cat" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0">CAT</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('en')" id="lang-en" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0">ENG</button>
+  </span>
 </div>
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <a href="tienda.html" class="nav-cart">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-    Seguir comprando
+    <span id="nav-seguir">Seguir comprando</span>
   </a>
 </nav>
 
@@ -111,18 +117,18 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
 
-  <div class="confirm-label">Pedido recibido</div>
-  <h1 class="confirm-title">¡Gracias por<br>tu compra!</h1>
-  <p class="confirm-sub">Hemos recibido tu pedido correctamente.<br>En breve recibirás más información.</p>
+  <span id="nav-seguir">Seguir comprando</span>
+  </a>
+</nav>
   <div class="confirm-num" id="confirm-num">Pedido #——</div>
 
   <div class="confirm-summary">
-    <div class="confirm-summary-title">Resumen del pedido</div>
+    <div class="confirm-summary-title" id="conf-summary-title">Resumen del pedido</div>
     <div class="confirm-items" id="confirm-items"></div>
-    <div class="confirm-row"><span class="confirm-row-label">Subtotal</span><span class="confirm-row-val" id="confirm-subtotal">—</span></div>
-    <div class="confirm-row"><span class="confirm-row-label">Envío</span><span class="confirm-row-val" id="confirm-envio">—</span></div>
+    <div class="confirm-row"><span class="confirm-row-label" id="conf-lbl-subtotal">Subtotal</span><span class="confirm-row-val" id="confirm-subtotal">—</span></div>
+    <div class="confirm-row"><span class="confirm-row-label" id="conf-lbl-envio">Envío</span><span class="confirm-row-val" id="confirm-envio">—</span></div>
     <div class="confirm-total">
-      <span class="confirm-total-label">Total</span>
+      <span class="confirm-total-label" id="conf-lbl-total">Total</span>
       <span class="confirm-total-val" id="confirm-total">—</span>
     </div>
   </div>
@@ -130,21 +136,21 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <div class="confirm-trust">
     <div class="confirm-trust-item">
       <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Compra segura SSL
+      <span id="trust-ssl">Compra segura SSL</span>
     </div>
     <div class="confirm-trust-item">
       <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Envío en 2–3 días
+      <span id="trust-envio">Envío en 2–3 días</span>
     </div>
     <div class="confirm-trust-item">
       <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
-      Devolución 30 días
+      <span id="trust-devolucion">Devolución 30 días</span>
     </div>
   </div>
 
   <div class="confirm-btns">
-    <a href="tienda.html" class="btn-primary">Seguir comprando</a>
-    <a href="index.html" class="btn-secondary">Volver al inicio</a>
+    <a href="tienda.html" class="btn-primary" id="btn-seguir">Seguir comprando</a>
+    <a href="index.html" class="btn-secondary" id="btn-inicio">Volver al inicio</a>
   </div>
 
 </div>
@@ -153,50 +159,118 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 <footer>
   <div class="footer-brand">
     <span class="footer-brand-name">KORVA</span>
-    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+    <p class="footer-brand-desc" id="footer-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
   </div>
   <div class="footer-nav">
-    <a href="tienda.html">Tienda</a>
-    <a href="index.html#steps">Tecnología</a>
-    <a href="index.html#accordion">Materiales</a>
-    <a href="index.html#packs">Packs</a>
+    <a href="tienda.html" id="footer-tienda">Tienda</a>
+    <a href="index.html#steps" id="footer-tech">Tecnología</a>
+    <a href="index.html#accordion" id="footer-mat">Materiales</a>
+    <a href="index.html#packs" id="footer-packs">Packs</a>
   </div>
-  <div class="footer-bottom">© 2026 KORVA Pádel — Todos los derechos reservados</div>
+  <div class="footer-bottom" id="footer-copy">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
 
 <script>
-const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
-
-// Número de pedido aleatorio
-const num = 'KRV-' + Date.now().toString().slice(-6);
-document.getElementById('confirm-num').textContent = 'Pedido #' + num;
-
-// Calcular envío
-function getEnvio(sub){ return sub >= 120 ? 0 : 6.95; }
-
-// Renderizar items
-const itemsEl = document.getElementById('confirm-items');
-if(cart.length === 0){
-  itemsEl.innerHTML = '<div style="font-size:.82rem;color:var(--g400)">No hay productos.</div>';
-} else {
-  itemsEl.innerHTML = cart.map(i => `
-    <div class="confirm-item">
-      <div><span class="confirm-item-name">${i.nombre}</span><span class="confirm-item-qty">× ${i.qty}</span></div>
-      <div class="confirm-item-price">${(i.precio * i.qty).toFixed(2).replace('.',',')}€</div>
-    </div>
-  `).join('');
+const i18n={
+  es:{
+    banner:'<span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses',
+    nav_seguir:'Seguir comprando',
+    conf_label:'Pedido recibido',
+    conf_title:'¡Gracias por<br>tu compra!',
+    conf_sub:'Hemos recibido tu pedido correctamente.<br>En breve recibirás más información.',
+    conf_num:'Pedido #',
+    conf_summary_title:'Resumen del pedido',
+    conf_lbl_subtotal:'Subtotal',conf_lbl_envio:'Envío',conf_lbl_total:'Total',
+    envio_gratis:'Gratis',
+    trust_ssl:'Compra segura SSL',trust_envio:'Envío en 2–3 días',trust_devolucion:'Devolución 30 días',
+    btn_seguir:'Seguir comprando',btn_inicio:'Volver al inicio',
+    no_productos:'No hay productos.',
+    footer_desc:'Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.',
+    footer_tienda:'Tienda',footer_tech:'Tecnología',footer_mat:'Materiales',footer_packs:'Packs',
+    footer_copy:'© 2026 KORVA Pádel — Todos los derechos reservados'
+  },
+  en:{
+    banner:'<span>Free shipping</span> Peninsula +€120 &nbsp;·&nbsp; <span>Returns</span> 30 days no questions &nbsp;·&nbsp; <span>Warranty</span> 36 months',
+    nav_seguir:'Continue shopping',
+    conf_label:'Order received',
+    conf_title:'Thank you for<br>your purchase!',
+    conf_sub:'We have received your order successfully.<br>You will receive more information shortly.',
+    conf_num:'Order #',
+    conf_summary_title:'Order summary',
+    conf_lbl_subtotal:'Subtotal',conf_lbl_envio:'Shipping',conf_lbl_total:'Total',
+    envio_gratis:'Free',
+    trust_ssl:'SSL secure purchase',trust_envio:'Shipping in 2–3 days',trust_devolucion:'30-day returns',
+    btn_seguir:'Continue shopping',btn_inicio:'Back to home',
+    no_productos:'No products.',
+    footer_desc:'High performance engineering designed for those who accept no limits on the court.',
+    footer_tienda:'Shop',footer_tech:'Technology',footer_mat:'Materials',footer_packs:'Packs',
+    footer_copy:'© 2026 KORVA Pádel — All rights reserved'
+  }
+};
+function getLang(){return localStorage.getItem('korva-lang')||'es';}
+function setLang(lang){localStorage.setItem('korva-lang',lang);applyLang();renderConfirm();}
+function applyLang(){
+  const t=i18n[getLang()]||i18n.es;
+  const l=getLang();
+  document.getElementById('banner-text').innerHTML=t.banner;
+  document.getElementById('nav-seguir').textContent=t.nav_seguir;
+  document.getElementById('conf-label').textContent=t.conf_label;
+  document.getElementById('conf-title').innerHTML=t.conf_title;
+  document.getElementById('conf-sub').innerHTML=t.conf_sub;
+  document.getElementById('conf-summary-title').textContent=t.conf_summary_title;
+  document.getElementById('conf-lbl-subtotal').textContent=t.conf_lbl_subtotal;
+  document.getElementById('conf-lbl-envio').textContent=t.conf_lbl_envio;
+  document.getElementById('conf-lbl-total').textContent=t.conf_lbl_total;
+  document.getElementById('trust-ssl').textContent=t.trust_ssl;
+  document.getElementById('trust-envio').textContent=t.trust_envio;
+  document.getElementById('trust-devolucion').textContent=t.trust_devolucion;
+  document.getElementById('btn-seguir').textContent=t.btn_seguir;
+  document.getElementById('btn-inicio').textContent=t.btn_inicio;
+  document.getElementById('footer-desc').textContent=t.footer_desc;
+  document.getElementById('footer-tienda').textContent=t.footer_tienda;
+  document.getElementById('footer-tech').textContent=t.footer_tech;
+  document.getElementById('footer-mat').textContent=t.footer_mat;
+  document.getElementById('footer-packs').textContent=t.footer_packs;
+  document.getElementById('footer-copy').textContent=t.footer_copy;
+  ['es','en','cat'].forEach(lng=>{
+    const el=document.getElementById('lang-'+lng);
+    if(el) el.style.color=lng===l?'#fff':'rgba(255,255,255,.5)';
+  });
 }
 
-const sub = cart.reduce((s,i) => s + i.precio * i.qty, 0);
-const envio = getEnvio(sub);
-const total = sub + envio;
+function getEnvio(sub){ return sub >= 120 ? 0 : 6.95; }
 
-document.getElementById('confirm-subtotal').textContent = sub.toFixed(2).replace('.',',') + '€';
-document.getElementById('confirm-envio').textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',') + '€';
-document.getElementById('confirm-total').textContent = total.toFixed(2).replace('.',',') + '€';
+function renderConfirm(){
+  const t=i18n[getLang()]||i18n.es;
+  const cart=JSON.parse(localStorage.getItem('korva-cart-confirm')||'[]');
+  const itemsEl=document.getElementById('confirm-items');
+  if(cart.length===0){
+    itemsEl.innerHTML='<div style="font-size:.82rem;color:var(--g400)">'+t.no_productos+'</div>';
+  } else {
+    itemsEl.innerHTML=cart.map(i=>`
+      <div class="confirm-item">
+        <div><span class="confirm-item-name">${i.nombre}</span><span class="confirm-item-qty">× ${i.qty}</span></div>
+        <div class="confirm-item-price">${(i.precio*i.qty).toFixed(2).replace('.',',')}€</div>
+      </div>
+    `).join('');
+  }
+  const sub=cart.reduce((s,i)=>s+i.precio*i.qty,0);
+  const envio=getEnvio(sub);
+  const total=sub+envio;
+  document.getElementById('confirm-subtotal').textContent=sub.toFixed(2).replace('.',',')+'€';
+  document.getElementById('confirm-envio').textContent=envio===0?t.envio_gratis:envio.toFixed(2).replace('.',',')+'€';
+  document.getElementById('confirm-total').textContent=total.toFixed(2).replace('.',',')+'€';
+}
 
-// Vaciar carrito
+// Guardar copia del carrito antes de vaciarlo
+const cartData=JSON.parse(localStorage.getItem('korva-cart')||'[]');
+localStorage.setItem('korva-cart-confirm',JSON.stringify(cartData));
 localStorage.removeItem('korva-cart');
+
+const num='KRV-'+Date.now().toString().slice(-6);
+document.getElementById('confirm-num').textContent=(i18n[getLang()]||i18n.es).conf_num+num;
+
+document.addEventListener('DOMContentLoaded',function(){applyLang();renderConfirm();});
 </script>
 </body>
 </html>
