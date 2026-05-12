@@ -682,6 +682,8 @@ function applyLang(){
   // Datos dinámicos del producto
   const p = window.currentProduct;
   if(p){
+    const catMap = {es:{pala:'Pala',accesorio:'Accesorio',pack:'Pack'},en:{pala:'Paddle',accesorio:'Accessory',pack:'Pack'}};
+    document.getElementById('prod-cat').textContent = (catMap[l]||catMap.es)[p.categoria] || p.categoria;
     document.getElementById('breadcrumb-nombre').textContent = gf(p,'nombre');
     document.title = 'KORVA — ' + gf(p,'nombre');
     document.getElementById('prod-name').textContent = gf(p,'nombre');
@@ -742,7 +744,8 @@ async function loadProduct(){
   document.getElementById('svg-modelo') && (document.getElementById('svg-modelo').textContent = p.nombre.split(' ').slice(0,2).join(' '));
 
   // Info
-  document.getElementById('prod-cat').textContent = p.categoria;
+  const catMap = {es:{pala:'Pala',accesorio:'Accesorio',pack:'Pack'},en:{pala:'Paddle',accesorio:'Accessory',pack:'Pack'}};
+  document.getElementById('prod-cat').textContent = (catMap[getLang()]||catMap.es)[p.categoria] || p.categoria;
   document.getElementById('prod-name').textContent = gf(p,'nombre');
   document.getElementById('prod-sub').textContent = p.nivel || '';
   document.getElementById('prod-descripcion').textContent = gf(p,'descripcion');
@@ -769,17 +772,21 @@ async function loadProduct(){
   if(p.stock === null || p.stock === undefined){
     stockEl.innerHTML = '';
   } else if(p.stock === 0){
-    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>Agotado</div>';
+    const sl = getLang();
+    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>'+(sl==='en'?'Sold out':'Agotado')+'</div>';
   } else if(p.stock <= 5){
-    stockEl.innerHTML = `<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>Últimas ${p.stock} unidades</div>`;
+    const sl = getLang();
+    stockEl.innerHTML = `<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#c0622a"/></svg>${sl==='en'?'Last '+p.stock+' units':'Últimas '+p.stock+' unidades'}</div>`;
   } else {
-    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#4a9d6f;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#4a9d6f"/></svg>En stock</div>';
+    const sl = getLang();
+    stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#4a9d6f;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#4a9d6f"/></svg>'+(sl==='en'?'In stock':'En stock')+'</div>';
   }
 
   if(p.stock === 0){
+    const sl = getLang();
     stockEl.innerHTML += `<div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
-      <input type="email" placeholder="tu@email.com" id="aviso-email" style="font-family:'Sora',sans-serif;font-size:.72rem;border:none;border-bottom:1px solid var(--g200);padding:.4rem 0;outline:none;flex:1;background:transparent">
-      <button onclick="avisarStock()" style="font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:#fff;border:none;padding:.5rem 1rem;cursor:pointer">Avísame</button>
+      <input type="email" placeholder="${sl==='en'?'your@email.com':'tu@email.com'}" id="aviso-email" style="font-family:'Sora',sans-serif;font-size:.72rem;border:none;border-bottom:1px solid var(--g200);padding:.4rem 0;outline:none;flex:1;background:transparent">
+      <button onclick="avisarStock()" style="font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--black);color:#fff;border:none;padding:.5rem 1rem;cursor:pointer">${sl==='en'?'Notify me':'Avísame'}</button>
     </div>`;
   }
 
