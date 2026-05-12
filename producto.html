@@ -26,10 +26,8 @@ html{overflow-x:clip}
 body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden}
 
 .top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
-
 .top-banner span{color:var(--accent)}
 
-/* NAV */
 nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#c8a96e;backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
 .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
 .nav-links{display:flex;gap:1.2rem;list-style:none;margin-left:-50px}
@@ -45,17 +43,13 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .universo-tooltip a+a{border-top:1px solid rgba(255,255,255,.08)}
 .nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:#2a4a6b;color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 
-
-/* BREADCRUMB */
 .breadcrumb{padding:8rem 4rem 0;max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:.6rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--g400)}
 .breadcrumb a{color:var(--g400);text-decoration:none;transition:color .2s}
 .breadcrumb a:hover{color:var(--black)}
 .breadcrumb-sep{color:var(--g200)}
 
-/* PRODUCTO LAYOUT */
 .prod-wrap{max-width:1280px;margin:0 auto;padding:2.5rem 4rem 8rem;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start}
 
-/* GALERÍA */
 .gallery{display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:6rem}
 .gallery-main{background:#141412;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .gallery-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
@@ -63,26 +57,22 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .gallery-thumb.active{border-color:var(--accent)}
 .gallery-thumb:hover{border-color:var(--g400)}
 
-/* INFO */
 .prod-info{display:flex;flex-direction:column;gap:2rem;padding-top:.5rem}
 .prod-cat{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .prod-name{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,3.5vw,3.5rem);line-height:1.05;color:var(--black)}
 .prod-sub{font-size:.78rem;color:var(--g400);letter-spacing:.09em;text-transform:uppercase;font-weight:500}
 
-/* REVIEWS */
 .prod-reviews{display:flex;align-items:center;gap:1rem}
 .stars{display:flex;gap:3px}
 .star{width:13px;height:13px}
 .reviews-count{font-size:.72rem;color:var(--g400)}
 .reviews-link{font-size:.72rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
 
-/* PRECIO */
 .prod-price-row{display:flex;align-items:baseline;gap:1rem;padding-bottom:2rem;border-bottom:1px solid var(--g200)}
 .price-main{font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--black)}
 .price-old{font-size:.95rem;color:var(--g400);text-decoration:line-through}
 .price-save{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:.22rem .7rem}
 
-/* VARIANTES */
 .variant-group{display:flex;flex-direction:column;gap:.8rem}
 .variant-label{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)}
 .variant-label span{color:var(--black);font-weight:600}
@@ -91,7 +81,6 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .variant-btn:hover{border-color:var(--black);color:var(--black)}
 .variant-btn.active{border-color:var(--black);background:var(--black);color:var(--white)}
 
-/* CANTIDAD + CTA */
 .add-row{display:flex;gap:1rem;align-items:center}
 .qty-wrap{display:flex;align-items:center;border:1px solid var(--g200)}
 .qty-btn{width:40px;height:48px;background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--g600);transition:color .2s;display:flex;align-items:center;justify-content:center}
@@ -108,29 +97,24 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:var(--white);padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:all .3s;pointer-events:none;z-index:500;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* TRUST */
 .trust-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:1.8rem 0;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
 .trust-item{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}
 .trust-icon{width:28px;height:28px;stroke:var(--g600);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .trust-text{font-size:.62rem;font-weight:500;color:var(--g600);line-height:1.4;letter-spacing:.03em}
 .trust-text strong{display:block;color:var(--black);font-weight:600}
 
-/* DESCRIPCIÓN */
 .prod-desc-block{display:flex;flex-direction:column;gap:.6rem}
 .prod-desc-title{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g400)}
 .prod-desc-text{font-size:.9rem;color:var(--g600);line-height:1.85;font-weight:300}
 
-/* SPECS */
 .specs-block{display:flex;flex-direction:column;gap:.4rem}
 .spec-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--g100);font-size:.82rem}
 .spec-row:last-child{border:none}
 .spec-k{color:var(--g400);font-weight:400}
 .spec-v{color:var(--black);font-weight:600}
 
-/* STOCK */
 .stock-badge{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#c0622a;font-weight:600}
 
-/* REVIEWS SECTION */
 .reviews-section{max-width:1280px;margin:0 auto;padding:0 4rem 8rem}
 .reviews-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--g200)}
 .reviews-title{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--black)}
@@ -139,13 +123,10 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .reviews-avg-detail{display:flex;flex-direction:column;gap:.3rem}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .review-card{display:flex;flex-direction:column;gap:1rem;padding:2rem;border:1px solid var(--g200)}
-.review-stars{display:flex;gap:3px}
 .review-text{font-size:.88rem;color:var(--g600);line-height:1.8;font-weight:300;font-style:italic}
-.review-author{display:flex;flex-direction:column;gap:.2rem}
 .review-name{font-size:.78rem;font-weight:600;color:var(--black)}
 .review-date{font-size:.68rem;color:var(--g400)}
 
-/* FOOTER */
 footer{background:var(--black);padding:6rem 4rem 3rem}
 .footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
@@ -164,7 +145,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .footer-contact-btn:hover{border-color:var(--accent);background:rgba(200,169,110,.08)}
 .footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
 
-/* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
@@ -183,12 +163,10 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .modal-submit:hover{background:var(--g800)}
 
-/* VOLVER ARRIBA */
 .back-to-top{position:fixed;bottom:5rem;left:1.5rem;width:42px;height:42px;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);z-index:90;border-radius:50%}
 .back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
 .back-to-top:hover{background:var(--black)}
 
-/* COOKIE BANNER */
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
 .cookie-banner.show{transform:translateY(0)}
 .cookie-text{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
@@ -222,7 +200,6 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   .nav-cart span:last-child{display:none}
 }
 
-/* HAMBURGUESA */
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;margin-left:.5rem}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s ease}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -237,6 +214,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 body{animation:fadeIn .4s ease;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
+<script type="application/ld+json" id="schema-producto"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BHD7CVN6YL"></script>
 <script>
@@ -250,14 +228,21 @@ body{animation:fadeIn .4s ease;}
 
 <div class="top-banner">
   <span style="flex:1"></span>
-  <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
-  <span style="flex:1;text-align:right;color:#ffffff;padding-right:75px">ESP | CAT | ENG</span>
+  <span id="banner-text"><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
+  <span style="flex:1;text-align:right;padding-right:75px;display:flex;justify-content:flex-end;gap:.6rem;align-items:center">
+    <button onclick="setLang('es')" id="lang-es" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ESP</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('cat')" id="lang-cat" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">CAT</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('en')" id="lang-en" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ENG</button>
+  </span>
 </div>
+
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <ul class="nav-links">
     <li class="universo-wrap">
-      <button class="universo-btn">Universo KORVA</button>
+      <button class="universo-btn" id="nav-universo">Universo KORVA</button>
       <div class="universo-tooltip">
         <a href="pickleball.html">KORVA Pickleball</a>
         <a href="footballflag.html">KORVA Football Flag</a>
@@ -265,24 +250,23 @@ body{animation:fadeIn .4s ease;}
       </div>
     </li>
     <li style="color:var(--black);opacity:1">|</li>
-    <li><a href="index.html#steps">Tecnología</a></li>
+    <li><a href="index.html#steps" id="nav-tech">Tecnología</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="index.html#accordion">Materiales</a></li>
+    <li><a href="index.html#accordion" id="nav-mat">Materiales</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="tienda.html?cat=pack">Packs</a></li>
+    <li><a href="tienda.html?cat=pack" id="nav-packs">Packs</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
-    <li><a href="index.html#otras-marcas">Otras marcas</a></li>
-    
+    <li><a href="index.html#otras-marcas" id="nav-marcas">Otras marcas</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <a href="tienda.html" class="nav-tienda" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
-<button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
+    <a href="tienda.html" class="nav-tienda" id="nav-tienda-btn" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
+    <button class="nav-access" onclick="openLogin()" id="nav-acceso" style="margin-left:20px">Acceso</button>
     <a href="carrito.html" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span id="nav-cart-count" style="position:absolute;top:-8px;right:-8px;background:#c8a96e;color:#fff;font-size:.5rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 2px"></span>
       </span>
-      Carrito
+      <span id="nav-carrito-txt">Carrito</span>
     </a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -291,9 +275,9 @@ body{animation:fadeIn .4s ease;}
 </nav>
 
 <main><div class="breadcrumb">
-  <a href="index.html">Inicio</a>
+  <a href="index.html" id="bc-inicio">Inicio</a>
   <span class="breadcrumb-sep">—</span>
-  <a href="tienda.html">Tienda</a>
+  <a href="tienda.html" id="bc-tienda">Tienda</a>
   <span class="breadcrumb-sep">—</span>
   <span id="breadcrumb-nombre">Producto</span>
 </div>
@@ -324,37 +308,18 @@ body{animation:fadeIn .4s ease;}
     </div>
     <div class="gallery-thumbs">
       <div class="gallery-thumb active" data-img="0">
-        <svg width="60" height="90" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/>
-          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-          <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">K</text>
-        </svg>
+        <svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".7">K</text></svg>
       </div>
       <div class="gallery-thumb" data-img="1">
-        <svg width="60" height="90" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/>
-          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-          <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".7">K</text>
-        </svg>
+        <svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#a09e98" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#a09e98" opacity=".7">K</text></svg>
       </div>
       <div class="gallery-thumb" data-img="2">
-        <svg width="60" height="90" viewBox="0 0 190 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/>
-          <rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/>
-          <ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#6b6a66" stroke-width="10"/>
-          <ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/>
-          <text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#6b6a66" opacity=".7">K</text>
-        </svg>
+        <svg width="60" height="90" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#6b6a66" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#6b6a66" opacity=".7">K</text></svg>
       </div>
     </div>
   </div>
 
   <div class="prod-info" id="prod-info">
-
     <div>
       <div class="prod-cat" id="prod-cat">Cargando...</div>
       <h1 class="prod-name" id="prod-name"></h1>
@@ -370,7 +335,7 @@ body{animation:fadeIn .4s ease;}
         <svg class="star" viewBox="0 0 24 24" fill="#e8e6e1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       </div>
       <span class="reviews-count">4.2</span>
-      <a href="#reviews" class="reviews-link">24 valoraciones</a>
+      <a href="#reviews" class="reviews-link" id="reviews-link">24 valoraciones</a>
     </div>
 
     <div>
@@ -383,23 +348,23 @@ body{animation:fadeIn .4s ease;}
         <span class="price-old" id="prod-precio-anterior" style="display:none"></span>
         <span class="price-save" id="prod-descuento" style="display:none"></span>
       </div>
-      <div style="font-size:.65rem;color:var(--g400);margin-top:-.8rem">IVA incluido</div>
+      <div style="font-size:.65rem;color:var(--g400);margin-top:-.8rem" id="iva-txt">IVA incluido</div>
     </div>
 
     <div id="stock-info"></div>
 
     <div id="colores-group" class="variant-group" style="display:none">
-      <div class="variant-label">Color: <span id="color-val"></span></div>
+      <div class="variant-label" id="color-label">Color: <span id="color-val"></span></div>
       <div class="variant-options" id="color-options"></div>
     </div>
 
     <div id="pesos-group" class="variant-group" style="display:none">
-      <div class="variant-label">Peso: <span id="peso-val"></span></div>
+      <div class="variant-label" id="peso-label">Peso: <span id="peso-val"></span></div>
       <div class="variant-options" id="peso-options"></div>
     </div>
 
     <div id="balance-group" class="variant-group" style="display:none">
-      <div class="variant-label">Balance: <span id="balance-val"></span></div>
+      <div class="variant-label" id="balance-label">Balance: <span id="balance-val"></span></div>
       <div class="variant-options" id="balance-options"></div>
     </div>
 
@@ -409,60 +374,53 @@ body{animation:fadeIn .4s ease;}
         <span class="qty-val" id="qty">1</span>
         <button class="qty-btn" onclick="changeQty(1)">+</button>
       </div>
-      <button class="btn-cart" onclick="addToCart()">Añadir al carrito</button>
-      <button class="wish-btn" id="wish-btn" onclick="toggleWish()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <button class="btn-cart" onclick="addToCart()" id="btn-add-cart">Añadir al carrito</button>
+      <button class="wish-btn" id="wish-btn" onclick="toggleWish()" aria-label="Lista de deseos">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </button>
     </div>
-    <div class="toast" id="toast"></div>
-    <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.8rem;font-size:.6rem;color:var(--g400)">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Pago 100% seguro · SSL cifrado
+
+    <div style="font-size:.65rem;color:var(--g600);display:flex;align-items:center;gap:.5rem" id="fecha-entrega-wrap">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span id="fecha-entrega"></span>
     </div>
 
     <div class="trust-icons">
       <div class="trust-item">
-        <svg class="trust-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="18.5" cy="18.5" r="1.5"/></svg>
-        <div class="trust-text"><strong>Envío 24h</strong><span id="fecha-entrega">Calculando...</span></div>
+        <svg class="trust-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <div class="trust-text"><strong id="trust1-title">Envío gratis</strong><span id="trust1-sub">en Península +120€</span></div>
+      </div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="trust-text"><strong id="trust2-title">Devolución</strong><span id="trust2-sub">30 días sin preguntas</span></div>
       </div>
       <div class="trust-item">
         <svg class="trust-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <div class="trust-text"><strong>36 meses</strong>Garantía estructural</div>
-      </div>
-      <div class="trust-item">
-        <svg class="trust-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        <div class="trust-text"><strong>30 días</strong>Devolución gratis</div>
+        <div class="trust-text"><strong id="trust3-title">Garantía</strong><span id="trust3-sub">36 meses</span></div>
       </div>
     </div>
 
     <div class="prod-desc-block">
-      <div class="prod-desc-title">Descripción</div>
-      <p class="prod-desc-text" id="prod-descripcion"></p>
+      <div class="prod-desc-title" id="desc-title">Descripción</div>
+      <div class="prod-desc-text" id="prod-descripcion"></div>
     </div>
 
-    <div class="specs-block">
-      <div class="prod-desc-title">Especificaciones</div>
-      <div id="specs-pala" style="display:none">
-        <div class="spec-row"><span class="spec-k">Marco</span><span class="spec-v">Carbono 3K / 12K</span></div>
-        <div class="spec-row"><span class="spec-k">Núcleo</span><span class="spec-v">EVA HR 60 Shore</span></div>
-        <div class="spec-row"><span class="spec-k">Superficie</span><span class="spec-v">Fibra texturizada</span></div>
-        <div class="spec-row"><span class="spec-k">Forma</span><span class="spec-v">Redonda</span></div>
-        <div class="spec-row"><span class="spec-k">Peso</span><span class="spec-v" id="spec-peso-val"></span></div>
-        <div class="spec-row"><span class="spec-k">Balance</span><span class="spec-v" id="spec-balance-val"></span></div>
-        <div class="spec-row"><span class="spec-k">Espesor</span><span class="spec-v" id="spec-espesor-val"></span></div>
-        <div class="spec-row"><span class="spec-k">Empuñadura</span><span class="spec-v">Pro-Tack Grip</span></div>
-        <div class="spec-row"><span class="spec-k">Nivel</span><span class="spec-v" id="spec-nivel-val"></span></div>
+    <div id="specs-pala" style="display:none">
+      <div class="specs-block">
+        <div class="spec-row"><span class="spec-k" id="spec-peso-lbl">Peso</span><span class="spec-v" id="spec-peso-val">—</span></div>
+        <div class="spec-row"><span class="spec-k" id="spec-balance-lbl">Balance</span><span class="spec-v" id="spec-balance-val">—</span></div>
+        <div class="spec-row"><span class="spec-k" id="spec-espesor-lbl">Espesor</span><span class="spec-v" id="spec-espesor-val">—</span></div>
+        <div class="spec-row"><span class="spec-k" id="spec-nivel-lbl">Nivel</span><span class="spec-v" id="spec-nivel-val">—</span></div>
       </div>
     </div>
-
   </div>
 </div>
 
-<div class="reviews-section" id="reviews">
+<section class="reviews-section" id="reviews">
   <div class="reviews-header">
-    <div class="reviews-title">Valoraciones</div>
+    <div class="reviews-title" id="reviews-title">Valoraciones</div>
     <div class="reviews-avg">
-      <span class="reviews-avg-num">4.2</span>
+      <div class="reviews-avg-num">4.2</div>
       <div class="reviews-avg-detail">
         <div class="stars">
           <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -471,68 +429,42 @@ body{animation:fadeIn .4s ease;}
           <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg class="star" viewBox="0 0 24 24" fill="#e8e6e1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <span style="font-size:.68rem;color:var(--g400)">24 valoraciones</span>
+        <div style="font-size:.62rem;color:var(--g400)" id="reviews-based">Basado en 24 valoraciones</div>
       </div>
     </div>
   </div>
   <div class="reviews-grid">
     <div class="review-card">
-      <div class="review-stars">
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </div>
-      <p class="review-text">"Llevaba dos años buscando una paleta que no me obligara a sacrificar control por potencia. La Pro X3 lo tiene todo."</p>
-      <div class="review-author">
-        <span class="review-name">Alejandro M.</span>
-        <span class="review-date">Marzo 2025 · Nivel 6 WPT</span>
-      </div>
+      <div class="stars"><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="review-text" id="review1-text">"Control excepcional desde el primer golpe. La fibra de carbono se nota en cada intercambio."</div>
+      <div class="review-author"><div class="review-name">Carlos M.</div><div class="review-date">Marzo 2026</div></div>
     </div>
     <div class="review-card">
-      <div class="review-stars">
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#e8e6e1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </div>
-      <p class="review-text">"Diseño muy cuidado y sensación premium desde el primer golpe. En control es sobresaliente."</p>
-      <div class="review-author">
-        <span class="review-name">Sara P.</span>
-        <span class="review-date">Febrero 2025 · Nivel 5 WPT</span>
-      </div>
+      <div class="stars"><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#e8e6e1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="review-text" id="review2-text">"Diseño premium y sensación de golpe excepcional. La recomiendo para jugadores de nivel medio-alto."</div>
+      <div class="review-author"><div class="review-name">Laura G.</div><div class="review-date">Febrero 2026</div></div>
     </div>
     <div class="review-card">
-      <div class="review-stars">
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </div>
-      <p class="review-text">"La mejor paleta que he tenido. El acabado es de otro nivel y la vibración prácticamente desaparece."</p>
-      <div class="review-author">
-        <span class="review-name">Jordi F.</span>
-        <span class="review-date">Enero 2025 · Nivel 7 WPT</span>
-      </div>
+      <div class="stars"><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#c8a96e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#e8e6e1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24" fill="#e8e6e1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="review-text" id="review3-text">"Buena relación calidad-precio. El acabado es impecable y la potencia es notable."</div>
+      <div class="review-author"><div class="review-name">Martín R.</div><div class="review-date">Enero 2026</div></div>
     </div>
   </div>
-</div>
+</section>
+</main>
 
-</main><footer>
+<footer>
   <div class="footer-brand">
     <span class="footer-brand-name">KORVA</span>
-    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+    <p class="footer-brand-desc" id="footer-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
   </div>
   <div class="footer-nav">
-    <a href="tienda.html">Tienda</a>
-    <a href="index.html#steps">Tecnología</a>
-    <a href="index.html#accordion">Materiales</a>
-    <a href="index.html#packs">Packs</a>
+    <a href="tienda.html" id="footer-tienda">Tienda</a>
+    <a href="index.html#steps" id="footer-tech">Tecnología</a>
+    <a href="index.html#accordion" id="footer-mat">Materiales</a>
+    <a href="index.html#packs" id="footer-packs">Packs</a>
   </div>
-  <button class="footer-contact-btn" onclick="openModal()">Contacto</button>
+  <button class="footer-contact-btn" onclick="openModal()" id="footer-contact">Contacto</button>
   <div class="footer-social">
     <a href="#" aria-label="Instagram">
       <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
@@ -544,22 +476,24 @@ body{animation:fadeIn .4s ease;}
     </a>
   </div>
   <div class="footer-legal">
-    <a href="#" onclick="openLegal('aviso');return false">Aviso legal</a>
-    <a href="#" onclick="openLegal('privacidad');return false">Privacidad</a>
-    <a href="#" onclick="openLegal('cookies');return false">Cookies</a>
+    <a href="#" onclick="openLegal('aviso');return false" id="footer-aviso">Aviso legal</a>
+    <a href="#" onclick="openLegal('privacidad');return false" id="footer-priv">Privacidad</a>
+    <a href="#" onclick="openLegal('cookies');return false" id="footer-cook">Cookies</a>
   </div>
-  <div class="footer-bottom">© 2025 KORVA Pádel — Todos los derechos reservados</div>
+  <div class="footer-bottom" id="footer-copy">© 2026 KORVA Pádel — Todos los derechos reservados</div>
 </footer>
+
+<div id="toast" class="toast"></div>
 
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
 <div class="cookie-banner" id="cookie-banner">
-  <p class="cookie-text">Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="#" onclick="openLegal('cookies');return false">Política de cookies</a>.</p>
+  <p class="cookie-text" id="cookie-txt">Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="#" onclick="openLegal('cookies');return false" id="cookie-link">Política de cookies</a>.</p>
   <div class="cookie-btns">
-    <button class="cookie-reject" onclick="rejectCookies()">Rechazar</button>
-    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+    <button class="cookie-reject" onclick="rejectCookies()" id="cookie-reject-btn">Rechazar</button>
+    <button class="cookie-accept" onclick="acceptCookies()" id="cookie-accept-btn">Aceptar</button>
   </div>
 </div>
 
@@ -568,11 +502,11 @@ body{animation:fadeIn .4s ease;}
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Contacto</span>
-    <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
-    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-title" id="modal-contact-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
+    <div class="modal-field"><label id="modal-nombre-lbl">Nombre</label><input type="text" placeholder="Tu nombre"></div>
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..."></textarea></div>
-    <button class="modal-submit">Enviar mensaje</button>
+    <div class="modal-field"><label id="modal-msg-lbl">Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..."></textarea></div>
+    <button class="modal-submit" id="modal-contact-btn">Enviar mensaje</button>
   </div>
 </div>
 
@@ -581,11 +515,26 @@ body{animation:fadeIn .4s ease;}
   <div class="modal-box">
     <button class="modal-close" onclick="closeLogin()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <span class="modal-label">Acceso</span>
-    <div class="modal-title">Bienvenido<br>de nuevo.</div>
+    <div class="modal-title" id="login-title">Bienvenido<br>de nuevo.</div>
     <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
-    <button class="modal-submit">Entrar</button>
-    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿No tienes cuenta? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
+    <div class="modal-field"><label id="login-pass-lbl">Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit" id="login-btn">Entrar</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)" id="login-register-txt">¿No tienes cuenta? <a href="#" onclick="closeLogin();openRegistro();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Regístrate</a></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-registro">
+  <div class="modal-backdrop" onclick="closeRegistro()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeRegistro()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <span class="modal-label" id="registro-label">Crear cuenta</span>
+    <div class="modal-title" id="registro-title">Bienvenido<br>a KORVA.</div>
+    <div class="modal-field"><label id="reg-nombre-lbl">Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label id="reg-pass-lbl">Contraseña</label><input type="password" placeholder="••••••••"></div>
+    <div class="modal-field"><label id="reg-pass2-lbl">Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
+    <button class="modal-submit" id="reg-btn">Crear cuenta</button>
+    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)" id="reg-login-txt">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
   </div>
 </div>
 
@@ -603,6 +552,154 @@ body{animation:fadeIn .4s ease;}
 const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
 
+// IDIOMA
+const i18n = {
+  es: {
+    banner:'<span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses',
+    nav_universo:'Universo KORVA', nav_tech:'Tecnología', nav_mat:'Materiales', nav_packs:'Packs', nav_marcas:'Otras marcas',
+    nav_tienda:'Tienda', nav_acceso:'Acceso', nav_carrito:'Carrito',
+    bc_inicio:'Inicio', bc_tienda:'Tienda',
+    iva:'IVA incluido',
+    btn_cart:'Añadir al carrito',
+    trust1_title:'Envío gratis', trust1_sub:'en Península +120€',
+    trust2_title:'Devolución', trust2_sub:'30 días sin preguntas',
+    trust3_title:'Garantía', trust3_sub:'36 meses',
+    desc_title:'Descripción',
+    ahorras:'Ahorras',
+    rebajado:'REBAJADO',
+    reviews_title:'Valoraciones',
+    reviews_based:'Basado en 24 valoraciones',
+    reviews_link:'24 valoraciones',
+    spec_peso:'Peso', spec_balance:'Balance', spec_espesor:'Espesor', spec_nivel:'Nivel',
+    color_lbl:'Color', peso_lbl:'Peso', balance_lbl:'Balance',
+    footer_desc:'Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.',
+    footer_tienda:'Tienda', footer_tech:'Tecnología', footer_mat:'Materiales', footer_packs:'Packs',
+    footer_contact:'Contacto',
+    footer_aviso:'Aviso legal', footer_priv:'Privacidad', footer_cook:'Cookies',
+    footer_copy:'© 2026 KORVA Pádel — Todos los derechos reservados',
+    cookie_txt:'Usamos cookies propias y de terceros para mejorar tu experiencia.',
+    cookie_link:'Política de cookies',
+    cookie_accept:'Aceptar', cookie_reject:'Rechazar',
+    review1:'"Control excepcional desde el primer golpe. La fibra de carbono se nota en cada intercambio."',
+    review2:'"Diseño premium y sensación de golpe excepcional. La recomiendo para jugadores de nivel medio-alto."',
+    review3:'"Buena relación calidad-precio. El acabado es impecable y la potencia es notable."'
+  },
+  en: {
+    banner:'<span>Free shipping</span> Peninsula +€120 &nbsp;·&nbsp; <span>Returns</span> 30 days no questions &nbsp;·&nbsp; <span>Warranty</span> 36 months',
+    nav_universo:'KORVA Universe', nav_tech:'Technology', nav_mat:'Materials', nav_packs:'Packs', nav_marcas:'Other brands',
+    nav_tienda:'Shop', nav_acceso:'Login', nav_carrito:'Cart',
+    bc_inicio:'Home', bc_tienda:'Shop',
+    iva:'VAT included',
+    btn_cart:'Add to cart',
+    trust1_title:'Free shipping', trust1_sub:'Peninsula orders +€120',
+    trust2_title:'Returns', trust2_sub:'30 days no questions',
+    trust3_title:'Warranty', trust3_sub:'36 months',
+    desc_title:'Description',
+    ahorras:'You save',
+    rebajado:'SALE',
+    reviews_title:'Reviews',
+    reviews_based:'Based on 24 reviews',
+    reviews_link:'24 reviews',
+    spec_peso:'Weight', spec_balance:'Balance', spec_espesor:'Thickness', spec_nivel:'Level',
+    color_lbl:'Color', peso_lbl:'Weight', balance_lbl:'Balance',
+    footer_desc:'High-performance material engineering, designed for those who accept no limits on the court.',
+    footer_tienda:'Shop', footer_tech:'Technology', footer_mat:'Materials', footer_packs:'Packs',
+    footer_contact:'Contact',
+    footer_aviso:'Legal notice', footer_priv:'Privacy', footer_cook:'Cookies',
+    footer_copy:'© 2026 KORVA Pádel — All rights reserved',
+    cookie_txt:'We use our own and third-party cookies to improve your experience.',
+    cookie_link:'Cookie policy',
+    cookie_accept:'Accept', cookie_reject:'Reject',
+    review1:'"Exceptional control from the first shot. The carbon fiber makes a difference on every exchange."',
+    review2:'"Premium design and outstanding feel. Recommended for intermediate to advanced players."',
+    review3:'"Great value for money. The finish is impeccable and the power is notable."'
+  }
+};
+
+function getLang(){ return localStorage.getItem('korva-lang') || 'es'; }
+function gf(p, field){ const l=getLang(); return (l==='en' && p[field+'_en']) ? p[field+'_en'] : (p[field]||''); }
+
+function applyLang(){
+  const l = getLang();
+  const t = i18n[l] || i18n.es;
+
+  document.querySelectorAll('[id^="lang-"]').forEach(b=>b.style.color='rgba(255,255,255,.5)');
+  const active = document.getElementById('lang-'+l);
+  if(active) active.style.color='#fff';
+
+  document.getElementById('banner-text').innerHTML = t.banner;
+  document.getElementById('nav-universo').textContent = t.nav_universo;
+  document.getElementById('nav-tech').textContent = t.nav_tech;
+  document.getElementById('nav-mat').textContent = t.nav_mat;
+  document.getElementById('nav-packs').textContent = t.nav_packs;
+  document.getElementById('nav-marcas').textContent = t.nav_marcas;
+  document.getElementById('nav-tienda-btn').textContent = t.nav_tienda;
+  document.getElementById('nav-acceso').textContent = t.nav_acceso;
+  document.getElementById('nav-carrito-txt').textContent = t.nav_carrito;
+  document.getElementById('bc-inicio').textContent = t.bc_inicio;
+  document.getElementById('bc-tienda').textContent = t.bc_tienda;
+  document.getElementById('iva-txt').textContent = t.iva;
+  document.getElementById('btn-add-cart').textContent = t.btn_cart;
+  document.getElementById('trust1-title').textContent = t.trust1_title;
+  document.getElementById('trust1-sub').textContent = t.trust1_sub;
+  document.getElementById('trust2-title').textContent = t.trust2_title;
+  document.getElementById('trust2-sub').textContent = t.trust2_sub;
+  document.getElementById('trust3-title').textContent = t.trust3_title;
+  document.getElementById('trust3-sub').textContent = t.trust3_sub;
+  document.getElementById('desc-title').textContent = t.desc_title;
+  document.getElementById('reviews-title').textContent = t.reviews_title;
+  document.getElementById('reviews-based').textContent = t.reviews_based;
+  document.getElementById('reviews-link').textContent = t.reviews_link;
+  document.getElementById('spec-peso-lbl').textContent = t.spec_peso;
+  document.getElementById('spec-balance-lbl').textContent = t.spec_balance;
+  document.getElementById('spec-espesor-lbl').textContent = t.spec_espesor;
+  document.getElementById('spec-nivel-lbl').textContent = t.spec_nivel;
+  document.getElementById('footer-desc').textContent = t.footer_desc;
+  document.getElementById('footer-tienda').textContent = t.footer_tienda;
+  document.getElementById('footer-tech').textContent = t.footer_tech;
+  document.getElementById('footer-mat').textContent = t.footer_mat;
+  document.getElementById('footer-packs').textContent = t.footer_packs;
+  document.getElementById('footer-contact').textContent = t.footer_contact;
+  document.getElementById('footer-aviso').textContent = t.footer_aviso;
+  document.getElementById('footer-priv').textContent = t.footer_priv;
+  document.getElementById('footer-cook').textContent = t.footer_cook;
+  document.getElementById('footer-copy').textContent = t.footer_copy;
+  document.getElementById('cookie-reject-btn').textContent = t.cookie_reject;
+  document.getElementById('cookie-accept-btn').textContent = t.cookie_accept;
+  document.getElementById('cookie-link').textContent = t.cookie_link;
+  document.getElementById('review1-text').textContent = t.review1;
+  document.getElementById('review2-text').textContent = t.review2;
+  document.getElementById('review3-text').textContent = t.review3;
+
+  // Labels variantes
+  const colorVal = document.getElementById('color-val');
+  if(colorVal) document.getElementById('color-label').innerHTML = t.color_lbl+': <span id="color-val">'+colorVal.textContent+'</span>';
+  const pesoVal = document.getElementById('peso-val');
+  if(pesoVal) document.getElementById('peso-label').innerHTML = t.peso_lbl+': <span id="peso-val">'+pesoVal.textContent+'</span>';
+  const balanceVal = document.getElementById('balance-val');
+  if(balanceVal) document.getElementById('balance-label').innerHTML = t.balance_lbl+': <span id="balance-val">'+balanceVal.textContent+'</span>';
+
+  // Datos dinámicos del producto
+  const p = window.currentProduct;
+  if(p){
+    document.getElementById('breadcrumb-nombre').textContent = gf(p,'nombre');
+    document.title = 'KORVA — ' + gf(p,'nombre');
+    document.getElementById('prod-name').textContent = gf(p,'nombre');
+    document.getElementById('prod-descripcion').textContent = gf(p,'descripcion');
+    const badgeEl = document.getElementById('prod-badge-label');
+    if(badgeEl && badgeEl.style.display !== 'none') badgeEl.textContent = t.rebajado;
+    const ahorraEl = document.getElementById('prod-ahorro');
+    if(ahorraEl && ahorraEl.style.display !== 'none' && p.precio_anterior){
+      ahorraEl.textContent = t.ahorras + ' ' + (p.precio_anterior - p.precio) + '€';
+    }
+  }
+}
+
+function setLang(lang){
+  localStorage.setItem('korva-lang', lang);
+  applyLang();
+}
+
 async function loadProduct(){
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -617,13 +714,19 @@ async function loadProduct(){
   const p = data[0];
   window.currentProduct = p;
 
-  // Breadcrumb
-  const lang = localStorage.getItem('korva-lang') || 'es';
-  const gf = (field) => (lang === 'en' && p[field+'_en']) ? p[field+'_en'] : (p[field] || '');
-  document.getElementById('breadcrumb-nombre').textContent = gf('nombre');
-  document.title = `KORVA — ${gf('nombre')}`;
+  // SEO
+  const seoTitle = gf(p,'nombre') + ' — KORVA Pádel de Alto Rendimiento';
+  const seoDesc = gf(p,'descripcion') || 'Pala de pádel KORVA de alto rendimiento.';
+  const seoImg = p.imagen || 'https://korva-padel.vercel.app/assets/images/korva-12k.jpg';
+  const seoUrl = 'https://korva-padel.vercel.app/producto.html?id=' + p.id;
+  document.title = seoTitle;
+  document.querySelector('meta[name="description"]').setAttribute('content', seoDesc);
+  document.querySelector('meta[property="og:title"]').setAttribute('content', seoTitle);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', seoDesc);
+  document.querySelector('meta[property="og:image"]').setAttribute('content', seoImg);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', seoUrl);
 
-  // GALERÍA
+  // Galería
   const imagenes = [p.imagen, p['imagen-b'], p['imagen-c'], p['imagen-d']].filter(Boolean);
   const mainEl = document.getElementById('gallery-main');
   const thumbsEl = document.querySelector('.gallery-thumbs');
@@ -634,42 +737,28 @@ async function loadProduct(){
         <img src="${img}" style="width:100%;height:100%;object-fit:contain">
       </div>
     `).join('');
-  } else {
-    document.getElementById('gallery-svg-main') && (document.getElementById('gallery-svg-main').style.display='block');
   }
 
-  // SVG
   document.getElementById('svg-modelo') && (document.getElementById('svg-modelo').textContent = p.nombre.split(' ').slice(0,2).join(' '));
-
-  // SEO dinámico
-  const seoTitle = p.nombre + ' — KORVA Pádel de Alto Rendimiento';
-  const seoDesc = p.descripcion || 'Pala de pádel KORVA de alto rendimiento. Fibra de carbono, núcleo EVA HR y geometría de precisión milimétrica.';
-  const seoImg = p.imagen || 'https://korva-padel.vercel.app/assets/images/korva-12k.jpg';
-  const seoUrl = 'https://korva-padel.vercel.app/producto.html?id=' + p.id;
-  document.title = seoTitle;
-  document.querySelector('meta[name="description"]').setAttribute('content', seoDesc);
-  document.querySelector('meta[property="og:title"]').setAttribute('content', seoTitle);
-  document.querySelector('meta[property="og:description"]').setAttribute('content', seoDesc);
-  document.querySelector('meta[property="og:image"]').setAttribute('content', seoImg);
-  document.querySelector('meta[property="og:url"]').setAttribute('content', seoUrl);
 
   // Info
   document.getElementById('prod-cat').textContent = p.categoria;
-  document.getElementById('prod-name').textContent = gf('nombre');
-  document.getElementById('prod-sub').textContent = p.nivel;
-  document.getElementById('prod-descripcion').textContent = gf('descripcion');
+  document.getElementById('prod-name').textContent = gf(p,'nombre');
+  document.getElementById('prod-sub').textContent = p.nivel || '';
+  document.getElementById('prod-descripcion').textContent = gf(p,'descripcion');
 
   // Precio
   document.getElementById('prod-precio').textContent = p.precio + '€';
   if(p.precio_anterior){
+    const t = i18n[getLang()] || i18n.es;
     document.getElementById('prod-precio-anterior').textContent = p.precio_anterior + '€';
     document.getElementById('prod-precio-anterior').style.display = 'inline';
     const pct = Math.round((1 - p.precio/p.precio_anterior)*100);
     document.getElementById('prod-descuento').textContent = '−' + pct + '%';
     document.getElementById('prod-descuento').style.display = 'inline';
-    document.getElementById('prod-badge-label').textContent = 'REBAJADO';
+    document.getElementById('prod-badge-label').textContent = t.rebajado;
     document.getElementById('prod-badge-label').style.display = 'inline';
-    document.getElementById('prod-ahorro').textContent = 'Ahorras ' + (p.precio_anterior - p.precio) + '€';
+    document.getElementById('prod-ahorro').textContent = t.ahorras + ' ' + (p.precio_anterior - p.precio) + '€';
     document.getElementById('prod-ahorro').style.display = 'inline';
   }
 
@@ -687,7 +776,6 @@ async function loadProduct(){
     stockEl.innerHTML = '<div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:#4a9d6f;font-weight:600"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#4a9d6f"/></svg>En stock</div>';
   }
 
-  // Aviso stock por mail (solo si agotado)
   if(p.stock === 0){
     stockEl.innerHTML += `<div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
       <input type="email" placeholder="tu@email.com" id="aviso-email" style="font-family:'Sora',sans-serif;font-size:.72rem;border:none;border-bottom:1px solid var(--g200);padding:.4rem 0;outline:none;flex:1;background:transparent">
@@ -722,8 +810,8 @@ async function loadProduct(){
 
     if(p.peso){
       const pesos = p.peso.split('–');
-      const pesoOptions = document.getElementById('peso-options');
       document.getElementById('pesos-group').style.display='block';
+      const pesoOptions = document.getElementById('peso-options');
       pesos.forEach((peso,i)=>{
         const btn = document.createElement('button');
         btn.className = 'variant-btn'+(i===0?' active':'');
@@ -736,8 +824,8 @@ async function loadProduct(){
 
     if(p.balance){
       const balances = p.balance.split('–');
-      const balanceOptions = document.getElementById('balance-options');
       document.getElementById('balance-group').style.display='block';
+      const balanceOptions = document.getElementById('balance-options');
       balances.forEach((bal,i)=>{
         const btn = document.createElement('button');
         btn.className = 'variant-btn'+(i===0?' active':'');
@@ -749,34 +837,17 @@ async function loadProduct(){
     }
   }
 
-  // Actualizar Schema.org
+  // Schema.org
   const schema = {
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name": p.nombre,
-    "brand": {"@type": "Brand", "name": "KORVA"},
-    "description": p.descripcion,
-    "image": p.imagen || "",
-    "sku": "KORVA-" + p.id,
-    "category": "Palas de pádel",
-    "url": "https://korva-padel.vercel.app/producto.html?id=" + p.id,
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": p.precio.toString(),
-      "priceValidUntil": "2027-01-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://korva-padel.vercel.app/producto.html?id=" + p.id,
-      "seller": {"@type": "Organization", "name": "KORVA Pádel"}
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.2",
-      "reviewCount": "24"
-    }
+    "@context":"https://schema.org/","@type":"Product",
+    "name":p.nombre,"brand":{"@type":"Brand","name":"KORVA"},
+    "description":p.descripcion,"image":p.imagen||"","sku":"KORVA-"+p.id,
+    "offers":{"@type":"Offer","priceCurrency":"EUR","price":p.precio.toString(),"availability":"https://schema.org/InStock"}
   };
   const schemaEl = document.getElementById('schema-producto');
   if(schemaEl) schemaEl.textContent = JSON.stringify(schema);
+
+  applyLang();
 }
 
 function setGalleryImg(src, thumb){
@@ -786,68 +857,64 @@ function setGalleryImg(src, thumb){
   thumb.classList.add('active');
 }
 
-// CANTIDAD
 let qty = 1;
 function changeQty(dir){ qty=Math.max(1,qty+dir); document.getElementById('qty').textContent=qty; }
 
-// VARIANTES
 function selectVariant(btn,labelId,val){
   btn.parentElement.querySelectorAll('.variant-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById(labelId).textContent=val;
 }
 
-// CARRITO + WISHLIST
 function addToCart(){
   const cart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
   const idx = cart.findIndex(i => i.id === currentProduct.id);
-  if(idx > -1){
-    cart[idx].qty += qty;
-  } else {
+  if(idx > -1){ cart[idx].qty += qty; }
+  else {
     cart.push({
       id: currentProduct.id,
       nombre: currentProduct.nombre,
       precio: currentProduct.precio,
       imagen: currentProduct.imagen || '',
-      peso: document.getElementById('peso-val').textContent,
-      balance: document.getElementById('balance-val').textContent,
+      peso: document.getElementById('peso-val')?.textContent || '',
+      balance: document.getElementById('balance-val')?.textContent || '',
       qty: qty
     });
   }
   localStorage.setItem('korva-cart', JSON.stringify(cart));
-  const btn=document.querySelector('.btn-cart');
+  const btn = document.querySelector('.btn-cart');
   btn.classList.add('added');
   setTimeout(()=>btn.classList.remove('added'),400);
-  const navCount=document.getElementById('nav-cart-count');
-  const total=cart.reduce((s,i)=>s+i.qty,0);
-  navCount.textContent=total;
-  navCount.style.display='flex';
+  const navCount = document.getElementById('nav-cart-count');
+  const total = cart.reduce((s,i)=>s+i.qty,0);
+  navCount.textContent = total;
+  navCount.style.display = 'flex';
   navCount.classList.add('nav-cart-bounce');
   setTimeout(()=>navCount.classList.remove('nav-cart-bounce'),300);
-  const t=document.getElementById('toast');
-  t.textContent='✓ Añadido al carrito';
+  const t = document.getElementById('toast');
+  t.textContent = '✓ Añadido al carrito';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
+
 function avisarStock(){
-  const email = document.getElementById('aviso-email').value.trim();
+  const email = document.getElementById('aviso-email')?.value.trim();
   if(!email) return;
-  const t=document.getElementById('toast');
-  t.textContent='✓ Te avisaremos cuando haya stock';
+  const t = document.getElementById('toast');
+  t.textContent = '✓ Te avisaremos cuando haya stock';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 function toggleWish(){
-  const btn=document.getElementById('wish-btn');
+  const btn = document.getElementById('wish-btn');
   btn.classList.toggle('active');
-  const t=document.getElementById('toast');
-  t.textContent=btn.classList.contains('active')?'❤ Guardado en lista de deseos':'Eliminado de lista de deseos';
+  const t = document.getElementById('toast');
+  t.textContent = btn.classList.contains('active') ? '❤ Guardado en lista de deseos' : 'Eliminado de lista de deseos';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// MODALES
 function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
@@ -856,7 +923,6 @@ function openRegistro(){document.getElementById('modal-registro').classList.add(
 function closeRegistro(){document.getElementById('modal-registro').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();closeLegal();}});
 
-// COOKIES
 function initCookies(){
   if(!localStorage.getItem('korva-cookies')){
     setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);
@@ -870,7 +936,6 @@ window.addEventListener('scroll',()=>{
   if(btn) btn.classList.toggle('visible',window.scrollY>400);
 });
 
-// LEGAL
 const legalContent={
   aviso:{label:'Aviso legal',title:'Aviso legal',content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br><strong>Domicilio:</strong> Calle Example 1, 08000 Barcelona, España<br><strong>Email:</strong> legal@korvapadel.com</p><br><p>El presente aviso legal regula el uso del sitio web korvapadel.com.</p>`},
   privacidad:{label:'Privacidad',title:'Política de privacidad',content:`<p>En cumplimiento del RGPD y la LOPDGDD, te informamos del tratamiento de tus datos personales.</p><br><p><strong>Responsable:</strong> KORVA Pádel S.L. · legal@korvapadel.com</p>`},
@@ -886,30 +951,32 @@ function openLegal(type){
 }
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 
-// FECHA ENTREGA
 function calcularEntrega(){
   const ahora = new Date();
   const hora = ahora.getHours();
-  const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  
+  const l = getLang();
+  const dias = l==='en'
+    ? ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    : ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const meses = l==='en'
+    ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    : ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
   let entrega = new Date(ahora);
   let diasSumar = hora < 14 ? 1 : 2;
-  
   let contados = 0;
   while(contados < diasSumar){
     entrega.setDate(entrega.getDate() + 1);
     const diaSemana = entrega.getDay();
     if(diaSemana !== 0 && diaSemana !== 6) contados++;
   }
-  
-  const diaStr = dias[entrega.getDay()];
-  const fechaStr = entrega.getDate() + ' ' + meses[entrega.getMonth()];
-  document.getElementById('fecha-entrega').textContent = 'Recibes el ' + diaStr + ' ' + fechaStr;
+  const prefix = l==='en' ? 'Delivery on ' : 'Recibes el ';
+  document.getElementById('fecha-entrega').textContent = prefix + dias[entrega.getDay()] + ' ' + entrega.getDate() + ' ' + meses[entrega.getMonth()];
 }
-calcularEntrega();
 
+applyLang();
+calcularEntrega();
 loadProduct();
+
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const total = cart.reduce((s,i)=>s+i.qty,0);
@@ -917,20 +984,6 @@ loadProduct();
   if(el && total > 0){ el.textContent=total; el.style.display='flex'; }
 })();
 </script>
-<div class="modal-overlay" id="modal-registro">
-  <div class="modal-backdrop" onclick="closeRegistro()"></div>
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeRegistro()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <span class="modal-label">Crear cuenta</span>
-    <div class="modal-title">Bienvenido<br>a KORVA.</div>
-    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
-    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
-    <div class="modal-field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
-    <div class="modal-field"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
-    <button class="modal-submit">Crear cuenta</button>
-    <div style="text-align:center;margin-top:1.2rem;font-size:.68rem;color:var(--g400)">¿Ya tienes cuenta? <a href="#" onclick="closeRegistro();openLogin();return false" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">Inicia sesión</a></div>
-  </div>
-</div>
 <script>
 document.querySelectorAll('a[href]').forEach(a=>{
   const href=a.getAttribute('href');
@@ -947,15 +1000,15 @@ document.querySelectorAll('a[href]').forEach(a=>{
   <button onclick="toggleMenu()" style="position:absolute;top:1.2rem;right:1.4rem;background:none;border:none;cursor:pointer;padding:.4rem;display:flex;align-items:center;justify-content:center">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="index.html" onclick="toggleMenu()">Inicio</a>
+  <a href="index.html" onclick="toggleMenu()" id="mobile-inicio">Inicio</a>
   <div class="nav-mobile-divider"></div>
-  <a href="tienda.html" onclick="toggleMenu()">Tienda</a>
-  <a href="tienda.html?cat=pack" onclick="toggleMenu()">Packs</a>
+  <a href="tienda.html" onclick="toggleMenu()" id="mobile-tienda">Tienda</a>
+  <a href="tienda.html?cat=pack" onclick="toggleMenu()" id="mobile-packs">Packs</a>
   <div class="nav-mobile-divider"></div>
   <a href="pickleball.html" onclick="toggleMenu()">Pickleball</a>
   <a href="footballflag.html" onclick="toggleMenu()">Football Flag</a>
   <div class="nav-mobile-divider"></div>
-  <a href="carrito.html" class="nav-mobile-cart" onclick="toggleMenu()">Carrito</a>
+  <a href="carrito.html" class="nav-mobile-cart" onclick="toggleMenu()" id="mobile-carrito">Carrito</a>
 </nav>
 <script>
 function toggleMenu(){
