@@ -95,20 +95,18 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
   <span style="flex:1"></span>
   <span id="banner-text"><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
   <span style="flex:1;text-align:right;padding-right:75px;display:flex;justify-content:flex-end;gap:.6rem;align-items:center">
-    <button onclick="setLang('es')" id="lang-es" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0">ESP</button>
+    <button onclick="setLang('es')" id="lang-es" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ESP</button>
     <span style="color:rgba(255,255,255,.2)">|</span>
-    <button onclick="setLang('cat')" id="lang-cat" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0">CAT</button>
+    <button onclick="setLang('cat')" id="lang-cat" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">CAT</button>
     <span style="color:rgba(255,255,255,.2)">|</span>
-    <button onclick="setLang('en')" id="lang-en" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0">ENG</button>
+    <button onclick="setLang('en')" id="lang-en" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ENG</button>
   </span>
 </div>
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
   <a href="tienda.html" class="nav-cart">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-    <span id="nav-seguir">Seguir comprando</span>
-  </a>
-</nav>
+    
 
 <main>
 <div class="confirm-wrap">
@@ -117,9 +115,9 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
 
-  <span id="nav-seguir">Seguir comprando</span>
-  </a>
-</nav>
+  <div class="confirm-label" id="conf-label">Pedido recibido</div>
+  <div class="confirm-title" id="conf-title">¡Gracias por<br>tu compra!</div>
+  <div class="confirm-sub" id="conf-sub">Hemos recibido tu pedido correctamente.<br>En breve recibirás más información.</div>
   <div class="confirm-num" id="confirm-num">Pedido #——</div>
 
   <div class="confirm-summary">
