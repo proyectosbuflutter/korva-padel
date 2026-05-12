@@ -509,6 +509,7 @@ body{animation:fadeIn .4s ease;}
     <div class="summary-row"><span class="summary-row-label" id="co-lbl-subtotal">Subtotal</span><span class="summary-row-val" id="co-subtotal">—</span></div>
     <div class="summary-row"><span class="summary-row-label" id="co-lbl-iva">IVA (21%)</span><span class="summary-row-val" id="co-iva">—</span></div>
     <div class="summary-row"><span class="summary-row-label" id="co-lbl-envio">Envío</span><span class="summary-row-val" id="co-envio">—</span></div>
+    <div class="summary-row" id="co-desc-row" style="display:none"><span class="summary-row-label" id="co-desc-label">Descuento</span><span class="summary-row-val" id="co-desc-val" style="color:var(--accent)">—</span></div>
     <div class="summary-total-row">
       <span class="summary-total-label" id="co-lbl-total">Total</span>
       <span class="summary-total-val" id="co-total">—</span>
@@ -710,6 +711,8 @@ function applyLang(){
 // CARRITO
 const coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
 const coZona = localStorage.getItem('korva-zona') || 'peninsula';
+const coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
+const coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
 
 function coGetEnvio(sub){
   if(coCart.length === 0) return 0;
@@ -745,8 +748,10 @@ function renderCheckoutSummary(){
 
   const sub = coCart.reduce((s,i) => s + i.precio * i.qty, 0);
   const envio = coGetEnvio(sub);
-  const total = sub + envio;
+  const subConDesc = coDescuentoActivo ? sub * (1 - coDescuentoPct / 100) : sub;
+  const total = subConDesc + envio;
   const iva = sub > 0 ? sub - (sub / 1.21) : 0;
+  const descuentoVal = coDescuentoActivo ? sub * (coDescuentoPct / 100) : 0;
 
   document.getElementById('co-subtotal').textContent = sub.toFixed(2).replace('.',',')+'€';
   document.getElementById('co-iva').textContent = iva.toFixed(2).replace('.',',')+'€';
@@ -754,6 +759,17 @@ function renderCheckoutSummary(){
   document.getElementById('co-envio').textContent = envio === 0 ? t.envio_gratis : envio.toFixed(2).replace('.',',')+'€ ('+coZonaLabel()+')';
   document.getElementById('co-envio').className = 'summary-row-val'+(envio === 0 ? ' free' : '');
   document.getElementById('co-total').textContent = total.toFixed(2).replace('.',',')+'€';
+
+  // Descuento aplicado
+  const coDescRow = document.getElementById('co-desc-row');
+  const coDescVal = document.getElementById('co-desc-val');
+  const coDescLabel = document.getElementById('co-desc-label');
+  if(coDescuentoActivo && coDescRow && coDescVal){
+    coDescRow.style.display='flex';
+    if(coDescLabel) coDescLabel.textContent='Descuento ('+coDescuentoPct+'%)';
+    coDescVal.textContent='−'+descuentoVal.toFixed(2).replace('.',',')+'€';
+    coDescVal.style.color='var(--accent)';
+  }
 
   // Actualizar botón pagar
   const btnPay = document.getElementById('btn-pay');

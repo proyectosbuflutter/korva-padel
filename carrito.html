@@ -717,6 +717,8 @@ async function applyDiscount(){
       document.getElementById('discount-ok').classList.add('show');
       document.getElementById('label-desc-pct').textContent=t.label_descuento.replace('Código d','D').replace('code','D')+'('+discountPct+'%)';
       document.getElementById('descuento-row').style.display='flex';
+      localStorage.setItem('korva-descuento-activo','true');
+      localStorage.setItem('korva-descuento-pct',String(discountPct));
       updateSummary();saveCart();
     } else {
       document.getElementById('discount-input').style.borderColor='#c0622a';
