@@ -247,7 +247,13 @@ body{animation:fadeIn .4s ease;}
 <div class="top-banner">
   <span style="flex:1"></span>
   <span><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 30 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
-  <span style="flex:1;text-align:right;color:#ffffff;padding-right:75px">ESP | CAT | ENG</span>
+  <span style="flex:1;text-align:right;padding-right:75px;display:flex;justify-content:flex-end;gap:.6rem;align-items:center">
+    <button onclick="setLang('es')" id="lang-es" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ESP</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('cat')" id="lang-cat" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">CAT</button>
+    <span style="color:rgba(255,255,255,.2)">|</span>
+    <button onclick="setLang('en')" id="lang-en" style="background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0;transition:color .2s">ENG</button>
+  </span>
 </div>
 <nav>
   <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pádel" style="height:50px;width:auto;display:block"></a>
@@ -501,6 +507,26 @@ body{animation:fadeIn .4s ease;}
 </div>
 
 <script>
+// IDIOMA
+function setLang(lang){
+  localStorage.setItem('korva-lang', lang);
+  document.querySelectorAll('[id^="lang-"]').forEach(b=>b.style.color='rgba(255,255,255,.5)');
+  const active = document.getElementById('lang-'+lang);
+  if(active) active.style.color='#fff';
+  loadProducts(document.querySelector('.filter-btn.active')?.dataset.cat || 'todos');
+}
+function getLang(){ return localStorage.getItem('korva-lang') || 'es'; }
+function getField(p, field){ 
+  const lang = getLang();
+  if(lang === 'en') return p[field+'_en'] || p[field] || '';
+  return p[field] || '';
+}
+(function initLang(){
+  const lang = getLang();
+  const btn = document.getElementById('lang-'+lang);
+  if(btn) btn.style.color='#fff';
+})();
+
 const SUPABASE_URL = 'https://nzeuezjthxgtbsswlytd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXVlemp0aHhndGJzc3dseXRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTYwNzgsImV4cCI6MjA5MzM5MjA3OH0.ALdhv2xoCqqqEK2nKZebaGq6-lJ6TK8KSIYNIQGFy54';
 
@@ -569,7 +595,7 @@ function renderProducts(palas, accesorios){
         </div>
         <div class="pala-card-info">
           <div class="pala-card-cat">Pala de pádel</div>
-          <div class="pala-card-name">${p.nombre}</div>
+          <div class="pala-card-name">${getField(p,'nombre')}</div>
           <div style="display:flex;align-items:center;gap:.3rem;margin:.3rem 0">
             <span style="color:#c8a96e;font-size:.75rem;letter-spacing:.05em">★★★★☆</span>
             <span style="font-family:'Sora',sans-serif;font-size:.62rem;color:#888;font-weight:500">4.2 <span style="color:#bbb">(24)</span></span>
