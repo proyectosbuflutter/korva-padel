@@ -908,6 +908,7 @@ async function loadPreciosPalas(){
   });
   const palas = await res.json();
   window._palasData = palas;
+  const compPrices = {7:null, 8:null, 9:null};
   palas.forEach(p => {
     if(p.id === 8){
       const precioAnterior = p.precio_anterior || '';
@@ -928,8 +929,6 @@ async function loadPreciosPalas(){
       if(p.balance) document.getElementById('ps-balance').textContent = p.balance;
       if(p.espesor) document.getElementById('ps-espesor').textContent = p.espesor;
     }
-    // Comparador
-    const compPrices = {7:null, 8:null, 9:null};
     compPrices[p.id] = p.precio;
     const compPrice = document.getElementById('comp-price-'+p.id);
     if(compPrice){
