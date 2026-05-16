@@ -563,7 +563,7 @@ function addToCart(){
   const cart=JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const id='pack-'+currentPack.id;
   const idx=cart.findIndex(i=>i.id===id);
-  if(idx>-1){cart[idx].qty+=qty;}
+  if(idx>-1){cart[idx].qty+=qty;cart[idx].imagen=currentPack.imagen||'';}
   else{cart.push({id,nombre:currentPack.nombre,precio:currentPack.precioFinal||currentPack.precio,imagen:currentPack.imagen||'',peso:'',balance:'',qty});}
   localStorage.setItem('korva-cart',JSON.stringify(cart));
   const btn=document.getElementById('btn-add-cart');
