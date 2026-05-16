@@ -688,7 +688,7 @@ async function loadPacks(){
               ${ahorro ? `<span style="font-size:.62rem;color:#4a9d6f;font-weight:600">Ahorras ${ahorro}€</span>` : ''}
             </div>
           </div>
-          <button class="pala-card-btn" onclick="event.stopPropagation();addToCart('pack-${p.id}','${p.nombre}',${precio},'','')">+ Añadir</button>
+          <button class="pala-card-btn" onclick="event.stopPropagation();addToCart('pack-${p.id}','${p.nombre}',${precio},'','','${p.imagen||''}')">+ Añadir</button>
         </div>
       </div>
     </div>`;
