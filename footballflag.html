@@ -122,6 +122,24 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .footer-social a:hover{color:var(--accent)}
 .social-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+.footer-contact-btn{display:block;margin:0 auto 4rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(192,57,43,.3);padding:.8rem 2rem;cursor:pointer;transition:all .3s}
+.footer-contact-btn:hover{border-color:var(--accent);background:rgba(192,57,43,.08)}
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
+.modal-box{position:relative;z-index:1;background:var(--white);width:100%;max-width:560px;padding:4rem;transform:translateY(30px);transition:transform .4s cubic-bezier(.25,.46,.45,.94);margin:1.5rem}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-close{position:absolute;top:1.8rem;right:1.8rem;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--g400);transition:color .2s}
+.modal-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
+.modal-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:block}
+.modal-title{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--black);line-height:1.1;margin-bottom:2.5rem}
+.modal-field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.modal-field label{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600)}
+.modal-field input,.modal-field textarea{font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;transition:border-color .2s;width:100%;resize:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:var(--accent)}
+.modal-field textarea{min-height:100px;line-height:1.7}
+.modal-submit{width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.modal-submit:hover{background:var(--g800)}
 </style>
 </head>
 <body>
@@ -250,10 +268,16 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
     <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
   </div>
   <div class="footer-nav">
-    <a href="universe.html">Universo KORVA</a>
-    <a href="#">Packs</a>
-    <a href="#">Blog</a>
+    <a href="index.html">KORVA Pádel</a>
+    <a href="pickleball.html">KORVA Pickleball</a>
+    <a href="footballflag.html">KORVA Football Flag</a>
   </div>
+  <div class="footer-nav" style="margin-top:-1.5rem">
+    <a href="#">Tienda</a>
+    <a href="#" onclick="openLogin();return false">Acceso</a>
+    <a href="carrito.html" style="color:#c0392b">Carrito</a>
+  </div>
+  <button class="footer-contact-btn" onclick="openModal()">Contacto</button>
   <div class="footer-social">
     <a href="#" aria-label="Instagram">
       <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
@@ -274,6 +298,8 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
 <script>
 function openLogin(){}
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 function toggleMenu(){
   const btn=document.getElementById('nav-hamburger');
   const menu=document.getElementById('nav-mobile-menu');
@@ -292,6 +318,20 @@ document.querySelectorAll('a[href]').forEach(a=>{
   });
 });
 </script>
+<div class="modal-overlay" id="modal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label">Contacto</span>
+    <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
+    <div class="modal-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+    <div class="modal-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+    <div class="modal-field"><label>Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..."></textarea></div>
+    <button class="modal-submit">Enviar mensaje</button>
+  </div>
+</div>
 <script src="//code.tidio.co/b2fb5elsg7pw0xnun90evdskyrrqgfef.js" async></script>
 </body>
 </html>
