@@ -696,10 +696,12 @@ function applyLang(){
   document.getElementById('footer-packs').textContent=t.footer_packs;
   document.getElementById('footer-contact').textContent=t.footer_contact;
   document.getElementById('footer-copy').textContent=t.footer_copy;
-  document.getElementById('cookie-txt').textContent=t.cookie_txt;
-  document.getElementById('cookie-link').textContent=t.cookie_link;
-  document.getElementById('cookie-accept-btn').textContent=t.cookie_accept;
-  document.getElementById('cookie-reject-btn').textContent=t.cookie_reject;
+  const cookieTxt=document.getElementById('cookie-txt');
+  if(cookieTxt) cookieTxt.innerHTML=t.cookie_txt+' <a href="#" onclick="openLegal(\'cookies\');return false" id="cookie-link">'+t.cookie_link+'</a>.';
+  const cookieAccept=document.getElementById('cookie-accept-btn');
+  if(cookieAccept) cookieAccept.textContent=t.cookie_accept;
+  const cookieReject=document.getElementById('cookie-reject-btn');
+  if(cookieReject) cookieReject.textContent=t.cookie_reject;
   const btnPay=document.getElementById('btn-pay');
   if(btnPay){
     const total=btnPay.textContent.match(/[\d.,]+€/);
