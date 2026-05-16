@@ -715,10 +715,10 @@ function applyLang(){
 }
 
 // CARRITO
-const coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
-const coZona = localStorage.getItem('korva-zona') || 'peninsula';
-const coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
-const coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
+let coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+let coZona = localStorage.getItem('korva-zona') || 'peninsula';
+let coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
+let coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
 
 function coGetEnvio(sub){
   if(coCart.length === 0) return 0;
@@ -985,10 +985,14 @@ function acceptCookies(){localStorage.setItem('korva-cookies','accepted');docume
 function rejectCookies(){localStorage.setItem('korva-cookies','rejected');document.getElementById('cookie-banner').classList.remove('show');}
 initCookies();
 document.addEventListener('DOMContentLoaded',function(){
+  coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+  coZona = localStorage.getItem('korva-zona') || 'peninsula';
+  coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
+  coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
   applyLang();
   renderCheckoutSummary();
   const sel = document.getElementById('zona-selector');
-  if(sel) sel.value = localStorage.getItem('korva-zona') || 'peninsula';
+  if(sel) sel.value = coZona;
 });
 
 // LEGAL
