@@ -228,15 +228,14 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .comp-close{position:absolute;top:1.8rem;right:1.8rem;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--g400);transition:color .2s}
 .comp-close:hover{color:var(--black)}
 .comp-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
-.comp-label{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;display:block}
-.comp-title{font-family:'DM Serif Display',serif;font-size:1.75rem;color:var(--black);line-height:1.1;margin-bottom:1.5rem}
-.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.comp-col{border:1px solid var(--g200);padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:.5rem}
+.comp-label{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block}
+.comp-grid{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:1rem;align-items:start}
+.comp-col{border:1px solid var(--g200);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.35rem}
 .comp-col.featured{background:var(--black);border-color:var(--black)}
-.comp-tier{font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem}
-.comp-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--black);margin-bottom:.6rem}
+.comp-tier{font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.3rem}
+.comp-name{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--black);margin-bottom:.3rem}
 .comp-col.featured .comp-name{color:var(--white)}
-.comp-for{font-size:.78rem;color:var(--g600);line-height:1.6;margin-bottom:.8rem;font-weight:300}
+.comp-for{font-size:.74rem;color:var(--g600);line-height:1.5;margin-bottom:.4rem;font-weight:300}
 .comp-col.featured .comp-for{color:rgba(255,255,255,.5)}
 .comp-div{height:1px;background:var(--g200);margin:1.2rem 0}
 .comp-col.featured .comp-div{background:rgba(255,255,255,.1)}
@@ -246,9 +245,9 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 .comp-col.featured .comp-sk{color:rgba(255,255,255,.35)}
 .comp-sv{font-weight:600;color:var(--black)}
 .comp-col.featured .comp-sv{color:var(--white)}
-.comp-price{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--black);margin-top:.8rem}
+.comp-price{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--black);margin-top:.4rem}
 .comp-col.featured .comp-price{color:var(--accent)}
-.comp-cta{width:100%;margin-top:1.2rem;padding:.85rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;border:1px solid var(--g200);background:transparent;color:var(--black)}
+.comp-cta{width:100%;margin-top:.4rem;padding:.65rem;font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;border:1px solid var(--g200);background:transparent;color:var(--black)}
 .comp-col.featured .comp-cta{background:var(--accent);border-color:var(--accent);color:var(--white)}
 .comp-cta:hover{opacity:.75}
 @media(max-width:900px){
@@ -681,8 +680,7 @@ body{animation:fadeIn .4s ease;}
     <button class="comp-close" onclick="closeComparador()" aria-label="Cerrar comparador">
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <span class="comp-label">Elige Korva</span>
-    <div class="comp-title">Compara nuestros modelos</div>
+    <span class="comp-label">Elige Korva — Compara nuestros modelos</span>
     <div class="comp-grid">
       <div class="comp-col">
         <span class="comp-tier">Control</span>
@@ -699,20 +697,20 @@ body{animation:fadeIn .4s ease;}
       </div>
       <div class="comp-col featured">
         <span class="comp-tier">Más popular</span>
-        <div class="comp-name">KORVA 12K</div>
+        <div class="comp-name">KORVA 12K Versatile</div>
         <p class="comp-for">Para el jugador polivalente que necesita equilibrio entre control y potencia. La elección perfecta para nivel medio-avanzado que quiere adaptarse a cualquier situación.</p>
         <div class="comp-div"></div>
         <div class="comp-spec"><span class="comp-sk">Peso</span><span class="comp-sv">355–365g</span></div>
         <div class="comp-spec"><span class="comp-sk">Balance</span><span class="comp-sv">275–285mm</span></div>
         <div class="comp-spec"><span class="comp-sk">Nivel</span><span class="comp-sv">Medio / Avanzado</span></div>
         <div class="comp-spec"><span class="comp-sk">Fibra</span><span class="comp-sv">Carbono 12K</span></div>
-        <div class="comp-price" id="comp-price-8">365€</div>
-        <div id="comp-oferta-8" style="display:none;font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.2rem"><span id="comp-old-8" style="text-decoration:line-through"></span> <span id="comp-save-8" style="color:var(--accent);font-weight:600"></span></div>
+        <div class="comp-price" id="comp-price-8">169€</div>
+        <div id="comp-oferta-8" style="display:flex;gap:.5rem;align-items:center;font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.2rem"><span id="comp-old-8" style="text-decoration:line-through">199€</span> <span id="comp-save-8" style="color:var(--accent);font-weight:600">-15%</span></div>
         <button class="comp-cta" onclick="closeComparador();window.location.href='tienda.html'">Ver en tienda</button>
       </div>
       <div class="comp-col">
         <span class="comp-tier">Potencia</span>
-        <div class="comp-name">KORVA 18K</div>
+        <div class="comp-name">KORVA 18K Power</div>
         <p class="comp-for">Para jugadores avanzados que buscan máxima potencia y velocidad. Construcción agresiva pensada para quienes dominan la técnica y quieren llevar su juego al límite.</p>
         <div class="comp-div"></div>
         <div class="comp-spec"><span class="comp-sk">Peso</span><span class="comp-sv">365–375g</span></div>

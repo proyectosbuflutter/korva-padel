@@ -371,6 +371,12 @@ body{animation:fadeIn .4s ease;}
           </select>
         </div>
       </div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-top:.5rem;margin-bottom:.5rem">Zona de envío</div>
+      <select id="zona-selector" onchange="cambiarZona(this.value)" style="width:100%;font-family:'Sora',sans-serif;font-size:.82rem;color:var(--black);background:var(--white);border:none;border-bottom:1.5px solid var(--g200);padding:.6rem 0;outline:none;margin-bottom:1rem;cursor:pointer;appearance:none">
+        <option value="peninsula">Península — 5,90€ / Gratis +120€</option>
+        <option value="baleares">Baleares — 9,90€</option>
+        <option value="internacional">Internacional — 14,90€</option>
+      </select>
       <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-top:.5rem">Método de envío</div>
       <div id="envio-info" style="padding:1rem 1.2rem;border:1.5px solid var(--g200);font-size:.82rem;display:flex;justify-content:space-between;align-items:center">
         <div>
@@ -791,8 +797,6 @@ function renderCheckoutSummary(){
   }
 }
 
-renderCheckoutSummary();
-
 // STRIPE
 const stripe = Stripe('pk_test_51TT68EJlYwrffZX8Rjp2RaM1OsbXzgUPYPJ0wiHvcTsYISDeQdYpE3mGWtgtwdsHLERdTOLHPmMfraL1dp02fhXT00S8Sz01Ua');
 const elements = stripe.elements({
@@ -948,6 +952,10 @@ function validarPaso2(){
   goStep(3);
 }
 
+function cambiarZona(val){
+  localStorage.setItem('korva-zona', val);
+  location.reload();
+}
 function toggleBilling(){
   const same=document.getElementById('billing-same').checked;
   document.getElementById('billing-fields').style.display=same?'none':'flex';
@@ -976,7 +984,12 @@ function initCookies(){
 function acceptCookies(){localStorage.setItem('korva-cookies','accepted');document.getElementById('cookie-banner').classList.remove('show');}
 function rejectCookies(){localStorage.setItem('korva-cookies','rejected');document.getElementById('cookie-banner').classList.remove('show');}
 initCookies();
-document.addEventListener('DOMContentLoaded',function(){applyLang();renderCheckoutSummary();});
+document.addEventListener('DOMContentLoaded',function(){
+  applyLang();
+  renderCheckoutSummary();
+  const sel = document.getElementById('zona-selector');
+  if(sel) sel.value = localStorage.getItem('korva-zona') || 'peninsula';
+});
 
 // LEGAL
 const legalContent={
