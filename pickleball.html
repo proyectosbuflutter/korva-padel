@@ -54,7 +54,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-mobile-menu a{font-family:'Sora',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
 .nav-mobile-menu a:hover{color:#2d7dd2}
 .nav-mobile-divider{width:30px;height:1px;background:rgba(255,255,255,.1)}
-.nav-mobile-cart{display:inline-flex;align-items:center;gap:.6rem;background:#2d7dd2;color:#fff !important;padding:.7rem 2rem;font-family:'Sora',sans-serif !important;font-size:.65rem !important;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-top:.8rem}
+.nav-mobile-cart{display:inline-flex !important;align-items:center;gap:.6rem;background:#2d7dd2;color:#fff !important;padding:.7rem 2rem;font-family:'Sora',sans-serif !important;font-size:.65rem !important;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-top:.8rem}
 @media(max-width:900px){
   .top-banner{display:none}
   nav{top:0;padding:1rem 1.2rem}
@@ -124,41 +124,26 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
 <nav>
   <a href="pickleball.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA Pickleball" style="height:50px;width:auto;display:block"></a>
-  <ul class="nav-links">
-    <li class="universo-wrap">
-      <button class="universo-btn">Universo KORVA</button>
-      <div class="universo-tooltip">
-        <a href="pickleball.html">KORVA Pickleball</a>
-        <a href="footballflag.html">KORVA Football Flag</a>
-        <a href="index.html">KORVA Pádel</a>
-      </div>
-    </li>
-    <li style="color:rgba(255,255,255,.3);opacity:1">|</li>
-    <li><a href="#">Packs</a></li>
-  </ul>
   <div style="display:flex;align-items:center;gap:1rem">
     <a href="#" style="border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-decoration:none">Tienda</a>
-    <button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
+    <button class="nav-access" onclick="openLogin()">Acceso</button>
     <a href="#" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       </span>
       Carrito
     </a>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <nav class="nav-mobile-menu" id="nav-mobile-menu">
-  <a href="pickleball.html" onclick="toggleMenu()">Inicio Pickleball</a>
-  <div class="nav-mobile-divider"></div>
-  <a href="pickleball.html" onclick="toggleMenu()">Universo KORVA</a>
-  <div class="nav-mobile-divider"></div>
-  <a href="#" onclick="toggleMenu()">Packs</a>
-  <div class="nav-mobile-divider"></div>
   <a href="#" onclick="toggleMenu()">Tienda</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="#" onclick="openLogin();toggleMenu()">Acceso</a>
+  <div class="nav-mobile-divider"></div>
   <a href="#" class="nav-mobile-cart" onclick="toggleMenu()">Carrito</a>
 </nav>
 
