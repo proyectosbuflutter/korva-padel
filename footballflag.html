@@ -44,6 +44,24 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
 .universo-tooltip a:hover{color:var(--accent);background:rgba(192,57,43,.06)}
 .universo-tooltip a+a{border-top:1px solid rgba(255,255,255,.08)}
 .nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.3);color:#fff;text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;margin-left:.5rem}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;transition:all .3s ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#1a0a08;z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;opacity:0;transition:opacity .3s ease}
+.nav-mobile-menu.open{opacity:1}
+.nav-mobile-menu a{font-family:'Sora',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.nav-mobile-menu a:hover{color:#c0392b}
+.nav-mobile-divider{width:30px;height:1px;background:rgba(255,255,255,.1)}
+.nav-mobile-cart{display:inline-flex;align-items:center;gap:.6rem;background:#c0392b;color:#fff !important;padding:.7rem 2rem;font-family:'Sora',sans-serif !important;font-size:.65rem !important;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-top:.8rem}
+@media(max-width:900px){
+  .top-banner{display:none}
+  nav{top:0;padding:1rem 1.2rem}
+  .nav-links{display:none}
+  .nav-access{display:none}
+  .nav-hamburger{display:flex !important}
+}
 
 /* VIDEO HERO */
 .shop-video{position:relative;margin-top:56px}
@@ -135,7 +153,23 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       </span>
       Carrito
     </a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
+
+<nav class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="footballflag.html" onclick="toggleMenu()">Inicio Football Flag</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="footballflag.html" onclick="toggleMenu()">Universo KORVA</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="#" onclick="toggleMenu()">Packs</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="#" onclick="toggleMenu()">Blog</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="#" onclick="toggleMenu()">Tienda</a>
+  <a href="#" class="nav-mobile-cart" onclick="toggleMenu()">Carrito</a>
 </nav>
 
 <main>
@@ -252,6 +286,13 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
 
 <script>
 function openLogin(){}
+function toggleMenu(){
+  const btn=document.getElementById('nav-hamburger');
+  const menu=document.getElementById('nav-mobile-menu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+  menu.style.display=menu.classList.contains('open')?'flex':'none';
+}
 document.querySelectorAll('a[href]').forEach(a=>{
   const href=a.getAttribute('href');
   if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.target==='_blank') return;
