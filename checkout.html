@@ -280,11 +280,10 @@ body{animation:fadeIn .4s ease;}
     <li><a href="tienda.html?cat=pack">Packs</a></li>
     <li style="color:var(--g800);opacity:.4">|</li>
     <li><a href="index.html#otras-marcas">Otras marcas</a></li>
-    
   </ul>
   <div class="nav-right">
     <a href="tienda.html" class="nav-tienda" style="border-top:1px solid var(--black);border-bottom:1px solid var(--black);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none">Tienda</a>
-<button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
+    <button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
     <a href="carrito.html" class="nav-cart">
       <span style="position:relative;display:inline-flex;align-items:center">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -377,7 +376,7 @@ body{animation:fadeIn .4s ease;}
         <option value="baleares">Baleares — 9,90€</option>
         <option value="internacional">Internacional — 14,90€</option>
       </select>
-      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-top:.5rem">Método de envío</div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);margin-top:.5rem" id="lbl-metodo-envio">Método de envío</div>
       <div id="envio-info" style="padding:1rem 1.2rem;border:1.5px solid var(--g200);font-size:.82rem;display:flex;justify-content:space-between;align-items:center">
         <div>
           <div style="font-weight:600;color:var(--black)" id="envio-nombre">Envío estándar</div>
@@ -391,7 +390,7 @@ body{animation:fadeIn .4s ease;}
       </label>
       <div id="billing-fields" style="display:none;flex-direction:column;gap:1.5rem">
         <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g600)">Dirección de facturación</div>
-        <div class="form-row full"><div class="field"><label>Dirección</label><input type="text" id="dir-direccion" placeholder="Calle y número"></div></div>
+        <div class="form-row full"><div class="field"><label>Dirección</label><input type="text" placeholder="Calle y número"></div></div>
         <div class="form-row">
           <div class="field"><label>Ciudad</label><input type="text" placeholder="Ciudad"></div>
           <div class="field"><label>Código postal</label><input type="text" placeholder="00000"></div>
@@ -469,7 +468,7 @@ body{animation:fadeIn .4s ease;}
         </div>
       </div>
 
-      <button class="btn-pay" id="btn-pay" onclick="handlePayment()">Pagar ahora — 448€</button>
+      <button class="btn-pay" id="btn-pay" onclick="handlePayment()">Pagar ahora — —</button>
 
       <div class="trust-row">
         <div class="trust-item-sm">
@@ -527,9 +526,9 @@ body{animation:fadeIn .4s ease;}
     </div>
   </div>
 
-</div>
+</div></main>
 
-</main><footer>
+<footer>
   <div class="footer-brand">
     <span class="footer-brand-name">KORVA</span>
     <p class="footer-brand-desc" id="footer-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
@@ -701,13 +700,11 @@ function applyLang(){
   document.getElementById('cookie-link').textContent=t.cookie_link;
   document.getElementById('cookie-accept-btn').textContent=t.cookie_accept;
   document.getElementById('cookie-reject-btn').textContent=t.cookie_reject;
-  // botón pagar
   const btnPay=document.getElementById('btn-pay');
   if(btnPay){
     const total=btnPay.textContent.match(/[\d.,]+€/);
     btnPay.textContent=t.pagar_ahora+(total?' — '+total[0]:'');
   }
-  // highlight botón idioma activo
   ['es','en','cat'].forEach(lng=>{
     const el=document.getElementById('lang-'+lng);
     if(el) el.style.color=lng===l?'#fff':'rgba(255,255,255,.5)';
@@ -715,10 +712,10 @@ function applyLang(){
 }
 
 // CARRITO
-let coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
-let coZona = localStorage.getItem('korva-zona') || 'peninsula';
-let coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
-let coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
+const coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
+const coZona = localStorage.getItem('korva-zona') || 'peninsula';
+const coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
+const coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
 
 function coGetEnvio(sub){
   if(coCart.length === 0) return 0;
@@ -738,6 +735,7 @@ function renderCheckoutSummary(){
   const svg = `<svg width="30" height="48" viewBox="0 0 190 310" fill="none"><rect x="81" y="232" width="28" height="70" rx="3" fill="#252520"/><rect x="71" y="218" width="48" height="16" rx="2" fill="#1c1c1a"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#1a1a18" opacity=".97"/><text x="95" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-style="italic" fill="#c8a96e" opacity=".8">K</text></svg>`;
 
   const itemsEl = document.getElementById('co-items');
+  if(!itemsEl) return;
   itemsEl.innerHTML = coCart.map(item => `
     <div class="summary-item">
       <div class="summary-item-img">
@@ -766,7 +764,6 @@ function renderCheckoutSummary(){
   document.getElementById('co-envio').className = 'summary-row-val'+(envio === 0 ? ' free' : '');
   document.getElementById('co-total').textContent = total.toFixed(2).replace('.',',')+'€';
 
-  // Descuento aplicado
   const coDescRow = document.getElementById('co-desc-row');
   const coDescVal = document.getElementById('co-desc-val');
   const coDescLabel = document.getElementById('co-desc-label');
@@ -777,113 +774,98 @@ function renderCheckoutSummary(){
     coDescVal.style.color='var(--accent)';
   }
 
-  // Actualizar botón pagar
   const btnPay = document.getElementById('btn-pay');
   if(btnPay) btnPay.textContent = 'Pagar ahora — '+total.toFixed(2).replace('.',',')+'€';
 
-  // Actualizar info envío en paso 2
   const envioNombre = document.getElementById('envio-nombre');
   const envioDesc = document.getElementById('envio-desc');
   const envioLabel = document.getElementById('envio-precio-label');
   if(envioNombre && envioLabel){
-    const zonaTextos = {
-      peninsula: 'Península',
-      baleares: 'Baleares',
-      internacional: 'Internacional'
-    };
+    const zonaTextos = {peninsula:'Península',baleares:'Baleares',internacional:'Internacional'};
     envioNombre.textContent = 'Envío estándar — ' + (zonaTextos[coZona] || 'Península');
     envioDesc.textContent = coZona === 'internacional' ? '5–7 días laborables' : '2–3 días laborables';
     envioLabel.textContent = envio === 0 ? 'Gratis' : envio.toFixed(2).replace('.',',')+'€';
   }
 }
 
-// STRIPE
+// STRIPE — se inicializa solo al llegar al paso 3
 const stripe = Stripe('pk_test_51TT68EJlYwrffZX8Rjp2RaM1OsbXzgUPYPJ0wiHvcTsYISDeQdYpE3mGWtgtwdsHLERdTOLHPmMfraL1dp02fhXT00S8Sz01Ua');
 const elements = stripe.elements({
   fonts:[{cssSrc:'https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap'}]
 });
 
 const stripeStyle = {
-  base:{
-    fontFamily:'Sora, sans-serif',
-    fontSize:'14px',
-    color:'#0a0a0a',
-    '::placeholder':{color:'#a09e98'},
-    iconColor:'#a09e98'
-  },
+  base:{fontFamily:'Sora, sans-serif',fontSize:'14px',color:'#0a0a0a','::placeholder':{color:'#a09e98'},iconColor:'#a09e98'},
   invalid:{color:'#c0622a'}
 };
 
-const cardNumber = elements.create('cardNumber',{style:stripeStyle,placeholder:'1234 5678 9012 3456'});
-const cardExpiry = elements.create('cardExpiry',{style:stripeStyle});
-const cardCvc = elements.create('cardCvc',{style:stripeStyle});
+let stripeMounted = false;
+let cardNumber, cardExpiry, cardCvc, paymentRequest, prButton;
 
-cardNumber.mount('#card-number');
-cardExpiry.mount('#card-expiry');
-cardCvc.mount('#card-cvc');
+function mountStripe(){
+  if(stripeMounted) return;
+  stripeMounted = true;
 
-cardNumber.on('change', e=>{ document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
+  cardNumber = elements.create('cardNumber',{style:stripeStyle,placeholder:'1234 5678 9012 3456'});
+  cardExpiry = elements.create('cardExpiry',{style:stripeStyle});
+  cardCvc = elements.create('cardCvc',{style:stripeStyle});
 
-// APPLE PAY / GOOGLE PAY
-const paymentRequest = stripe.paymentRequest({
-  country:'ES',
-  currency:'eur',
-  total:{label:'KORVA Pádel', amount:Math.round((coCart.reduce((s,i)=>s+i.precio*i.qty,0)+coGetEnvio(coCart.reduce((s,i)=>s+i.precio*i.qty,0)))*100)},
-  requestPayerName:true,
-  requestPayerEmail:true
-});
+  cardNumber.mount('#card-number');
+  cardExpiry.mount('#card-expiry');
+  cardCvc.mount('#card-cvc');
 
-const prButton = elements.create('paymentRequestButton',{
-  paymentRequest,
-  style:{paymentRequestButton:{type:'buy',theme:'dark',height:'44px'}}
-});
+  cardNumber.on('change', e=>{ document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
 
-paymentRequest.canMakePayment().then(result=>{
-  if(result){
-    prButton.mount('#payment-request-button');
-  } else {
-    document.getElementById('payment-request-button').style.display='none';
-    document.getElementById('express-not-available').style.display='block';
-  }
-});
+  const sub = coCart.reduce((s,i)=>s+i.precio*i.qty,0);
+  paymentRequest = stripe.paymentRequest({
+    country:'ES',currency:'eur',
+    total:{label:'KORVA Pádel', amount:Math.round((sub+coGetEnvio(sub))*100)},
+    requestPayerName:true,requestPayerEmail:true
+  });
 
-paymentRequest.on('paymentmethod', async(e)=>{
-  e.complete('success');
-  alert('Pago completado. Gracias por tu compra.');
-});
+  prButton = elements.create('paymentRequestButton',{
+    paymentRequest,
+    style:{paymentRequestButton:{type:'buy',theme:'dark',height:'44px'}}
+  });
 
-// PAGO CON TARJETA
+  paymentRequest.canMakePayment().then(result=>{
+    if(result){ prButton.mount('#payment-request-button'); }
+    else {
+      document.getElementById('payment-request-button').style.display='none';
+      document.getElementById('express-not-available').style.display='block';
+    }
+  });
+
+  paymentRequest.on('paymentmethod', async(e)=>{
+    e.complete('success');
+    alert('Pago completado. Gracias por tu compra.');
+  });
+}
+
+
 async function handlePayment(){
   const btn = document.getElementById('btn-pay');
   btn.disabled = true;
   btn.textContent = 'Procesando...';
-
-  // NOTA: Para procesar pagos reales necesitas un backend que cree el PaymentIntent
-  // y devuelva el clientSecret. Por ahora mostramos el flujo visual.
   btn.disabled = false;
   const coSub = coCart.reduce((s,i) => s + i.precio * i.qty, 0);
   const coEnvioVal = coGetEnvio(coSub);
   btn.textContent = 'Pagar ahora — '+(coSub+coEnvioVal).toFixed(2).replace('.',',')+'€';
-  // Newsletter
   const newsletter = document.getElementById('newsletter');
   if(newsletter && newsletter.checked){
     const emailVal = document.getElementById('email') ? document.getElementById('email').value : '';
     fetch('https://formsubmit.co/proyectosbuflutter@gmail.com', {
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify({
-        _subject: 'KORVA — Nuevo suscriptor newsletter',
-        email: emailVal,
-        mensaje: 'El usuario ha marcado la casilla de novedades durante el checkout.'
-      })
+      body: JSON.stringify({_subject:'KORVA — Nuevo suscriptor newsletter',email:emailVal,mensaje:'El usuario ha marcado la casilla de novedades durante el checkout.'})
     }).catch(()=>{});
   }
   window.location.href = 'confirmacion.html';
 }
 
-// STEPPER
 let currentStep = 1;
 function goStep(n){
+  if(n === 3) mountStripe();
   if(n > currentStep){
     for(let i=1;i<n;i++) document.getElementById('step-'+i).classList.add('done');
   }
@@ -901,11 +883,7 @@ function mostrarErrorValidacion(msg){
     popup = document.createElement('div');
     popup.id = 'popup-validacion';
     popup.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);z-index:2000;background:var(--white);padding:2.5rem 3rem;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.18);min-width:300px;transition:all .2s';
-    popup.innerHTML = `
-      <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--black);margin-bottom:.8rem">Campos incompletos</div>
-      <div id="popup-validacion-msg" style="font-size:.78rem;color:var(--g600);margin-bottom:1.5rem"></div>
-      <button onclick="cerrarPopupValidacion()" style="font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.7rem 1.8rem;cursor:pointer">Entendido</button>
-    `;
+    popup.innerHTML = `<div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--black);margin-bottom:.8rem">Campos incompletos</div><div id="popup-validacion-msg" style="font-size:.78rem;color:var(--g600);margin-bottom:1.5rem"></div><button onclick="cerrarPopupValidacion()" style="font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--black);color:var(--white);border:none;padding:.7rem 1.8rem;cursor:pointer">Entendido</button>`;
     document.body.appendChild(popup);
   }
   document.getElementById('popup-validacion-msg').textContent = msg;
@@ -925,12 +903,8 @@ function validarPaso1(){
   const nombres = {nombre:'Nombre',apellidos:'Apellidos',email:'Email',telefono:'Teléfono'};
   campos.forEach(id=>{
     const el = document.getElementById(id);
-    if(!el.value.trim()){
-      el.style.borderBottomColor='#c0622a';
-      faltantes.push(nombres[id]);
-    } else {
-      el.style.borderBottomColor='';
-    }
+    if(!el.value.trim()){ el.style.borderBottomColor='#c0622a'; faltantes.push(nombres[id]); }
+    else { el.style.borderBottomColor=''; }
   });
   if(faltantes.length){ mostrarErrorValidacion('Por favor completa: '+faltantes.join(', ')); return; }
   goStep(2);
@@ -941,24 +915,21 @@ function validarPaso2(){
   let faltantes = [];
   campos.forEach(c=>{
     const el = document.getElementById(c.id);
-    if(!el||!el.value.trim()){
-      if(el) el.style.borderBottomColor='#c0622a';
-      faltantes.push(c.label);
-    } else {
-      el.style.borderBottomColor='';
-    }
+    if(!el||!el.value.trim()){ if(el) el.style.borderBottomColor='#c0622a'; faltantes.push(c.label); }
+    else { el.style.borderBottomColor=''; }
   });
   if(faltantes.length){ mostrarErrorValidacion('Por favor completa: '+faltantes.join(', ')); return; }
   goStep(3);
 }
 
-function cambiarZona(val){
-  localStorage.setItem('korva-zona', val);
-  location.reload();
-}
 function toggleBilling(){
   const same=document.getElementById('billing-same').checked;
   document.getElementById('billing-fields').style.display=same?'none':'flex';
+}
+
+function cambiarZona(val){
+  localStorage.setItem('korva-zona', val);
+  location.reload();
 }
 
 function applyCoDiscount(){
@@ -966,7 +937,6 @@ function applyCoDiscount(){
   if(code==='KORVA10') document.getElementById('co-discount-ok').classList.add('show');
 }
 
-// MODALES
 function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 function openLogin(){document.getElementById('modal-login').classList.add('open');document.body.style.overflow='hidden';}
@@ -975,7 +945,6 @@ function openRegistro(){document.getElementById('modal-registro').classList.add(
 function closeRegistro(){document.getElementById('modal-registro').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();closeLegal();}});
 
-// COOKIES
 function initCookies(){
   if(!localStorage.getItem('korva-cookies')){
     setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),800);
@@ -984,18 +953,7 @@ function initCookies(){
 function acceptCookies(){localStorage.setItem('korva-cookies','accepted');document.getElementById('cookie-banner').classList.remove('show');}
 function rejectCookies(){localStorage.setItem('korva-cookies','rejected');document.getElementById('cookie-banner').classList.remove('show');}
 initCookies();
-document.addEventListener('DOMContentLoaded',function(){
-  coCart = JSON.parse(localStorage.getItem('korva-cart') || '[]');
-  coZona = localStorage.getItem('korva-zona') || 'peninsula';
-  coDescuentoActivo = localStorage.getItem('korva-descuento-activo') === 'true';
-  coDescuentoPct = parseFloat(localStorage.getItem('korva-descuento-pct') || '0');
-  applyLang();
-  renderCheckoutSummary();
-  const sel = document.getElementById('zona-selector');
-  if(sel) sel.value = coZona;
-});
 
-// LEGAL
 const legalContent={
   aviso:{label:'Aviso legal',title:'Aviso legal',content:`<p><strong>Titular:</strong> KORVA Pádel S.L. · CIF: B00000000<br><strong>Email:</strong> legal@korvapadel.com</p><br><p>El presente aviso legal regula el uso del sitio web korvapadel.com.</p>`},
   privacidad:{label:'Privacidad',title:'Política de privacidad',content:`<p>En cumplimiento del RGPD y la LOPDGDD, te informamos del tratamiento de tus datos personales.</p><br><p><strong>Responsable:</strong> KORVA Pádel S.L. · legal@korvapadel.com</p>`},
@@ -1012,13 +970,21 @@ function openLegal(type){
 function closeLegal(){document.getElementById('modal-legal').classList.remove('open');document.body.style.overflow='';}
 function openProximamente(){document.getElementById('modal-proximamente').classList.add('open');document.body.style.overflow='hidden';}
 function closeProximamente(){document.getElementById('modal-proximamente').classList.remove('open');document.body.style.overflow='';}
+
 (function(){
   const cart = JSON.parse(localStorage.getItem('korva-cart')||'[]');
   const total = cart.reduce((s,i)=>s+i.qty,0);
   const el = document.getElementById('nav-cart-count');
   if(el && total > 0){ el.textContent=total; el.style.display='flex'; }
 })();
+
+document.addEventListener('DOMContentLoaded',function(){
+  applyLang();
+  renderCheckoutSummary();
+  document.getElementById('zona-selector').value = coZona;
+});
 </script>
+
 <div class="modal-overlay" id="modal-registro">
   <div class="modal-backdrop" onclick="closeRegistro()"></div>
   <div class="modal-box">
