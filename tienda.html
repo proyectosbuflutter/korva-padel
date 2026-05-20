@@ -285,7 +285,6 @@ body{animation:fadeIn .4s ease;}
       <button class="filter-btn" data-cat="pala">Palas</button>
       <button class="filter-btn" data-cat="pack">Packs</button>
       <button class="filter-btn" data-cat="accesorio">Accesorios</button>
-      <button class="filter-btn" data-cat="otras-marcas">Otras marcas</button>
     </div>
     <select id="sort-select" style="font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--g200);background:transparent;color:var(--g600);padding:.45rem 1rem;cursor:pointer;outline:none">
       <option value="default">Ordenar por</option>
@@ -317,64 +316,6 @@ body{animation:fadeIn .4s ease;}
         <div class="shop-divider-line"></div>
       </div>
       <div class="palas-grid" id="packs-grid"></div>
-    </div>
-
-    <div id="otras-marcas-section" style="display:none">
-      <div class="shop-divider">
-        <div class="shop-divider-line"></div>
-        <div class="shop-divider-label">Otras marcas</div>
-        <div class="shop-divider-line"></div>
-      </div>
-      <div class="palas-grid" id="otras-marcas-grid" style="grid-template-columns:repeat(4,1fr)" data-loaded="false">
-        <div class="pala-card" onclick="location.href='producto.html?id=4'">
-          <div class="pala-card-img">
-            <span style="position:absolute;top:.8rem;left:.8rem;background:var(--accent);color:#fff;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem">Pádel Pro</span>
-            <div class="svg-fallback">
-              <svg width="80" height="130" viewBox="0 0 190 310" fill="none"><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#111110" opacity=".97"/><text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-style="italic" fill="#c8a96e" opacity=".92">PP</text></svg>
-            </div>
-          </div>
-          <div class="pala-card-info">
-            <div class="pala-card-cat">Marca colaboradora</div>
-            <div class="pala-card-name">Pádel Pro</div>
-          </div>
-        </div>
-        <div class="pala-card" onclick="location.href='producto.html?id=3'">
-          <div class="pala-card-img">
-            <span style="position:absolute;top:.8rem;left:.8rem;background:var(--accent);color:#fff;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem">Nova Pádel</span>
-            <div class="svg-fallback">
-              <svg width="80" height="130" viewBox="0 0 190 310" fill="none"><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#111110" opacity=".97"/><text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-style="italic" fill="#c8a96e" opacity=".92">NP</text></svg>
-            </div>
-          </div>
-          <div class="pala-card-info">
-            <div class="pala-card-cat">Marca colaboradora</div>
-            <div class="pala-card-name">Nova Pádel</div>
-          </div>
-        </div>
-        <div class="pala-card" onclick="location.href='producto.html?id=5'">
-          <div class="pala-card-img">
-            <span style="position:absolute;top:.8rem;left:.8rem;background:var(--accent);color:#fff;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem">Tech Inter WT</span>
-            <div class="svg-fallback">
-              <svg width="80" height="130" viewBox="0 0 190 310" fill="none"><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#111110" opacity=".97"/><text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-style="italic" fill="#c8a96e" opacity=".92">TW</text></svg>
-            </div>
-          </div>
-          <div class="pala-card-info">
-            <div class="pala-card-cat">Marca colaboradora</div>
-            <div class="pala-card-name">Tech Inter WT</div>
-          </div>
-        </div>
-        <div class="pala-card" onclick="location.href='producto.html?id=2'">
-          <div class="pala-card-img">
-            <span style="position:absolute;top:.8rem;left:.8rem;background:var(--accent);color:#fff;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem">Europe Pádel</span>
-            <div class="svg-fallback">
-              <svg width="80" height="130" viewBox="0 0 190 310" fill="none"><ellipse cx="95" cy="124" rx="80" ry="94" fill="none" stroke="#c8a96e" stroke-width="10"/><ellipse cx="95" cy="124" rx="80" ry="94" fill="#111110" opacity=".97"/><text x="95" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-style="italic" fill="#c8a96e" opacity=".92">EP</text></svg>
-            </div>
-          </div>
-          <div class="pala-card-info">
-            <div class="pala-card-cat">Marca colaboradora</div>
-            <div class="pala-card-name">Europe Pádel</div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div id="accesorios-section">
@@ -707,22 +648,7 @@ async function loadProducts(cat='todos'){
   const palas = (cat === 'accesorio' || cat === 'pack') ? [] : data.filter(p => p.categoria === 'pala');
   const accesorios = (cat === 'pala' || cat === 'pack') ? [] : data.filter(p => p.categoria === 'accesorio');
   renderProducts(palas, accesorios);
-  const otrasMarcasSection = document.getElementById('otras-marcas-section');
-  if(cat === 'otras-marcas'){
-    otrasMarcasSection.style.display='block';
-    loadOtrasMarcas();
-    document.getElementById('palas-section').style.display='none';
-    document.getElementById('packs-section').style.display='none';
-    document.getElementById('accesorios-section').style.display='none';
-    document.getElementById('shop-loading').style.display='none';
-    document.getElementById('shop-content').style.display='block';
-    return;
-  } else if(cat === 'todos'){
-    otrasMarcasSection.style.display='block';
-    loadOtrasMarcas();
-  } else {
-    otrasMarcasSection.style.display='none';
-  }
+  
   if(cat === 'pala' || cat === 'accesorio'){
     document.getElementById('packs-section').style.display='none';
   } else {
