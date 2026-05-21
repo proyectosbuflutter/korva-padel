@@ -1,0 +1,10 @@
+[33mdb07775[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Revert "fix nav-cart estilo y mobile"
+[33m0cbef5c[m fix nav-cart estilo y mobile
+[33m2832a16[m feat: i18n checkout y confirmacion + fix edge function anti-loop
+[33m4a7500f[m fix: comparador precios Supabase fuera del forEach
+[33m7174461[m fix: anti-FOUC en producto y packs
+[33m87db317[m fix: upsells traducidos en carrito.html
+[33m0bec37e[m fix: boton idioma activo en carrito.html
+[33m96a1e34[m feat: i18n carrito.html completo y definitivo
+[33m09dca44[m feat: i18n packs.html completo y definitivo con badge_en
+[33m4c1b15c[m fix: categorias Potencia y Control traducidas
