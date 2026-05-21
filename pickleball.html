@@ -61,6 +61,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:
   .nav-links{display:none}
   .nav-access{display:none}
   .nav-cart{display:inline-flex !important;padding:.5rem .7rem;font-size:.58rem;letter-spacing:.06em}
+  .cart-txt{display:none}
   nav>div>a:not(.logo){display:none}
   .nav-hamburger{display:flex !important}
   .marquee-left{display:none !important}
@@ -151,6 +152,7 @@ footer{background:var(--black);padding:6rem 4rem 3rem}
       <span style="position:relative;display:inline-flex;align-items:center">
         <img src="shopping-cart-simple.svg" width="18" height="18" style="display:block;filter:brightness(0) invert(1)">
       </span>
+      <span class="cart-txt">Carrito</span>
     </a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
       <span></span><span></span><span></span>
