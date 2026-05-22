@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Blog — KORVA</title>
+<meta name="description" content="Artículos técnicos sobre pádel, pickleball y football flag. Ingeniería de materiales y conocimiento para jugadores exigentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"></noscript>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fafaf8;--g100:#f4f3f0;--g200:#e8e6e1;
+  --g400:#a09e98;--g600:#6b6a66;--g800:#2c2b28;
+  --accent:#c8a96e;--accent-soft:#f5ede0;
+}
+html{overflow-x:clip}
+body{font-family:'Sora',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.top-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:var(--black);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.top-banner span{color:var(--accent)}
+
+/* CORRECCIÓN 1: Navbar Premium en contraste */
+nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:#1e1a14;backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,169,110,0.15)}
+.logo img{filter: brightness(0) invert(1);} /* Hace que el logo se adapte al fondo oscuro */
+.nav-links{display:flex;gap:1.2rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-access{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);transition:color .2s}
+.nav-access:hover{color:var(--white)}
+.nav-cart{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:var(--black);text-decoration:none;padding:.7rem 1.2rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:opacity .2s}
+.nav-cart:hover{opacity:0.9}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;margin-left:.5rem}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.nav-mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1509;z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;opacity:0;transition:opacity .3s ease}
+.nav-mobile-menu.open{opacity:1}
+.nav-mobile-menu a{font-family:'Sora',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.nav-mobile-menu a:hover{color:var(--accent)}
+.nav-mobile-divider{width:30px;height:1px;background:rgba(255,255,255,.1)}
+.nav-mobile-cart{display:inline-flex !important;align-items:center;gap:.6rem;background:var(--accent);color:#000 !important;padding:.7rem 2rem;font-family:'Sora',sans-serif !important;font-size:.65rem !important;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-top:.8rem}
+
+/* BLOG HERO */
+.blog-hero{padding:12rem 4rem 5rem;max-width:1280px;margin:0 auto}
+.blog-hero-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem}
+.blog-hero-title{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.05;margin-bottom:1rem}
+.blog-hero-sub{font-size:.92rem;color:var(--g600);font-weight:300;max-width:520px;line-height:1.8}
+
+/* FILTROS */
+.blog-filters{padding:2rem 4rem 3rem;max-width:1280px;margin:0 auto;display:flex;gap:.6rem;flex-wrap:wrap}
+.filter-btn{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:none;border:1px solid var(--g200);color:var(--g600);padding:.5rem 1.2rem;cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:var(--g400);color:var(--black)}
+.filter-btn.active{border-color:var(--black);color:var(--black);background:var(--black);color:var(--white)}
+
+/* GRID */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:0 4rem 8rem;max-width:1280px;margin:0 auto}
+.blog-card{background:var(--g100);cursor:pointer;transition:transform .3s ease,opacity .4s ease;display:flex;flex-direction:column;border:1px solid transparent}
+.blog-card:hover{transform:translateY(-4px);border-color:var(--g200)}
+.blog-card.hidden{opacity:0;pointer-events:none;position:absolute}
+
+/* CORRECCIÓN 3: Marcador visual premium para imitar fibra de carbono */
+.blog-card-img{aspect-ratio:16/10;background:linear-gradient(135deg, #141414 0%, #282828 100%);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.blog-card-img::before {content: '';position: absolute;inset: 0;opacity: 0.04;background-image: linear-gradient(45deg, #fff 25%, transparent 25%), linear-gradient(-45deg, #fff 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #fff 75%), linear-gradient(-45deg, transparent 75%, #fff 75%);background-size: 8px 8px;background-position: 0 0, 0 4px, 4px -4px, -4px 0px;}
+.blog-card-img-placeholder{font-family:'DM Serif Display',serif;font-size:1.8rem;color:rgba(200,169,110,0.4);letter-spacing: 0.1em;text-transform: uppercase}
+
+.blog-card-body{padding:1.8rem;flex-grow:1;display:flex;flex-direction:column}
+.blog-card-meta{display:flex;gap:1rem;align-items:center;margin-bottom:.8rem}
+.blog-card-cat{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-soft);padding:.2rem .6rem;background:var(--accent-soft)}
+.blog-card-date{font-size:.6rem;color:var(--g400);letter-spacing:.08em}
+.blog-card-title{font-family:'DM Serif Display',serif;font-size:1.3rem;line-height:1.2;margin-bottom:.7rem;color:var(--black)}
+.blog-card-excerpt{font-size:.8rem;color:var(--g600);line-height:1.75;font-weight:300;margin-bottom:1.2rem;flex-grow:1}
+.blog-card-read{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--black);display:flex;align-items:center;gap:.4rem;margin-top:auto}
+.blog-card-read::after{content:'→';transition:transform .2s}
+.blog-card:hover .blog-card-read::after{transform:translateX(4px)}
+.blog-read-time{font-size:.6rem;color:var(--g400);margin-left:auto}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px)}
+.modal-box{position:relative;z-index:1;background:var(--white);width:100%;max-width:720px;max-height:88vh;overflow-y:auto;transform:translateY(30px);transition:transform .4s cubic-bezier(.25,.46,.45,.94);margin:1.5rem}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-close{position:sticky;top:0;float:right;margin:1.5rem 1.5rem 0 0;background:var(--black);border:none;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#fff;z-index:2;flex-shrink:0}
+.modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
+.modal-content{padding:3rem 3.5rem 4rem;clear:both}
+.modal-cat{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.8rem}
+.modal-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1;margin-bottom:.8rem}
+.modal-meta{font-size:.65rem;color:var(--g400);letter-spacing:.08em;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--g200)}
+.modal-body h3{font-family:'DM Serif Display',serif;font-size:1.4rem;margin:2rem 0 .8rem;color:var(--black)}
+.modal-body p{font-size:.9rem;color:var(--g600);line-height:1.9;font-weight:300;margin-bottom:1.2rem}
+.modal-body strong{color:var(--black);font-weight:600}
+.modal-body ul,.modal-body ol{padding-left:1.4rem;margin-bottom:1.2rem}
+.modal-body li{font-size:.9rem;color:var(--g600);line-height:1.9;font-weight:300;margin-bottom:.3rem}
+
+/* FOOTER */
+footer{background:var(--black);padding:6rem 4rem 3rem}
+.footer-brand{text-align:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand-name{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:1rem}
+.footer-brand-desc{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.8;max-width:360px;margin:0 auto;font-weight:300}
+.footer-nav{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.footer-nav a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--accent)}
+.footer-legal{display:flex;justify-content:center;gap:2.5rem;margin-bottom:3rem}
+.footer-legal a{font-size:.62rem;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.footer-social{display:flex;justify-content:center;gap:1.8rem;margin-bottom:4rem}
+.footer-social a{display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.footer-social a:hover{color:var(--accent)}
+.social-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-bottom{text-align:center;font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.06em;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+.footer-contact-btn{display:block;margin:0 auto 4rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(200,169,110,.3);padding:.8rem 2rem;cursor:pointer;transition:all .3s}
+.footer-contact-btn:hover{border-color:var(--accent);background:rgba(200,169,110,.08)}
+
+@media(max-width:900px){
+  .top-banner{display:none}
+  nav{top:0;padding:1rem 1.2rem}
+  .nav-links{display:none}
+  .nav-access{display:none}
+  .nav-cart{display:inline-flex !important;padding:.5rem .7rem;font-size:.58rem;letter-spacing:.06em;background:var(--accent)}
+  .cart-txt{display:none}
+  .nav-hamburger{display:flex !important}
+  .blog-hero{padding:8rem 1.5rem 3rem}
+  .blog-filters{padding:1.5rem 1.5rem 2rem}
+  .blog-grid{grid-template-columns:1fr;padding:0 1.5rem 5rem;gap:16px}
+  .modal-content{padding:2rem 1.5rem 3rem}
+  .footer-nav{gap:1.5rem;flex-wrap:wrap;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <span style="text-align:center;width:100%"><span>Envío gratis</span> en Península +120€ &nbsp;·&nbsp; <span>Devolución</span> 15 días sin preguntas &nbsp;·&nbsp; <span>Garantía</span> 36 meses</span>
+</div>
+
+<nav>
+  <a href="index.html" class="logo"><img src="assets/images/logo-korva-ini.png" alt="KORVA" style="height:50px;width:auto;display:block"></a>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="blog.html" style="font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-decoration:none">Blog</a>
+    <a href="tienda.html" style="border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);padding:.4rem .7rem;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-decoration:none">Tienda</a>
+    <button class="nav-access" onclick="openLogin()" style="margin-left:20px">Acceso</button>
+    <a href="carrito.html" class="nav-cart">
+      <span style="position:relative;display:inline-flex;align-items:center">
+        <img src="shopping-cart-simple.svg" width="18" height="18" style="display:block;filter:brightness(0)">
+        <span id="nav-cart-count" style="position:absolute;top:-8px;right:-8px;background:#0a0a0a;color:#fff;font-size:.5rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 2px"></span>
+      </span>
+      <span class="cart-txt">Carrito</span>
+    </a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="nav-mobile-menu" id="nav-mobile-menu">
+  <button onclick="toggleMenu()" style="position:absolute;top:1.2rem;right:1.4rem;background:none;border:none;cursor:pointer;padding:.4rem;display:flex;align-items:center;justify-content:center">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html" onclick="toggleMenu()">Inicio</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="tienda.html" onclick="toggleMenu()">Tienda</a>
+  <a href="tienda.html?cat=pack" onclick="toggleMenu()">Packs</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="pickleball.html" onclick="toggleMenu()">Pickleball</a>
+  <a href="footballflag.html" onclick="toggleMenu()">Football Flag</a>
+  <div class="nav-mobile-divider"></div>
+  <a href="carrito.html" class="nav-mobile-cart" onclick="toggleMenu()">Carrito</a>
+</nav>
+
+<main>
+
+<div class="blog-hero">
+  <span class="blog-hero-label">Conocimiento técnico</span>
+  <h1 class="blog-hero-title">El Universo<br><em style="font-style:italic;color:var(--accent)">KORVA.</em></h1>
+  <p class="blog-hero-sub">Cada detalle influye en cómo se siente una pala. Sin artificios. Solo rendimiento. Para quienes quieren entender lo que tienen en la mano.</p>
+</div>
+
+<div class="blog-filters">
+  <button class="filter-btn active" onclick="filterPosts('todos',this)">Todos</button>
+  <button class="filter-btn" onclick="filterPosts('padel',this)">Pádel</button>
+  <button class="filter-btn" onclick="filterPosts('pickleball',this)">Pickleball</button>
+  <button class="filter-btn" onclick="filterPosts('flag',this)">Football Flag</button>
+</div>
+
+<div class="blog-grid" id="blog-grid"></div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name">KORVA</span>
+    <p class="footer-brand-desc">Ingeniería de materiales de alto rendimiento, diseñada para quienes no aceptan límites en la pista.</p>
+  </div>
+  <div class="footer-nav">
+    <a href="index.html">KORVA Pádel</a>
+    <a href="pickleball.html">KORVA Pickleball</a>
+    <a href="footballflag.html">KORVA Football Flag</a>
+  </div>
+  <div class="footer-nav" style="margin-top:1rem">
+    <a href="blog.html">Blog</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="#" onclick="openLogin();return false">Acceso</a>
+    <a href="carrito.html" style="color:var(--accent)">Carrito</a>
+  </div>
+  <button class="footer-contact-btn" onclick="openModal()">Contacto</button>
+  <div class="footer-social">
+    <a href="#" aria-label="Instagram">
+      <svg class="social-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+      Instagram
+    </a>
+    <a href="#" aria-label="TikTok">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.17 8.17 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+      TikTok
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)" stroke="none"/></svg>
+      YouTube
+    </a>
+  </div>
+  <div class="footer-legal">
+    <a href="#">Aviso legal</a>
+    <a href="#">Privacidad</a>
+    <a href="#">Cookies</a>
+  </div>
+  <div class="footer-bottom">© 2026 KORVA — Todos los derechos reservados</div>
+</footer>
+
+<div class="modal-overlay" id="modal-post">
+  <div class="modal-backdrop" onclick="closePost()"></div>
+  <div class="modal-box" id="modal-post-box">
+    <button class="modal-close" onclick="closePost()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-content">
+      <span class="modal-cat" id="modal-cat"></span>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-meta" id="modal-meta"></div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-contact">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-content">
+      <span class="modal-cat">Contacto</span>
+      <div class="modal-title">Cuéntanos<br>en qué podemos<br>ayudarte.</div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem"><label style="font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600)">Nombre</label><input type="text" placeholder="Tu nombre" style="font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;width:100%"></div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem"><label style="font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600)">Email</label><input type="email" placeholder="tu@email.com" style="font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;width:100%"></div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem"><label style="font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g600)">Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..." style="font-family:'Sora',sans-serif;font-size:.88rem;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--g200);padding:.6rem 0;outline:none;width:100%;resize:none;min-height:100px;line-height:1.7"></textarea></div>
+      <button style="width:100%;margin-top:1rem;padding:1rem;background:var(--black);color:var(--white);border:none;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Enviar mensaje</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const posts = [
+  {
+    id: 1,
+    title: "Por qué elegimos Carbono Visto: La búsqueda del Tacto Puro",
+    excerpt: "La ausencia de capas de pintura cosmética no es una decisión estética. Es una decisión de ingeniería que cambia la forma en que la pala se comunica con tu muñeca.",
+    category: "padel",
+    categoryLabel: "KORVA Lab // Pádel",
+    date: "Mayo 2026",
+    readTime: "5 min",
+    content: `
+      <p>Cuando el equipo de ingeniería de KORVA tomó la decisión de presentar el carbono en su estado natural, la conversación no empezó en el departamento de diseño. Empezó en el banco de pruebas, con un dinamómetro, una mesa vibratoria y demasiadas horas midiendo respuestas de frecuencia.</p>
+
+      <h3>El peso que no ves, pero sientes</h3>
+      <p>Una capa de pintura poliuretánica estándar aplicada sobre las caras de una pala añade entre <strong>10 y 15 gramos</strong> de masa no estructural. No es masa que rigidice el marco. No es masa que proteja el núcleo. Es masa cosmética, distribuida de forma irregular sobre la superficie de golpeo, que sube el punto de equilibrio y reduce la agilidad en los intercambios rápidos en la red.</p>
+      <p>En pádel de alto nivel, donde la diferencia entre llegar a tiempo a una dejada o no se mide en milisegundos de reacción, esos 10-15 gramos importan más de lo que cualquier especificación técnica es capaz de transmitir en papel.</p>
+
+      <h3>El carbono como superficie de diálogo</h3>
+      <p>El tejido de carbono tiene una propiedad que la pintura enmascara: <strong>flexiona y recupera con memoria propia</strong>. Cuando la pelota impacta sobre carbono visto, las fibras responden directamente, sin el filtro viscoelástico que introduce una capa de resina endurecida y pigmentada. El resultado es un tacto que los jugadores describen como <em>directo</em>, <em>limpio</em> o <em>honesto</em>: percibes exactamente lo que está haciendo la pelota en el momento del contacto.</p>
+      <p>Este feedback propioceptivo no es un lujo para el jugador avanzado. Es información que tu sistema nervioso usa para calibrar el siguiente golpe incluso antes de que seas consciente de haberlo procesado.</p>
+
+      <h3>La perfección del molde como firma artesanal</h3>
+      <p>Presentar el carbono al natural implica una exigencia adicional para el proceso de fabricación: <strong>no hay pintura que corrija imperfecciones</strong>. Cada pala KORVA en carbono visto es, en ese sentido, una declaración de confianza en la precisión del molde y en la maestría del proceso de laminado. El trenzado tiene que ser uniforme. La impregnación de resina, homogénea. El ciclo de curado, exacto.</p>
+      <p>No es el camino más fácil. Es el camino correcto para quien entiende que el rendimiento no se decora.</p>
+
+      <ul>
+        <li>Entre 10 y 15 g menos de masa no estructural en caras</li>
+        <li>Respuesta de frecuencia más limpia en el impacto</li>
+        <li>Feedback táctil directo sin filtros viscoelásticos</li>
+        <li>Exigencia máxima en el control del proceso de fabricación</li>
+      </ul>
+    `
+  },
+  {
+    id: 2,
+    title: "Guía de Trenzados KORVA: ¿Qué carbono se adapta a tu juego?",
+    excerpt: "3K, 12K, 18K. No son sólo números en una ficha técnica. Son tres arquitecturas de fibra con comportamientos mecánicos radicalmente distintos. Elige mal y pagarás cada golpe.",
+    category: "padel",
+    categoryLabel: "KORVA Lab // Pádel",
+    date: "Mayo 2026",
+    readTime: "7 min",
+    content: `
+      <p>La denominación K en la fibra de carbono indica el número de filamentos por haz: 3K son 3.000 filamentos, 12K son 12.000, 18K son 18.000. Pero el número no es lo que determina el comportamiento de la pala. Lo que importa es la <strong>geometría del trenzado</strong> resultante y cómo esa geometría distribuye las tensiones en el momento del impacto.</p>
+
+      <h3>Carbono 3K — Arquitectura cerrada, respuesta seca</h3>
+      <p>El trenzado 3K produce un tejido de malla muy cerrada, con haces finos entrelazados en ángulos pronunciados. Esto se traduce en una <strong>rigidez elevada</strong> y un punto dulce concentrado. La energía del impacto se transfiere al núcleo con poca disipación: lo que metes en el golpe, sale al otro lado.</p>
+      <p>Es el carbono del jugador <strong>pegador y técnico</strong>, que busca potencia seca, salida de bola rápida y máximo control sobre la dirección. No perdona los golpes fuera del punto dulce, pero premia la precisión con una eficiencia difícil de igualar.</p>
+      <p><strong>Perfil de jugador:</strong> medio-avanzado, juego ofensivo, bandeja y víbora como golpes de referencia.</p>
+
+      <h3>Carbono 12K — El equilibrio como decisión de ingeniería</h3>
+      <p>Con haces más anchos y un trenzado de menor densidad, el 12K ofrece una <strong>ventana de flexión más amplia</strong> que el 3K sin llegar a la elasticidad del 18K. El punto dulce se amplía, la tolerancia a golpes ligeramente excéntricos mejora y la sensación al tocar la pelota es más comunicativa, más rica en información táctil.</p>
+      <p>El KORVA 12K Versatile es, en ese sentido, una declaración de principios: creemos que el jugador polivalente no debería tener que elegir entre control y potencia. El 12K es la respuesta de ingeniería a esa falsa disyuntiva.</p>
+      <p><strong>Perfil de jugador:</strong> iniciación avanzada a avanzado, juego completo, adaptable a cualquier posición en pista.</p>
+
+      <h3>Carbono 18K — Flexión controlada, salida de bola suave</h3>
+      <p>El 18K invierte la ecuación: <strong>más filamentos por haz, trenzado más abierto, mayor capacidad de deformación elástica</strong> bajo carga. La pala absorbe más energía del impacto antes de devolverla, lo que se percibe como una salida de bola más progresiva, más cómoda para el brazo y más manejable para quienes llegan tarde a la pelota o necesitan más tiempo de contacto para orientar el golpe.</p>
+      <p>No es la opción del jugador sin técnica. Es la opción del jugador que prioriza la comodidad articular, la continuidad de juego en sesiones largas y un margen de error más generoso en los momentos de presión.</p>
+      <p><strong>Perfil de jugador:</strong> iniciación a medio, juego defensivo o polivalente, prioridad en la comodidad y la continuidad.</p>
+
+      <h3>Resumen comparativo</h3>
+      <ul>
+        <li><strong>3K:</strong> rigidez alta · potencia seca · punto dulce concentrado · para pegadores</li>
+        <li><strong>12K:</strong> equilibrio óptimo · punto dulce amplio · versátil · para todos los niveles avanzados</li>
+        <li><strong>18K:</strong> flexión controlada · salida suave · confort articular · para juego continuo y defensivo</li>
+      </ul>
+    `
+  }
+];
+
+function renderCards(filter){
+  const grid = document.getElementById('blog-grid');
+  grid.innerHTML = '';
+  const filtered = filter === 'todos' ? posts : posts.filter(p => p.category === filter);
+  if(filtered.length === 0){
+    grid.innerHTML = '<p style="padding:3rem;color:var(--g400);font-size:.85rem;grid-column:1/-1;text-align:center">No hay artículos en esta categoría todavía.</p>';
+    return;
+  }
+  filtered.forEach(post => {
+    const card = document.createElement('div');
+    card.className = 'blog-card';
+    card.innerHTML = `
+      <div class="blog-card-img">
+        <div class="blog-card-img-placeholder">${post.category.toUpperCase()} // LAB</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">
+          <span class="blog-card-cat">${post.categoryLabel}</span>
+          <span class="blog-card-date">${post.date}</span>
+          <span class="blog-read-time">${post.readTime} lectura</span>
+        </div>
+        <div class="blog-card-title">${post.title}</div>
+        <div class="blog-card-excerpt">${post.excerpt}</div>
+        <span class="blog-card-read">Leer artículo</span>
+      </div>
+    `;
+    card.addEventListener('click', () => openPost(post.id));
+    grid.appendChild(card);
+  });
+}
+
+function filterPosts(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(cat);
+}
+
+function openPost(id){
+  const post = posts.find(p => p.id === id);
+  if(!post) return;
+  document.getElementById('modal-cat').textContent = post.categoryLabel;
+  document.getElementById('modal-title').textContent = post.title;
+  document.getElementById('modal-meta').textContent = post.date + ' · ' + post.readTime + ' de lectura';
+  document.getElementById('modal-body').innerHTML = post.content;
+  const overlay = document.getElementById('modal-post');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePost(){
+  document.getElementById('modal-post').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function openModal(){ document.getElementById('modal-contact').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('modal-contact').classList.remove('open'); document.body.style.overflow=''; }
+function openLogin(){}
+
+/* CORRECCIÓN 2: Animación de salida limpia para el menú móvil */
+function toggleMenu(){
+  const btn = document.getElementById('nav-hamburger');
+  const menu = document.getElementById('nav-mobile-menu');
+  const open = btn.classList.toggle('open');
+  
+  if(open) {
+    menu.style.display = 'flex';
+    setTimeout(() => menu.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+  } else {
+    menu.classList.remove('open');
+    setTimeout(() => {
+      menu.style.display = 'none';
+    }, 300); // Espera exactament los 300ms de la transición CSS
+    document.body.style.overflow = '';
+  }
+}
+
+document.querySelectorAll('a[href]').forEach(a=>{
+  const href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.target==='_blank') return;
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    document.body.style.transition='opacity .3s ease';
+    document.body.style.opacity='0';
+    setTimeout(()=>location.href=href,300);
+  });
+});
+
+renderCards('todos');
+</script>
+<script src="//code.tidio.co/b2fb5elsg7pw0xnun90evdskyrrqgfef.js" async></script>
+</body>
+</html>
